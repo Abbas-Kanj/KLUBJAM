@@ -8,6 +8,27 @@
   box-sizing: border-box;
   border: 0;
   scroll-behavior: smooth;
+  color: white;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* /* Track */
+::-webkit-scrollbar-track {
+  background: #3f3c3c;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(11, 11, 11, 0.37);
 }
 
 /* flex flex col gap p m w h min-h max-h min-w max-w text-blye-500 bg-color text-lg hoover:w-[p ] opaacity-80 */

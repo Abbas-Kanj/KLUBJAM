@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+*.mp4
+client/src/assets/LandingPage/full-vid.mp4
