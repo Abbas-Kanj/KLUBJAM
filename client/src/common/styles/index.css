@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  scroll-behavior: smooth;
+}
+
+/* flex flex col gap p m w h min-h max-h min-w max-w text-blye-500 bg-color text-lg hoover:w-[p ] opaacity-80 */
