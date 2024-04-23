@@ -14,6 +14,13 @@ import sec3Img1 from "../../assets/LandingPage/images/Rectangle 25.png";
 import sec3Img2 from "../../assets/LandingPage/images/Rectangle 26.png";
 import sec3Img3 from "../../assets/LandingPage/images/Rectangle 27.png";
 import sec3Img4 from "../../assets/LandingPage/images/Rectangle 28.png";
+import sec4Img1 from "../../assets/LandingPage/images/Rectangle 29.png";
+import sec4Img2 from "../../assets/LandingPage/images/Rectangle 30.png";
+import sec4Img3 from "../../assets/LandingPage/images/Rectangle 31.png";
+import sec4Img4 from "../../assets/LandingPage/images/Rectangle 32.png";
+import sec4Img5 from "../../assets/LandingPage/images/Rectangle 33.png";
+import sec4Img6 from "../../assets/LandingPage/images/Rectangle 34.png";
+import sec4Img7 from "../../assets/LandingPage/images/Rectangle 35.png";
 
 const Landing = () => {
   return (
@@ -158,7 +165,45 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      <section></section>
+      <section className="flex flex-col w-full relative overflow-hidden">
+        <img
+          src={magicPattern1}
+          alt=""
+          className=" absolute w-full h-full z-0"
+        />
+        <div className=" mt-[202px] ml-[828px] flex flex-col text-center relative w-fit z-10">
+          <h1 className="  font-black text-[45px] ">Create Music with AI</h1>
+          <img src={line} className="mb-[19px] mt-[9px] m shadow-drop" alt="" />
+          <p className="text-[20px]  font-semibold">
+            Craft your musical masterpiece by entering your lyrics,
+            <br /> choosing the style of your favourite artist,
+            <br />
+            resulting a song reflecting your creative vision.
+          </p>
+        </div>
+        <div className="flex justify-around w-screen mt-[140px]">
+          <div>
+            <h2 className="text-[25px] font-bold">
+              Insert your favourite <br /> lyrics
+            </h2>
+            <img src={sec4Img7} alt="" className="mt-[15px]" />
+          </div>
+          <div>
+            <h2 className="text-[25px] font-bold">
+              Choose your favourite <br /> artist voice{" "}
+            </h2>
+            <div className="flex flex-wrap w-[370px] gap-2 mt-[15px]">
+              <img src={sec4Img1} alt="" />
+              <img src={sec4Img2} alt="" />
+              <img src={sec4Img3} alt="" />
+              <img src={sec4Img4} alt="" className="mt-[22px]" />
+              <img src={sec4Img5} alt="" className="mt-[22px]" />
+              <img src={sec4Img6} alt="" className="mt-[22px]" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section></section>
     </div>
   );
