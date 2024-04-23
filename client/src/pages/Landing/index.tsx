@@ -10,6 +10,10 @@ import magicPattern3 from "../../assets/LandingPage/images/MagicPattern.design (
 import sec2Img1 from "../../assets/LandingPage/images/Rectangle 11.png";
 import sec2Img2 from "../../assets/LandingPage/images/Rectangle 12.png";
 import sec2Img3 from "../../assets/LandingPage/images/Rectangle 13.png";
+import sec3Img1 from "../../assets/LandingPage/images/Rectangle 25.png";
+import sec3Img2 from "../../assets/LandingPage/images/Rectangle 26.png";
+import sec3Img3 from "../../assets/LandingPage/images/Rectangle 27.png";
+import sec3Img4 from "../../assets/LandingPage/images/Rectangle 28.png";
 
 const Landing = () => {
   return (
@@ -104,16 +108,16 @@ const Landing = () => {
             <br /> and engage with like-minded individuals.
           </p>
         </div>
-        <div className="flex relative h-[1200px] w-full">
+        <div className="relative h-[1000px] w-full">
           <div className="absolute top-0 left-[10%]">
             <h2 className=" text-[25px] font-bold">Interact with others</h2>
             <img src={sec2Img2} alt="" className="mt-[27px]" />
           </div>
-          <div className="absolute top-[20%] right-[10%]">
+          <div className="absolute top-[16%] right-[10%]">
             <h2 className="text-[25px] font-bold">Share Music </h2>
             <img src={sec2Img1} alt="" className="mt-[27px]" />
           </div>
-          <div className="absolute top-[40%] left-[20%]">
+          <div className="absolute top-[50%] left-[25%]">
             <h2 className="text-[25px] font-bold">
               Engage with like the minded
             </h2>
@@ -121,7 +125,39 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      <section></section>
+      <section className="flex flex-col w-full relative">
+        <div className=" mt-[] ml-[185px] flex flex-col text-center relative w-fit">
+          <h1 className="  font-black text-[45px] ">Discover New Music</h1>
+          <img src={line} className="mb-[19px] mt-[9px] m shadow-drop" alt="" />
+          <p className="text-[20px]  font-semibold">
+            Explore a music feed where you can browse playlists,
+            <br /> discover new genres and
+            <br /> find personalized music recommendations
+          </p>
+        </div>
+        <div className="flex mt-[123px] justify-center gap-[52px]">
+          <div className="flex flex-col justify-start ">
+            <img src={sec3Img1} alt="" className="w-[243px] h-[294px]" />
+            <h2 className="text-[25px] font-bold">Retro</h2>
+            <h3 className="text-[25px] font-light">Electronic</h3>
+          </div>
+          <div className="flex flex-col justify-start ">
+            <img src={sec3Img2} alt="" className="w-[243px] h-[294px]" />
+            <h2 className="text-[25px] font-bold">Sundown</h2>
+            <h3 className="text-[25px] font-light">Indian</h3>
+          </div>
+          <div className="flex flex-col justify-start ">
+            <img src={sec3Img4} alt="" className="w-[243px] h-[294px]" />
+            <h2 className="text-[25px] font-bold">Heatin' Up</h2>
+            <h3 className="text-[25px] font-light">Rock</h3>
+          </div>
+          <div className="flex flex-col justify-start ">
+            <img src={sec3Img3} alt="" className="w-[243px] h-[294px]" />
+            <h2 className="text-[25px] font-bold">Mirror Delusion</h2>
+            <h3 className="text-[25px] font-light">Indie</h3>
+          </div>
+        </div>
+      </section>
       <section></section>
       <section></section>
     </div>
