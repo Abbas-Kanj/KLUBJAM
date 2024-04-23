@@ -7,6 +7,9 @@ import sec1Img3 from "../../assets/LandingPage/images/Rectangle 9.png";
 import magicPattern1 from "../../assets/LandingPage/images/MagicPattern.design (2).png";
 import magicPattern2 from "../../assets/LandingPage/images/MagicPattern.design (1).png";
 import magicPattern3 from "../../assets/LandingPage/images/MagicPattern.design (3).png";
+import sec2Img1 from "../../assets/LandingPage/images/Rectangle 11.png";
+import sec2Img2 from "../../assets/LandingPage/images/Rectangle 12.png";
+import sec2Img3 from "../../assets/LandingPage/images/Rectangle 13.png";
 
 const Landing = () => {
   return (
@@ -59,7 +62,7 @@ const Landing = () => {
         </div>
       </section>
       <section className="flex justify-center w-full relative">
-        <div className=" mt-[202px] flex flex-col text-center relative">
+        <div className=" mt-[202px] flex flex-col text-center relative z-10">
           <h1 className="  font-black text-[45px] ">
             Produce & Collab Together
           </h1>
@@ -70,32 +73,29 @@ const Landing = () => {
             <br /> multiple musicians on one project.
           </p>
         </div>
-        <div className="flex mt-[327px] mr-[100px] w-[680px] h-[600px] relative z-0">
+        <div className="flex mt-[327px] mr-[100px] w-[680px] h-[600px] relative z-1">
           <img
             src={sec1Img2}
             alt=""
-            className=" ml-[] w-[393px] h-[393px] absolute top-5 left-[20%] z-20"
+            className=" ml-[] absolute top-5 left-[20%] z-20"
           />
           <img
             src={sec1Img1}
             alt=""
-            className=" ml-[] mt-[] w-[331px] h-[362px] absolute bottom-0 left-0 z-30"
+            className=" ml-[] mt-[]  absolute bottom-0 left-0 z-30"
           />
           <img
             src={sec1Img3}
             alt=""
-            className=" ml-[] mt-[] w-[331px] h-[331px] absolute top-[30%] bottom-0 right-0 z-10"
+            className=" ml-[] mt-[]  absolute top-[30%] bottom-0 right-0 z-10"
           />
         </div>
+        {/* <div className="flex w-full h-full absolute z-0 top-[40%]">
+          <img src={magicPattern1} alt="" className=" relative w-full h-full" />
+        </div> */}
       </section>
-      <img
-        src={magicPattern1}
-        alt=""
-        className="z-0 relative top-[50%] left-[] transform[-translate-x-1/2 -translate-y-1/2] h-full"
-      />
-
-      <section>
-        <div className=" mt-[202px] flex flex-col text-center">
+      <section className="flex flex-col w-full relative">
+        <div className=" mt-[202px] ml-[828px] flex flex-col text-center relative w-fit">
           <h1 className="  font-black text-[45px] ">Join the KLUB</h1>
           <img src={line} className="mb-[19px] mt-[9px] m shadow-drop" alt="" />
           <p className="text-[20px]  font-semibold">
@@ -103,6 +103,22 @@ const Landing = () => {
             <br /> can interact with others, share your music,
             <br /> and engage with like-minded individuals.
           </p>
+        </div>
+        <div className="flex relative h-[1200px] w-full">
+          <div className="absolute top-0 left-[10%]">
+            <h2 className=" text-[25px] font-bold">Interact with others</h2>
+            <img src={sec2Img2} alt="" className="mt-[27px]" />
+          </div>
+          <div className="absolute top-[20%] right-[10%]">
+            <h2 className="text-[25px] font-bold">Share Music </h2>
+            <img src={sec2Img1} alt="" className="mt-[27px]" />
+          </div>
+          <div className="absolute top-[40%] left-[20%]">
+            <h2 className="text-[25px] font-bold">
+              Engage with like the minded
+            </h2>
+            <img src={sec2Img3} alt="" className="mt-[27px]" />
+          </div>
         </div>
       </section>
       <section></section>
