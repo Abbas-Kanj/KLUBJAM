@@ -3,11 +3,14 @@ import logo from "../../assets/LandingPage/images/image 4.svg";
 import line from "../../assets/LandingPage/Line 1.png";
 import sec1Img1 from "../../assets/LandingPage/images/Rectangle 7.png";
 import sec1Img2 from "../../assets/LandingPage/images/Rectangle 8.png";
-import sec1img3 from "../../assets/LandingPage/images/Rectangle 9.png";
+import sec1Img3 from "../../assets/LandingPage/images/Rectangle 9.png";
+import magicPattern1 from "../../assets/LandingPage/images/MagicPattern.design (2).png";
+import magicPattern2 from "../../assets/LandingPage/images/MagicPattern.design (1).png";
+import magicPattern3 from "../../assets/LandingPage/images/MagicPattern.design (3).png";
 
 const Landing = () => {
   return (
-    <div className="flex flex-col relative bg-background overflow-x-hidden">
+    <div className="flex flex-col relative bg-background overflow-x-hidden -z-10">
       <section className="flex flex-col h-screen w-screen">
         <video
           src={video}
@@ -55,35 +58,53 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      <section className="flex flex-col">
-        <div className=" mt-[202px] flex flex-col w-fit">
-          <h1 className=" ml-[141px] font-black text-[45px] w-fit">
+      <section className="flex justify-center w-full relative">
+        <div className=" mt-[202px] flex flex-col text-center relative">
+          <h1 className="  font-black text-[45px] ">
             Produce & Collab Together
           </h1>
-          <img
-            src={line}
-            className="ml-[127px] mt-[9px] mb-[19px] w-fit shadow-drop"
-            alt=""
-          />
-          <div className="flex text-center ml-[224px] w-fit">
-            <p className="text-[20px] font-semibold">
-              Have the ability to create and collaborate on
-              <br /> music projects, whether it's a single or
-              <br /> multiple musicians on one project.
-            </p>
-          </div>
+          <img src={line} className="mb-[19px] mt-[9px] shadow-drop" alt="" />
+          <p className="text-[20px]  font-semibold">
+            Have the ability to create and collaborate on
+            <br /> music projects, whether it's a single or
+            <br /> multiple musicians on one project.
+          </p>
         </div>
-        <div className="flex flex-col">
+        <div className="flex mt-[327px] mr-[100px] w-[680px] h-[600px] relative z-0">
           <img
             src={sec1Img2}
             alt=""
-            className=" ml-[793px] mt-[5px] w-[393px] h-[393px] z-10"
+            className=" ml-[] w-[393px] h-[393px] absolute top-5 left-[20%] z-20"
           />
-          <img src={sec1Img1} alt="" className="w-[331px] h-[362px] z-20" />
-          <img src="" alt="" />
+          <img
+            src={sec1Img1}
+            alt=""
+            className=" ml-[] mt-[] w-[331px] h-[362px] absolute bottom-0 left-0 z-30"
+          />
+          <img
+            src={sec1Img3}
+            alt=""
+            className=" ml-[] mt-[] w-[331px] h-[331px] absolute top-[30%] bottom-0 right-0 z-10"
+          />
         </div>
       </section>
-      <section></section>
+      <img
+        src={magicPattern1}
+        alt=""
+        className="z-0 relative top-[50%] left-[] transform[-translate-x-1/2 -translate-y-1/2] h-full"
+      />
+
+      <section>
+        <div className=" mt-[202px] flex flex-col text-center">
+          <h1 className="  font-black text-[45px] ">Join the KLUB</h1>
+          <img src={line} className="mb-[19px] mt-[9px] m shadow-drop" alt="" />
+          <p className="text-[20px]  font-semibold">
+            Connect now and join a community where you
+            <br /> can interact with others, share your music,
+            <br /> and engage with like-minded individuals.
+          </p>
+        </div>
+      </section>
       <section></section>
       <section></section>
       <section></section>
