@@ -21,10 +21,11 @@ import sec4Img4 from "../../assets/LandingPage/images/Rectangle 32.png";
 import sec4Img5 from "../../assets/LandingPage/images/Rectangle 33.png";
 import sec4Img6 from "../../assets/LandingPage/images/Rectangle 34.png";
 import sec4Img7 from "../../assets/LandingPage/images/Rectangle 35.png";
+import reviewerImg from "../../assets/LandingPage/images/Ellipse 4.svg";
 
 const Landing = () => {
   return (
-    <div className="flex flex-col relative bg-background overflow-x-hidden -z-10">
+    <div className="flex flex-col relative bg-background overflow-x-hidden z-0">
       <section className="flex flex-col h-screen w-screen">
         <video
           src={video}
@@ -43,7 +44,7 @@ const Landing = () => {
               <img src={logo} alt="" />
               <h2 className="ml-[32px] text-2xl font-semibold">KLUBJAM</h2>
             </div>
-            <div className="flex justify-evenly w-[510px] text-lg text-greyText gap-6 font-medium">
+            <div className="flex justify-evenly w-[510px] text-lg gap-6 font-medium">
               <a href="">Workspace</a>
               <a href="">Community</a>
               <a href="">Playlists</a>
@@ -88,25 +89,27 @@ const Landing = () => {
           <img
             src={sec1Img2}
             alt=""
-            className=" ml-[] absolute top-5 left-[20%] z-20"
+            className=" ml-[] absolute top-5 left-[20%] z-30"
           />
           <img
             src={sec1Img1}
             alt=""
-            className=" ml-[] mt-[]  absolute bottom-0 left-0 z-30"
+            className=" ml-[] mt-[]  absolute bottom-0 left-0 z-40"
           />
           <img
             src={sec1Img3}
             alt=""
-            className=" ml-[] mt-[]  absolute top-[30%] bottom-0 right-0 z-10"
+            className=" ml-[] mt-[]  absolute top-[30%] bottom-0 right-0 z-20"
           />
         </div>
-        {/* <div className="flex w-full h-full absolute z-0 top-[40%]">
-          <img src={magicPattern1} alt="" className=" relative w-full h-full" />
-        </div> */}
       </section>
-      <section className="flex flex-col w-full relative">
-        <div className=" mt-[202px] ml-[828px] flex flex-col text-center relative w-fit">
+      <section className="flex flex-col w-full z-10">
+        <img
+          src={magicPattern1}
+          alt=""
+          className="absolute object-cover w-screen h-auto bottom-[55%] left-0 z-10"
+        />
+        <div className=" mt-[202px] ml-[828px] flex flex-col text-center relative z-20 w-fit">
           <h1 className="  font-black text-[45px] ">Join the KLUB</h1>
           <img src={line} className="mb-[19px] mt-[9px] m shadow-drop" alt="" />
           <p className="text-[20px]  font-semibold">
@@ -115,7 +118,8 @@ const Landing = () => {
             <br /> and engage with like-minded individuals.
           </p>
         </div>
-        <div className="relative h-[1000px] w-full">
+
+        <div className="h-[1000px] w-full relative z-20">
           <div className="absolute top-0 left-[10%]">
             <h2 className=" text-[25px] font-bold">Interact with others</h2>
             <img src={sec2Img2} alt="" className="mt-[27px]" />
@@ -132,8 +136,13 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      <section className="flex flex-col w-full relative">
-        <div className=" mt-[] ml-[185px] flex flex-col text-center relative w-fit">
+      <section className="flex flex-col w-full ">
+        <img
+          src={magicPattern3}
+          alt=""
+          className="absolute object-cover w-screen h-auto top-[50%] left-0 z-0"
+        />
+        <div className=" mt-[] ml-[185px] flex flex-col text-center relative z-20 w-fit">
           <h1 className="  font-black text-[45px] ">Discover New Music</h1>
           <img src={line} className="mb-[19px] mt-[9px] m shadow-drop" alt="" />
           <p className="text-[20px]  font-semibold">
@@ -142,7 +151,7 @@ const Landing = () => {
             <br /> find personalized music recommendations
           </p>
         </div>
-        <div className="flex mt-[123px] justify-center gap-[52px]">
+        <div className="flex mt-[123px] justify-center gap-[52px] relative z-20">
           <div className="flex flex-col justify-start ">
             <img src={sec3Img1} alt="" className="w-[243px] h-[294px]" />
             <h2 className="text-[25px] font-bold">Retro</h2>
@@ -165,13 +174,8 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      <section className="flex flex-col w-full relative overflow-hidden">
-        <img
-          src={magicPattern1}
-          alt=""
-          className=" absolute w-full h-full z-0"
-        />
-        <div className=" mt-[202px] ml-[828px] flex flex-col text-center relative w-fit z-10">
+      <section className="flex flex-col w-full  overflow-hidden z-10">
+        <div className=" mt-[202px] ml-[828px] flex flex-col text-center relative w-fit z-20">
           <h1 className="  font-black text-[45px] ">Create Music with AI</h1>
           <img src={line} className="mb-[19px] mt-[9px] m shadow-drop" alt="" />
           <p className="text-[20px]  font-semibold">
@@ -181,7 +185,12 @@ const Landing = () => {
             resulting a song reflecting your creative vision.
           </p>
         </div>
-        <div className="flex justify-around w-screen mt-[140px]">
+        <img
+          src={magicPattern2}
+          alt=""
+          className="absolute object-cover w-screen h-auto bottom-[7%] left-0 z-10"
+        />
+        <div className="flex justify-around w-screen mt-[140px] relative z-20">
           <div>
             <h2 className="text-[25px] font-bold">
               Insert your favourite <br /> lyrics
@@ -203,8 +212,19 @@ const Landing = () => {
           </div>
         </div>
       </section>
-
-      <section></section>
+      <section className="flex flex-col w-full h-screen  overflow-hidden z-20">
+        <div className="flex flex-col text-center items-center mx-auto w-[1132px] h-[400px] mt-[282px] bg-backgroundPurple bg-opacity-20 pt-[40px] pb-[40px] pr-[70px] pl-[70px] relative z-20">
+          <img src={reviewerImg} alt="" className="w-[96px] h-[96px]" />
+          <p className="text-[26px] font-bold mt-[21px] mb-[21px]">
+            “I'm thrilled by the prospect of collaborating with other talented
+            individuals on music projects. The platform provides easy-to-use
+            tools for uploading tracks, <br /> collaborating in real-time, and
+            managing projects effectively.”
+          </p>
+          <small className="text-[21px] font-light">Andrew</small>
+          <small className="text-[21px] font-light">Music producer</small>
+        </div>
+      </section>
     </div>
   );
 };
