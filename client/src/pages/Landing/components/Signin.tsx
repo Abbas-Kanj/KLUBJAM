@@ -3,9 +3,13 @@ import siginImg from "../../../assets/Auth/Rectangle 36.png";
 
 interface SignInProps {
   setOpenSigninPopup: (open: boolean) => void;
+  setOpenSignupPopup: (open: boolean) => void;
 }
 
-const SignIn: React.FC<SignInProps> = ({ setOpenSigninPopup }) => {
+const SignIn: React.FC<SignInProps> = ({
+  setOpenSigninPopup,
+  setOpenSignupPopup,
+}) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <div className="w-[930px] h-[656px] flex">
@@ -68,7 +72,13 @@ const SignIn: React.FC<SignInProps> = ({ setOpenSigninPopup }) => {
               <p className="text-[14px] font-medium text-greyText">
                 Don't have an account?
               </p>
-              <p className="w-auto h-auto text-[14px] font-medium border-primary border-solid border-b-2 cursor-pointer">
+              <p
+                className="w-auto h-auto text-[14px] font-medium border-primary border-solid border-b-2 cursor-pointer"
+                onClick={() => {
+                  setOpenSigninPopup(false);
+                  setOpenSignupPopup(true);
+                }}
+              >
                 SignUp
               </p>
             </div>

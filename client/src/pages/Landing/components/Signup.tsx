@@ -3,9 +3,13 @@ import sigunImg from "../../../assets/Auth/Rectangle 36 (1).png";
 
 interface SignUpProps {
   setOpenSignupPopup: (open: boolean) => void;
+  setOpenSigninPopup: (open: boolean) => void;
 }
 
-const Signup: React.FC<SignUpProps> = ({ setOpenSignupPopup }) => {
+const Signup: React.FC<SignUpProps> = ({
+  setOpenSignupPopup,
+  setOpenSigninPopup,
+}) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <div className="w-[930px] h-[656px] flex">
@@ -29,7 +33,7 @@ const Signup: React.FC<SignUpProps> = ({ setOpenSignupPopup }) => {
           >
             X
           </p>
-          <div className="flex flex-col justify-start items-start w-full pl-[50px] ">
+          <div className="flex flex-col justify-start items-start w-full pl-[50px]  mt-[34px] mb-[18px]">
             <h1 className="font-bold text-[24px]">Create new account</h1>
             <h2 className="text-[16px] text-greyText">
               Please fill your credentials below
@@ -99,15 +103,21 @@ const Signup: React.FC<SignUpProps> = ({ setOpenSignupPopup }) => {
               />
             </div>
           </div>
-          <div className="flex flex-col  gap-[10px]">
+          <div className="flex flex-col  gap-[10px] mt-[27px]">
             <button className="w-[372px] h-[42px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop">
               Create Account
             </button>
-            <div className="flex items-center justify-center gap-[12px]">
+            <div className="flex items-center justify-center gap-[12px] mb-[60px]">
               <p className="text-[14px] font-medium text-greyText">
                 Already have an account?
               </p>
-              <p className="w-auto h-auto text-[14px] font-medium border-primary border-solid border-b-2 cursor-pointer">
+              <p
+                className="w-auto h-auto text-[14px] font-medium border-primary border-solid border-b-2 cursor-pointer"
+                onClick={() => {
+                  setOpenSignupPopup(false);
+                  setOpenSigninPopup(true);
+                }}
+              >
                 LogIn
               </p>
             </div>

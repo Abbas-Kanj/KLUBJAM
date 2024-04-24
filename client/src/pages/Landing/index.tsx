@@ -34,10 +34,16 @@ const Landing = () => {
   return (
     <div className="flex flex-col relative bg-background overflow-x-hidden z-0">
       {openSigninPopup && (
-        <SignIn setOpenSigninPopup={setOpenSigninPopup}></SignIn>
+        <SignIn
+          setOpenSigninPopup={setOpenSigninPopup}
+          setOpenSignupPopup={setOpenSignupPopup}
+        ></SignIn>
       )}
       {openSignupPopup && (
-        <Signup setOpenSignupPopup={setOpenSignupPopup}></Signup>
+        <Signup
+          setOpenSignupPopup={setOpenSignupPopup}
+          setOpenSigninPopup={setOpenSigninPopup}
+        ></Signup>
       )}
 
       <section className="flex flex-col h-screen w-screen">
