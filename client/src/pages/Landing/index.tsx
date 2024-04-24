@@ -24,6 +24,7 @@ import sec4Img7 from "../../assets/LandingPage/images/Rectangle 35.png";
 import reviewerImg from "../../assets/LandingPage/images/Ellipse 4.svg";
 import { useState } from "react";
 import SignIn from "./components/Signin";
+import Signup from "./components/Signup";
 //////////////////////////////////////////////////////////////////////////
 
 const Landing = () => {
@@ -35,6 +36,10 @@ const Landing = () => {
       {openSigninPopup && (
         <SignIn setOpenSigninPopup={setOpenSigninPopup}></SignIn>
       )}
+      {openSignupPopup && (
+        <Signup setOpenSignupPopup={setOpenSignupPopup}></Signup>
+      )}
+
       <section className="flex flex-col h-screen w-screen">
         <video
           src={video}
@@ -63,14 +68,17 @@ const Landing = () => {
               <button
                 className=" bg-primary w-[94px] h-[38px] overflow-hidden rounded-[10px] font-medium"
                 onClick={() => {
-                  console.log("clicked");
-
                   setOpenSigninPopup(true);
                 }}
               >
                 SIGN IN
               </button>
-              <button className="w-[154px] h-[38px] ml-[18px] overflow-hidden rounded-[10px] text-primary font-medium border-solid border-2">
+              <button
+                className="w-[154px] h-[38px] ml-[18px] overflow-hidden rounded-[10px] text-primary font-medium border-solid border-2"
+                onClick={() => {
+                  setOpenSignupPopup(true);
+                }}
+              >
                 SIGN UP - it's free!
               </button>
             </div>
