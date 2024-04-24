@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        drop: "0 0 30px 0 #0FACFD",
+        drop: "0 0 10px 2px #0FACFD",
       },
       colors: {
         transparent: "transparent",

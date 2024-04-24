@@ -1,4 +1,4 @@
-import video from "../../assets/LandingPage/full-vid.mp4";
+import video from "../../assets/LandingPage/wide-video.mp4";
 import logo from "../../assets/LandingPage/images/image 4.svg";
 import line from "../../assets/LandingPage/Line 1.png";
 import sec1Img1 from "../../assets/LandingPage/images/Rectangle 7.png";
@@ -22,19 +22,28 @@ import sec4Img5 from "../../assets/LandingPage/images/Rectangle 33.png";
 import sec4Img6 from "../../assets/LandingPage/images/Rectangle 34.png";
 import sec4Img7 from "../../assets/LandingPage/images/Rectangle 35.png";
 import reviewerImg from "../../assets/LandingPage/images/Ellipse 4.svg";
+import { useState } from "react";
+import SignIn from "./components/Signin";
+//////////////////////////////////////////////////////////////////////////
 
 const Landing = () => {
+  const [openSigninPopup, setOpenSigninPopup] = useState(false);
+  const [openSignupPopup, setOpenSignupPopup] = useState(false);
+
   return (
     <div className="flex flex-col relative bg-background overflow-x-hidden z-0">
+      {openSigninPopup && (
+        <SignIn setOpenSigninPopup={setOpenSigninPopup}></SignIn>
+      )}
       <section className="flex flex-col h-screen w-screen">
         <video
           src={video}
           className="absolute inset-0 h-screen w-screen object-cover opacity-80"
           autoPlay
-          loop
           muted
+          loop
           preload="auto"
-          poster="poster.jpg"
+          poster={magicPattern3}
         >
           <h1 className=" text-greyText">hello</h1>
         </video>
@@ -51,7 +60,14 @@ const Landing = () => {
               <a href="">JukeBox</a>
             </div>
             <div className="flex text-sm text-center justify-center items-center">
-              <button className=" bg-primary w-[94px] h-[38px] overflow-hidden rounded-[10px] font-medium">
+              <button
+                className=" bg-primary w-[94px] h-[38px] overflow-hidden rounded-[10px] font-medium"
+                onClick={() => {
+                  console.log("clicked");
+
+                  setOpenSigninPopup(true);
+                }}
+              >
                 SIGN IN
               </button>
               <button className="w-[154px] h-[38px] ml-[18px] overflow-hidden rounded-[10px] text-primary font-medium border-solid border-2">
