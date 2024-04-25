@@ -1,5 +1,7 @@
-const index = () => {
+import React from "react";
+
+const Account = () => {
   return <div></div>;
 };
 
-export default index;
+export default Account;
