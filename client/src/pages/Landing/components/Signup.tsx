@@ -64,20 +64,7 @@ const Signup: React.FC<SignUpProps> = ({
                 className="w-[375px] h-[44px] pt-[14px] pb-[14px] pl-[18px]  placeholder:font-semibold placeholder:text-[16px] placeholder:text-white bg-transparent border-solid border-[1px] rounded-[5px] focus:outline-none focus:shadow-outline focus:text-primary"
               />
             </div>
-            <div className="flex flex-col w-[375px] gap-[8px]">
-              <label htmlFor="" className="text-[12px] font-medium">
-                Enter your account type
-              </label>
 
-              <select
-                name=""
-                id=""
-                className="w-[375px] h-[44px]  pl-[18px]  placeholder:font-semibold placeholder:text-[16px] placeholder:text-white bg-transparent border-solid border-[1px] rounded-[5px] focus:outline-none focus:shadow-outline focus:text-primary"
-              >
-                <option value="">Musician</option>
-                <option value="">Jammer</option>
-              </select>
-            </div>
             <div className="flex flex-col w-[375px] gap-[8px]">
               <label htmlFor="" className="text-[12px] font-medium">
                 New password
@@ -86,7 +73,7 @@ const Signup: React.FC<SignUpProps> = ({
                 type="password"
                 name=""
                 id=""
-                placeholder="****************"
+                placeholder="**********"
                 className="w-[375px] h-[44px] pt-[14px] pb-[14px] pl-[18px]  placeholder:font-bold placeholder:text-[18px] placeholder:text-white bg-transparent border-solid border-[1px] rounded-[5px] focus:outline-none focus:shadow-outline focus:text-primary"
               />
             </div>
@@ -98,7 +85,7 @@ const Signup: React.FC<SignUpProps> = ({
                 type="password"
                 name=""
                 id=""
-                placeholder="****************"
+                placeholder="**********"
                 className="w-[375px] h-[44px] pt-[14px] pb-[14px] pl-[18px]  placeholder:font-bold placeholder:text-[18px] placeholder:text-white bg-transparent border-solid border-[1px] rounded-[5px] focus:outline-none focus:shadow-outline focus:text-primary"
               />
             </div>
