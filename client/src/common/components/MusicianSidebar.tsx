@@ -26,13 +26,13 @@ const MusicianSidebar = () => {
   const [isAccountHovered, setIsAccountHovered] = useState(false);
 
   return (
-    <div className="flex flex-col w-[220px] h-[655px] bg-background fixed left-0 z-10">
+    <div className="flex flex-col w-[220px] h-[663px] bg-background fixed left-0 z-10">
       <div className="flex mt-[38px] ml-[14px] gap-[19px]">
         <img src={Logo} alt="" />
         <h1 className="font-semibold text-[22px]">KLUBJAM</h1>
       </div>
       <div>
-        <div className="ml-[24px] mt-[72px] mb-[42px] flex flex-col gap-[20px] h-[400px]">
+        <div className="ml-[24px] mt-[72px] mb-[60px] flex flex-col gap-[20px] h-[400px]">
           <div className="group cursor-pointer">
             <div
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"

@@ -1,4 +1,3 @@
-import React from "react";
 import defaultLogo from "../../../assets/Home/images/Ellipse 35.svg";
 
 const Stories = () => {

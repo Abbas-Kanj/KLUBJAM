@@ -1,16 +1,28 @@
 import recommendedLogo from "../../../assets/Home/images/Ellipse 36.svg";
 import post from "../../../assets/Home/icons/ic_baseline-post-add.svg";
+import { useState } from "react";
+import PostPopup from "./PostPopup";
 
 const Recommendations = () => {
+  const [openPostPopup, setOpenPostPopup] = useState(false);
+
   return (
     <div className="absolute top-0 right-0 mt-[37px] mr-[108px]">
+      {openPostPopup && (
+        <PostPopup setOpenPostPopup={setOpenPostPopup}></PostPopup>
+      )}
       <div className="flex gap-[10px] w-[288px]">
         <input
           type="text"
           placeholder="Find a Jammer..."
           className="w-[207px] h-[36px] pl-[10px] pt-[10px] pb-[10px] text-[14px] text-greyText bg-background rounded border border-solid border-greyText"
         />
-        <div className="flex items-center justify-center w-[71px] h-[36px] bg-primary rounded cursor-pointer">
+        <div
+          className="flex items-center justify-center w-[71px] h-[36px] bg-primary rounded cursor-pointer"
+          onClick={() => {
+            setOpenPostPopup(true);
+          }}
+        >
           <img src={post} alt="" />
           <h2 className="font-bold text-[14px]">Post</h2>
         </div>
