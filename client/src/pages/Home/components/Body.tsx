@@ -1,13 +1,13 @@
 import Posts from "./Posts";
+import Recommendations from "./Recommendations";
 import Stories from "./Stories";
 
 const Body = () => {
   return (
     <div className="flex flex-col relative ">
       <Stories></Stories>
+      <Recommendations></Recommendations>
       <Posts></Posts>
-      <div className=" h-[400px] bg-blue-200"></div>
-      <div className=" h-[400px] bg-blue-200"></div>
     </div>
   );
 };

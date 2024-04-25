@@ -7,8 +7,8 @@ import share from "../../../assets/Home/icons/forward.svg";
 
 const Posts = () => {
   return (
-    <div className="ml-[350px] mt-[48px]">
-      <div className="flex flex-col  mb-[40px]">
+    <div className="ml-[350px] mt-[48px] mb-[120px]">
+      <div className="flex flex-col  ">
         <div className="flex items-center gap-[8px]">
           <img src={defaultLogo} alt="" />
           <h2 className="font-medium text-[12px]">01chan_sw - 3h</h2>
@@ -34,12 +34,12 @@ const Posts = () => {
           </div>
         </div>
         <div>
-          <h2 className="font-medium text-[14px] text-greyText">
+          <h2 className="font-medium text-[14px] text-greyText cursor-pointer">
             View all comments
           </h2>
           <input
             type="text"
-            className="font-medium text-[14px] text-greyText bg-transparent focus:border-transparent"
+            className="font-medium text-[14px] text-greyText bg-transparent focus:border-transparent cursor-pointer"
             placeholder="Add a comment..."
           />
 
