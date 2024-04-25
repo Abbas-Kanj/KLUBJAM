@@ -18,6 +18,9 @@ export default {
         backgroundPurple: {
           DEFAULT: "#6B1EC8",
         },
+        backgroundDark: {
+          DEFAULT: "#1A1B1F",
+        },
         greyText: {
           DEFAULT: "#9D9D9D",
         },

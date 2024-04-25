@@ -3,7 +3,7 @@ import Header from "./components/Header";
 
 const Home = () => {
   return (
-    <div className="flex flex-col w-[1308px] absolute right-0">
+    <div className="flex flex-col absolute right-0 min-w-[1308px] bg-backgroundDark">
       <Header />
       <Body />
     </div>

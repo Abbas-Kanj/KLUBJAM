@@ -3,7 +3,7 @@ import defaultLogo from "../../../assets/Navbar/images/user-profile-circle.svg";
 
 const Header = () => {
   return (
-    <div className=" h-[180px] relative">
+    <div className="h-[180px] relative">
       <img
         src={bgHeader}
         alt=""
