@@ -1,7 +1,7 @@
 import React from "react";
 
-const PlayerBar = () => {
+const Jambox = () => {
   return <div></div>;
 };
 
-export default PlayerBar;
+export default Jambox;
