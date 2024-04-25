@@ -1,15 +1,9 @@
-import bgHeader from "../../../assets/Navbar/images/Rectangle 75 (4).png";
-
-import React from "react";
+import bgHeader from "../../../assets/Navbar/images/images (1).jpg";
 
 const Header = () => {
   return (
     <div className=" h-[180px]">
-      <img
-        src={bgHeader}
-        alt=""
-        className="w-full h-auto object-cover opacity-40"
-      />
+      <img src={bgHeader} alt="" className=" w-full object-center" />
     </div>
   );
 };

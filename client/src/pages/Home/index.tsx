@@ -4,7 +4,7 @@ import Header from "./components/Header";
 
 const Home = () => {
   return (
-    <div className="flex flex-col w-[1304px] relative right-0 top-0 left-[15%]">
+    <div className="flex flex-col w-[1304px] absolute right-0">
       <Header />
       <Body />
     </div>

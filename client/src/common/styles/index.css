@@ -9,7 +9,6 @@
   border: 0;
   scroll-behavior: smooth;
   color: white;
-  overflow-y: auto;
 }
 
 ::-webkit-scrollbar {
@@ -30,5 +29,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #6b1ec8;
 }
-
-/* flex flex col gap p m w h min-h max-h min-w max-w text-blye-500 bg-color text-lg hoover:w-[p ] opaacity-80 */
