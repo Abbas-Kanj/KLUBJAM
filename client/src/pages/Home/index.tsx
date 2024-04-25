@@ -1,9 +1,12 @@
 import React from "react";
+import Body from "./components/Body";
+import Header from "./components/Header";
 
 const Home = () => {
   return (
-    <div>
-      <h1 className="text-violet-400">hello</h1>
+    <div className="flex flex-col w-[1304px] relative right-0 top-0 left-[15%]">
+      <Header />
+      <Body />
     </div>
   );
 };
