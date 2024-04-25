@@ -1,5 +1,5 @@
 import React from "react";
-import defaultLogo from "../../../assets/Navbar/images/user-profile-circle.svg";
+import defaultLogo from "../../../assets/Home/images/Ellipse 35.svg";
 import post from "../../../assets/Home/images/Rectangle 80.png";
 import like from "../../../assets/Home/icons/like.svg";
 import comment from "../../../assets/Home/icons/comment.svg";

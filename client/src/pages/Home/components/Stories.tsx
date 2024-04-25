@@ -1,5 +1,5 @@
 import React from "react";
-import defaultLogo from "../../../assets/Navbar/images/user-profile-circle.svg";
+import defaultLogo from "../../../assets/Home/images/Ellipse 35.svg";
 
 const Stories = () => {
   return (
