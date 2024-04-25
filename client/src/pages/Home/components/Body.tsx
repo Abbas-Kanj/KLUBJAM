@@ -1,7 +1,3 @@
-import React from "react";
-import Header from "./Header";
-import bgHeader from "../../../assets/Navbar/images/Rectangle 75.png";
-
 const Body = () => {
   return (
     <div className="flex flex-col">
