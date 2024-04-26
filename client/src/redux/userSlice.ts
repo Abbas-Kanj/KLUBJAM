@@ -20,7 +20,7 @@ interface UserState {
   playlists: any[];
   produced_tracks: any[];
   projects: any[];
-  juke_boxes: any[];
+  jam_boxes: any[];
   recommendations: any[];
 }
 
@@ -32,7 +32,7 @@ const initialState: UserState = {
   playlists: [],
   produced_tracks: [],
   projects: [],
-  juke_boxes: [],
+  jam_boxes: [],
   recommendations: [],
 };
 
@@ -57,8 +57,11 @@ const userSlice = createSlice({
     ) => {
       state.user = action.payload;
     },
+    setUserPosts: (state, action) => {
+      state.posts = action.payload;
+    },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setUserPosts } = userSlice.actions;
 export default userSlice.reducer;

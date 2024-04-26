@@ -3,8 +3,12 @@ import post from "../../../assets/Home/images/Rectangle 80.png";
 import like from "../../../assets/Home/icons/like.svg";
 import comment from "../../../assets/Home/icons/comment.svg";
 import share from "../../../assets/Home/icons/forward.svg";
+import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 
 const Posts = () => {
+  const userPosts = useAppSelector((state) => state.user.posts);
+  const dispatch = useAppDispatch();
+
   return (
     <div className="ml-[350px] mt-[48px] mb-[120px]">
       <div className="flex flex-col  ">
