@@ -32,7 +32,7 @@ const Landing = () => {
   const [openSignupPopup, setOpenSignupPopup] = useState(false);
 
   return (
-    <div className="flex flex-col relative bg-background overflow-x-hidden z-0">
+    <div className="flex flex-col relative bg-background overflow-x-hidden overflow-y-hidden overflow-scroll z-0">
       {openSigninPopup && (
         <SignIn
           setOpenSigninPopup={setOpenSigninPopup}
