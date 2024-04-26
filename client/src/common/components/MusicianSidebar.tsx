@@ -15,8 +15,10 @@ import profile from "../../assets/Sidebar/icons/grey/Group-1.svg";
 import profileCyan from "../../assets/Sidebar/icons/cyan/Group-1.svg";
 import account from "../../assets/Sidebar/icons/grey/Group-3.svg";
 import accountCyan from "../../assets/Sidebar/icons/cyan/Group-3.svg";
+import { useNavigate } from "react-router-dom";
 
 const MusicianSidebar = () => {
+  const navigate = useNavigate();
   const [isHomeHovered, setIsHomeHovered] = useState(false);
   const [isWorkspaceHovered, setIsWorkspaceHovered] = useState(false);
   const [isExploreHovered, setIsExploreHovered] = useState(false);
@@ -38,6 +40,7 @@ const MusicianSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setIsHomeHovered(true)}
               onMouseLeave={() => setIsHomeHovered(false)}
+              onClick={() => navigate("../Home")}
             >
               <img
                 src={isHomeHovered ? homeLogoCyan : homeLogo}
@@ -54,6 +57,7 @@ const MusicianSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setIsWorkspaceHovered(true)}
               onMouseLeave={() => setIsWorkspaceHovered(false)}
+              onClick={() => navigate("../Workspace")}
             >
               <img
                 src={isWorkspaceHovered ? workspaceCyan : workspace}
@@ -70,6 +74,7 @@ const MusicianSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setIsExploreHovered(true)}
               onMouseLeave={() => setIsExploreHovered(false)}
+              onClick={() => navigate("../Explore")}
             >
               <img
                 src={isExploreHovered ? exploreCyan : explore}
@@ -86,6 +91,7 @@ const MusicianSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setIsJamboxHovered(true)}
               onMouseLeave={() => setIsJamboxHovered(false)}
+              onClick={() => navigate("../JamBox")}
             >
               <img
                 src={isJamboxHovered ? jamboxCyan : jambox}
@@ -102,6 +108,7 @@ const MusicianSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setIsPlaylistHovered(true)}
               onMouseLeave={() => setIsPlaylistHovered(false)}
+              onClick={() => navigate("../Profile")}
             >
               <img
                 src={isPlaylistHovered ? playlistCyan : playlist}
@@ -118,6 +125,7 @@ const MusicianSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setIsProfileHovered(true)}
               onMouseLeave={() => setIsProfileHovered(false)}
+              onClick={() => navigate("../Account")}
             >
               <img
                 src={isProfileHovered ? profileCyan : profile}
