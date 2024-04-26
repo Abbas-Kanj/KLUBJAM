@@ -26,7 +26,7 @@ const Playlists = () => {
         <img
           src={defaultLogo}
           alt=""
-          className="absolute top-3 right-3 cursor-pointer bg-opacity-45"
+          className="absolute top-3 right-3 cursor-pointer "
         />
         <h1 className="relative mt-[67px] mb-[67px] ml-[35px] font-semibold text-[38px]">
           Playlists
