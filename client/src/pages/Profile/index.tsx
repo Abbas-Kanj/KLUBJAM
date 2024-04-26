@@ -45,7 +45,7 @@ const Profile = () => {
             </p>
           </div>
         </div>
-        <div className="flex relative justify-end mr-[35px] gap-[26px]">
+        <div className="flex relative justify-end mr-[35px] mb-[7px] gap-[26px]">
           <h2 className="text-[14px]">6 posts</h2>
           <h2 className="text-[14px]">11 tracks</h2>
           <h2 className="text-[14px]">3 albums</h2>
@@ -55,7 +55,7 @@ const Profile = () => {
       </div>
       <div className="flex items-center justify-center bottom-[13px] left-9 gap-[73px] mt-[16px] mb-[25px]">
         <h2
-          className="text-[16px]  hover:text-primary cursor-pointer text-greyText font-semibold"
+          className="text-[16px]  hover:text-primary cursor-pointer  font-semibold"
           onClick={() => {
             handleClick(1);
             setIsVisible2(false);
@@ -65,7 +65,7 @@ const Profile = () => {
           Posts
         </h2>
         <h2
-          className="text-[16px] font-semibold hover:text-primary cursor-pointer text-greyText"
+          className="text-[16px] font-semibold hover:text-primary cursor-pointer "
           onClick={() => {
             handleClick(2);
             setIsVisible1(false);
@@ -75,7 +75,7 @@ const Profile = () => {
           Tracks
         </h2>
         <h2
-          className="text-[16px] font-semibold hover:text-primary cursor-pointer text-greyText"
+          className="text-[16px] font-semibold hover:text-primary cursor-pointer "
           onClick={() => {
             handleClick(3);
             setIsVisible1(false);
