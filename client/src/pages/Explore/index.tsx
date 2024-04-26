@@ -1,4 +1,4 @@
-import bgHeader from "../../assets/Navbar/images/dark-green-abstract-blur-background-vector.jpg";
+import bgHeader from "../../assets/Navbar/images/dark-purple-abstract-blur-background-vector.jpg";
 import defaultLogo from "../../assets/Navbar/images/user-profile-circle.svg";
 import { useState } from "react";
 import All from "./components/All";
