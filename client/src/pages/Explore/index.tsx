@@ -5,14 +5,12 @@ import All from "./components/All";
 import Tracks from "./components/Tracks";
 import Albums from "./components/Albums";
 import Artists from "./components/Artists";
-import Genres from "./components/Genres";
 
 const Explore = () => {
   const [isVisible1, setIsVisible1] = useState(true);
   const [isVisible2, setIsVisible2] = useState(false);
   const [isVisible3, setIsVisible3] = useState(false);
   const [isVisible4, setIsVisible4] = useState(false);
-  const [isVisible5, setIsVisible5] = useState(false);
 
   const handleClick = (componentNumber: number) => {
     if (componentNumber === 1) {
@@ -23,8 +21,6 @@ const Explore = () => {
       setIsVisible3(!isVisible3);
     } else if (componentNumber === 4) {
       setIsVisible4(!isVisible4);
-    } else if (componentNumber === 5) {
-      setIsVisible5(!isVisible5);
     }
   };
   return (
@@ -52,7 +48,6 @@ const Explore = () => {
               setIsVisible2(false);
               setIsVisible3(false);
               setIsVisible4(false);
-              setIsVisible5(false);
             }}
           >
             All
@@ -64,7 +59,6 @@ const Explore = () => {
               setIsVisible1(false);
               setIsVisible3(false);
               setIsVisible4(false);
-              setIsVisible5(false);
             }}
           >
             Tracks
@@ -76,7 +70,6 @@ const Explore = () => {
               setIsVisible1(false);
               setIsVisible2(false);
               setIsVisible4(false);
-              setIsVisible5(false);
             }}
           >
             Albums
@@ -88,22 +81,9 @@ const Explore = () => {
               setIsVisible1(false);
               setIsVisible2(false);
               setIsVisible3(false);
-              setIsVisible5(false);
             }}
           >
             Artists
-          </h2>
-          <h2
-            className="text-[13px] font-bold hover:text-primary cursor-pointer text-greyText"
-            onClick={() => {
-              handleClick(5);
-              setIsVisible1(false);
-              setIsVisible2(false);
-              setIsVisible3(false);
-              setIsVisible4(false);
-            }}
-          >
-            Genres
           </h2>
         </div>
       </div>
@@ -112,7 +92,6 @@ const Explore = () => {
         {isVisible2 && <Tracks />}
         {isVisible3 && <Albums />}
         {isVisible4 && <Artists />}
-        {isVisible5 && <Genres />}
       </div>
     </div>
   );
