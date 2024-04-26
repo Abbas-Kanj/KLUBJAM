@@ -20,7 +20,7 @@ const Tracks = () => {
         </div>
       </div>
       <div className="border border-solid border-greyText w-[686px] mt-[15px]"></div>
-      <div className="mt-[17px] mb-[30px] ml-[85px] w-[1133px] flex flex-wrap gap-[22px]">
+      <div className="mt-[17px] mb-[30px]  w-[1133px] flex flex-wrap gap-[22px] items-center">
         <div className="w-[209px] h-[241px] flex flex-col justify-start">
           <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
           <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>

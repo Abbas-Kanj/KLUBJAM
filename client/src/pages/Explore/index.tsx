@@ -19,11 +19,11 @@ const Explore = () => {
       setIsVisible1(!isVisible1);
     } else if (componentNumber === 2) {
       setIsVisible2(!isVisible2);
-    } else if (componentNumber === 2) {
+    } else if (componentNumber === 3) {
       setIsVisible3(!isVisible3);
-    } else if (componentNumber === 2) {
+    } else if (componentNumber === 4) {
       setIsVisible4(!isVisible4);
-    } else if (componentNumber === 2) {
+    } else if (componentNumber === 5) {
       setIsVisible5(!isVisible5);
     }
   };
