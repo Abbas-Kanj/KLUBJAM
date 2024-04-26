@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
   user: {
+    id: number;
     username: string;
     email: string;
     role_id: number;
@@ -12,12 +13,27 @@ interface UserState {
     phone_number: number;
     date_of_birth: Date | string;
   } | null;
+
   posts: any[];
+  tracks: any[];
+  albums: any[];
+  playlists: any[];
+  produced_tracks: any[];
+  projects: any[];
+  juke_boxes: any[];
+  recommendations: any[];
 }
 
 const initialState: UserState = {
   user: null,
   posts: [],
+  tracks: [],
+  albums: [],
+  playlists: [],
+  produced_tracks: [],
+  projects: [],
+  juke_boxes: [],
+  recommendations: [],
 };
 
 const userSlice = createSlice({
@@ -27,6 +43,7 @@ const userSlice = createSlice({
     setUser: (
       state,
       action: PayloadAction<{
+        id: number;
         username: string;
         email: string;
         role_id: number;
