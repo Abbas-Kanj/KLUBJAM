@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Logo from "../../assets/Sidebar/icons/logo.svg";
 import logout from "../../assets/Sidebar/icons/logout.svg";
 import homeLogo from "../../assets/Sidebar/icons/grey/home-04.svg";
@@ -125,7 +125,7 @@ const MusicianSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setIsProfileHovered(true)}
               onMouseLeave={() => setIsProfileHovered(false)}
-              onClick={() => navigate("../Account")}
+              onClick={() => navigate("../Profile")}
             >
               <img
                 src={isProfileHovered ? profileCyan : profile}
@@ -142,6 +142,7 @@ const MusicianSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setIsAccountHovered(true)}
               onMouseLeave={() => setIsAccountHovered(false)}
+              onClick={() => navigate("../Account")}
             >
               <img
                 src={isAccountHovered ? accountCyan : account}
