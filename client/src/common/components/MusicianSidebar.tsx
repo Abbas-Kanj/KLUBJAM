@@ -108,7 +108,7 @@ const MusicianSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setIsPlaylistHovered(true)}
               onMouseLeave={() => setIsPlaylistHovered(false)}
-              onClick={() => navigate("../Profile")}
+              onClick={() => navigate("../Playlists")}
             >
               <img
                 src={isPlaylistHovered ? playlistCyan : playlist}

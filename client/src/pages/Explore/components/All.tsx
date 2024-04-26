@@ -1,4 +1,3 @@
-import React from "react";
 import trackImg from "../../../assets/Explore/images/Rectangle 76-1.png";
 import albumImg from "../../../assets/Explore/images/Rectangle 77-1.png";
 import artistImg from "../../../assets/Explore/images/Ellipse 22.svg";
