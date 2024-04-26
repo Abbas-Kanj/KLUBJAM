@@ -33,7 +33,7 @@ const Workspace = () => {
 
         <div className="flex absolute bottom-[13px] left-9 gap-[41px]">
           <h2
-            className="text-[13px] font-bold hover:text-primary cursor-pointer"
+            className="text-[13px] font-bold hover:text-primary cursor-pointer text-greyText"
             onClick={() => {
               handleClick(1);
               setIsVisible2(false);
@@ -42,7 +42,7 @@ const Workspace = () => {
             Personal Projects
           </h2>
           <h2
-            className="text-[13px] font-bold hover:text-primary cursor-pointer"
+            className="text-[13px] font-bold hover:text-primary cursor-pointer text-greyText"
             onClick={() => {
               handleClick(2);
               setIsVisible1(false);
