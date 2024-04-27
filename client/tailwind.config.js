@@ -27,6 +27,18 @@ export default {
         inputBox: {
           DEFAULT: "#222428",
         },
+        tableRow: {
+          DEFAULT: "#959296",
+        },
+        tableUpdateBtn: {
+          DEFAULT: "#00FF66",
+        },
+        tableSuspendBtn: {
+          DEFAULT: "#F55C05",
+        },
+        tableDeleteBtn: {
+          DEFAULT: "#FF0000",
+        },
       },
     },
   },

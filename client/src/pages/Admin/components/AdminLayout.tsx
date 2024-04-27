@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex h-screen overflow-y-hidden">
+    <div className="flex h-screen w-full overflow-y-hidden">
       <AdminSidebar />
       {children}
     </div>
