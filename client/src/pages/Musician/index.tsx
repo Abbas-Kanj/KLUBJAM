@@ -7,7 +7,7 @@ import Explore from "./pages/Explore";
 import Playlists from "./pages/Playlists";
 import Jambox from "./pages/JamBox";
 import Profile from "./pages/Profile";
-import Layout from "./components/MusicianLayout";
+import Layout from "../components/MusicianLayout";
 
 const Musician = () => {
   return (
