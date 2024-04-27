@@ -1,3 +1,6 @@
+import imgIcon from "../../../assets/icons/Vector (1).svg";
+import playerIcon from "../../../assets/icons/Vector (1).svg";
+
 const TracksTable = () => {
   return (
     <div className="mt-[26px] w-[1200px] mx-auto h-auto rounded pt-[22px] pb-[22px] pl-[20px] pr-[20px] bg-tableBackground ">
@@ -8,17 +11,23 @@ const TracksTable = () => {
               ID
             </th>
             <th className="p-3  text-sm font-semibold tracking-wide text-left">
-              Post Owner
+              Producer
             </th>
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
-              Caption
+              Track Title
             </th>
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
-              Created At
+              Explicit
             </th>
 
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
-              Post Picture
+              Duration
+            </th>
+            <th className=" p-3 text-sm font-semibold tracking-wide text-left">
+              Track Image
+            </th>
+            <th className=" p-3 text-sm font-semibold tracking-wide text-left">
+              Play Track
             </th>
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
               Action
@@ -36,27 +45,28 @@ const TracksTable = () => {
               </a>
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              John Doe
+              John-Dx
             </td>
+            <td className="p-3 text-sm text-black whitespace-nowrap">Birds</td>
+            <td className="p-3 text-sm text-black whitespace-nowrap">True</td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              johndoe@gmail.com
+              Duration
             </td>
-            <td className="p-3 text-sm text-black whitespace-nowrap">
-              21/3/2024
+            <td className="p-3 text-sm text-black whitespace-nowrap cursor-pointer">
+              <img src={imgIcon} alt="" />
             </td>
-            <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-lg cursor-pointer">
-                Url(...)
-              </span>
+            <td className="p-3 text-sm text-black whitespace-nowrap cursor-pointer">
+              <img src={playerIcon} alt="" />
             </td>
+
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-lg hover:bg-opacity-30 cursor-pointer">
+              <span className="p-1.5 text-xs font-bold uppercase tracking-wider bg-tableUpdateBtn text-black rounded-lg hover:bg-opacity-30 cursor-pointer">
                 Update
               </span>
             </td>
 
             <td className="p-3 text-sm text-black whitespace-nowrap ">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableDeleteBtn text-black rounded-lg  cursor-pointer hover:bg-opacity-30">
+              <span className="p-1.5 text-xs font-bold uppercase tracking-wider bg-tableDeleteBtn text-black rounded-lg  cursor-pointer hover:bg-opacity-30 ">
                 Ban
               </span>
             </td>
