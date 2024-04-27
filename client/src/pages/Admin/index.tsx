@@ -11,22 +11,25 @@ import AdminLayout from "./components/AdminLayout";
 const Admin = () => {
   return (
     <Routes>
-      <Route path="Home" element={<AdminLayout children={<Analytics />} />} />
       <Route
-        path="Workspace"
+        path="Analytics"
+        element={<AdminLayout children={<Analytics />} />}
+      />
+      <Route
+        path="CoinRequests"
         element={<AdminLayout children={<CoinRequests />} />}
       />
       <Route
-        path="Explore"
+        path="Moderator"
         element={<AdminLayout children={<Moderator />} />}
       />
       <Route
-        path="Playlists"
+        path="Musicians"
         element={<AdminLayout children={<Musicians />} />}
       />
-      <Route path="JamBox" element={<AdminLayout children={<Posts />} />} />
-      <Route path="Profile" element={<AdminLayout children={<Reports />} />} />
-      <Route path="Account" element={<AdminLayout children={<Tracks />} />} />
+      <Route path="Posts" element={<AdminLayout children={<Posts />} />} />
+      <Route path="Reports" element={<AdminLayout children={<Reports />} />} />
+      <Route path="Tracks" element={<AdminLayout children={<Tracks />} />} />
     </Routes>
   );
 };
