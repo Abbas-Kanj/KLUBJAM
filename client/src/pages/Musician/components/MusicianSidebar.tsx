@@ -1,20 +1,20 @@
 import { useState } from "react";
-import Logo from "../assets/Sidebar/icons/logo.svg";
-import logout from "../assets/Sidebar/icons/logout.svg";
-import homeLogo from "../assets/Sidebar/icons/grey/home-04.svg";
-import homeLogoCyan from "../assets/Sidebar/icons/cyan/home-04.svg";
-import workspace from "../assets/Sidebar/icons/grey/Vector.svg";
-import workspaceCyan from "../assets/Sidebar/icons/cyan/Vector.svg";
-import explore from "../assets/Sidebar/icons/grey/Group.svg";
-import exploreCyan from "../assets/Sidebar/icons/cyan/Group.svg";
-import jambox from "../assets/Sidebar/icons/grey/Group-2.svg";
-import jamboxCyan from "../assets/Sidebar/icons/cyan/Group-2.svg";
-import playlist from "../assets/Sidebar/icons/grey/mdi_playlist-music.svg";
-import playlistCyan from "../assets/Sidebar/icons/cyan/mdi_playlist-music.svg";
-import profile from "../assets/Sidebar/icons/grey/Group-1.svg";
-import profileCyan from "../assets/Sidebar/icons/cyan/Group-1.svg";
-import account from "../assets/Sidebar/icons/grey/Group-3.svg";
-import accountCyan from "../assets/Sidebar/icons/cyan/Group-3.svg";
+import Logo from "../../assets/Sidebar/icons/logo.svg";
+import logout from "../../assets/Sidebar/icons/logout.svg";
+import homeLogo from "../../assets/Sidebar/icons/grey/home-04.svg";
+import homeLogoCyan from "../../assets/Sidebar/icons/cyan/home-04.svg";
+import workspace from "../../assets/Sidebar/icons/grey/Vector.svg";
+import workspaceCyan from "../../assets/Sidebar/icons/cyan/Vector.svg";
+import explore from "../../assets/Sidebar/icons/grey/Group.svg";
+import exploreCyan from "../../assets/Sidebar/icons/cyan/Group.svg";
+import jambox from "../../assets/Sidebar/icons/grey/Group-2.svg";
+import jamboxCyan from "../../assets/Sidebar/icons/cyan/Group-2.svg";
+import playlist from "../../assets/Sidebar/icons/grey/mdi_playlist-music.svg";
+import playlistCyan from "../../assets/Sidebar/icons/cyan/mdi_playlist-music.svg";
+import profile from "../../assets/Sidebar/icons/grey/Group-1.svg";
+import profileCyan from "../../assets/Sidebar/icons/cyan/Group-1.svg";
+import account from "../../assets/Sidebar/icons/grey/Group-3.svg";
+import accountCyan from "../../assets/Sidebar/icons/cyan/Group-3.svg";
 import { useNavigate } from "react-router-dom";
 
 const MusicianSidebar = () => {

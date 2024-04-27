@@ -1,7 +1,7 @@
 import React from "react";
 
-const Moderator = () => {
+const Tracks = () => {
   return <div></div>;
 };
 
-export default Moderator;
+export default Tracks;

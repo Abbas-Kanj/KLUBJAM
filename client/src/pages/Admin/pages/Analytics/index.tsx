@@ -1,7 +1,7 @@
 import React from "react";
 
-const Moderator = () => {
+const Analytics = () => {
   return <div></div>;
 };
 
-export default Moderator;
+export default Analytics;

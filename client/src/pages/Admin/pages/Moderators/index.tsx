@@ -1,7 +1,7 @@
 import React from "react";
 
-const Moderator = () => {
+const Moderators = () => {
   return <div></div>;
 };
 
-export default Moderator;
+export default Moderators;
