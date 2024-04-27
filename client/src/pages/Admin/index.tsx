@@ -7,6 +7,7 @@ import Posts from "./pages/Posts";
 import Reports from "./pages/Reports";
 import Tracks from "./pages/Tracks";
 import AdminLayout from "./components/AdminLayout";
+import Moderators from "./pages/Moderators";
 
 const Admin = () => {
   return (
@@ -20,8 +21,8 @@ const Admin = () => {
         element={<AdminLayout children={<CoinRequests />} />}
       />
       <Route
-        path="Moderator"
-        element={<AdminLayout children={<Moderator />} />}
+        path="Moderators"
+        element={<AdminLayout children={<Moderators />} />}
       />
       <Route
         path="Musicians"
