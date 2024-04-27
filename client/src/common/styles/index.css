@@ -10,6 +10,11 @@
   scroll-behavior: smooth;
   color: white;
 }
+/* table {
+  border-radius: 5px;
+  padding: 22px 75px;
+  background-color: #3c3c3c;
+} */
 
 /* thead {
   font-weight: 600;
@@ -29,11 +34,7 @@ tbody {
   border-radius: 5px;
 }
 
-table {
-  border-radius: 5px;
-  padding: 22px 75px;
-  background-color: rgb(60, 60, 60);
-}
+
 
 table button {
   width: 68px;

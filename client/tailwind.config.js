@@ -27,6 +27,9 @@ export default {
         inputBox: {
           DEFAULT: "#222428",
         },
+        tableBackground: {
+          DEFAULT: "#3c3c3c",
+        },
         tableRow: {
           DEFAULT: "#959296",
         },
