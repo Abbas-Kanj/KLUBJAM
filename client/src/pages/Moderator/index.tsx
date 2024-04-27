@@ -1,7 +1,7 @@
 import React from "react";
 
-const Moderator = () => {
+const MusicianPanel = () => {
   return <div></div>;
 };
 
-export default Moderator;
+export default MusicianPanel;

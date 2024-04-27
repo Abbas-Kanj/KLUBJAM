@@ -1,5 +1,5 @@
 import React from "react";
-import siginImg from "../../../assets/Auth/Rectangle 36.png";
+import siginImg from "../../assets/Auth/Rectangle 36.png";
 
 interface SignInProps {
   setOpenSigninPopup: (open: boolean) => void;
