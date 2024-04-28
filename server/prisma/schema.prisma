@@ -30,11 +30,68 @@ model Users {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  likes Likes[]
+  comment Comments[] @relation("Commenter")
+  post Posts[]
+  liker Likes[] @relation("Liker")
+  followers Users_Follows[] @relation("Followers")
+  followings Users_Follows[] @relation("Followings")
+  musician Coin_Requests[] @relation("MusicianRequester")
+  admin Coin_Requests[] @relation("AdminApproved")
+}
+
+model Posts {
+  id Int @id @default(autoincrement())
+  caption String @db.VarChar(45)
+  post_picture String @db.VarChar(100)
+  hashtags String @db.VarChar(45)
+  user_id Int
+  user Users @relation(fields: [user_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  comment Comments[]@relation("Post_Commented")
+  likes Likes[] @relation("Posted_liked")
 }
 
 model Likes {
   id Int @id @default(autoincrement())
   user_id Int
-  user Users @relation(fields: [user_id], references: [id])
+  post_id Int
+  user Users @relation("Liker",fields: [user_id], references: [id])
+  post Posts @relation("Posted_liked",fields: [post_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Comments{
+  id Int @id @default(autoincrement())
+  content String @db.VarChar(45)
+  user_id Int
+  post_id Int
+  user Users @relation("Commenter",fields: [user_id], references: [id])
+  post Posts @relation("Post_Commented",fields: [post_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Users_Follows{
+  id Int @id @default(autoincrement())
+  follower_id Int
+  following_id Int
+  user_follower Users? @relation("Followers",fields: [follower_id], references: [id])
+  user_following Users? @relation("Followings",fields: [following_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Coin_Requests{
+  id Int @id @default(autoincrement())
+  amount Int
+  status String @default("Pending")
+  musician_id Int
+  approved_id Int
+  musician Users @relation("MusicianRequester",fields: [musician_id], references: [id])
+  admin Users @relation("AdminApproved",fields: [approved_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
