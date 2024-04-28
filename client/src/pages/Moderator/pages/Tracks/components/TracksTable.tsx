@@ -1,4 +1,4 @@
-import imgIcon from "../../../../Admin/assets/icons/Vector (1).svg";
+import imgIcon from "../../../../Admin/assets/icons/Group 157.svg";
 import playerIcon from "../../../../Admin/assets/icons/Vector (1).svg";
 
 const TracksTable = () => {
