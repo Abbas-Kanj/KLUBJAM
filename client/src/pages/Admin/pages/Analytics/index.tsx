@@ -1,9 +1,11 @@
-import React from "react";
+import Header from "./components/Header";
+import AnalyticsCards from "./components/AnalyticsCards";
 
 const Analytics = () => {
   return (
-    <div>
-      <h1 className="text-black">hello</h1>
+    <div className="flex flex-col bg-backgroundDark">
+      <Header></Header>
+      <AnalyticsCards></AnalyticsCards>
     </div>
   );
 };
