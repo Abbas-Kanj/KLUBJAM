@@ -32,7 +32,7 @@ const Account = () => {
             </label>
             <input
               type="text"
-              className="bg-inputBox w-[462px] h-[50px] rounded"
+              className="bg-inputBox w-[462px] h-[50px] rounded focus:outline-none p-1"
             />
           </div>
           <div className="flex flex-col gap-[10px]">
@@ -44,7 +44,7 @@ const Account = () => {
             </label>
             <input
               type="text"
-              className="bg-inputBox w-[462px] h-[50px] rounded"
+              className="bg-inputBox w-[462px] h-[50px] rounded focus:outline-none p-1"
             />
           </div>
           <div className="flex flex-col gap-[10px]">
@@ -57,7 +57,7 @@ const Account = () => {
             <textarea
               name=""
               id=""
-              className=" bg-inputBox rounded-lg w-[462px] h-[200px] p-2"
+              className=" bg-inputBox rounded-lg w-[462px] h-[200px] p-2 focus:outline-none"
             ></textarea>
             <div className="border border-solid border-greyText w-[462px] mt-[38px] mb-[40px]"></div>
             <div className="flex flex-col gap-[10px]">
@@ -69,7 +69,7 @@ const Account = () => {
               </label>
               <input
                 type="text"
-                className="bg-inputBox w-[462px] h-[50px] rounded"
+                className="bg-inputBox w-[462px] h-[50px] rounded focus:outline-none p-1"
               />
             </div>
             <div className="flex flex-col gap-[10px]">
@@ -81,7 +81,7 @@ const Account = () => {
               </label>
               <input
                 type="text"
-                className="bg-inputBox w-[462px] h-[50px] rounded"
+                className="bg-inputBox w-[462px] h-[50px] rounded focus:outline-none p-1"
               />
             </div>
             <div className="flex flex-col gap-[10px]">
@@ -93,7 +93,7 @@ const Account = () => {
               </label>
               <input
                 type="text"
-                className="bg-inputBox w-[462px] h-[50px] rounded"
+                className="bg-inputBox w-[462px] h-[50px] rounded focus:outline-none p-1"
               />
             </div>
             <div className="flex flex-col gap-[10px]">
@@ -105,7 +105,7 @@ const Account = () => {
               </label>
               <input
                 type="text"
-                className="bg-inputBox w-[462px] h-[50px] rounded"
+                className="bg-inputBox w-[462px] h-[50px] rounded focus:outline-none p-1"
               />
             </div>
             <div className="border border-solid border-greyText w-[462px] mt-[38px] mb-[40px]"></div>
