@@ -13,10 +13,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model Users {
   id Int @id @default(autoincrement())
-  name String @db.VarChar(100)
-  password String @db.VarChar(100)
   username String @unique @db.VarChar(45)
   email String @unique @db.VarChar(45)
+  password String @db.VarChar(100)
+  role_id Int @default(3)
+  fullname String? @db.VarChar(100)
+  biography String? @db.VarChar(100)
+  phone_number Int?
+  country String? @db.VarChar(100)
+  balance Int @default(200)
+  date_of_birth DateTime? 
+  status String @db.VarChar(100) @default("Active")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
+
