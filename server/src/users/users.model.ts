@@ -7,7 +7,7 @@ export class Users implements Prisma.UsersCreateInput {
   role_id: number;
   fullname: string;
   biography: string;
-  phone_number: string;
+  phone_number: number;
   country: string;
   balance: number;
   date_of_birth: string;

@@ -25,7 +25,7 @@ model Users {
   phone_number Int?
   country String? @db.VarChar(100)
   balance Int @default(200)
-  date_of_birth DateTime? 
+  date_of_birth String? 
   status String @db.VarChar(100) @default("Active")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
