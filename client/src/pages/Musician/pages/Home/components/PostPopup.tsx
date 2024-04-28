@@ -65,7 +65,7 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
   //   };
   return (
     <div className="fixed top-0 left-0 right-0 bottom-10 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
-      <form className="flex flex-col w-[784px] h-[550px] rounded-xl bg-backgroundDark p-[16px]">
+      <form className="flex flex-col w-[784px] h-[550px] rounded-xl bg-background p-[16px]">
         <div className="flex items-center w-full justify-between pl-[20px] pr-[20px] pt-[10px] pb-[20px] border-b border-solid border-[#565656]">
           <p
             className="text-red-500 font-bold cursor-pointer"

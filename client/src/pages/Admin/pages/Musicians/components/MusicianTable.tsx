@@ -1,6 +1,16 @@
+import { useState } from "react";
+import UpdateMusicianPopup from "./UpdateMusicianPopup";
+
 const MusicianTable = () => {
+  const [openUpdateMusicianPopup, setOpenUpdateMusicianPopup] = useState(false);
+
   return (
     <div className="mt-[26px] w-[1200px] mx-auto h-auto rounded pt-[22px] pb-[22px] pl-[20px] pr-[20px] bg-tableBackground ">
+      {openUpdateMusicianPopup && (
+        <UpdateMusicianPopup
+          setOpenUpdateMusicianPopup={setOpenUpdateMusicianPopup}
+        ></UpdateMusicianPopup>
+      )}
       <table className="w-[1100px] mx-auto h-auto">
         <thead className="bg-inputBox border-b-2 border-gray-200">
           <tr>
@@ -52,7 +62,10 @@ const MusicianTable = () => {
               </span>
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-lg">
+              <span
+                className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-lg cursor-pointer"
+                onClick={() => setOpenUpdateMusicianPopup(true)}
+              >
                 Update
               </span>
             </td>
