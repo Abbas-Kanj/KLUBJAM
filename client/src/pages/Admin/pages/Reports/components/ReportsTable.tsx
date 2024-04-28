@@ -1,4 +1,4 @@
-const PostsTable = () => {
+const ReportsTable = () => {
   return (
     <div className="mt-[26px] w-[1200px] mx-auto h-auto rounded pt-[22px] pb-[22px] pl-[20px] pr-[20px] bg-tableBackground ">
       <table className="w-[1100px] mx-auto h-auto">
@@ -8,20 +8,16 @@ const PostsTable = () => {
               ID
             </th>
             <th className="p-3  text-sm font-semibold tracking-wide text-left">
-              Post Owner
+              Manager name
             </th>
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
-              Caption
+              Report Title
+            </th>
+            <th className=" p-3 text-sm font-semibold tracking-wide text-left">
+              Report Description
             </th>
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
               Created At
-            </th>
-
-            <th className=" p-3 text-sm font-semibold tracking-wide text-left">
-              Post Picture
-            </th>
-            <th className=" p-3 text-sm font-semibold tracking-wide text-left">
-              Action
             </th>
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
               Action
@@ -38,29 +34,23 @@ const PostsTable = () => {
             <td className="p-3 text-sm text-black whitespace-nowrap">
               John Doe
             </td>
-            <td className="p-3 text-sm text-black whitespace-nowrap">
-              johndoe@gmail.com
+            <td className="p-3 text-sm text-black  whitespace-nowrap">
+              Post Issue
+            </td>
+            <td className="p-3 text-sm  text-clip whitespace-normal max-w-[500px] text-black">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              adipisci quas aliquid pariatur earum laudantium! Laborum earum
+              ipsam eligendi molestiae cumque mollitia nostrum quae, sint
+              voluptatum a! Ad, sint. Error!
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-lg ">
+              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 rounded-lg ">
                 21/3/2024
-              </span>
-            </td>
-
-            <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-lg cursor-pointer">
-                Url(...)
               </span>
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
               <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-lg hover:bg-opacity-30 cursor-pointer">
-                Update
-              </span>
-            </td>
-
-            <td className="p-3 text-sm text-black whitespace-nowrap ">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableDeleteBtn text-black rounded-lg  cursor-pointer hover:bg-opacity-30">
-                Ban
+                Mark as Read
               </span>
             </td>
           </tr>
@@ -70,4 +60,4 @@ const PostsTable = () => {
   );
 };
 
-export default PostsTable;
+export default ReportsTable;

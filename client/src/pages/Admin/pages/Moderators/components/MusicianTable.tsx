@@ -44,10 +44,12 @@ const ModeratorTable = () => {
               johndoe@gmail.com
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              21/3/2024
+              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-lg ">
+                21/3/2024
+              </span>
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn  rounded-lg ">
+              <span className="p-1.5 text-xs font-bold uppercase tracking-wider text-tableUpdateBtn  rounded-lg ">
                 Active
               </span>
             </td>
@@ -80,10 +82,12 @@ const ModeratorTable = () => {
               johndoe@gmail.com
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              21/3/2024
+              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-lg ">
+                21/3/2024
+              </span>
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableSuspendBtn rounded-lg ">
+              <span className="p-1.5 text-xs font-bold uppercase tracking-wider text-tableSuspendBtn rounded-lg ">
                 Suspended
               </span>
             </td>
@@ -116,10 +120,12 @@ const ModeratorTable = () => {
               johndoe@gmail.com
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              21/3/2024
+              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-lg ">
+                21/3/2024
+              </span>
             </td>
             <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn  rounded-lg ">
+              <span className="p-1.5 text-xs font-bold uppercase tracking-wider text-tableUpdateBtn  rounded-lg ">
                 Active
               </span>
             </td>
