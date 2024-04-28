@@ -9,7 +9,7 @@ const Moderatortable = () => {
   return (
     <>
       <button
-        className="w-[154px] h-[38px] rounded-[10px] text-primary font-medium border-solid border-2"
+        className="w-[154px] h-[38px] rounded-[10px] text-primary font-medium border-solid border-2 ml-[1100px] mt-[20px]"
         onClick={() => {
           setopenAddModPopup(true);
         }}
