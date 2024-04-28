@@ -1,15 +1,15 @@
 import { useState } from "react";
-import UpdateMusicianPopup from "./UpdateMusicianPopup";
+import UpdateModPopup from "./UpdateModPopup";
 
-const MusicianTable = () => {
-  const [openUpdateMusicianPopup, setOpenUpdateMusicianPopup] = useState(false);
+const Moderatortable = () => {
+  const [openUpdateModPopup, setopenUpdateModPopup] = useState(false);
 
   return (
     <div className="mt-[26px] w-[1200px] mx-auto h-auto rounded pt-[22px] pb-[22px] pl-[20px] pr-[20px] bg-tableBackground ">
-      {openUpdateMusicianPopup && (
-        <UpdateMusicianPopup
-          setOpenUpdateMusicianPopup={setOpenUpdateMusicianPopup}
-        ></UpdateMusicianPopup>
+      {openUpdateModPopup && (
+        <UpdateModPopup
+          setopenUpdateModPopup={setopenUpdateModPopup}
+        ></UpdateModPopup>
       )}
       <table className="w-[1100px] mx-auto h-auto">
         <thead className="bg-inputBox border-b-2 border-gray-200">
@@ -64,7 +64,7 @@ const MusicianTable = () => {
               <span
                 className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-lg cursor-pointer hover:bg-opacity-50"
                 onClick={() => {
-                  setOpenUpdateMusicianPopup(true);
+                  setopenUpdateModPopup(true);
                 }}
               >
                 Update
@@ -83,4 +83,4 @@ const MusicianTable = () => {
   );
 };
 
-export default MusicianTable;
+export default Moderatortable;
