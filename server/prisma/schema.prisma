@@ -29,5 +29,12 @@ model Users {
   status String @db.VarChar(100) @default("Active")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  likes Likes[]
 }
 
+model Likes {
+  id Int @id @default(autoincrement())
+  user_id Int
+  user Users @relation(fields: [user_id], references: [id])
+}
