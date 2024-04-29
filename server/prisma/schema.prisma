@@ -30,11 +30,12 @@ model Users {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  comment Comments[] @relation("Commenter")
   collaborators Collaborators[]
-  projects Projects[]@relation("ProjectOwner")
   post Posts[]
+  jamboxes JamBoxes[]
   playlists Playlists[]
+  comment Comments[] @relation("Commenter")
+  projects Projects[]@relation("ProjectOwner")
   albums Albums[] @relation("MusicianAlbum")
   tracks Tracks[] @relation("MusicianUploader")
   liker Likes[] @relation("Liker")
@@ -114,6 +115,7 @@ model Tracks{
   musician Users @relation("MusicianUploader",fields: [musician_id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  playlists Playlists[]
 }
 
 model Albums{
@@ -133,8 +135,9 @@ model Playlists{
   playlist_image String @db.VarChar(45)
   musician_id Int
   musician Users @relation(fields: [musician_id], references: [id])
-    createdAt DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  tracks Tracks[]
 }
 
 model Projects{
@@ -170,4 +173,15 @@ model Collaborators{
   updatedAt DateTime @updatedAt
 
   // projects Projects[]@relation("ProjectCollaborators")
+}
+
+model JamBoxes{
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(45)
+  lyrics String @db.VarChar(245)
+  artist_voice String @db.VarChar(45)
+  musician_id Int
+  musician Users @relation(fields: [musician_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
