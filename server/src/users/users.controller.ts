@@ -13,6 +13,8 @@ import { UsersService } from './users.service';
 import { Request, Response, response } from 'express';
 import { JwtAuthGuard } from 'src/authentication/auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Users } from '@prisma/client';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -26,6 +28,28 @@ export class UsersController {
   ): Promise<any> {
     try {
       const result = await this.userService.getAllUser();
+      return response.status(200).json({
+        status: 'Ok!',
+        message: 'Successfully fetch data!',
+        result: result,
+      });
+    } catch (err) {
+      return response.status(500).json({
+        status: 'Ok!',
+        message: 'Internal Server Error!',
+      });
+    }
+  }
+
+  @Get(':id')
+  async getUserById(
+    @Req() request: Request,
+    @Res() response: Response,
+    @Param('id') id: string,
+  ): Promise<any> {
+    try {
+      const userId = parseInt(id, 10);
+      const result = await this.userService.getUserById(userId);
       return response.status(200).json({
         status: 'Ok!',
         message: 'Successfully fetch data!',
