@@ -13,7 +13,9 @@ import {
   playB4,
   playC5,
   playNote,
-} from "../../tone/instruments/piano";
+} from "../../tone/instruments/piano/piano";
+
+import "../../tone/instruments/piano/piano.css";
 
 const Production = () => {
   window.addEventListener("keydown", (event: KeyboardEvent) => {
@@ -21,45 +23,48 @@ const Production = () => {
   });
 
   return (
-    <div className="flex  w-full h-full justify-center mt-10 items-center mx-auto  bg-greyText">
-      <div className="w-8 h-8 bg-black" onClick={playC4}>
-        A
-      </div>
-      <div className="bg-black w-4 h-4" onClick={playDb4}>
-        W
-      </div>
-      <div className="bg-white w-8 h-8" onClick={playD4}>
-        S
-      </div>
-      <div className="bg-black w-4 h-4" onClick={playEb4}>
-        E
-      </div>
-      <div className="bg-white w-8 h-8" onClick={playE4}>
-        D
-      </div>
-      <div className="bg-white w-8 h-8" onClick={playF4}>
-        F
-      </div>
-      <div className="bg-black w-4 h-4" onClick={playGb4}>
-        T
-      </div>
-      <div className="bg-white w-8 h-8" onClick={playG4}>
-        G
-      </div>
-      <div className="bg-black w-4 h-4" onClick={playAb4}>
-        Y
-      </div>
-      <div className="bg-white w-8 h-8" onClick={playA4}>
-        H
-      </div>
-      <div className="bg-black w-4 h-4" onClick={playBb4}>
-        U
-      </div>
-      <div className="bg-white w-8 h-8" onClick={playB4}>
-        J
-      </div>
-      <div className="bg-white w-8 h-8" onClick={playC5}>
-        K
+    <div className="pianoPage">
+      <h1>Piano</h1>
+      <div className="piano">
+        <div className="white-key" onClick={playC4}>
+          A
+        </div>
+        <div className="black-key" onClick={playDb4}>
+          W
+        </div>
+        <div className="white-key" onClick={playD4}>
+          S
+        </div>
+        <div className="black-key" onClick={playEb4}>
+          E
+        </div>
+        <div className="white-key" onClick={playE4}>
+          D
+        </div>
+        <div className="white-key" onClick={playF4}>
+          F
+        </div>
+        <div className="black-key" onClick={playGb4}>
+          T
+        </div>
+        <div className="white-key" onClick={playG4}>
+          G
+        </div>
+        <div className="black-key" onClick={playAb4}>
+          Y
+        </div>
+        <div className="white-key" onClick={playA4}>
+          H
+        </div>
+        <div className="black-key" onClick={playBb4}>
+          U
+        </div>
+        <div className="white-key" onClick={playB4}>
+          J
+        </div>
+        <div className="white-key" onClick={playC5}>
+          K
+        </div>
       </div>
     </div>
   );
