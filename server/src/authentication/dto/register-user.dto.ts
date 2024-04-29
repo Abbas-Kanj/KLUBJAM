@@ -9,8 +9,5 @@ export class RegisterUsersDto {
   password: string;
   @IsString()
   @Length(5, 10)
-  name: string;
-  @IsString()
-  @Length(5, 10)
   email: string;
 }
