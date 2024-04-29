@@ -40,7 +40,7 @@ export class AuthService {
   async register(createDto: RegisterUsersDto): Promise<any> {
     const createUser = new Users();
     createUser.email = createDto.email;
-    createUser.email = createDto.email;
+    createUser.username = createDto.username;
     createUser.password = await bcrypt.hash(createDto.password, 10);
 
     const user = await this.usersService.createUser(createUser);
