@@ -31,7 +31,12 @@ model Users {
   updatedAt DateTime @updatedAt
 
   comment Comments[] @relation("Commenter")
+  collaborators Collaborators[]
+  projects Projects[]@relation("ProjectOwner")
   post Posts[]
+  playlists Playlists[]
+  albums Albums[] @relation("MusicianAlbum")
+  tracks Tracks[] @relation("MusicianUploader")
   liker Likes[] @relation("Liker")
   followers Users_Follows[] @relation("Followers")
   followings Users_Follows[] @relation("Followings")
@@ -94,4 +99,75 @@ model Coin_Requests{
   admin Users @relation("AdminApproved",fields: [approved_id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Tracks{
+  id Int @id @default(autoincrement())
+  track_name String @db.VarChar(45)
+  duration String @db.VarChar(45)
+  audio_url String @db.VarChar(45)
+  track_image String @db.VarChar(45)
+  explicit String @db.VarChar(45)
+  status String @db.VarChar(45)
+  musician_id Int
+  album_id Int
+  musician Users @relation("MusicianUploader",fields: [musician_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Albums{
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(45)
+  genre String @db.VarChar(45)
+  cover_image String @db.VarChar(45)
+  musician_id Int
+  musician Users @relation("MusicianAlbum",fields: [musician_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Playlists{
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(45)
+  playlist_image String @db.VarChar(45)
+  musician_id Int
+  musician Users @relation(fields: [musician_id], references: [id])
+    createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Projects{
+  id Int @id @default(autoincrement())
+  project_name String @db.VarChar(45)
+  type String @db.VarChar(45)
+  description String @db.VarChar(45)
+  privacy String @db.VarChar(45)
+  track_name String @db.VarChar(45)
+  audio_url String @db.VarChar(45)
+  duration String @db.VarChar(45)
+  genre String @db.VarChar(45)
+  creator_id Int
+  collaborators_id Int
+  creator Users @relation("ProjectOwner",fields: [creator_id], references: [id])
+  // collaborators Collaborators @relation("ProjectCollaborators",fields: [collaborators_id], references: [collaborator_id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  collaboratorsonthisProject Collaborators[]
+}
+
+model Collaborators{
+  id Int @id @default(autoincrement())
+  slice_name String @db.VarChar(45)
+  slice_audio String @db.VarChar(45)
+  duration String @db.VarChar(45)
+  collaborator_id Int
+  project_id Int
+  project Projects @relation(fields: [project_id], references: [id])
+  collaborator Users @relation(fields: [collaborator_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // projects Projects[]@relation("ProjectCollaborators")
 }
