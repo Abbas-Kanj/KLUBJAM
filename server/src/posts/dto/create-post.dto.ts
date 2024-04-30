@@ -1,4 +1,5 @@
-import { IsNotEmpty, MaxLength } from 'class-validator';
+import { Prisma } from '@prisma/client';
+import { IsInt, IsNotEmpty, MaxLength } from 'class-validator';
 
 export class CreatePostDto {
   @IsNotEmpty()
@@ -7,6 +8,8 @@ export class CreatePostDto {
   @MaxLength(100)
   post_picture: string;
   @MaxLength(45)
-  hashtags?: string;
+  hashtags: string;
+  @IsNotEmpty()
+  @IsInt()
   userId: number;
 }
