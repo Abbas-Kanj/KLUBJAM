@@ -18,23 +18,23 @@ export class AuthService {
   async login(loginDto: LoginDto): Promise<any> {
     const { email, password } = loginDto;
 
-    const users = await this.prismaService.users.findUnique({
+    const user = await this.prismaService.users.findUnique({
       where: { email },
     });
 
-    if (!users) {
+    if (!user) {
       throw new NotFoundException('user not found');
     }
 
-    const validatePassword = await bcrypt.compare(password, users.password);
+    const validatePassword = await bcrypt.compare(password, user.password);
 
     if (!validatePassword) {
       throw new NotFoundException('Invalid password');
     }
 
-    return {
-      token: this.jwtService.sign({ email }),
-    };
+    const token = this.jwtService.sign({ email });
+
+    return { user, token };
   }
 
   async register(createDto: RegisterUsersDto): Promise<any> {

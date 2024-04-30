@@ -37,15 +37,13 @@ const SignIn: React.FC<SignInProps> = ({
       data.append("email", email);
       data.append("password", password);
       try {
-        // const body = JSON.stringify(data);
         const res = await sendRequest("POST", "auth/login", data);
-        // const token = res.data.authorisation.token;
         if ((res.status = 200 && res.data)) {
           console.log(res.data);
           window.localStorage.setItem("token", res.data.result.token);
-          // dispatch(setUser(res.data.user));
+          dispatch(setUser(res.data.result.user));
           console.log("sign in successfull");
-          // navigate("/Musician/Home");
+          navigate("/Musician/Home");
         }
       } catch (error: any) {
         console.log(error.message);
