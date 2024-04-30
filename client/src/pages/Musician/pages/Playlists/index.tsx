@@ -17,7 +17,7 @@ const Playlists = () => {
   };
   return (
     <div className="flex flex-col w-[1316px] bg-backgroundDark overflow-x-hidden overflow-scroll">
-      <div className="h-[180px] relative">
+      <div className="h-[180px] flex relative">
         <img
           src={bgHeader}
           alt=""
