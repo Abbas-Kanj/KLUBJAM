@@ -12,8 +12,8 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Production />}></Route>
-          <Route path="/Landing" element={<Landing />}></Route>
+          <Route path="/Production" element={<Production />}></Route>
+          <Route path="/" element={<Landing />}></Route>
           <Route path="/Musician/*" element={<Musician />} />
           <Route path="/Admin/*" element={<Admin />} />
           <Route path="/Moderator/*" element={<Moderator />} />

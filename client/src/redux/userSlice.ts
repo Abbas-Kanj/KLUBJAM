@@ -11,6 +11,8 @@ interface UserState {
     profile_picture: string;
     country: string;
     phone_number: number;
+    balance: number;
+    status: string;
     date_of_birth: Date | string;
   } | null;
 
@@ -51,6 +53,8 @@ const userSlice = createSlice({
         biography: string;
         profile_picture: string;
         country: string;
+        balance: number;
+        status: string;
         phone_number: number;
         date_of_birth: Date | string;
       }>
