@@ -2,6 +2,7 @@ import { PrismaService } from 'src/prisma.service';
 import { Users } from './users.model';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -11,20 +12,19 @@ export class UsersService {
     return this.prisma.users.findMany();
   }
 
-  async createUser(data: Users): Promise<Users> {
-    const existing = await this.prisma.users.findUnique({
-      where: {
-        username: data.username,
-      },
-    });
-
-    if (existing) {
-      throw new ConflictException('username already exists');
+  async createUser(createUserDto: CreateUserDto): Promise<Users> {
+    try {
+      const user = await this.prisma.users.create({
+        data: createUserDto,
+      });
+      return user;
+    } catch (error) {
+      if (error.code === 'P2002') {
+        throw new ConflictException('Email or username already exists');
+      } else {
+        throw error;
+      }
     }
-
-    return this.prisma.users.create({
-      data,
-    });
   }
 
   async getUserById(id: number): Promise<Users | null> {

@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
+import {
+  Body,
+  ConflictException,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Req,
+  Res,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response, response } from 'express';
 import { JwtAuthGuard } from 'src/authentication/auth.guard';
@@ -52,6 +61,33 @@ export class UsersController {
     }
   }
 
+  @Post()
+  async createUser(
+    @Body() createUserDto: CreateUserDto,
+    @Res() response: Response,
+  ): Promise<any> {
+    try {
+      const createdUser = await this.userService.createUser(createUserDto);
+      return response.status(201).json({
+        status: 'Ok!',
+        message: 'User created successfully!',
+        result: createdUser,
+      });
+    } catch (error) {
+      if (error instanceof ConflictException) {
+        return response.status(409).json({
+          status: 'Error!',
+          message: error.message,
+        });
+      } else {
+        return response.status(500).json({
+          status: 'Error!',
+          message: 'Internal Server Error!',
+        });
+      }
+    }
+  }
+
   @Post(':id')
   async updateUser(
     @Param('id') id: string,
@@ -61,7 +97,7 @@ export class UsersController {
     try {
       const userId = parseInt(id, 10);
       const result = await this.userService.updateUser(userId, updateUserDto);
-      return response.status(200).json({
+      return response.status(201).json({
         status: 'Ok!',
         message: 'Successfully updated user!',
         result: result,
