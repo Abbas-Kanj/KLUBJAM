@@ -17,7 +17,7 @@ const UpdateMusicianPopup: React.FC<UpdateMusicianProps> = ({
           >
             X
           </p>
-          <p className="w-[146px] rounded-xl text-primary border border-solid border-primary bg-background font-medium text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center cursor-pointer hover:opacity-50 mt-[10px] mr-[20px]">
+          <p className="w-[146px] rounded-xl text-primary  bg-background font-medium text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center cursor-pointer hover:opacity-50 mt-[10px] mr-[20px]">
             Save Changes
           </p>
         </div>

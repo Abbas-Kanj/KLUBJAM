@@ -16,7 +16,7 @@ const Signup: React.FC<SignUpProps> = ({
         <div className="w-[450px] relative flex flex-col">
           <div className="relative z-10 mt-[110px] ml-[30px] gap-[20px] flex flex-col">
             <h2 className="text-[20px]">Still dont have an account?</h2>
-            <h1 className="font-bold text-[24px]">
+            <h1 className="font-bold text-[24px] text-left">
               Dive into KLUBJAM's world now
               <br /> and start creating!
             </h1>
@@ -24,7 +24,7 @@ const Signup: React.FC<SignUpProps> = ({
 
           <img src={sigunImg} alt="" className="absolute top-0 left-0 z-0" />
         </div>
-        <form className="flex flex-col justify-around items-center h-full w-[480px] bg-backgroundPurple bg-opacity-70 rounded-r-[20px] relative">
+        <form className="flex flex-col justify-around items-center h-full w-[480px] bg-backgroundPurple bg-opacity-80 rounded-r-[20px] relative">
           <p
             className="absolute top-5 right-7 font-bold text-black cursor-pointer"
             onClick={() => {
@@ -105,7 +105,7 @@ const Signup: React.FC<SignUpProps> = ({
                   setOpenSigninPopup(true);
                 }}
               >
-                LogIn
+                Login
               </p>
             </div>
           </div>

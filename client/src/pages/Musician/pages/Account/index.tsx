@@ -109,7 +109,7 @@ const Account = () => {
               />
             </div>
             <div className="border border-solid border-greyText w-[462px] mt-[38px] mb-[40px]"></div>
-            <button className="w-[146px] rounded-xl text-primary border border-solid border-primary bg-background font-medium text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center">
+            <button className="w-[146px] rounded-xl text-primary border border-solid border-primary bg-background font-medium text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center ml-[320px]">
               Save Changes
             </button>
           </div>

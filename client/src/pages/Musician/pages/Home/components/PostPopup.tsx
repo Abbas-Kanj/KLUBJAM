@@ -90,7 +90,7 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
             />
             <label
               htmlFor="image-upload"
-              className="bg-primary w-fit text-[16px] font-bold rounded-xl p-[6px] cursor-pointer"
+              className="bg-primary w-[220px] text-[16px] font-bold rounded-lg text-center p-[6px] cursor-pointer"
             >
               Select image to upload
             </label>

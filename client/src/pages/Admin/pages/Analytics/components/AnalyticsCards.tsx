@@ -7,7 +7,7 @@ const AnalyticsCards = () => {
   return (
     <div className="mt-[26px] mb-[30px] mx-auto w-[1133px] h-full flex flex-wrap justify-start gap-[22px]">
       <div className="p-[20px] w-[350px] h-[210px] bg-background flex flex-col items-center justify-around rounded-xl">
-        <div className="bg-tableBackground p-3 rounded-full">
+        <div className="bg-backgroundPurple bg-opacity-60 p-3 rounded-full">
           <img src={postslogo} alt="" className="w-[30px] h-[30px]" />
         </div>
 

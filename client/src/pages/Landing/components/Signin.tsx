@@ -56,16 +56,16 @@ const SignIn: React.FC<SignInProps> = ({
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <div className="w-[930px] h-[656px] flex">
         <div className="w-[450px] relative flex flex-col">
-          <div className="relative z-10 mt-[110px] ml-[30px] gap-[20px] flex flex-col">
+          <div className="relative z-10 mt-[110px] ml-[30px] gap-[20px] flex flex-col ">
             <h2 className="text-[20px]">Welcome back!</h2>
-            <h1 className="font-bold text-[24px]">
+            <h1 className="font-bold text-[24px] text-left">
               Jammers in the KLUB are <br /> excited for your comeback!
             </h1>
           </div>
 
           <img src={siginImg} alt="" className="absolute top-0 left-0 z-0" />
         </div>
-        <form className="flex flex-col justify-around items-center h-full w-[480px] bg-backgroundPurple bg-opacity-70 rounded-r-[20px] pt-[74px] relative">
+        <form className="flex flex-col justify-around items-center h-full w-[480px] bg-backgroundPurple bg-opacity-80 rounded-r-[20px] pt-[74px] relative">
           <p
             className="absolute top-5 right-7 font-bold text-black cursor-pointer"
             onClick={() => {
@@ -129,7 +129,7 @@ const SignIn: React.FC<SignInProps> = ({
                   setOpenSignupPopup(true);
                 }}
               >
-                SignUp
+                Sign Up
               </p>
             </div>
             {error && <small className="text-red">{error}</small>}

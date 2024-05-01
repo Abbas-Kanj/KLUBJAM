@@ -1,4 +1,4 @@
-import bgHeader from "../../../../assets/Navbar/images/images (1).jpg";
+import bgHeader from "../../../../assets/Navbar/images/Rectangle 75.png";
 import defaultLogo from "../../../../assets/Navbar/images/user-profile-circle.svg";
 
 const Header = () => {

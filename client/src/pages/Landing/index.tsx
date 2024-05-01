@@ -59,7 +59,7 @@ const Landing = () => {
           <h1 className=" text-greyText">hello</h1>
         </video>
         <div className="relative z-10">
-          <nav className="flex mt-[33px] ml-auto mr-auto rounded-2xl  items-center justify-around h-20 w-[1400px] bg-backgroundPurple bg-opacity-60">
+          <nav className="flex mt-[33px] ml-auto mr-auto rounded-2xl  items-center justify-around h-20 w-[1400px] bg-backgroundPurple bg-opacity-65">
             <div className="flex">
               <img src={logo} alt="" />
               <h2 className="ml-[32px] text-2xl font-semibold">KLUBJAM</h2>
@@ -89,7 +89,7 @@ const Landing = () => {
               </button>
             </div>
           </nav>
-          <div className="flex flex-col text-center items-center mt-[100px] gap-4 ">
+          <div className="flex flex-col text-center items-center mt-[160px] gap-4 ">
             <h1 className=" text-6xl font-black overflow-hidden">
               Step into the Beat
             </h1>
