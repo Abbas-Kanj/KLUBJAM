@@ -42,8 +42,7 @@ model Users {
   liker Likes[] @relation("Liker")
   followers Users_Follows[] @relation("Followers")
   followings Users_Follows[] @relation("Followings")
-  musician Coin_Requests[] @relation("MusicianRequester")
-  admin Coin_Requests[] @relation("AdminApproved")
+  musician Coin_Requests[] @relation("Requester")
 }
 
 model Posts {
@@ -95,10 +94,8 @@ model Coin_Requests{
   id Int @id @default(autoincrement())
   amount Int
   status String @default("Pending")
-  musician_id Int
-  approved_id Int
-  musician Users @relation("MusicianRequester",fields: [musician_id], references: [id])
-  admin Users @relation("AdminApproved",fields: [approved_id], references: [id])
+  user_id Int
+  user Users @relation("Requester",fields: [user_id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -111,9 +108,9 @@ model Tracks{
   track_image String @db.VarChar(45)
   explicit String @db.VarChar(45)
   status String @db.VarChar(45)
-  musician_id Int
+  user_id Int
   album_id Int
-  musician Users @relation("MusicianUploader",fields: [musician_id], references: [id])
+  user Users @relation("MusicianUploader",fields: [user_id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   playlists Playlists[]
@@ -124,8 +121,8 @@ model Albums{
   title String @db.VarChar(45)
   genre String @db.VarChar(45)
   cover_image String @db.VarChar(45)
-  musician_id Int
-  musician Users @relation("MusicianAlbum",fields: [musician_id], references: [id])
+  user_id Int
+  user Users @relation("MusicianAlbum",fields: [user_id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -134,8 +131,8 @@ model Playlists{
   id Int @id @default(autoincrement())
   title String @db.VarChar(45)
   playlist_image String @db.VarChar(45)
-  musician_id Int
-  musician Users @relation(fields: [musician_id], references: [id])
+  user_id Int
+  user Users @relation(fields: [user_id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   tracks Tracks[]
@@ -181,8 +178,8 @@ model JamBoxes{
   title String @db.VarChar(45)
   lyrics String @db.VarChar(245)
   artist_voice String @db.VarChar(45)
-  musician_id Int
-  musician Users @relation(fields: [musician_id], references: [id])
+  user_id Int
+  user Users @relation(fields: [user_id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
