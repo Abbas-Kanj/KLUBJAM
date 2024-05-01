@@ -33,16 +33,14 @@ model Users {
 
   collaborators Collaborators[]
   post Posts[]
-  jamboxes JamBoxes[]
   playlists Playlists[]
   comment Comments[] @relation("Commenter")
   projects Projects[]@relation("ProjectOwner")
   albums Albums[] @relation("MusicianAlbum")
   tracks Tracks[] @relation("MusicianUploader")
-  liker Likes[] @relation("Liker")
   followers Users_Follows[] @relation("Followers")
   followings Users_Follows[] @relation("Followings")
-  musician Coin_Requests[] @relation("Requester")
+  requester Coin_Requests[] @relation("Requester")
 }
 
 model Posts {
@@ -57,13 +55,14 @@ model Posts {
 
   comment Comments[]@relation("Post_Commented")
   likes Likes[] @relation("Posted_liked")
+  liker Likes[] @relation("Liker")
 }
 
 model Likes {
   id Int @id @default(autoincrement())
   user_id Int
   post_id Int
-  user Users @relation("Liker",fields: [user_id], references: [id])
+  user Posts @relation("Liker",fields: [user_id], references: [id])
   post Posts @relation("Posted_liked",fields: [post_id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -173,13 +172,13 @@ model Collaborators{
   // projects Projects[]@relation("ProjectCollaborators")
 }
 
-model JamBoxes{
-  id Int @id @default(autoincrement())
-  title String @db.VarChar(45)
-  lyrics String @db.VarChar(245)
-  artist_voice String @db.VarChar(45)
-  user_id Int
-  user Users @relation(fields: [user_id], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
+// model JamBoxes{
+//   id Int @id @default(autoincrement())
+//   title String @db.VarChar(45)
+//   lyrics String @db.VarChar(245)
+//   artist_voice String @db.VarChar(45)
+//   user_id Int
+//   user Users @relation(fields: [user_id], references: [id])
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }

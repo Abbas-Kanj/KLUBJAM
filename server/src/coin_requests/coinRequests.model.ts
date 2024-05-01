@@ -1,7 +1,6 @@
-import { Prisma } from '@prisma/client';
+// import { Prisma } from '@prisma/client';
 
-export class CoinRequests implements Prisma.Coin_RequestsCreateInput {
-  amount: number;
-  status: string;
-  user: Prisma.UsersCreateNestedOneWithoutMusicianInput;
-}
+// export class CoinRequests implements Prisma.Coin_RequestsCreateInput {
+//   amount: number;
+//   status: string;
+// }

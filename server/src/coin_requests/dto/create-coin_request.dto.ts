@@ -5,5 +5,5 @@ export class CreateCoinRequestDto {
   amount: number;
   @IsNotEmpty()
   @IsInt()
-  user: number;
+  userId: number;
 }
