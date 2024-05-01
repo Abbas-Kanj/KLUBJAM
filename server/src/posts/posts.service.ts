@@ -24,8 +24,8 @@ export class PostsService {
       });
       return post;
     } catch (error) {
-      console.error(error); // Log specific Prisma errors
-      throw new Error('An error occurred creating the post'); // Informative error message
+      console.error(error);
+      throw new Error('An error occurred creating the post');
     }
   }
 }

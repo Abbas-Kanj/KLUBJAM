@@ -1,16 +1,7 @@
-import {
-  Body,
-  ConflictException,
-  Controller,
-  Post,
-  HttpStatus,
-  Res,
-  Param,
-} from '@nestjs/common';
+import { Body, Controller, Post, Res, Param } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from '@prisma/client';
-import { response } from 'express';
 
 @Controller('posts')
 export class PostsController {
