@@ -8,18 +8,17 @@ import { log } from 'console';
 export class PostsService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async getAllPosts(): Promise<Posts[]> {
+    return this.prisma.posts.findMany();
+  }
   async createPost(
     createPostDto: CreatePostDto,
     userId: number,
-    filename: string, // Add filename parameter
   ): Promise<Posts> {
     try {
-      console.log(filename);
-
       const post = await this.prisma.posts.create({
         data: {
           ...createPostDto,
-          post_picture: filename, // Set the post_picture field to the filename
           user: {
             connect: {
               id: userId,
@@ -29,8 +28,8 @@ export class PostsService {
       });
       return post;
     } catch (error) {
-      console.error(error);
-      throw new Error('An error occurred creating the post');
+      console.error(error); // Log specific Prisma errors
+      throw new Error('An error occurred creating the post'); // Informative error message
     }
   }
 }
