@@ -2,6 +2,7 @@ import recommendedLogo from "../../../../assets/Home/images/Ellipse 36.svg";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { sendRequest } from "../../../../../core/remote/request";
 
 interface PostProps {
   setOpenPostPopup: (open: boolean) => void;
@@ -9,18 +10,17 @@ interface PostProps {
 
 const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
   const token = localStorage.getItem("token");
-  //   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [caption, setCaption] = useState("");
   const [hashtags, setHashtags] = useState("");
-  const [imageData, setImageData] = useState();
+  const [imageData, setImageData] = useState<File | null>(null);
   const [image, setImage] = useState(
     "https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
   );
 
   const validatePostForm = () => {
-    if (caption == "" || hashtags == "" || imageData == "") {
+    if (caption === "" || hashtags === "" || imageData === null) {
       setError("Please fill empty fields");
       return false;
     } else {
@@ -29,40 +29,42 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
     }
   };
 
-  //   function handleImageUpload(e) {
-  //     const file = e.target.files[0];
-  //     setImageData(file);
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => {
-  //       setImage(reader.result);
-  //     };
-  //   }
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files![0];
+    setImageData(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setImage(reader.result as string);
+    };
+  };
 
-  //   const createPost = async (e) => {
-  //     e.preventDefault();
-  //     if (token) {
-  //       if (validatePostForm()) {
-  //         let data = new FormData();
-  //         data.append("caption", caption);
-  //         data.append("hashtags", hashtags);
-  //         data.append("image", imageData);
-  //         try {
-  //           const res = await sendRequest(
-  //             "POST",
-  //             `/api/createPost/${user.id}`,
-  //             data
-  //           );
-  //           if ((res.status = 200)) {
-  //             setOpenCreatePostPopup(false);
-  //             dispatch(addUserPosts(res.data));
-  //           }
-  //         } catch (error) {
-  //           console.log(error.response.data.message);
-  //         }
-  //       }
-  //     }
-  //   };
+  const createPost = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (token) {
+      if (validatePostForm()) {
+        const postData = {
+          caption: caption,
+          hashtags: hashtags,
+          post_picture: imageData,
+        };
+        console.log(postData);
+
+        try {
+          const res = await sendRequest("POST", `/posts/1`, postData);
+          if (res.status === 200) {
+            console.log("success");
+            setOpenPostPopup(false);
+            // dispatch(addUserPosts(res.data));
+          }
+        } catch (error: any) {
+          console.log(error.message);
+          setError(error.message);
+        }
+      }
+    }
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 bottom-10 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <form className="flex flex-col w-[784px] h-[550px] rounded-xl bg-background p-[16px]">
@@ -74,7 +76,11 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
             X
           </p>
           <h3 className="font-semibold text-[18px]">Create new post</h3>
-          <button className="font-semibold text-[16px] text-primary">
+          <button
+            className="font-semibold text-[16px] text-primary"
+            type="submit"
+            onClick={createPost}
+          >
             Share
           </button>
         </div>
@@ -86,7 +92,7 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
               type="file"
               accept="image/*"
               className="hidden"
-              //   onChange={(e) => handleImageUpload(e)}
+              onChange={handleImageUpload}
             />
             <label
               htmlFor="image-upload"
@@ -105,8 +111,8 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
               id=""
               placeholder="Enter Captions..."
               className="border border-solid border-[#565656] bg-transparent rounded-lg w-[220px] h-[200px] p-2"
+              onChange={(e) => setCaption(e.target.value)}
             ></textarea>
-
             <input
               type="text"
               placeholder="Enter hashtags..."
