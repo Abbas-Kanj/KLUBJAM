@@ -1,8 +1,8 @@
 import recommendedLogo from "../../../../assets/Home/images/Ellipse 36.svg";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { sendRequest } from "../../../../../core/remote/request";
+import { setPost } from "../../../../../redux/postsSlice";
 
 interface PostProps {
   setOpenPostPopup: (open: boolean) => void;
@@ -77,7 +77,7 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
               console.log("post created");
 
               setOpenPostPopup(false);
-              // dispatch(addUserPosts(res.data));
+              dispatch(setPost(res.data));
             } catch (error: any) {
               console.log(error.message);
               setError(error.message);

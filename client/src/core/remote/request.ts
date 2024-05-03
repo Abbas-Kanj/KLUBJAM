@@ -6,7 +6,7 @@ const jwt = localStorage.getItem("token");
 export const sendRequest = async (
   method: any,
   route: any,
-  body: any,
+  body: any | null,
   headers: any
 ) => {
   const response = await axios.request({
@@ -14,6 +14,11 @@ export const sendRequest = async (
     url: route,
     data: body,
     headers: headers,
+    // headers: {
+    //   // "Content-Type": "application/json",
+    //   Authorization: `Bearer ${jwt}`,
+    //   "Content-Type": "multipart/form-data",
+    // },
   });
 
   if (response.status === 401) {
