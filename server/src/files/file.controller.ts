@@ -16,7 +16,11 @@ export class FilesController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: './uploads',
+        destination: (req, file, cb) => {
+          console.log(req.body);
+          const directoryPath = req.body.directoryPath || './uploads';
+          cb(null, directoryPath);
+        },
         filename: (req, file, cb) => {
           const randomName = Array(32)
             .fill(null)
@@ -31,7 +35,7 @@ export class FilesController {
     if (!file) {
       throw new HttpException('No file uploaded!', HttpStatus.BAD_REQUEST);
     }
-    const filePath = `/uploads/${file.filename}`;
+    const filePath = `/${file.destination}/${file.filename}`;
     return { filePath, status: HttpStatus.OK };
   }
 }
