@@ -39,8 +39,8 @@ model Users {
   projects Projects[]@relation("ProjectOwner")
   albums Albums[] @relation("MusicianAlbum")
   tracks Tracks[] @relation("MusicianUploader")
-  followers Users_Follows[] @relation("Followers")
-  followings Users_Follows[] @relation("Followings")
+  followers Follows[] @relation("Followers")
+  followings Follows[] @relation("Followings")
   requester Coin_Requests[] @relation("Requester")
 }
 
@@ -79,7 +79,7 @@ model Comments{
   updatedAt DateTime @updatedAt
 }
 
-model Users_Follows{
+model Follows{
   id Int @id @default(autoincrement())
   follower_id Int
   following_id Int
