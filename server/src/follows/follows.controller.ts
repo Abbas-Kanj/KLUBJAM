@@ -24,7 +24,6 @@ export class FollowsController {
         throw new Error('User ID is required');
       }
       const createdFollow = await this.followsService.createFollow(
-        createFollowDto,
         follower_id,
         following_id,
       );
@@ -32,6 +31,26 @@ export class FollowsController {
         status: 'Ok!',
         message: 'follow created successfully!',
         result: createdFollow,
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 'Error!',
+        message: error.message || 'Controller error',
+      });
+    }
+  }
+
+  @Delete(':id')
+  async deleteFollow(@Param('id') id: string, @Res() response): Promise<any> {
+    try {
+      const followId = parseInt(id, 10);
+      if (isNaN(followId)) {
+        throw new Error('Invalid follow ID');
+      }
+      await this.followsService.deleteFollow(followId);
+      return response.status(200).json({
+        status: 'Ok!',
+        message: 'follow removed successfully!',
       });
     } catch (error) {
       return response.status(500).json({
