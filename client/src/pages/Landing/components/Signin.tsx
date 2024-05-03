@@ -37,7 +37,10 @@ const SignIn: React.FC<SignInProps> = ({
       data.append("email", email);
       data.append("password", password);
       try {
-        const res = await sendRequest("POST", "auth/login", data);
+        const headers = {
+          "Content-Type": "application/json",
+        };
+        const res = await sendRequest("POST", "auth/login", data, headers);
         if ((res.status = 200 && res.data)) {
           console.log(res.data);
           window.localStorage.setItem("token", res.data.result.token);
