@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Param, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { Follows } from '@prisma/client';
 import { FollowsService } from './follows.service';
 import { CreateFollowDto } from './dto/create-follow.dto';
@@ -6,6 +14,13 @@ import { CreateFollowDto } from './dto/create-follow.dto';
 @Controller('Follows')
 export class FollowsController {
   constructor(private readonly followsService: FollowsService) {}
+
+  @Get(':id')
+  async getMutualConnections(@Param('id') id: string): Promise<any[]> {
+    const userId = parseInt(id, 10);
+
+    return this.followsService.getMutualConnections(userId);
+  }
 
   @Post(':id')
   async createFollow(
