@@ -2,7 +2,6 @@ import { PrismaService } from 'src/prisma.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
-import { log } from 'console';
 import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
@@ -37,8 +36,8 @@ export class PostsService {
       });
       return post;
     } catch (error) {
-      console.error(error); // Log specific Prisma errors
-      throw new Error('An error occurred creating the post'); // Informative error message
+      console.error(error);
+      throw new Error('An error occurred creating the post');
     }
   }
 
