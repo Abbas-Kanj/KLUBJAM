@@ -1,32 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface Post {
+  caption: string;
+  hashtags: string;
+  post_picture: string;
+  userId: number;
+}
+
 interface PostState {
-  post: {
-    caption: string;
-    hashtags: string;
-    post_picture: string;
-    userId: number;
-  } | null;
+  posts: Post[];
 }
 
 const initialState: PostState = {
-  post: null,
+  posts: [],
 };
 
 const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    setPost: (
-      state,
-      action: PayloadAction<{
-        caption: string;
-        hashtags: string;
-        post_picture: string;
-        userId: number;
-      }>
-    ) => {
-      state.post = action.payload;
+    setPost: (state, action: PayloadAction<Post>) => {
+      state.posts.push(action.payload);
     },
   },
 });

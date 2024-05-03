@@ -14,6 +14,8 @@ interface UserState {
     balance: number;
     status: string;
     date_of_birth: Date | string;
+    created_at: string;
+    updated_at: string;
   } | null;
 
   posts: any[];
@@ -57,6 +59,8 @@ const userSlice = createSlice({
         status: string;
         phone_number: number;
         date_of_birth: Date | string;
+        created_at: string;
+        updated_at: string;
       }>
     ) => {
       state.user = action.payload;
