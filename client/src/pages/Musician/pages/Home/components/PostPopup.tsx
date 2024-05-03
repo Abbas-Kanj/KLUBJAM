@@ -43,19 +43,45 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
     e.preventDefault();
     if (token) {
       if (validatePostForm()) {
-        const postData = {
-          caption: caption,
-          hashtags: hashtags,
-          post_picture: imageData,
-        };
-        console.log(postData);
-
+        const image = new FormData();
+        image.append("file", imageData!);
         try {
-          const res = await sendRequest("POST", `/posts/1`, postData);
-          if (res.status === 200) {
-            console.log("success");
-            setOpenPostPopup(false);
-            // dispatch(addUserPosts(res.data));
+          const headers = {
+            "Content-Type": "multipart/form-data",
+          };
+          const res = await sendRequest(
+            "POST",
+            `/files/upload`,
+            image,
+            headers
+          );
+          if (res.status) {
+            const x = res.data.filePath;
+            console.log(x);
+
+            try {
+              const postData = {
+                caption: caption,
+                hashtags: hashtags,
+                post_picture: x,
+              };
+              const headers = {
+                "Content-Type": "application/json",
+              };
+              const res = await sendRequest(
+                "POST",
+                `/posts/1`,
+                postData,
+                headers
+              );
+              console.log("post created");
+
+              setOpenPostPopup(false);
+              // dispatch(addUserPosts(res.data));
+            } catch (error: any) {
+              console.log(error.message);
+              setError(error.message);
+            }
           }
         } catch (error: any) {
           console.log(error.message);
