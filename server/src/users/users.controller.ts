@@ -2,6 +2,7 @@ import {
   Body,
   ConflictException,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -13,10 +14,14 @@ import { Request, Response } from 'express';
 import { JwtAuthGuard } from 'src/authentication/auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import { PrismaService } from 'src/prisma.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly userService: UsersService) {}
+  constructor(
+    private readonly userService: UsersService,
+    private readonly prisma: PrismaService,
+  ) {}
 
   @Get()
   // @UseGuards(JwtAuthGuard)
@@ -106,6 +111,27 @@ export class UsersController {
       return response.status(500).json({
         status: 'Ok!',
         message: 'controller error!' + err.message,
+      });
+    }
+  }
+
+  @Delete(':id')
+  async deleteUserById(
+    @Param('id') id: string,
+    @Res() response: Response,
+  ): Promise<any> {
+    try {
+      const userId = parseInt(id, 10);
+      const result = await this.userService.deleteUser(userId);
+      return response.status(200).json({
+        status: 'Ok!',
+        message: 'User deleted successfully!',
+        result: result,
+      });
+    } catch (err) {
+      return response.status(500).json({
+        status: 'Error!',
+        message: 'Internal Server Error!' + err.message,
       });
     }
   }
