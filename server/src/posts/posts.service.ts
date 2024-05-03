@@ -3,6 +3,7 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 import { log } from 'console';
+import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
 export class PostsService {
@@ -39,6 +40,27 @@ export class PostsService {
       console.error(error); // Log specific Prisma errors
       throw new Error('An error occurred creating the post'); // Informative error message
     }
+  }
+
+  async updatePost(postId: number, updatePostDto: UpdatePostDto): Promise<any> {
+    const existingPost = await this.prisma.posts.findUnique({
+      where: {
+        id: postId,
+      },
+    });
+
+    if (!existingPost) {
+      return null;
+    }
+
+    return this.prisma.posts.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        ...updatePostDto,
+      },
+    });
   }
 
   async deletePost(postId: number): Promise<void> {
