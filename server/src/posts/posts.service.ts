@@ -40,4 +40,12 @@ export class PostsService {
       throw new Error('An error occurred creating the post'); // Informative error message
     }
   }
+
+  async deletePost(postId: number): Promise<void> {
+    await this.prisma.posts.delete({
+      where: {
+        id: postId,
+      },
+    });
+  }
 }
