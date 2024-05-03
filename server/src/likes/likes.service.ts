@@ -18,4 +18,12 @@ export class LikesService {
       },
     });
   }
+
+  async deleteLike(likeId: number): Promise<void> {
+    await this.prisma.likes.delete({
+      where: {
+        id: likeId,
+      },
+    });
+  }
 }
