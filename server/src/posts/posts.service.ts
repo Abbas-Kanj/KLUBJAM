@@ -9,7 +9,34 @@ export class PostsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAllPosts(): Promise<Posts[]> {
-    return this.prisma.posts.findMany();
+    const posts = await this.prisma.posts.findMany({
+      include: {
+        user: {
+          select: {
+            username: true,
+            profile_picture: true,
+          },
+        },
+        comment: {
+          select: {
+            id: true,
+            content: true,
+            user: {
+              select: {
+                username: true,
+                profile_picture: true,
+                createdAt: true,
+              },
+            },
+          },
+        },
+        likes: true,
+      },
+    });
+    return posts.map((post) => ({
+      ...post,
+      likes: { _count: post.likes.length },
+    }));
   }
 
   async getPostsByUserId(userId: number): Promise<any> {
