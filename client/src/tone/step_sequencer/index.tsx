@@ -1,5 +1,3 @@
-import React from "react";
-
 const StepSequencer = () => {
   return (
     <div className="flex mx-auto justify-center items-center w-screen h-screen bg-slate-600">
