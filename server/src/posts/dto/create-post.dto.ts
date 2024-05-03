@@ -1,4 +1,3 @@
-import { Prisma } from '@prisma/client';
 import { IsInt, IsNotEmpty, MaxLength } from 'class-validator';
 
 export class CreatePostDto {
