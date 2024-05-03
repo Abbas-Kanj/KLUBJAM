@@ -5,14 +5,13 @@ import {
   Res,
   Param,
   Get,
-  Req,
   Delete,
   Put,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from '@prisma/client';
-import { Request, Response, request } from 'express';
+import { Response } from 'express';
 import { UpdatePostDto } from './dto/update-post.dto';
 
 @Controller('posts')
@@ -20,10 +19,7 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  async getAllPosts(
-    @Req() request: Request,
-    @Res() response: Response,
-  ): Promise<any> {
+  async getAllPosts(@Res() response: Response): Promise<any> {
     try {
       const result = await this.postsService.getAllPosts();
       return response.status(200).json({

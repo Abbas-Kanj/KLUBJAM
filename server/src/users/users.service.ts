@@ -71,7 +71,7 @@ export class UsersService {
             user_id: userId,
           },
         }),
-        this.prisma.users_Follows.deleteMany({
+        this.prisma.follows.deleteMany({
           where: {
             OR: [{ follower_id: userId }, { following_id: userId }],
           },

@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Param, Post, Res } from '@nestjs/common';
 import { LikesService } from './likes.service';
 import { CreateLikeDto } from './dto/create-like.dto';
-import { response } from 'express';
 import { Likes } from '@prisma/client';
 
 @Controller('likes')
