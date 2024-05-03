@@ -41,6 +41,28 @@ export class PostsController {
     }
   }
 
+  @Get(':id')
+  async getUserPosts(@Param('id') id: string): Promise<any> {
+    try {
+      const userId = parseInt(id, 10);
+      if (isNaN(userId)) {
+        throw new Error('Invalid user ID');
+      }
+
+      const userPosts = await this.postsService.getPostsByUserId(userId);
+      return {
+        status: 'Ok!',
+        message: 'Successfully fetched user posts!',
+        result: userPosts,
+      };
+    } catch (error) {
+      return {
+        status: 'Error!',
+        message: error.message || 'Controller error',
+      };
+    }
+  }
+
   @Post(':id')
   async createPost(
     @Body() createPostDto: CreatePostDto,
