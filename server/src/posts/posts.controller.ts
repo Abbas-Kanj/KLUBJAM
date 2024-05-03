@@ -4,18 +4,14 @@ import {
   Post,
   Res,
   Param,
-  UploadedFile,
   Get,
   Req,
-  UseInterceptors,
+  Delete,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from '@prisma/client';
 import { Request, Response, request } from 'express';
-import path from 'path';
-import * as multer from 'multer';
-import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('posts')
 export class PostsController {
@@ -83,6 +79,26 @@ export class PostsController {
         status: 'Ok!',
         message: 'Post created successfully!',
         result: createdPost,
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 'Error!',
+        message: error.message || 'Controller error',
+      });
+    }
+  }
+  @Delete(':id')
+  async deletePost(@Param('id') id: string, @Res() response): Promise<any> {
+    try {
+      const postId = parseInt(id, 10);
+      if (isNaN(postId)) {
+        throw new Error('Invalid post ID');
+      }
+
+      await this.postsService.deletePost(postId);
+      return response.status(200).json({
+        status: 'Ok!',
+        message: 'Post deleted successfully!',
       });
     } catch (error) {
       return response.status(500).json({
