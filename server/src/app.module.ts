@@ -4,9 +4,17 @@ import { AuthModule } from './authentication/auth.module';
 import { FileModule } from './files/file.module';
 import { PostsModule } from './posts/posts.module';
 import { CommentsModule } from './comments/comments.module';
+import { LikesModule } from './likes/likes.module';
 
 @Module({
-  imports: [UsersModule, PostsModule, CommentsModule, AuthModule, FileModule],
+  imports: [
+    UsersModule,
+    PostsModule,
+    CommentsModule,
+    LikesModule,
+    AuthModule,
+    FileModule,
+  ],
   controllers: [],
   providers: [],
 })
