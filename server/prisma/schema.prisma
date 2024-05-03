@@ -35,6 +35,7 @@ model Users {
   post Posts[]
   playlists Playlists[]
   comment Comments[] @relation("Commenter")
+  liker Likes[] @relation("Liker")
   projects Projects[]@relation("ProjectOwner")
   albums Albums[] @relation("MusicianAlbum")
   tracks Tracks[] @relation("MusicianUploader")
@@ -55,14 +56,13 @@ model Posts {
 
   comment Comments[]@relation("Post_Commented")
   likes Likes[] @relation("Posted_liked")
-  liker Likes[] @relation("Liker")
 }
 
 model Likes {
   id Int @id @default(autoincrement())
   user_id Int
   post_id Int
-  user Posts @relation("Liker",fields: [user_id], references: [id])
+  user Users @relation("Liker",fields: [user_id], references: [id])
   post Posts @relation("Posted_liked",fields: [post_id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
