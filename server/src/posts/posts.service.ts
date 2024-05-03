@@ -11,6 +11,14 @@ export class PostsService {
   async getAllPosts(): Promise<Posts[]> {
     return this.prisma.posts.findMany();
   }
+
+  async getPostsByUserId(userId: number): Promise<any> {
+    return this.prisma.posts.findMany({
+      where: {
+        user_id: userId,
+      },
+    });
+  }
   async createPost(
     createPostDto: CreatePostDto,
     userId: number,
