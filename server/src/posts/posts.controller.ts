@@ -7,11 +7,13 @@ import {
   Get,
   Req,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from '@prisma/client';
 import { Request, Response, request } from 'express';
+import { UpdatePostDto } from './dto/update-post.dto';
 
 @Controller('posts')
 export class PostsController {
@@ -87,6 +89,44 @@ export class PostsController {
       });
     }
   }
+
+  @Put(':id')
+  async updatePost(
+    @Param('id') id: string,
+    @Body() updatePostDto: UpdatePostDto,
+    @Res() response,
+  ): Promise<any> {
+    try {
+      const postId = parseInt(id, 10);
+      if (isNaN(postId)) {
+        throw new Error('Invalid post ID');
+      }
+
+      const updatedPost = await this.postsService.updatePost(
+        postId,
+        updatePostDto,
+      );
+
+      if (!updatedPost) {
+        return response.status(404).json({
+          status: 'Error!',
+          message: 'Post not found',
+        });
+      }
+
+      return response.status(200).json({
+        status: 'Ok!',
+        message: 'Post updated successfully!',
+        result: updatedPost,
+      });
+    } catch (error) {
+      return response.status(500).json({
+        status: 'Error!',
+        message: error.message || 'Controller error',
+      });
+    }
+  }
+
   @Delete(':id')
   async deletePost(@Param('id') id: string, @Res() response): Promise<any> {
     try {
