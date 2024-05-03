@@ -37,4 +37,59 @@ export class UsersService {
       data: updateUserDto,
     });
   }
+
+  async deleteUser(userId: number): Promise<void> {
+    try {
+      await this.prisma.$transaction([
+        this.prisma.posts.deleteMany({
+          where: {
+            user_id: userId,
+          },
+        }),
+        this.prisma.playlists.deleteMany({
+          where: {
+            user_id: userId,
+          },
+        }),
+        this.prisma.comments.deleteMany({
+          where: {
+            user_id: userId,
+          },
+        }),
+        this.prisma.projects.deleteMany({
+          where: {
+            creator_id: userId,
+          },
+        }),
+        this.prisma.albums.deleteMany({
+          where: {
+            user_id: userId,
+          },
+        }),
+        this.prisma.tracks.deleteMany({
+          where: {
+            user_id: userId,
+          },
+        }),
+        this.prisma.users_Follows.deleteMany({
+          where: {
+            OR: [{ follower_id: userId }, { following_id: userId }],
+          },
+        }),
+        this.prisma.coin_Requests.deleteMany({
+          where: {
+            user_id: userId,
+          },
+        }),
+        this.prisma.users.delete({
+          where: {
+            id: userId,
+          },
+        }),
+      ]);
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      throw new Error('Failed to delete user');
+    }
+  }
 }
