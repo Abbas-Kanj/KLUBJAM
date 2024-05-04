@@ -1,5 +1,6 @@
-import recommendedLogo from "../../../../assets/Home/images/Ellipse 36.svg";
-
+import like from "../../../../assets/Home/icons/like.svg";
+import comment from "../../../../assets/Home/icons/comment.svg";
+import share from "../../../../assets/Home/icons/forward.svg";
 interface PostProps {
   setOpenCommentsPopup: (open: boolean) => void;
   post: any;
@@ -18,22 +19,30 @@ const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
       </p>
       <form className="flex flex-col w-[70%] h-[90%] rounded-xl bg-background ">
         <div className="flex">
-          <div className="min-w-[50%] ">
+          <div className="min-w-[50%]">
             <img
               src={`http://127.0.0.1:3000${post.post_picture}`}
               className="w-full h-full max-h-[632px] max-w-[600px]"
             />
           </div>
-          <div className="flex flex-col  border-l border-solid border-[#565656]">
-            <div className="flex items-center gap-[12px] pl-[15px] align-center gap mt-[10px] mb-[10px]">
-              <img src={recommendedLogo} alt="" className="w-[40px] h-[40px]" />
-              <h5 className="text-[15px] font-medium">{post.user.username}</h5>
-            </div>
-            <div className="w-[535px] border border-solid border-[#565656]"></div>
-            <div className="flex flex-col">
-              <div className="flex items-start gap-[12px] pl-[15px] align-center gap mt-[10px]">
+          <div className="flex flex-col max-h-[632px] border-l border-solid border-[#565656]">
+            <div className="flex flex-col ">
+              <div className="flex items-center gap-[12px] pl-[15px] align-center gap mt-[10px] mb-[10px]">
                 <img
-                  src={recommendedLogo}
+                  src={post.user.profile_picture}
+                  alt=""
+                  className="w-[40px] h-[40px]"
+                />
+                <h5 className="text-[15px] font-medium">
+                  {post.user.username}
+                </h5>
+              </div>
+              <div className="w-[535px] border border-solid border-[#565656]"></div>
+            </div>
+            <div className="flex flex-col min-h-[330px] justify-between overflow-x-hidden overflow-scroll">
+              <div className="flex items-center gap-[12px] pl-[15px] align-center">
+                <img
+                  src={post.user.profile_picture}
                   alt=""
                   className="w-[40px] h-[40px]"
                 />
@@ -47,29 +56,48 @@ const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
               {post.comment.map((v: any, i: number) => (
                 <div
                   key={i}
-                  className="flex items-start gap-[12px] pl-[15px] align-center gap mt-[10px]"
+                  className="flex items-start gap-[12px] pl-[15px] align-center mt-[10px]"
                 >
                   <img
-                    src={recommendedLogo}
+                    src={v.user.profile_picture}
                     alt=""
                     className="w-[40px] h-[40px]"
                   />
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-[10px]">
                     <h5 className="text-[15px] font-medium">
-                      {v.user.username}{" "}
-                      <small className="text-[14px]">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Nostrum, animi soluta vel perspiciatis officia ratione
-                        id praesentium omnis doloremque minima sed fugit
-                        corporis, maiores excepturi! Explicabo quas voluptate
-                        non inventore.
+                      {v.user.username}
+                      <small className="text-[14px] pl-[7px] font-normal">
+                        {v.content}
                       </small>
                     </h5>
-                    {/* {v.content} */}
                     <h6 className="text-[14px]"> </h6>
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="mt-[10px]">
+              <div className="w-[535px] border border-solid border-[#565656]"></div>
+              <div className=" flex mt-[10px] mb-[5px] gap-[18px] pl-[15px]">
+                <img src={like} alt="" className="cursor-pointer" />
+                <img src={comment} alt="" className="cursor-pointer" />
+                <img src={share} alt="" className="cursor-pointer" />
+              </div>
+              <div className="pl-[15px] mb-[5px]">
+                <h2 className="font-medium text-[14px]">{`${post.likes._count} likes`}</h2>
+              </div>
+              <div className="flex flex-col">
+                <div className="w-[535px] border border-solid border-[#565656]"></div>
+                <div className="flex justify-between items-center">
+                  <input
+                    type="text"
+                    className="font-medium text-[14px] pl-[15px] text-white bg-transparent  border-transparent focus:border-transparent cursor-pointer hover:placeholder:text-white  border-0 focus:outline-none placeholder-white placeholder-opacity-50 mb-[10px] mt-[10px]"
+                    placeholder="Add a comment..."
+                  />
+                  <h2 className="mr-[10px] cursor-pointer hover:opacity-50">
+                    Post
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
         </div>
