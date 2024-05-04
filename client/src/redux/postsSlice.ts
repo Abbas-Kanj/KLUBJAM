@@ -23,10 +23,19 @@ const postSlice = createSlice({
   initialState,
   reducers: {
     setPosts: (state, action: PayloadAction<Post[]>) => {
-      const newPosts = action.payload.filter((newPost) => {
-        return !state.posts.some((post) => post.id === newPost.id);
+      action.payload.forEach((newPost) => {
+        const existingPostIndex = state.posts.findIndex(
+          (post) => post.id === newPost.id
+        );
+        if (existingPostIndex !== -1) {
+          state.posts[existingPostIndex] = {
+            ...state.posts[existingPostIndex],
+            ...newPost,
+          };
+        } else {
+          state.posts.push(newPost);
+        }
       });
-      state.posts.push(...newPosts);
     },
   },
 });
