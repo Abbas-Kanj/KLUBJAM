@@ -16,18 +16,18 @@ datasource db {
 
 model Users {
   id Int @id @default(autoincrement())
-  username String @unique @db.VarChar(45)
-  email String @unique @db.VarChar(45)
-  password String @db.VarChar(100)
+  username String @unique @db.VarChar(255)
+  email String @unique @db.VarChar(255)
+  password String @db.VarChar(255)
   role_id Int @default(3)
   profile_picture String? @db.VarChar(255)
-  fullname String? @db.VarChar(100)
-  biography String? @db.VarChar(100)
+  fullname String? @db.VarChar(255)
+  biography String? @db.VarChar(255)
   phone_number Int?
-  country String? @db.VarChar(100)
+  country String? @db.VarChar(255)
   balance Int @default(200)
   date_of_birth String? 
-  status String @db.VarChar(100) @default("Active")
+  status String @db.VarChar(255) @default("Active")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -46,11 +46,11 @@ model Users {
 
 model Posts {
   id Int @id @default(autoincrement())
-  caption String @db.VarChar(45)
+  caption String @db.VarChar(255)
   post_picture String @db.VarChar(255)
-  hashtags String @db.VarChar(45)
+  hashtags String @db.VarChar(255)
   user_id Int
-  user Users @relation(fields: [user_id], references: [id])
+  user Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -62,19 +62,19 @@ model Likes {
   id Int @id @default(autoincrement())
   user_id Int
   post_id Int
-  user Users @relation("Liker",fields: [user_id], references: [id])
-  post Posts @relation("Posted_liked",fields: [post_id], references: [id])
+  user Users @relation("Liker",fields: [user_id], references: [id], onDelete: Cascade)
+  post Posts @relation("Posted_liked",fields: [post_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Comments{
   id Int @id @default(autoincrement())
-  content String @db.VarChar(45)
+  content String @db.VarChar(255)
   user_id Int
   post_id Int
-  user Users @relation("Commenter",fields: [user_id], references: [id])
-  post Posts @relation("Post_Commented",fields: [post_id], references: [id])
+  user Users @relation("Commenter",fields: [user_id], references: [id], onDelete: Cascade)
+  post Posts @relation("Post_Commented",fields: [post_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -83,8 +83,8 @@ model Follows{
   id Int @id @default(autoincrement())
   follower_id Int
   following_id Int
-  user_follower Users? @relation("Followers",fields: [follower_id], references: [id])
-  user_following Users? @relation("Followings",fields: [following_id], references: [id])
+  user_follower Users? @relation("Followers",fields: [follower_id], references: [id], onDelete: Cascade)
+  user_following Users? @relation("Followings",fields: [following_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -94,22 +94,22 @@ model Coin_Requests{
   amount Int
   status String @default("Pending")
   user_id Int
-  user Users @relation("Requester",fields: [user_id], references: [id])
+  user Users @relation("Requester",fields: [user_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Tracks{
   id Int @id @default(autoincrement())
-  track_name String @db.VarChar(45)
-  duration String @db.VarChar(45)
-  audio_url String @db.VarChar(45)
+  track_name String @db.VarChar(255)
+  duration String @db.VarChar(255)
+  audio_url String @db.VarChar(255)
   track_image String @db.VarChar(255)
-  explicit String @db.VarChar(45)
-  status String @db.VarChar(45)
+  explicit String @db.VarChar(255)
+  status String @db.VarChar(255)
   user_id Int
   album_id Int
-  user Users @relation("MusicianUploader",fields: [user_id], references: [id])
+  user Users @relation("MusicianUploader",fields: [user_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   playlists Playlists[]
@@ -117,21 +117,21 @@ model Tracks{
 
 model Albums{
   id Int @id @default(autoincrement())
-  title String @db.VarChar(45)
-  genre String @db.VarChar(45)
+  title String @db.VarChar(255)
+  genre String @db.VarChar(255)
   cover_image String @db.VarChar(255)
   user_id Int
-  user Users @relation("MusicianAlbum",fields: [user_id], references: [id])
+  user Users @relation("MusicianAlbum",fields: [user_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Playlists{
   id Int @id @default(autoincrement())
-  title String @db.VarChar(45)
-  playlist_image String @db.VarChar(45)
+  title String @db.VarChar(255)
+  playlist_image String @db.VarChar(255)
   user_id Int
-  user Users @relation(fields: [user_id], references: [id])
+  user Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   tracks Tracks[]
@@ -139,17 +139,17 @@ model Playlists{
 
 model Projects{
   id Int @id @default(autoincrement())
-  project_name String @db.VarChar(45)
-  type String @db.VarChar(45)
-  description String @db.VarChar(45)
-  privacy String @db.VarChar(45)
-  track_name String @db.VarChar(45)
+  project_name String @db.VarChar(255)
+  type String @db.VarChar(255)
+  description String @db.VarChar(255)
+  privacy String @db.VarChar(255)
+  track_name String @db.VarChar(255)
   track_image String @db.VarChar(255)
-  audio_url String @db.VarChar(45)
-  duration String @db.VarChar(45)
-  genre String @db.VarChar(45)
+  audio_url String @db.VarChar(255)
+  duration String @db.VarChar(255)
+  genre String @db.VarChar(255)
   creator_id Int
-  creator Users @relation("ProjectOwner",fields: [creator_id], references: [id])
+  creator Users @relation("ProjectOwner",fields: [creator_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -158,22 +158,22 @@ model Projects{
 
 model Collaborators{
   id Int @id @default(autoincrement())
-  slice_name String @db.VarChar(45)
-  slice_audio String @db.VarChar(45)
-  duration String @db.VarChar(45)
+  slice_name String @db.VarChar(255)
+  slice_audio String @db.VarChar(255)
+  duration String @db.VarChar(255)
   collaborator_id Int
   project_id Int
-  project Projects @relation(fields: [project_id], references: [id])
-  collaborator Users @relation(fields: [collaborator_id], references: [id])
+  project Projects @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  collaborator Users @relation(fields: [collaborator_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 // model JamBoxes{
 //   id Int @id @default(autoincrement())
-//   title String @db.VarChar(45)
-//   lyrics String @db.VarChar(245)
-//   artist_voice String @db.VarChar(45)
+//   title String @db.VarChar(255)
+//   lyrics String @db.VarChar(255)
+//   artist_voice String @db.VarChar(255)
 //   user_id Int
 //   user Users @relation(fields: [user_id], references: [id])
 //   createdAt DateTime @default(now())
