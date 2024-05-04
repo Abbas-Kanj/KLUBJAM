@@ -1,4 +1,3 @@
-import recommendedLogo from "../../../../assets/Home/images/Ellipse 36.svg";
 import post from "../../../../assets/Home/icons/ic_baseline-post-add.svg";
 import { useEffect, useState } from "react";
 import PostPopup from "./PostPopup";
@@ -11,6 +10,37 @@ const Recommendations = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user.user);
   const recommendations = useAppSelector((state) => state.user.recommendations);
+
+  const createFollow = async (v: { id: any } | undefined) => {
+    try {
+      const postData = {
+        following_id: v?.id,
+      };
+      console.log(postData);
+      console.log(user?.id);
+
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      const res = await sendRequest(
+        "POST",
+        `/follows/${user?.id}`,
+        postData,
+        headers
+      );
+      if ((res.status = 201)) {
+        console.log("follow created");
+        dispatch(
+          setUserRecommendations(
+            recommendations.filter((user) => user.id !== v?.id)
+          )
+        );
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
   const getRecommendations = async () => {
     try {
       const headers = {
@@ -18,8 +48,6 @@ const Recommendations = () => {
       };
       const res = await sendRequest("GET", `/follows/${user?.id}`, "", headers);
       if ((res.status = 200)) {
-        console.log(res);
-
         dispatch(setUserRecommendations(res.data));
       }
     } catch (error: any) {
@@ -70,7 +98,14 @@ const Recommendations = () => {
                 {v.fullname ? null : v.username}
               </h2>
             </div>
-            <button className="font-medium text-[14px] text-primary hover:opacity-50">
+            <button
+              className="font-medium text-[14px] text-primary hover:opacity-50"
+              onClick={() => {
+                console.log(v.id);
+
+                createFollow(v);
+              }}
+            >
               Follow
             </button>
           </div>
