@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import siginImg from "../../assets/Auth/Rectangle 36.png";
 import { sendRequest } from "../../../core/remote/request";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../../../redux/userSlice";
+import { setUser, setUserPosts } from "../../../redux/userSlice";
 import { useDispatch } from "react-redux";
 
 interface SignInProps {
@@ -42,6 +42,22 @@ const SignIn: React.FC<SignInProps> = ({
         };
         const res = await sendRequest("POST", "auth/login", data, headers);
         if (res.status === 200 && res.data) {
+          try {
+            const headers = {
+              "Content-Type": "multipart/form-data",
+            };
+            const rez = await sendRequest(
+              "GET",
+              `/posts/${res.data.result.user.id}`,
+              "",
+              headers
+            );
+            if ((rez.status = 200)) {
+              dispatch(setUserPosts(rez.data.result));
+            }
+          } catch (error: any) {
+            console.log(error.message);
+          }
           const user = res.data.result.user;
           window.localStorage.setItem("token", res.data.result.token);
           dispatch(setUser(user));
