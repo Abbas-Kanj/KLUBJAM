@@ -55,14 +55,19 @@ export class FollowsController {
     }
   }
 
-  @Delete(':id')
-  async deleteFollow(@Param('id') id: string, @Res() response): Promise<any> {
+  @Delete(':requesterId/:unfollowUserId')
+  async deleteFollow(
+    @Param('requesterId') requesterId: string,
+    @Param('unfollowUserId') unfollowUserId: string,
+    @Res() response,
+  ): Promise<any> {
     try {
-      const followId = parseInt(id, 10);
-      if (isNaN(followId)) {
-        throw new Error('Invalid follow ID');
+      const requesterIdNum = parseInt(requesterId, 10);
+      const unfollowUserIdNum = parseInt(unfollowUserId, 10);
+      if (isNaN(requesterIdNum) || isNaN(unfollowUserIdNum)) {
+        throw new Error('Invalid requester ID or unfollow user ID');
       }
-      await this.followsService.deleteFollow(followId);
+      await this.followsService.deleteFollow(requesterIdNum, unfollowUserIdNum);
       return response.status(200).json({
         status: 'Ok!',
         message: 'follow removed successfully!',

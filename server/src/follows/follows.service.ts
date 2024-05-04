@@ -28,13 +28,19 @@ export class FollowsService {
 
     const mutualConnections = await this.prisma.users.findMany({
       where: { id: { in: mutualFollowingIds } },
-      select: { id: true, username: true, fullname: true },
+      select: {
+        id: true,
+        username: true,
+        fullname: true,
+        profile_picture: true,
+      },
     });
 
     return mutualConnections.map((connection) => ({
       id: connection.id,
       username: connection.username,
       fullname: connection.fullname,
+      profile_picture: connection.profile_picture,
     }));
   }
 
@@ -56,10 +62,13 @@ export class FollowsService {
     });
   }
 
-  async deleteFollow(followId: number): Promise<void> {
-    await this.prisma.follows.delete({
+  async deleteFollow(
+    requesterId: number,
+    unfollowUserId: number,
+  ): Promise<void> {
+    await this.prisma.follows.deleteMany({
       where: {
-        id: followId,
+        AND: [{ follower_id: requesterId }, { following_id: unfollowUserId }],
       },
     });
   }
