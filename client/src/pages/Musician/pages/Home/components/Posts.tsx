@@ -9,15 +9,50 @@ import { setPosts } from "../../../../../redux/postsSlice";
 
 const Posts = () => {
   const dispatch = useAppDispatch();
-  const userPosts = useAppSelector((state) => state.user.posts);
   const posts = useAppSelector((state) => state.post.posts);
-
+  const user = useAppSelector((state) => state.user.user);
+  const [error, setError] = useState("");
   const [openCommentsPopup, setOpenCommentsPopup] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
+  const [newcomment, setNewComment] = useState("");
 
   const openCommentPopup = (post: any) => {
     setSelectedPost(post);
     setOpenCommentsPopup(true);
+  };
+
+  const validateComment = () => {
+    if (newcomment === "") {
+      setError("Please insert a comment");
+      return false;
+    } else {
+      setError("");
+      return true;
+    }
+  };
+
+  const createComment = async (post: { id: any } | undefined) => {
+    if (validateComment()) {
+      try {
+        const postData = {
+          content: newcomment,
+          userId: user?.id,
+        };
+        const headers = {
+          "Content-Type": "application/json",
+        };
+        const res = await sendRequest(
+          "POST",
+          `/comments/${post!.id}`,
+          postData,
+          headers
+        );
+        setNewComment("");
+        console.log("comment created");
+      } catch (error: any) {
+        console.log(error.message);
+      }
+    }
   };
 
   const getPosts = async () => {
@@ -84,11 +119,20 @@ const Posts = () => {
             >
               {`View all ${post.comments._count} comments`}
             </h2>
-            <input
-              type="text"
-              className="font-medium text-[14px] text-greyText bg-transparent focus:border-transparent cursor-pointer hover:placeholder:text-white"
-              placeholder="Add a comment..."
-            />
+            <div className="flex w-[430px] justify-between items-center">
+              <input
+                type="text"
+                className="font-medium text-[14px]  w-[370px] text-white bg-transparent  border-transparent focus:border-transparent cursor-pointer hover:placeholder:text-white  border-0 focus:outline-none placeholder-white placeholder-opacity-50 mb-[10px] mt-[10px]"
+                placeholder="Add a comment..."
+                onChange={(e) => setNewComment(e.target.value)}
+              />
+              <button
+                className=" pl-[10px] text-primary cursor-pointer hover:opacity-50 font-bold"
+                onClick={() => createComment(post)}
+              >
+                Post
+              </button>
+            </div>
 
             <div className="border-b  border-solid border-greyText w-[436px] mt-2"></div>
           </div>

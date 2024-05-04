@@ -12,8 +12,8 @@ interface PostProps {
 
 const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
   const user = useAppSelector((state) => state.user.user);
-  const [newcomment, setNewComment] = useState("");
   const [error, setError] = useState("");
+  const [newcomment, setNewComment] = useState("");
 
   const validateComment = () => {
     if (newcomment === "") {
@@ -131,7 +131,7 @@ const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
                 <div className="flex justify-between items-center">
                   <input
                     type="text"
-                    className="font-medium text-[14px] pl-[15px] text-white bg-transparent  border-transparent focus:border-transparent cursor-pointer hover:placeholder:text-white  border-0 focus:outline-none placeholder-white placeholder-opacity-50 mb-[10px] mt-[10px]"
+                    className="font-medium text-[14px] pl-[15px] w-[400px] text-white bg-transparent  border-transparent focus:border-transparent cursor-pointer hover:placeholder:text-white  border-0 focus:outline-none placeholder-white placeholder-opacity-50 mb-[10px] mt-[10px]"
                     placeholder="Add a comment..."
                     onChange={(e) => setNewComment(e.target.value)}
                   />
