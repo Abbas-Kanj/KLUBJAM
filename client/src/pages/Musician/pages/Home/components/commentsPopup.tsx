@@ -1,13 +1,54 @@
 import like from "../../../../assets/Home/icons/like.svg";
 import comment from "../../../../assets/Home/icons/comment.svg";
 import share from "../../../../assets/Home/icons/forward.svg";
+import { useState } from "react";
+import { useAppSelector } from "../../../../../app/hooks";
+import { sendRequest } from "../../../../../core/remote/request";
+
 interface PostProps {
   setOpenCommentsPopup: (open: boolean) => void;
   post: any;
 }
 
 const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
-  console.log(post);
+  const user = useAppSelector((state) => state.user.user);
+  const [newcomment, setNewComment] = useState("");
+  const [error, setError] = useState("");
+
+  const validateComment = () => {
+    if (newcomment === "") {
+      setError("Please insert a comment");
+      return false;
+    } else {
+      setError("");
+      return true;
+    }
+  };
+
+  const createComment = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (validateComment()) {
+      try {
+        const postData = {
+          content: newcomment,
+          userId: user?.id,
+        };
+
+        const headers = {
+          "Content-Type": "application/json",
+        };
+
+        const res = await sendRequest(
+          "POST",
+          `/comments/${post.id}`,
+          postData,
+          headers
+        );
+      } catch (error: any) {
+        console.log(error.message);
+      }
+    }
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 bottom-10 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
@@ -92,10 +133,14 @@ const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
                     type="text"
                     className="font-medium text-[14px] pl-[15px] text-white bg-transparent  border-transparent focus:border-transparent cursor-pointer hover:placeholder:text-white  border-0 focus:outline-none placeholder-white placeholder-opacity-50 mb-[10px] mt-[10px]"
                     placeholder="Add a comment..."
+                    onChange={(e) => setNewComment(e.target.value)}
                   />
-                  <h2 className="mr-[10px] cursor-pointer hover:opacity-50">
+                  <button
+                    className="mr-[10px] text-primary cursor-pointer hover:opacity-50 font-bold"
+                    onClick={createComment}
+                  >
                     Post
-                  </h2>
+                  </button>
                 </div>
               </div>
             </div>
