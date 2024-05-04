@@ -1,10 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Post {
+  id: number;
+  comments: any;
+  likes: any;
+  user: any;
   caption: string;
   hashtags: string;
   post_picture: string;
-  userId: number;
 }
 
 interface PostState {
@@ -19,11 +22,14 @@ const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    setPost: (state, action: PayloadAction<Post>) => {
-      state.posts.push(action.payload);
+    setPosts: (state, action: PayloadAction<Post[]>) => {
+      const newPosts = action.payload.filter((newPost) => {
+        return !state.posts.some((post) => post.id === newPost.id);
+      });
+      state.posts.push(...newPosts);
     },
   },
 });
 
-export const { setPost } = postSlice.actions;
+export const { setPosts } = postSlice.actions;
 export default postSlice.reducer;

@@ -28,6 +28,16 @@ interface UserState {
   recommendations: any[];
 }
 
+interface Post {
+  id: number;
+  comments: any;
+  likes: any;
+  user: any;
+  caption: string;
+  hashtags: string;
+  post_picture: string;
+}
+
 const initialState: UserState = {
   user: null,
   posts: [],
@@ -65,8 +75,8 @@ const userSlice = createSlice({
     ) => {
       state.user = action.payload;
     },
-    setUserPosts: (state, action) => {
-      state.posts = action.payload;
+    setUserPosts: (state, action: PayloadAction<Post[]>) => {
+      state.posts = state.posts.concat(action.payload);
     },
   },
 });
