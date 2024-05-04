@@ -41,12 +41,18 @@ const SignIn: React.FC<SignInProps> = ({
           "Content-Type": "application/json",
         };
         const res = await sendRequest("POST", "auth/login", data, headers);
-        if ((res.status = 200 && res.data)) {
-          console.log(res.data);
+        if (res.status === 200 && res.data) {
+          const user = res.data.result.user;
           window.localStorage.setItem("token", res.data.result.token);
-          dispatch(setUser(res.data.result.user));
-          console.log("sign in successfull");
-          navigate("/Musician/Home");
+          dispatch(setUser(user));
+          const role = user.role_id;
+          let redirectPath = "/Musician/Home";
+          if (role === 1) {
+            redirectPath = "/Admin/Analytics";
+          } else if (role === 2) {
+            redirectPath = "/Moderator/Tracks";
+          }
+          navigate(redirectPath);
         }
       } catch (error: any) {
         console.log(error.message);
