@@ -33,8 +33,10 @@ export class PostsService {
         likes: true,
       },
     });
+
     return posts.map((post) => ({
       ...post,
+      comments: { _count: post.comment.length },
       likes: { _count: post.likes.length },
     }));
   }

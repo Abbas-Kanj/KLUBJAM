@@ -42,7 +42,10 @@ export class AuthService {
     createUser.email = createDto.email;
     createUser.username = createDto.username;
     createUser.password = await bcrypt.hash(createDto.password, 10);
-
+    if (!createDto.profile_picture) {
+      createUser.profile_picture =
+        'https://www.svgrepo.com/show/532363/user-alt-1.svg';
+    }
     const user = await this.usersService.createUser(createUser);
 
     return {

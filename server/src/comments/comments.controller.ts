@@ -7,7 +7,7 @@ import {
   Get,
   Delete,
 } from '@nestjs/common';
-import { Response, response } from 'express';
+import { Response } from 'express';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { Comments } from '@prisma/client';

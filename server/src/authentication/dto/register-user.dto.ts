@@ -10,4 +10,6 @@ export class RegisterUsersDto {
   @IsString()
   @Length(5, 10)
   email: string;
+  @IsString()
+  profile_picture: string;
 }
