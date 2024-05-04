@@ -36,7 +36,7 @@ const Posts = () => {
 
   useEffect(() => {
     getPosts();
-  }, [userPosts]);
+  }, [posts]);
 
   return (
     <div className="ml-[350px] mt-[48px] mb-[120px]">

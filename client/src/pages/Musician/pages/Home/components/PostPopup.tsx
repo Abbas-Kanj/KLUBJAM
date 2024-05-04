@@ -1,8 +1,8 @@
-import recommendedLogo from "../../../../assets/Home/images/Ellipse 36.svg";
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { sendRequest } from "../../../../../core/remote/request";
-import { setPost } from "../../../../../redux/postsSlice";
+import { useAppSelector } from "../../../../../app/hooks";
+import { setUserPosts } from "../../../../../redux/userSlice";
 
 interface PostProps {
   setOpenPostPopup: (open: boolean) => void;
@@ -10,6 +10,7 @@ interface PostProps {
 
 const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
   const token = localStorage.getItem("token");
+  const user = useAppSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [caption, setCaption] = useState("");
@@ -43,8 +44,9 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
     e.preventDefault();
     if (token) {
       if (validatePostForm()) {
-        const image = new FormData();
-        image.append("file", imageData!);
+        const formdata = new FormData();
+        formdata.append("directoryPath", `uploads/images/posts_images`);
+        formdata.append("file", imageData!);
         try {
           const headers = {
             "Content-Type": "multipart/form-data",
@@ -52,32 +54,31 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
           const res = await sendRequest(
             "POST",
             `/files/upload`,
-            image,
+            formdata,
             headers
           );
           if (res.status) {
-            const x = res.data.filePath;
-            console.log(x);
+            const filePath = res.data.filePath;
+            console.log(filePath);
 
             try {
               const postData = {
                 caption: caption,
                 hashtags: hashtags,
-                post_picture: x,
+                post_picture: filePath,
               };
               const headers = {
                 "Content-Type": "application/json",
               };
               const res = await sendRequest(
                 "POST",
-                `/posts/1`,
+                `/posts/${user?.id}`,
                 postData,
                 headers
               );
               console.log("post created");
-
+              dispatch(setUserPosts(res.data));
               setOpenPostPopup(false);
-              dispatch(setPost(res.data));
             } catch (error: any) {
               console.log(error.message);
               setError(error.message);
@@ -129,8 +130,12 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
           </div>
           <div className="flex flex-col justify-between pl-[30px] border-l border-solid border-[#565656]">
             <div className="flex items-center gap-[12px] align-center gap mt-[30px]">
-              <img src={recommendedLogo} alt="" />
-              <h5 className="text-[14px] font-medium">john</h5>
+              <img
+                src={user?.profile_picture}
+                alt=""
+                className="max-w-[40px] max-h-[40px]"
+              />
+              <h5 className="text-[14px] font-medium">{user?.username}</h5>
             </div>
             <textarea
               name=""
