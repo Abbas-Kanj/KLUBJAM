@@ -41,17 +41,25 @@ export class LikesController {
     }
   }
 
-  @Delete(':id')
-  async deleteLike(@Param('id') id: string, @Res() response): Promise<any> {
+  @Delete(':postId/:userId')
+  async deleteLike(
+    @Param('postId') postId: string,
+    @Param('userId') userId: string,
+    @Res() response,
+  ): Promise<any> {
     try {
-      const likeId = parseInt(id, 10);
-      if (isNaN(likeId)) {
-        throw new Error('Invalid like ID');
+      const postIdNum = parseInt(postId, 10);
+      const userIdNum = parseInt(userId, 10);
+
+      if (isNaN(postIdNum) || isNaN(userIdNum)) {
+        throw new Error('Invalid post ID or user ID');
       }
-      await this.likesService.deleteLike(likeId);
+
+      await this.likesService.deleteLike(postIdNum, userIdNum);
+
       return response.status(200).json({
         status: 'Ok!',
-        message: 'like removed successfully!',
+        message: 'Like removed successfully!',
       });
     } catch (error) {
       return response.status(500).json({

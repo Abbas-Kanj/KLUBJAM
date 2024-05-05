@@ -28,10 +28,21 @@ export class LikesService {
     });
   }
 
-  async deleteLike(likeId: number): Promise<void> {
+  async deleteLike(postId: number, userId: number): Promise<void> {
+    const like = await this.prisma.likes.findFirst({
+      where: {
+        post_id: postId,
+        user_id: userId,
+      },
+    });
+
+    if (!like) {
+      throw new Error('Like not found');
+    }
+
     await this.prisma.likes.delete({
       where: {
-        id: likeId,
+        id: like.id,
       },
     });
   }
