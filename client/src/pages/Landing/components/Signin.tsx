@@ -4,6 +4,13 @@ import { sendRequest } from "../../../core/remote/request";
 import { useNavigate } from "react-router-dom";
 import { setUser, setUserPosts } from "../../../redux/userSlice";
 import { useDispatch } from "react-redux";
+import Cookies from "universal-cookie";
+import { jwtDecode } from "jwt-decode";
+
+interface DecodedToken {
+  role: number;
+  exp: any;
+}
 
 interface SignInProps {
   setOpenSigninPopup: (open: boolean) => void;
@@ -42,6 +49,9 @@ const SignIn: React.FC<SignInProps> = ({
         };
         const res = await sendRequest("POST", "auth/login", data, headers);
         if (res.status === 200 && res.data) {
+          const userData = res.data.result.user;
+          dispatch(setUser(userData));
+
           try {
             const headers = {
               "Content-Type": "multipart/form-data",
@@ -58,14 +68,21 @@ const SignIn: React.FC<SignInProps> = ({
           } catch (error: any) {
             console.log(error.message);
           }
-          const user = res.data.result.user;
-          window.localStorage.setItem("token", res.data.result.token);
-          dispatch(setUser(user));
-          const role = user.role_id;
+          const token = res.data.result.token;
+
+          const decodedToken: DecodedToken = jwtDecode(token);
+
+          const cookies = new Cookies();
+          cookies.set("auth_token", token, {
+            expires: new Date(decodedToken.exp * 1000),
+          });
+
+          const userRole = decodedToken.role;
+
           let redirectPath = "/Musician/Home";
-          if (role === 1) {
+          if (userRole == 1) {
             redirectPath = "/Admin/Analytics";
-          } else if (role === 2) {
+          } else if (userRole == 2) {
             redirectPath = "/Moderator/Tracks";
           }
           navigate(redirectPath);
