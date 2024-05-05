@@ -7,18 +7,20 @@ import {
   Get,
   Delete,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from '@prisma/client';
 import { Response } from 'express';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { JwtAuthGuard } from 'src/authentication/auth.guard';
 
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
-
   @Get()
+  @UseGuards(JwtAuthGuard)
   async getAllPosts(@Res() response: Response): Promise<any> {
     try {
       const result = await this.postsService.getAllPosts();
@@ -58,6 +60,7 @@ export class PostsController {
   }
 
   @Post(':id')
+  @UseGuards(JwtAuthGuard)
   async createPost(
     @Body() createPostDto: CreatePostDto,
     @Res() response,

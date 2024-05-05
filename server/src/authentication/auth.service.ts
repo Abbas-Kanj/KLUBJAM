@@ -32,7 +32,8 @@ export class AuthService {
       throw new NotFoundException('Invalid password');
     }
 
-    const token = this.jwtService.sign({ email });
+    const payload = { email, role: user.role_id };
+    const token = this.jwtService.sign(payload);
 
     return { user, token };
   }
