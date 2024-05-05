@@ -40,27 +40,20 @@ const SignIn: React.FC<SignInProps> = ({
 
   const handleLogin = async () => {
     if (validateForm()) {
-      let data = new FormData();
-      data.append("email", email);
-      data.append("password", password);
+      let data = {
+        email: email,
+        password: password,
+      };
       try {
-        const headers = {
-          "Content-Type": "application/json",
-        };
-        const res = await sendRequest("POST", "auth/login", data, headers);
+        const res = await sendRequest("POST", "auth/login", data);
         if (res.status === 200 && res.data) {
           const userData = res.data.result.user;
           dispatch(setUser(userData));
-
           try {
-            const headers = {
-              "Content-Type": "multipart/form-data",
-            };
             const rez = await sendRequest(
               "GET",
               `/posts/${res.data.result.user.id}`,
-              "",
-              headers
+              ""
             );
             if ((rez.status = 200)) {
               dispatch(setUserPosts(rez.data.result));
@@ -68,11 +61,11 @@ const SignIn: React.FC<SignInProps> = ({
           } catch (error: any) {
             console.log(error.message);
           }
+
           const token = res.data.result.token;
-
           const decodedToken: DecodedToken = jwtDecode(token);
-
           const cookies = new Cookies();
+
           cookies.set("auth_token", token, {
             expires: new Date(decodedToken.exp * 1000),
           });
