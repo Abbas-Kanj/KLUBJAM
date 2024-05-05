@@ -15,6 +15,10 @@ import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeMuteIcon from "@mui/icons-material/VolumeMute";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
+import FastRewindIcon from "@mui/icons-material/FastRewind";
+import FastForwardIcon from "@mui/icons-material/FastForward";
+
+import trackImg from "../../assets/Playlists/images/Rectangle 77.png";
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -60,28 +64,6 @@ const AudioPlayer = () => {
     }
     changePlayerCurrentTime();
   };
-
-  useEffect(() => {
-    const seconds = Math.floor(audioPlayer.current.duration);
-    setDuration(seconds);
-
-    const handleTimeUpdate = () => {
-      setDuration(
-        Math.floor(
-          audioPlayer.current.duration - audioPlayer.current.currentTime
-        )
-      );
-    };
-
-    audioPlayer.current.addEventListener("timeupdate", handleTimeUpdate);
-
-    return () => {
-      audioPlayer.current.removeEventListener("timeupdate", handleTimeUpdate);
-    };
-  }, [
-    audioPlayer?.current?.onloadedmetadata,
-    audioPlayer?.current?.readyState,
-  ]);
 
   const calculateTime = (secs: any) => {
     const minutes = Math.floor(secs / 60);
@@ -138,6 +120,40 @@ const AudioPlayer = () => {
     }
   };
 
+  useEffect(() => {
+    const handleEnded = () => {
+      toggleSkipForward();
+    };
+
+    audioPlayer.current.addEventListener("ended", handleEnded);
+
+    return () => {
+      audioPlayer.current.removeEventListener("ended", handleEnded);
+    };
+  }, [index]);
+
+  useEffect(() => {
+    const seconds = Math.floor(audioPlayer.current.duration);
+    setDuration(seconds);
+
+    const handleTimeUpdate = () => {
+      setDuration(
+        Math.floor(
+          audioPlayer.current.duration - audioPlayer.current.currentTime
+        )
+      );
+    };
+
+    audioPlayer.current.addEventListener("timeupdate", handleTimeUpdate);
+
+    return () => {
+      audioPlayer.current.removeEventListener("timeupdate", handleTimeUpdate);
+    };
+  }, [
+    audioPlayer?.current?.onloadedmetadata,
+    audioPlayer?.current?.readyState,
+  ]);
+
   function VolumeBtn() {
     return mute ? (
       <VolumeOffIcon
@@ -163,27 +179,56 @@ const AudioPlayer = () => {
   }
 
   return (
-    <div className="w-screen flex justify-evenly items-center bg-black h-[80px] left-[0.02em] right-[0.02em] ">
+    <div className="w-screen flex justify-around items-center bg-black h-[80px]">
       <audio
         ref={audioPlayer}
         src={currentSong}
         preload="metadata"
         muted={mute}
       ></audio>
-      <button onClick={backThirty}>
-        <BsArrowLeftShort />
-        30
-      </button>
-      <Stack
-        direction="row"
-        spacing={1}
-        sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          width: "25%",
-          alignItems: "center",
-        }}
-      >
+      <div className="flex gap-3 items-center">
+        <img src={trackImg} alt="" className="w-[55px] h-auto" />
+        <div>
+          <h2>Jump out the window</h2>
+          <h3 className="text-[12px]">Big Sean</h3>
+        </div>
+      </div>
+      <div className="flex flex-col items-center ml-[70px] mr-[70px]">
+        <div className="flex justify-between items-center gap-7">
+          <button onClick={toggleSkipBackward}>
+            <SkipPreviousIcon />
+          </button>
+          <button onClick={backThirty}>
+            <FastRewindIcon />
+          </button>
+          <button onClick={togglePlayPause}>
+            {isPlaying ? <FaPause /> : <FaPlay />}
+          </button>
+          <button onClick={forwardThirty}>
+            <FastForwardIcon />
+          </button>
+
+          <button onClick={toggleSkipForward}>
+            <SkipNextIcon />
+          </button>
+        </div>
+        <div className="flex gap-2 items-center justify-center">
+          <small>{calculateTime(currentTime)}</small>
+          <div>
+            <input
+              type="range"
+              defaultValue={0}
+              ref={progressBar}
+              onChange={changeRange}
+              className="w-[500px] h-[5px]"
+            />
+          </div>
+          <small>
+            {duration && !isNaN(duration) && calculateTime(duration)}
+          </small>
+        </div>
+      </div>
+      <div className="flex justify-between items-center gap-1 w-[150px]">
         <VolumeBtn></VolumeBtn>
         <Slider
           min={0}
@@ -197,31 +242,9 @@ const AudioPlayer = () => {
             setVolume(value as number);
             audioPlayer.current.volume = (value as number) / 100;
           }}
-        />
-      </Stack>
-
-      <button onClick={togglePlayPause}>
-        {isPlaying ? <FaPause /> : <FaPlay />}
-      </button>
-      <button onClick={forwardThirty}>
-        30 <BsArrowRightShort />
-      </button>
-      <div>{calculateTime(currentTime)}</div>
-      <div>
-        <input
-          type="range"
-          defaultValue={0}
-          ref={progressBar}
-          onChange={changeRange}
+          className=""
         />
       </div>
-      <div>{duration && !isNaN(duration) && calculateTime(duration)}</div>
-      <button onClick={toggleSkipBackward}>
-        <SkipPreviousIcon />
-      </button>
-      <button onClick={toggleSkipForward}>
-        <SkipNextIcon />
-      </button>
     </div>
   );
 };
