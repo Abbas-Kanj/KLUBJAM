@@ -8,12 +8,21 @@ import { BsArrowLeftShort } from "react-icons/bs";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
+import { Slider, Stack, Paper as unStyledPaper } from "@mui/material";
+import VolumeDownIcon from "@mui/icons-material/VolumeDown";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import VolumeMuteIcon from "@mui/icons-material/VolumeMute";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [index, setIndex] = useState(0);
+  const [volume, setVolume] = useState(30);
+  const [mute, setMute] = useState(false);
 
   const playlist = [song, song2, song3, song4, song5];
 
@@ -55,9 +64,20 @@ const AudioPlayer = () => {
   useEffect(() => {
     const seconds = Math.floor(audioPlayer.current.duration);
     setDuration(seconds);
-    if (progressBar.current) {
-      progressBar.current.max = seconds.toString();
-    }
+
+    const handleTimeUpdate = () => {
+      setDuration(
+        Math.floor(
+          audioPlayer.current.duration - audioPlayer.current.currentTime
+        )
+      );
+    };
+
+    audioPlayer.current.addEventListener("timeupdate", handleTimeUpdate);
+
+    return () => {
+      audioPlayer.current.removeEventListener("timeupdate", handleTimeUpdate);
+    };
   }, [
     audioPlayer?.current?.onloadedmetadata,
     audioPlayer?.current?.readyState,
@@ -118,13 +138,68 @@ const AudioPlayer = () => {
     }
   };
 
+  function VolumeBtn() {
+    return mute ? (
+      <VolumeOffIcon
+        sx={{ color: "silver", "&:hover": { color: "white" } }}
+        onClick={() => setMute(!mute)}
+      />
+    ) : volume <= 20 ? (
+      <VolumeMuteIcon
+        sx={{ color: "silver", "&:hover": { color: "white" } }}
+        onClick={() => setMute(!mute)}
+      />
+    ) : volume <= 75 ? (
+      <VolumeDownIcon
+        sx={{ color: "silver", "&:hover": { color: "white" } }}
+        onClick={() => setMute(!mute)}
+      />
+    ) : (
+      <VolumeUpIcon
+        sx={{ color: "silver", "&:hover": { color: "white" } }}
+        onClick={() => setMute(!mute)}
+      />
+    );
+  }
+
   return (
     <div className="w-screen flex justify-evenly items-center bg-black h-[80px] left-[0.02em] right-[0.02em] ">
-      <audio ref={audioPlayer} src={currentSong} preload="metadata"></audio>
+      <audio
+        ref={audioPlayer}
+        src={currentSong}
+        preload="metadata"
+        muted={mute}
+      ></audio>
       <button onClick={backThirty}>
         <BsArrowLeftShort />
         30
       </button>
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          width: "25%",
+          alignItems: "center",
+        }}
+      >
+        <VolumeBtn></VolumeBtn>
+        <Slider
+          min={0}
+          value={volume}
+          max={100}
+          onChange={(e, value) => {
+            setVolume(value as number);
+            audioPlayer.current.volume = (value as number) / 100;
+          }}
+          onChangeCommitted={(e, value) => {
+            setVolume(value as number);
+            audioPlayer.current.volume = (value as number) / 100;
+          }}
+        />
+      </Stack>
+
       <button onClick={togglePlayPause}>
         {isPlaying ? <FaPause /> : <FaPlay />}
       </button>
@@ -141,8 +216,12 @@ const AudioPlayer = () => {
         />
       </div>
       <div>{duration && !isNaN(duration) && calculateTime(duration)}</div>
-      <button onClick={toggleSkipBackward}>Skip to Previous</button>
-      <button onClick={toggleSkipForward}>Skip to Next</button>
+      <button onClick={toggleSkipBackward}>
+        <SkipPreviousIcon />
+      </button>
+      <button onClick={toggleSkipForward}>
+        <SkipNextIcon />
+      </button>
     </div>
   );
 };
