@@ -1,28 +1,29 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 axios.defaults.baseURL = "http://127.0.0.1:3000/";
-const jwt = localStorage.getItem("token");
 
 export const sendRequest = async (
   method: any,
   route: any,
-  body: any | null,
-  headers: any
+  body: any | null
 ) => {
+  const cookies = new Cookies();
+  const auth_token = cookies.get("auth_token");
   const response = await axios.request({
     method: method,
     url: route,
     data: body,
-    headers: headers,
-    // headers: {
-    //   // "Content-Type": "application/json",
-    //   Authorization: `Bearer ${jwt}`,
-    //   "Content-Type": "multipart/form-data",
-    // },
+    headers: {
+      Authorization: `Bearer ${auth_token}`,
+    },
   });
 
   if (response.status === 401) {
-    localStorage.removeItem("token");
+    const navigate = useNavigate();
+    cookies.remove("auth_token");
+    navigate("/");
   }
 
   return response;
