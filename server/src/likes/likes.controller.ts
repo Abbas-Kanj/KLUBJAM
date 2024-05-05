@@ -7,30 +7,34 @@ import { Likes } from '@prisma/client';
 export class LikesController {
   constructor(private readonly likesService: LikesService) {}
 
-  @Post(':id')
+  @Post(':postId/:userId')
   async createLike(
     @Body() createLikeDto: CreateLikeDto,
     @Res() response,
-    @Param('id') id: string,
+    @Param('postId') postId: string,
+    @Param('userId') userId: string,
   ): Promise<Likes | { status: number; message: string }> {
     try {
-      const postId = parseInt(id, 10);
-      if (isNaN(postId)) {
-        throw new Error('Invalid post ID');
-      }
-      const userId = parseInt(String(createLikeDto.userId), 10);
+      const parsedPostId = parseInt(postId, 10);
+      const parsedUserId = parseInt(userId, 10);
 
-      if (!userId) {
-        throw new Error('User ID is required');
+      if (isNaN(parsedPostId) || isNaN(parsedUserId)) {
+        throw new Error('Invalid post ID or user ID');
       }
+
+      if (!createLikeDto) {
+        throw new Error('Like data is required');
+      }
+
       const createdLike = await this.likesService.createLike(
         createLikeDto,
-        postId,
-        userId,
+        parsedPostId,
+        parsedUserId,
       );
+
       return response.status(201).json({
         status: 'Ok!',
-        message: 'like created successfully!',
+        message: 'Like created successfully!',
         result: createdLike,
       });
     } catch (error) {
