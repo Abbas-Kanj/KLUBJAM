@@ -1,6 +1,6 @@
 import React from "react";
 import MusicianSidebar from "./MusicianSidebar";
-import PlayerBar from "./PlayerBar";
+import PlayerBar from "./AudioPlayer";
 
 interface LayoutProps {
   children: React.ReactNode;

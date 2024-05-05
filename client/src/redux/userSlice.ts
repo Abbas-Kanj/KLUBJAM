@@ -78,8 +78,12 @@ const userSlice = createSlice({
     setUserPosts: (state, action: PayloadAction<Post[]>) => {
       state.posts = state.posts.concat(action.payload);
     },
+    setUserRecommendations: (state, action: PayloadAction<Post[]>) => {
+      state.recommendations = action.payload;
+    },
   },
 });
 
-export const { setUser, setUserPosts } = userSlice.actions;
+export const { setUser, setUserPosts, setUserRecommendations } =
+  userSlice.actions;
 export default userSlice.reducer;

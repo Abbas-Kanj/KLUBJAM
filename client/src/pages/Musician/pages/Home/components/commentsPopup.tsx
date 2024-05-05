@@ -33,17 +33,7 @@ const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
           content: newcomment,
           userId: user?.id,
         };
-
-        const headers = {
-          "Content-Type": "application/json",
-        };
-
-        const res = await sendRequest(
-          "POST",
-          `/comments/${post.id}`,
-          postData,
-          headers
-        );
+        const res = await sendRequest("POST", `/comments/${post.id}`, postData);
       } catch (error: any) {
         console.log(error.message);
       }
@@ -80,7 +70,7 @@ const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
               </div>
               <div className="w-[535px] border border-solid border-[#565656]"></div>
             </div>
-            <div className="flex flex-col min-h-[330px] justify-between overflow-x-hidden overflow-scroll">
+            <div className="flex flex-col min-h-[450px]  overflow-x-hidden overflow-scroll">
               <div className="flex items-center gap-[12px] pl-[15px] align-center">
                 <img
                   src={post.user.profile_picture}

@@ -10,46 +10,6 @@
   scroll-behavior: smooth;
   color: white;
 }
-/* table {
-  border-radius: 5px;
-  padding: 22px 75px;
-  background-color: #3c3c3c;
-} */
-
-/* thead {
-  font-weight: 600;
-  font-size: 14px;
-  padding: 10px 30px;
-}
-
-tbody {
-  font-weight: 600;
-  font-size: 14px;
-  padding: 10px 30px;
-}
-
-tbody {
-  background-color: #959296;
-  color: black;
-  border-radius: 5px;
-}
-
-
-
-table button {
-  width: 68px;
-  height: 24px;
-  border-radius: 5px;
-  font-weight: 500;
-}
-
-table button:hover {
-  opacity: 80%;
-}
-
-td {
-  color: black;
-} */
 
 ::-webkit-scrollbar {
   width: 10px;

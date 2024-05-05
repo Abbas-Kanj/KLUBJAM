@@ -1,21 +1,32 @@
-import { Outlet, Navigate } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
+// import { Outlet, Navigate } from "react-router-dom";
+// import { useAppSelector } from "../../app/hooks";
+// import Cookies from "universal-cookie";
+// import { jwtDecode } from "jwt-decode";
 
-const ProtectedRoutes: React.FC = () => {
-  const token = localStorage.getItem("token");
-  const user = useAppSelector((state) => state.user.user);
-  console.log("role_id:", user?.role_id);
+// interface DecodedToken {
+//   role: number;
+//   exp: any;
+// }
 
-  const redirectPath =
-    user?.role_id === 3
-      ? "/Musician"
-      : user?.role_id === 1
-      ? "/Admin"
-      : user?.role_id === 2
-      ? "/Moderator"
-      : "/";
+// const ProtectedRoutes: React.FC = () => {
+//   const cookies = new Cookies();
+//   const auth_token = cookies.get("auth_token");
+//   const decodedToken: DecodedToken = jwtDecode(auth_token);
 
-  return token && user ? <Outlet /> : <Navigate to={redirectPath} />;
-};
+//   const userRole = decodedToken.role;
 
-export default ProtectedRoutes;
+//   console.log("role_id:", userRole);
+
+//   const redirectPath =
+//     userRole === 3
+//       ? "/Musician"
+//       : userRole === 1
+//       ? "/Admin"
+//       : userRole === 2
+//       ? "/Moderator"
+//       : "/";
+
+//   return auth_token && userRole ? <Outlet /> : <Navigate to={redirectPath} />;
+// };
+
+// export default ProtectedRoutes;

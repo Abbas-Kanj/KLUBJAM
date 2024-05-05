@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { sendRequest } from "../../../../../core/remote/request";
 import { useAppSelector } from "../../../../../app/hooks";
@@ -9,7 +10,7 @@ interface PostProps {
 }
 
 const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
-  const token = localStorage.getItem("token");
+  const authToken = Cookies.get("auth_token");
   const user = useAppSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const [error, setError] = useState("");
@@ -42,21 +43,14 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
 
   const createPost = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (token) {
+    if (authToken) {
       if (validatePostForm()) {
         const formdata = new FormData();
         formdata.append("directoryPath", `uploads/images/posts_images`);
         formdata.append("file", imageData!);
         try {
-          const headers = {
-            "Content-Type": "multipart/form-data",
-          };
-          const res = await sendRequest(
-            "POST",
-            `/files/upload`,
-            formdata,
-            headers
-          );
+          console.log(authToken);
+          const res = await sendRequest("POST", `/files/upload`, formdata);
           if (res.status) {
             const filePath = res.data.filePath;
             console.log(filePath);
@@ -67,14 +61,10 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
                 hashtags: hashtags,
                 post_picture: filePath,
               };
-              const headers = {
-                "Content-Type": "application/json",
-              };
               const res = await sendRequest(
                 "POST",
                 `/posts/${user?.id}`,
-                postData,
-                headers
+                postData
               );
               console.log("post created");
               dispatch(setUserPosts(res.data));

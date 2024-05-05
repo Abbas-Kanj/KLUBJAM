@@ -16,6 +16,7 @@ import profileCyan from "../../assets/Sidebar/icons/cyan/Group-1.svg";
 import account from "../../assets/Sidebar/icons/grey/Group-3.svg";
 import accountCyan from "../../assets/Sidebar/icons/cyan/Group-3.svg";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const MusicianSidebar = () => {
   const navigate = useNavigate();
@@ -26,6 +27,12 @@ const MusicianSidebar = () => {
   const [isPlaylistHovered, setIsPlaylistHovered] = useState(false);
   const [isProfileHovered, setIsProfileHovered] = useState(false);
   const [isAccountHovered, setIsAccountHovered] = useState(false);
+
+  const handleLogout = () => {
+    const cookies = new Cookies();
+    cookies.remove("auth_token");
+    navigate("/");
+  };
 
   return (
     <div className="flex flex-col w-[220px] h-[671px] bg-background">
@@ -157,7 +164,10 @@ const MusicianSidebar = () => {
         </div>
       </div>
       <div>
-        <div className="flex gap-[16px] ml-[24px] items-center cursor-pointer">
+        <div
+          className="flex gap-[16px] ml-[24px] items-center cursor-pointer hover:opacity-50"
+          onClick={handleLogout}
+        >
           <img src={logout} alt="" />
           <h2 className="font-semibold text-[16px] text-[#FF0000]">Logout</h2>
         </div>
