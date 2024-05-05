@@ -71,7 +71,7 @@ const Posts = () => {
 
   useEffect(() => {
     getPosts();
-  }, [posts]);
+  }, []);
 
   return (
     <div className="ml-[350px] mt-[48px] mb-[120px]">
@@ -93,12 +93,16 @@ const Posts = () => {
           </div>
           <div
             className="pt-[40px] pb-[40px] pr-[60px] pl-[60px] border-[1px] border-solid border-greyText
-         w-[436px] mt-[12px] mb-[12px]"
+         max-w-[436px] mt-[12px] mb-[12px]"
           >
-            <img
-              src={`http://127.0.0.1:3000${post.post_picture}`}
-              alt="nullpic"
-            />
+            {post.post_picture.endsWith(".mp4") ? (
+              <video
+                src={`http://127.0.0.1:3000${post.post_picture}`}
+                controls={true}
+              />
+            ) : (
+              <img src={`http://127.0.0.1:3000${post.post_picture}`} alt="" />
+            )}
           </div>
           <div className="flex gap-[18px]">
             <img src={like} alt="" className="cursor-pointer" />
