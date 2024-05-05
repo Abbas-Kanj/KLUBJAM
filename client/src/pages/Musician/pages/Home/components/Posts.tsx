@@ -1,4 +1,5 @@
 import like from "../../../../assets/Home/icons/like.svg";
+import redLike from "../../../../assets/Home/icons/red-like.svg";
 import comment from "../../../../assets/Home/icons/comment.svg";
 import share from "../../../../assets/Home/icons/forward.svg";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
@@ -15,6 +16,7 @@ const Posts = () => {
   const [openCommentsPopup, setOpenCommentsPopup] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [newcomment, setNewComment] = useState("");
+  const [isLiked, setIsLiked] = useState(false);
 
   const openCommentPopup = (post: any) => {
     setSelectedPost(post);
@@ -38,14 +40,10 @@ const Posts = () => {
           content: newcomment,
           userId: user?.id,
         };
-        const headers = {
-          "Content-Type": "application/json",
-        };
         const res = await sendRequest(
           "POST",
           `/comments/${post!.id}`,
-          postData,
-          headers
+          postData
         );
         setNewComment("");
         console.log("comment created");
@@ -57,10 +55,7 @@ const Posts = () => {
 
   const getPosts = async () => {
     try {
-      const headers = {
-        "Content-Type": "multipart/form-data",
-      };
-      const res = await sendRequest("GET", "/posts", "", headers);
+      const res = await sendRequest("GET", "/posts", "");
       if ((res.status = 200)) {
         dispatch(setPosts(res.data.result));
       }
@@ -93,19 +88,27 @@ const Posts = () => {
           </div>
           <div
             className="pt-[40px] pb-[40px] pr-[60px] pl-[60px] border-[1px] border-solid border-greyText
-         max-w-[436px] mt-[12px] mb-[12px]"
+         max-w-[436px] mt-[12px] mb-[12px] flex items-center justify-center"
           >
             {post.post_picture.endsWith(".mp4") ? (
               <video
                 src={`http://127.0.0.1:3000${post.post_picture}`}
                 controls={true}
+                className="max-w-[315px] max-h-[440px]"
               />
             ) : (
               <img src={`http://127.0.0.1:3000${post.post_picture}`} alt="" />
             )}
           </div>
           <div className="flex gap-[18px]">
-            <img src={like} alt="" className="cursor-pointer" />
+            <img
+              src={isLiked ? redLike : like}
+              alt=""
+              className="cursor-pointer"
+              onClick={() => {
+                setIsLiked(!isLiked);
+              }}
+            />
             <img src={comment} alt="" className="cursor-pointer" />
             <img src={share} alt="" className="cursor-pointer" />
           </div>
