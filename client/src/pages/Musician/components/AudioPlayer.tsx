@@ -1,5 +1,9 @@
 import song from "../../../Audio/As You Fade Away - NEFFEX.mp3";
-import React, { useState, useRef, useEffect } from "react";
+import song2 from "../../../Audio/Enough - NEFFEX.mp3";
+import song3 from "../../../Audio/Immortal - NEFFEX.mp3";
+import song4 from "../../../Audio/Play Dead - NEFFEX.mp3";
+import song5 from "../../../Audio/Winning - NEFFEX.mp3";
+import { useState, useRef, useEffect } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaPlay } from "react-icons/fa";
@@ -9,6 +13,11 @@ const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [index, setIndex] = useState(0);
+
+  const playlist = [song, song2, song3, song4, song5];
+
+  const [currentSong] = useState(playlist[index]);
 
   const audioPlayer = useRef<HTMLAudioElement>(new Audio());
   const progressBar = useRef<HTMLInputElement>(null);
@@ -89,9 +98,29 @@ const AudioPlayer = () => {
     changeRange();
   };
 
+  const toggleSkipForward = () => {
+    if (index >= playlist.length - 1) {
+      setIndex(0);
+      audioPlayer.current.src = playlist[0];
+      audioPlayer.current.play();
+    } else {
+      setIndex((prev) => prev + 1);
+      audioPlayer.current.src = playlist[index + 1];
+      audioPlayer.current.play();
+    }
+  };
+
+  const toggleSkipBackward = () => {
+    if (index > 0) {
+      setIndex((prev) => prev - 1);
+      audioPlayer.current.src = playlist[index - 1];
+      audioPlayer.current.play();
+    }
+  };
+
   return (
     <div className="w-screen flex justify-evenly items-center bg-black h-[80px] left-[0.02em] right-[0.02em] ">
-      <audio ref={audioPlayer} src={song} preload="metadata"></audio>
+      <audio ref={audioPlayer} src={currentSong} preload="metadata"></audio>
       <button onClick={backThirty}>
         <BsArrowLeftShort />
         30
@@ -112,6 +141,8 @@ const AudioPlayer = () => {
         />
       </div>
       <div>{duration && !isNaN(duration) && calculateTime(duration)}</div>
+      <button onClick={toggleSkipBackward}>Skip to Previous</button>
+      <button onClick={toggleSkipForward}>Skip to Next</button>
     </div>
   );
 };
