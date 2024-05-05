@@ -18,6 +18,50 @@ const Posts = () => {
   const [newcomment, setNewComment] = useState("");
   const [isLiked, setIsLiked] = useState(false);
 
+  const [likedPosts, setLikedPosts] = useState<{ [key: string]: boolean }>({});
+
+  const toggleLike = async (post: { id: any } | undefined) => {
+    if (likedPosts[post!.id]) {
+      await deleteLike(post);
+    } else {
+      await createLike(post);
+    }
+    setLikedPosts((prevLikedPosts) => ({
+      ...prevLikedPosts,
+      [post!.id]: !prevLikedPosts[post!.id],
+    }));
+  };
+
+  const createLike = async (post: { id: any } | undefined) => {
+    try {
+      const res = await sendRequest(
+        "POST",
+        `/likes/${post!.id}/${user?.id}`,
+        ""
+      );
+      if ((res.status = 200)) {
+        console.log("like created");
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
+  const deleteLike = async (post: { id: any } | undefined) => {
+    try {
+      const res = await sendRequest(
+        "POST",
+        `/likes/${post!.id}/${user?.id}`,
+        ""
+      );
+      if ((res.status = 200)) {
+        console.log("like created");
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
   const openCommentPopup = (post: any) => {
     setSelectedPost(post);
     setOpenCommentsPopup(true);
@@ -102,12 +146,10 @@ const Posts = () => {
           </div>
           <div className="flex gap-[18px]">
             <img
-              src={isLiked ? redLike : like}
+              src={likedPosts[post.id] ? redLike : like}
               alt=""
               className="cursor-pointer"
-              onClick={() => {
-                setIsLiked(!isLiked);
-              }}
+              onClick={() => toggleLike(post)}
             />
             <img src={comment} alt="" className="cursor-pointer" />
             <img src={share} alt="" className="cursor-pointer" />
