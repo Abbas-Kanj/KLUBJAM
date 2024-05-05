@@ -38,7 +38,7 @@ model Users {
   liker Likes[] @relation("Liker")
   projects Projects[]@relation("ProjectOwner")
   albums Albums[] @relation("MusicianAlbum")
-  tracks Tracks[] @relation("MusicianUploader")
+  tracks Tracks[]
   followers Follows[] @relation("Followers")
   followings Follows[] @relation("Followings")
   requester Coin_Requests[] @relation("Requester")
@@ -108,8 +108,8 @@ model Tracks{
   explicit String @db.VarChar(255)
   status String @db.VarChar(255)
   user_id Int
-  album_id Int
-  user Users @relation("MusicianUploader",fields: [user_id], references: [id], onDelete: Cascade)
+  album_id Int?
+  user Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   playlists Playlists[]
