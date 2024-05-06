@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import io, { Socket } from "socket.io-client";
+import MessageInput from "./MessageInput";
+import Messages from "./Messages";
 
 const MessagesInterface = () => {
   const [socket, setSocket] = useState<Socket>();
@@ -24,7 +26,12 @@ const MessagesInterface = () => {
       socket?.off("message", messageListener);
     };
   }, [messageListener]);
-  return <div className=""></div>;
+  return (
+    <div className="">
+      <MessageInput send={send}></MessageInput>
+      <Messages messages={messages}></Messages>
+    </div>
+  );
 };
 
 export default MessagesInterface;
