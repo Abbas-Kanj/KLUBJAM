@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { sendRequest } from "../../../../../core/remote/request";
 import { useAppSelector } from "../../../../../app/hooks";
-import { setUserPosts } from "../../../../../redux/userSlice";
 
 interface PostProps {
   setOpenPostPopup: (open: boolean) => void;
@@ -67,7 +66,6 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
                 postData
               );
               console.log("post created");
-              dispatch(setUserPosts(res.data));
               setOpenPostPopup(false);
             } catch (error: any) {
               console.log(error.message);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import siginImg from "../../assets/Auth/Rectangle 36.png";
 import { sendRequest } from "../../../core/remote/request";
 import { useNavigate } from "react-router-dom";
-import { setUser, setUserPosts } from "../../../redux/userSlice";
+import { setUser } from "../../../redux/userSlice";
 import { useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
@@ -49,18 +49,6 @@ const SignIn: React.FC<SignInProps> = ({
         if (res.status === 200 && res.data) {
           const userData = res.data.result.user;
           dispatch(setUser(userData));
-          try {
-            const rez = await sendRequest(
-              "GET",
-              `/posts/${res.data.result.user.id}`,
-              ""
-            );
-            if ((rez.status = 200)) {
-              dispatch(setUserPosts(rez.data.result));
-            }
-          } catch (error: any) {
-            console.log(error.message);
-          }
 
           const token = res.data.result.token;
           const decodedToken: DecodedToken = jwtDecode(token);
