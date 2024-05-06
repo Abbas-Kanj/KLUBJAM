@@ -7,6 +7,8 @@ import CommentsPopup from "./commentsPopup";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../../../core/remote/request";
 import { setPosts } from "../../../../../redux/postsSlice";
+import { fetchUserPosts } from "../../../../../redux/userSlice";
+import { RootState } from "../../../../../app/store";
 
 const Posts = () => {
   const dispatch = useAppDispatch();
@@ -111,6 +113,16 @@ const Posts = () => {
   useEffect(() => {
     getPosts();
   }, []);
+
+  const isAuthenticated = useAppSelector(
+    (state: RootState) => state.user.isAuthenticated
+  );
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchUserPosts());
+    }
+  }, [isAuthenticated, dispatch]);
 
   return (
     <div className="ml-[350px] mt-[48px] mb-[120px]">
