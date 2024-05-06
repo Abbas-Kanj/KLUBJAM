@@ -36,7 +36,7 @@ model Users {
   playlists Playlists[]
   comment Comments[] @relation("Commenter")
   liker Likes[] @relation("Liker")
-  projects Projects[]@relation("ProjectOwner")
+  projects Projects[]
   albums Albums[] @relation("MusicianAlbum")
   tracks Tracks[]
   followers Follows[] @relation("Followers")
@@ -149,7 +149,7 @@ model Projects{
   duration String @db.VarChar(255)
   genre String @db.VarChar(255)
   creator_id Int
-  creator Users @relation("ProjectOwner",fields: [creator_id], references: [id], onDelete: Cascade)
+  creator Users @relation(fields: [creator_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

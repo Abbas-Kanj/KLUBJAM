@@ -21,5 +21,5 @@ export class CreateProjectDto {
   genre: string;
   @IsNotEmpty()
   @IsInt()
-  creator_id: number;
+  creatorId: number;
 }
