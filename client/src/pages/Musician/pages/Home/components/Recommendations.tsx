@@ -16,18 +16,7 @@ const Recommendations = () => {
       const postData = {
         following_id: v?.id,
       };
-      console.log(postData);
-      console.log(user?.id);
-
-      const headers = {
-        "Content-Type": "application/json",
-      };
-      const res = await sendRequest(
-        "POST",
-        `/follows/${user?.id}`,
-        postData,
-        headers
-      );
+      const res = await sendRequest("POST", `/follows/${user?.id}`, postData);
       if ((res.status = 201)) {
         console.log("follow created");
         dispatch(
@@ -41,23 +30,23 @@ const Recommendations = () => {
     }
   };
 
-  const getRecommendations = async () => {
-    try {
-      const headers = {
-        "Content-Type": "multipart/form-data",
-      };
-      const res = await sendRequest("GET", `/follows/${user?.id}`, "", headers);
-      if ((res.status = 200)) {
-        dispatch(setUserRecommendations(res.data));
-      }
-    } catch (error: any) {
-      console.log(error.message);
-    }
-  };
+  // const getRecommendations = async () => {
+  //   try {
+  //     const headers = {
+  //       "Content-Type": "multipart/form-data",
+  //     };
+  //     const res = await sendRequest("GET", `/follows/${user?.id}`, "", headers);
+  //     if ((res.status = 200)) {
+  //       dispatch(setUserRecommendations(res.data));
+  //     }
+  //   } catch (error: any) {
+  //     console.log(error.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    getRecommendations();
-  }, []);
+  // useEffect(() => {
+  //   getRecommendations();
+  // }, []);
 
   return (
     <div className="absolute top-0 right-0 mt-[37px] mr-[108px]">
@@ -101,8 +90,6 @@ const Recommendations = () => {
             <button
               className="font-medium text-[14px] text-primary hover:opacity-50"
               onClick={() => {
-                console.log(v.id);
-
                 createFollow(v);
               }}
             >

@@ -6,6 +6,8 @@ import { PostsModule } from './posts/posts.module';
 import { CommentsModule } from './comments/comments.module';
 import { LikesModule } from './likes/likes.module';
 import { FollowsModule } from './follows/follows.module';
+import { TracksModule } from './tracks/tracks.module';
+import { ChatGateway } from './chat/chat.gateway';
 
 @Module({
   imports: [
@@ -14,10 +16,11 @@ import { FollowsModule } from './follows/follows.module';
     CommentsModule,
     LikesModule,
     FollowsModule,
+    TracksModule,
     AuthModule,
     FileModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [ChatGateway],
 })
 export class AppModule {}

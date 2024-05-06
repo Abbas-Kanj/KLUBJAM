@@ -20,7 +20,6 @@ import { JwtAuthGuard } from 'src/authentication/auth.guard';
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
   @Get()
-  @UseGuards(JwtAuthGuard)
   async getAllPosts(@Res() response: Response): Promise<any> {
     try {
       const result = await this.postsService.getAllPosts();
