@@ -8,10 +8,11 @@ import { Projects } from '@prisma/client';
 export class ProjectsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getProjectsByUserId(creator_id: number): Promise<any> {
+  async getPersonalProjectsByUserId(creator_id: number): Promise<any> {
     return this.prisma.projects.findMany({
       where: {
         creator_id: creator_id,
+        type: 'Personal',
       },
     });
   }

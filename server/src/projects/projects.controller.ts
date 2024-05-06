@@ -21,18 +21,18 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Get(':id')
-  async getUserProjects(@Param('id') id: string): Promise<any> {
+  async getPersonalProjects(@Param('id') id: string): Promise<any> {
     try {
       const userId = parseInt(id, 10);
       if (isNaN(userId)) {
         throw new Error('Invalid user ID');
       }
-
-      const userPosts = await this.projectsService.getProjectsByUserId(userId);
+      const userPersonalProjects =
+        await this.projectsService.getPersonalProjectsByUserId(userId);
       return {
         status: 'Ok!',
         message: 'Successfully fetched user posts!',
-        result: userPosts,
+        result: userPersonalProjects,
       };
     } catch (error) {
       return {
