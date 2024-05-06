@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import CommentsPopup from "./commentsPopup";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../../../core/remote/request";
-import { setPosts } from "../../../../../redux/postsSlice";
-import { fetchUserPosts } from "../../../../../redux/userSlice";
+import { setPosts } from "../../../../../redux/posts/postsSlice";
+import { fetchUserPosts } from "../../../../../redux/user/userSlice";
 import { RootState } from "../../../../../app/store";
 
 const Posts = () => {

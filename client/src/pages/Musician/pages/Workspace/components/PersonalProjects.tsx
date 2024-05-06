@@ -2,8 +2,32 @@ import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
 import note from "../../../../assets/Workspace/icons/note-02.svg";
 import star from "../../../../assets/Workspace/icons/star.svg";
 import circle from "../../../../assets/Workspace/icons//circle.svg";
+import { sendRequest } from "../../../../../core/remote/request";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
+import { setUserProjects } from "../../../../../redux/user/userSlice";
 
 const PersonalProjects = () => {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user.user);
+  const personalProjects = useAppSelector((state) => state.user.projects);
+
+  const getUserProjects = async () => {
+    try {
+      const res = await sendRequest("GET", `/projects/${user?.id}`, "");
+      if ((res.status = 200)) {
+        console.log(res.data.result);
+        dispatch(setUserProjects(res.data.result));
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getUserProjects();
+  }, []);
+
   return (
     <div className="flex flex-col justify-center items-center mt-[26px]">
       <div className="flex gap-[10px] w-[776px] h-[36px]">

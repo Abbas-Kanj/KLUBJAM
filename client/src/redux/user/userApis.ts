@@ -1,5 +1,3 @@
-// api.ts
-
 import { sendRequest } from "../../core/remote/request";
 
 export const fetchUserPostsApi = async (userId: number) => {
@@ -9,5 +7,3 @@ export const fetchUserPostsApi = async (userId: number) => {
   }
   return null;
 };
-
-// Add other API fetch functions as needed

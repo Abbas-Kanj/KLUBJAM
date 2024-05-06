@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import PostPopup from "./PostPopup";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { sendRequest } from "../../../../../core/remote/request";
-import { setUserRecommendations } from "../../../../../redux/userSlice";
+import { setUserRecommendations } from "../../../../../redux/user/userSlice";
 
 const Recommendations = () => {
   const [openPostPopup, setOpenPostPopup] = useState(false);

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchUserPostsApi } from "./apis/userApis";
-import { RootState } from "../app/store";
+import { RootState } from "../../app/store";
 interface UserState {
   user: {
     id: number;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import siginImg from "../../assets/Auth/Rectangle 36.png";
 import { sendRequest } from "../../../core/remote/request";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../../../redux/userSlice";
+import { setUser } from "../../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
