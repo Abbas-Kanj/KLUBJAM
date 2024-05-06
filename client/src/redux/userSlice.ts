@@ -38,6 +38,16 @@ interface Post {
   post_picture: string;
 }
 
+interface Project {
+  id: number;
+  comments: any;
+  likes: any;
+  user: any;
+  caption: string;
+  hashtags: string;
+  post_picture: string;
+}
+
 const initialState: UserState = {
   user: null,
   posts: [],
@@ -81,9 +91,16 @@ const userSlice = createSlice({
     setUserRecommendations: (state, action: PayloadAction<Post[]>) => {
       state.recommendations = action.payload;
     },
+    setUserProjects: (state, action: PayloadAction<Project[]>) => {
+      state.projects = state.projects.concat(action.payload);
+    },
   },
 });
 
-export const { setUser, setUserPosts, setUserRecommendations } =
-  userSlice.actions;
+export const {
+  setUser,
+  setUserPosts,
+  setUserRecommendations,
+  setUserProjects,
+} = userSlice.actions;
 export default userSlice.reducer;

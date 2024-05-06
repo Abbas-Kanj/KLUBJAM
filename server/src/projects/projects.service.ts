@@ -3,16 +3,15 @@ import { PrismaService } from 'src/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { Projects } from '@prisma/client';
-import { connect } from 'http2';
 
 @Injectable()
 export class ProjectsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getProjectsByUserId(userId: number): Promise<any> {
+  async getProjectsByUserId(creator_id: number): Promise<any> {
     return this.prisma.projects.findMany({
       where: {
-        id: userId,
+        creator_id: creator_id,
       },
     });
   }

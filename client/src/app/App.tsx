@@ -5,7 +5,7 @@ import Musician from "../pages/Musician";
 import Landing from "../pages/Landing";
 import Admin from "../pages/Admin";
 import Moderator from "../pages/Moderator";
-import MessagesInterface from "../Messages/MessagesInterface";
+// import MessagesInterface from "../Messages/MessagesInterface";
 // import ProtectedRoutes from "../core/route/ProtectedRoutes";
 
 function App() {
@@ -13,9 +13,9 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MessagesInterface />}></Route>
-          <Route path="/Landing" element={<Landing />}></Route>
+          {/* <Route path="/" element={<MessagesInterface />}></Route> */}
           {/* <Route element={<ProtectedRoutes />}> */}
+          <Route path="/" element={<Landing />}></Route>
           <Route path="/Musician/*" element={<Musician />} />
           <Route path="/Admin/*" element={<Admin />} />
           <Route path="/Moderator/*" element={<Moderator />} />
