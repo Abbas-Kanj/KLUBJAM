@@ -27,9 +27,11 @@ const MessagesInterface = () => {
     };
   }, [messageListener]);
   return (
-    <div className="">
-      <MessageInput send={send}></MessageInput>
-      <Messages messages={messages}></Messages>
+    <div className="flex justify-center items-center text-black mt-5 ">
+      <div className="bg-slate-700 p-7 ">
+        <MessageInput send={send}></MessageInput>
+        <Messages messages={messages}></Messages>
+      </div>
     </div>
   );
 };
