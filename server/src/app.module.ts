@@ -9,6 +9,7 @@ import { FollowsModule } from './follows/follows.module';
 import { TracksModule } from './tracks/tracks.module';
 import { ChatGateway } from './chat/chat.gateway';
 import { ProjectsModule } from './projects/projects.module';
+import { PlaylistsModule } from './playlists/playlists.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ProjectsModule } from './projects/projects.module';
     FollowsModule,
     TracksModule,
     ProjectsModule,
+    PlaylistsModule,
     AuthModule,
     FileModule,
   ],
