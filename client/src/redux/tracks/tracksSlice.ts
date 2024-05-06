@@ -1,4 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { fetchAllTracksApi } from "./tracksApis";
+import { RootState } from "../../app/store";
 
 interface Track {
   id: number;
@@ -9,38 +11,40 @@ interface Track {
   explicit: string;
   status: string;
   user_id: number;
-  album_id: any;
+  album_id: number;
 }
 
 interface TrackState {
-  tracks: Track[];
+  tracks: Track[] | null;
 }
 
 const initialState: TrackState = {
   tracks: [],
 };
 
+export const fetchAllTracks = createAsyncThunk<Track[] | null>(
+  "tracks/fetchAllTracks",
+  async (_, { getState }) => {
+    const state = getState() as RootState;
+    const { user } = state.user;
+    if (user) {
+      const result = await fetchAllTracksApi();
+      return result ?? null;
+    }
+    return null;
+  }
+);
+
 const tracksSlice = createSlice({
   name: "tracks",
   initialState,
-  reducers: {
-    setTracks: (state, action: PayloadAction<Track[]>) => {
-      action.payload.forEach((newTrack) => {
-        const existingTrackIndex = state.tracks.findIndex(
-          (track) => track.id === newTrack.id
-        );
-        if (existingTrackIndex !== -1) {
-          state.tracks[existingTrackIndex] = {
-            ...state.tracks[existingTrackIndex],
-            ...newTrack,
-          };
-        } else {
-          state.tracks.push(newTrack);
-        }
-      });
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchAllTracks.fulfilled, (state, action) => {
+      state.tracks = action.payload;
+    });
   },
 });
 
-export const { setTracks } = tracksSlice.actions;
+export const {} = tracksSlice.actions;
 export default tracksSlice.reducer;
