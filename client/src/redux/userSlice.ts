@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchUserPostsApi } from "./apis/userApis";
+import { RootState } from "../app/store";
 interface UserState {
   user: {
     id: number;
@@ -26,6 +27,7 @@ interface UserState {
   projects: any[];
   jam_boxes: any[];
   recommendations: any[];
+  isAuthenticated: boolean;
 }
 
 interface Post {
@@ -58,7 +60,20 @@ const initialState: UserState = {
   projects: [],
   jam_boxes: [],
   recommendations: [],
+  isAuthenticated: false,
 };
+
+export const fetchUserPosts = createAsyncThunk(
+  "user/fetchUserPosts",
+  async (_, { getState }) => {
+    const state = getState() as RootState;
+    const { user } = state.user;
+    if (user) {
+      return await fetchUserPostsApi(user.id);
+    }
+    return null;
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
@@ -84,9 +99,7 @@ const userSlice = createSlice({
       }>
     ) => {
       state.user = action.payload;
-    },
-    setUserPosts: (state, action: PayloadAction<Post[]>) => {
-      state.posts = state.posts.concat(action.payload);
+      state.isAuthenticated = true;
     },
     setUserRecommendations: (state, action: PayloadAction<Post[]>) => {
       state.recommendations = action.payload;
@@ -95,12 +108,13 @@ const userSlice = createSlice({
       state.projects = state.projects.concat(action.payload);
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserPosts.fulfilled, (state, action) => {
+      state.posts = action.payload; // Save fetched data into userPosts
+    });
+  },
 });
 
-export const {
-  setUser,
-  setUserPosts,
-  setUserRecommendations,
-  setUserProjects,
-} = userSlice.actions;
+export const { setUser, setUserRecommendations, setUserProjects } =
+  userSlice.actions;
 export default userSlice.reducer;
