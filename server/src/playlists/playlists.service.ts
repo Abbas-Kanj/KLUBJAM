@@ -10,9 +10,10 @@ export class PlaylistsService {
   async createPlaylist(
     createPlaylistDto: CreatePlaylistDto,
     userId: number,
+    trackIds: number[],
   ): Promise<Playlists> {
     try {
-      const post = await this.prisma.playlists.create({
+      const playlist = await this.prisma.playlists.create({
         data: {
           ...createPlaylistDto,
           user: {
@@ -20,12 +21,15 @@ export class PlaylistsService {
               id: userId,
             },
           },
+          tracks: {
+            connect: trackIds.map((id) => ({ id })),
+          },
         },
       });
-      return post;
+      return playlist;
     } catch (error) {
       console.error(error);
-      throw new Error('An error occurred creating the post');
+      throw new Error('An error occurred creating the playlist');
     }
   }
 }

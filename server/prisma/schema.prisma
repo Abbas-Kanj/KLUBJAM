@@ -112,7 +112,7 @@ model Tracks{
   user Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  playlists Playlists[]
+  playlists Playlists[] @relation("PlaylistTracks")
 }
 
 model Albums{
@@ -134,7 +134,7 @@ model Playlists{
   user Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  tracks Tracks[]
+  tracks Tracks[]  @relation("PlaylistTracks")
 }
 
 model Projects{

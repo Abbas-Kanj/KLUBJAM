@@ -24,6 +24,7 @@ export class PlaylistsController {
   @UseGuards(JwtAuthGuard)
   async createPost(
     @Body() createPlaylistDto: CreatePlaylistDto,
+    @Body('trackIds') trackIds: number[],
     @Res() response,
     @Param('id') id: string,
   ): Promise<Playlists | { status: number; message: string }> {
@@ -35,6 +36,7 @@ export class PlaylistsController {
       const createdPlaylist = await this.playlistsService.createPlaylist(
         createPlaylistDto,
         userId,
+        trackIds,
       );
       return response.status(201).json({
         status: 'Ok!',
