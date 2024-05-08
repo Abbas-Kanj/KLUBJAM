@@ -48,6 +48,7 @@ export class PostsService {
       },
     });
   }
+
   async createPost(
     createPostDto: CreatePostDto,
     userId: number,

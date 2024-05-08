@@ -17,6 +17,7 @@ import FastRewindIcon from "@mui/icons-material/FastRewind";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 
 import trackImg from "../../assets/Playlists/images/Rectangle 77.png";
+import { useAppSelector } from "../../../app/hooks";
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -28,6 +29,11 @@ const AudioPlayer = () => {
 
   const playlist = [song, song2, song3, song4, song5];
 
+  // const track = useAppSelector((state) => state.track.tracks![0]);
+  // console.log(track);
+
+  // const song = track.
+  // `http://127.0.0.1:3000${track.audio_url}`
   const [currentSong] = useState(playlist[index]);
 
   const audioPlayer = useRef<HTMLAudioElement>(new Audio());

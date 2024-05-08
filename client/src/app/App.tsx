@@ -6,6 +6,7 @@ import Landing from "../pages/Landing";
 import Admin from "../pages/Admin";
 import Moderator from "../pages/Moderator";
 // import MessagesInterface from "../Messages/MessagesInterface";
+// import TonejsPLayer from "../tone/test/tonejsPlayer";
 // import ProtectedRoutes from "../core/route/ProtectedRoutes";
 
 function App() {
@@ -13,7 +14,11 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<MessagesInterface />}></Route> */}
+          {/* <Route path="/TonejsPLayer" element={<TonejsPLayer />}></Route>
+          <Route
+            path="/MessagesInterface"
+            element={<MessagesInterface />}
+          ></Route> */}
           {/* <Route element={<ProtectedRoutes />}> */}
           <Route path="/" element={<Landing />}></Route>
           <Route path="/Musician/*" element={<Musician />} />

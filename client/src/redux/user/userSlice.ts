@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchUserPostsApi } from "./apis/userApis";
 import { RootState } from "../../app/store";
+import { fetchUserPostsApi } from "./userApis";
 interface UserState {
   user: {
     id: number;
@@ -110,7 +110,7 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUserPosts.fulfilled, (state, action) => {
-      state.posts = action.payload; // Save fetched data into userPosts
+      state.posts = action.payload;
     });
   },
 });
