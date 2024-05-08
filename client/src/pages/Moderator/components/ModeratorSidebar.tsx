@@ -11,6 +11,7 @@ import MessagesCyan from "../assets/icons/cyan/Vector (1).svg";
 import Report from "../assets/icons/grey/Vector (2).svg";
 import ReportCyan from "../assets/icons/cyan/Vector (2).svg";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const ModeratorSidebar = () => {
   const navigate = useNavigate();
@@ -18,6 +19,12 @@ const ModeratorSidebar = () => {
   const [isCommentsHovered, setisCommentsHovered] = useState(false);
   const [isMessagesHovered, setisMessagesHovered] = useState(false);
   const [isReportHovered, setisReportHovered] = useState(false);
+
+  const handleLogout = () => {
+    const cookies = new Cookies();
+    cookies.remove("auth_token");
+    navigate("/");
+  };
 
   return (
     <div className="flex flex-col w-[257px] h-screen bg-background">
@@ -98,7 +105,10 @@ const ModeratorSidebar = () => {
         </div>
       </div>
       <div>
-        <div className="flex gap-[16px] ml-[24px] items-center cursor-pointer">
+        <div
+          className="flex gap-[16px] ml-[24px] items-center cursor-pointer hover:opacity-50"
+          onClick={handleLogout}
+        >
           <img src={logout} alt="" />
           <h2 className="font-semibold text-[16px] text-[#FF0000]">Logout</h2>
         </div>
