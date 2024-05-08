@@ -44,10 +44,7 @@ const Moderatortable = () => {
               <th className=" p-3 text-sm font-semibold tracking-wide text-left">
                 Status
               </th>
-              <th className=" p-3 text-sm font-semibold tracking-wide text-left">
-                Action
-              </th>
-              <th className=" p-3 text-sm font-semibold tracking-wide text-left">
+              <th className=" p-3 text-sm font-semibold tracking-wide text-center">
                 Action
               </th>
             </tr>
@@ -66,7 +63,7 @@ const Moderatortable = () => {
                 johndoe@gmail.com
               </td>
               <td className="p-3 text-sm text-black whitespace-nowrap">
-                <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-lg ">
+                <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-md ">
                   21/3/2024
                 </span>
               </td>
@@ -75,19 +72,16 @@ const Moderatortable = () => {
                   Active
                 </span>
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
+              <td className="p-3 text-sm text-black whitespace-nowrap flex justify-evenly">
                 <span
-                  className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-lg cursor-pointer hover:bg-opacity-50"
+                  className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-md cursor-pointer hover:bg-opacity-50"
                   onClick={() => {
                     setopenUpdateModPopup(true);
                   }}
                 >
                   Update
                 </span>
-              </td>
-
-              <td className="p-3 text-sm text-black whitespace-nowrap ">
-                <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableDeleteBtn text-black rounded-lg  cursor-pointer hover:bg-opacity-30">
+                <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableDeleteBtn text-black rounded-md  cursor-pointer hover:bg-opacity-30">
                   Delete
                 </span>
               </td>
