@@ -6,7 +6,10 @@ import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import CommentsPopup from "./commentsPopup";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../../../core/remote/request";
-import { fetchUserPosts } from "../../../../../redux/user/userSlice";
+import {
+  fetchUserPosts,
+  fetchUserProjects,
+} from "../../../../../redux/user/userSlice";
 import { RootState } from "../../../../../app/store";
 import { fetchAllPosts } from "../../../../../redux/posts/postsSlice";
 import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
@@ -112,6 +115,7 @@ const Posts = () => {
       dispatch(fetchAllPosts());
       dispatch(fetchAllTracks());
       dispatch(fetchAllPlaylists());
+      dispatch(fetchUserProjects());
     }
   }, [isAuthenticated, dispatch]);
 

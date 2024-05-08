@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { fetchUserPostsApi } from "./userApis";
+import { fetchUserPostsApi, fetchUserProjectsApi } from "./userApis";
 interface UserState {
   user: {
     id: number;
@@ -75,6 +75,18 @@ export const fetchUserPosts = createAsyncThunk(
   }
 );
 
+export const fetchUserProjects = createAsyncThunk(
+  "user/fetchUserProjects",
+  async (_, { getState }) => {
+    const state = getState() as RootState;
+    const { user } = state.user;
+    if (user) {
+      return await fetchUserProjectsApi(user.id);
+    }
+    return null;
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -104,17 +116,16 @@ const userSlice = createSlice({
     setUserRecommendations: (state, action: PayloadAction<Post[]>) => {
       state.recommendations = action.payload;
     },
-    setUserProjects: (state, action: PayloadAction<Project[]>) => {
-      state.projects = state.projects.concat(action.payload);
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUserPosts.fulfilled, (state, action) => {
       state.posts = action.payload;
     });
+    builder.addCase(fetchUserProjects.fulfilled, (state, action) => {
+      state.projects = action.payload;
+    });
   },
 });
 
-export const { setUser, setUserRecommendations, setUserProjects } =
-  userSlice.actions;
+export const { setUser, setUserRecommendations } = userSlice.actions;
 export default userSlice.reducer;
