@@ -31,12 +31,12 @@ model Users {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  collaborators Collaborators[]
   post Posts[]
   playlists Playlists[]
   comment Comments[] @relation("Commenter")
   liker Likes[] @relation("Liker")
   projects Projects[]
+  collaborator Collaborators[]
   albums Albums[] @relation("MusicianAlbum")
   tracks Tracks[]
   followers Follows[] @relation("Followers")
@@ -152,8 +152,7 @@ model Projects{
   creator Users @relation(fields: [creator_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  collaboratorsonthisProject Collaborators[]
+  collaborators Collaborators[]  @relation("ProjectsCollaborators")
 }
 
 model Collaborators{
@@ -162,20 +161,9 @@ model Collaborators{
   slice_audio String @db.VarChar(255)
   duration String @db.VarChar(255)
   collaborator_id Int
-  project_id Int
-  project Projects @relation(fields: [project_id], references: [id], onDelete: Cascade)
-  collaborator Users @relation(fields: [collaborator_id], references: [id], onDelete: Cascade)
+  creator Users @relation(fields: [collaborator_id], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  projects Projects[]  @relation("ProjectsCollaborators")
 }
-
-// model JamBoxes{
-//   id Int @id @default(autoincrement())
-//   title String @db.VarChar(255)
-//   lyrics String @db.VarChar(255)
-//   artist_voice String @db.VarChar(255)
-//   user_id Int
-//   user Users @relation(fields: [user_id], references: [id])
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-// }
