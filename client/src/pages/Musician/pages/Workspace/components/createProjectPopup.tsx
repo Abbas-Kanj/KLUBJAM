@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
+import { sendRequest } from "../../../../../core/remote/request";
+import { useAppSelector } from "../../../../../app/hooks";
 
 interface UpdateMusicianProps {
   setOpenCreateProjectPopup: (open: boolean) => void;
@@ -7,6 +10,13 @@ interface UpdateMusicianProps {
 const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
   setOpenCreateProjectPopup,
 }) => {
+  const authToken = Cookies.get("auth_token");
+  const user = useAppSelector((state) => state.user.user);
+
+  const [error, setError] = useState("");
+  const [projectName, setProjectName] = useState("");
+  const [projectPrivacy, setProjectPrivacy] = useState("Private");
+  const [projectDescription, setProjectDescription] = useState("");
   const [projectType, setProjectType] = useState("Personal");
   const [collaboratorInput, setCollaboratorInput] = useState("");
   const [collaborators, setCollaborators] = useState<string[]>([]);
@@ -16,6 +26,40 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
     if (collaboratorInput.trim() !== "") {
       setCollaborators([...collaborators, collaboratorInput]);
       setCollaboratorInput("");
+    }
+  };
+
+  const validatePostForm = () => {
+    if (projectName === "" || projectDescription === "") {
+      setError("Please fill empty fields");
+      return false;
+    } else {
+      setError("");
+      return true;
+    }
+  };
+
+  const createProject = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (authToken) {
+      if (validatePostForm()) {
+        const data = {
+          project_name: projectName,
+          type: projectType,
+          description: projectDescription,
+          privacy: projectPrivacy,
+          collaborators: collaborators,
+        };
+        try {
+          const res = await sendRequest("POST", `/projects/${user?.id}`, data);
+          if (res.status == 201) {
+            setOpenCreateProjectPopup(false);
+          }
+        } catch (error: any) {
+          console.log(error.message);
+          setError(error.message);
+        }
+      }
     }
   };
 
@@ -32,7 +76,10 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
           >
             X
           </p>
-          <p className="w-[146px] rounded-xl text-primary bg-background font-medium text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center cursor-pointer hover:opacity-50 mt-[10px] mr-[20px]">
+          <p
+            className="w-[146px] rounded-xl text-primary bg-background font-medium text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center cursor-pointer hover:opacity-50 mt-[10px] mr-[20px]"
+            onClick={createProject}
+          >
             Create Project
           </p>
         </div>
@@ -48,6 +95,7 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
               <input
                 type="text"
                 className="bg-inputBox w-[347px] h-[37px] rounded focus:outline-none p-1"
+                onChange={(e) => setProjectName(e.target.value)}
               />
             </div>
             <label
@@ -60,6 +108,7 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
               name=""
               id=""
               className=" bg-inputBox rounded-lg w-[347px] h-[165px] p-2 focus:outline-none"
+              onChange={(e) => setProjectDescription(e.target.value)}
             ></textarea>
           </div>
           <div className="flex flex-col gap-[16px]">
@@ -74,6 +123,7 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
                 name=""
                 id=""
                 className="bg-inputBox w-[347px] h-[37px] rounded focus:outline-none p-1"
+                onChange={(e) => setProjectPrivacy(e.target.value)}
               >
                 <option>Private</option>
                 <option>Public</option>
@@ -97,7 +147,7 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
                 <option value="Group">Group</option>
               </select>
             </div>
-            {projectType === "Group" && (
+            {projectType == "Group" && (
               <div className="flex flex-col gap-[10px]">
                 <label
                   htmlFor=""
@@ -130,6 +180,7 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
               </div>
             )}
           </div>
+          {error && <small className="text-red">{error}</small>}
         </div>
       </form>
     </div>
