@@ -16,6 +16,7 @@ import CoinRequestsCyan from "../assets/icons/cyan/Vector (3).svg";
 import Reports from "../assets/icons/grey/Vector (4).svg";
 import ReportsCyan from "../assets/icons/cyan/Vector (4).svg";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const AdminSidebar = () => {
   const navigate = useNavigate();
@@ -26,6 +27,12 @@ const AdminSidebar = () => {
   const [isPostsHovered, setisPostsHovered] = useState(false);
   const [isCoinRequestsHovered, setisCoinRequestsHovered] = useState(false);
   const [isReportsHovered, setisReportsHovered] = useState(false);
+
+  const handleLogout = () => {
+    const cookies = new Cookies();
+    cookies.remove("auth_token");
+    navigate("/");
+  };
 
   return (
     <div className="flex flex-col w-[257px] h-screen bg-background ">
@@ -157,7 +164,10 @@ const AdminSidebar = () => {
         </div>
       </div>
       <div>
-        <div className="flex gap-[16px] ml-[24px] items-center cursor-pointer">
+        <div
+          className="flex gap-[16px] ml-[24px] items-center cursor-pointer hover:opacity-50"
+          onClick={handleLogout}
+        >
           <img src={logout} alt="" />
           <h2 className="font-semibold text-[16px] text-[#FF0000]">Logout</h2>
         </div>
