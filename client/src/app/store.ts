@@ -5,6 +5,7 @@ import tracksSlice from "../redux/tracks/tracksSlice";
 import playlistsSlice from "../redux/playlists/playlistsSlice";
 import sessionStorage from "redux-persist/lib/storage/session";
 import { persistStore, persistReducer } from "redux-persist";
+import usersSlice from "../redux/users/usersSlice";
 
 const persistConfig = {
   key: "root",
@@ -19,6 +20,7 @@ const persistedReducer = persistReducer(
     post: postsSlice,
     track: tracksSlice,
     playlist: playlistsSlice,
+    users: usersSlice,
   })
 );
 
