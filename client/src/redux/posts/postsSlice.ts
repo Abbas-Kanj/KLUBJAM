@@ -24,8 +24,8 @@ export const fetchAllPosts = createAsyncThunk<Post[] | null>(
   "posts/fetchAllPosts",
   async (_, { getState }) => {
     const state = getState() as RootState;
-    const { user } = state.user;
-    if (user) {
+    const { info } = state.user;
+    if (info) {
       const result = await fetchAllPostsApi();
       return result ?? null;
     }

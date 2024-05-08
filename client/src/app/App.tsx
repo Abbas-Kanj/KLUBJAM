@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { store } from "./store";
+import store, { persistor } from "./store";
 import { Provider } from "react-redux";
 import Musician from "../pages/Musician";
 import Landing from "../pages/Landing";
 import Admin from "../pages/Admin";
 import Moderator from "../pages/Moderator";
+import { PersistGate } from "redux-persist/integration/react";
 // import MessagesInterface from "../Messages/MessagesInterface";
 // import TonejsPLayer from "../tone/test/tonejsPlayer";
 // import ProtectedRoutes from "../core/route/ProtectedRoutes";
@@ -12,21 +13,23 @@ import Moderator from "../pages/Moderator";
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          {/* <Route path="/TonejsPLayer" element={<TonejsPLayer />}></Route>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <Routes>
+            {/* <Route path="/TonejsPLayer" element={<TonejsPLayer />}></Route>
           <Route
             path="/MessagesInterface"
             element={<MessagesInterface />}
           ></Route> */}
-          {/* <Route element={<ProtectedRoutes />}> */}
-          <Route path="/" element={<Landing />}></Route>
-          <Route path="/Musician/*" element={<Musician />} />
-          <Route path="/Admin/*" element={<Admin />} />
-          <Route path="/Moderator/*" element={<Moderator />} />
-          {/* </Route> */}
-        </Routes>
-      </BrowserRouter>
+            {/* <Route element={<ProtectedRoutes />}> */}
+            <Route path="/" element={<Landing />}></Route>
+            <Route path="/Musician/*" element={<Musician />} />
+            <Route path="/Admin/*" element={<Admin />} />
+            <Route path="/Moderator/*" element={<Moderator />} />
+            {/* </Route> */}
+          </Routes>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   );
 }

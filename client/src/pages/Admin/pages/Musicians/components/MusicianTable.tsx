@@ -32,9 +32,6 @@ const MusicianTable = () => {
             <th className=" p-3 text-sm font-semibold tracking-wide text-center">
               Action
             </th>
-            {/* <th className=" p-3 text-sm font-semibold tracking-wide text-left">
-              Action
-            </th> */}
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 ">
@@ -73,8 +70,6 @@ const MusicianTable = () => {
                 Delete
               </span>
             </td>
-
-            {/* <td className="p-3 text-sm text-black whitespace-nowrap "></td> */}
           </tr>
         </tbody>
       </table>

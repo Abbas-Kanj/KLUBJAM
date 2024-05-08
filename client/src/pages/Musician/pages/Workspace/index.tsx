@@ -3,6 +3,7 @@ import defaultLogo from "../../../assets/Navbar/images/user-profile-circle.svg";
 import { useState } from "react";
 import PersonalProjects from "./components/PersonalProjects";
 import GroupProjects from "./components/GroupProjects";
+import SearchBar from "./components/SearchBar";
 const Workspace = () => {
   const [isVisible1, setIsVisible1] = useState(true);
   const [isVisible2, setIsVisible2] = useState(false);
@@ -52,7 +53,8 @@ const Workspace = () => {
           </h2>
         </div>
       </div>
-      <div className="flex flex-col relative ">
+      <div className="flex flex-col relative items-center">
+        <SearchBar />
         {isVisible1 && <PersonalProjects />}
         {isVisible2 && <GroupProjects />}
       </div>

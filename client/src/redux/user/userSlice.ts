@@ -5,8 +5,9 @@ import {
   fetchUserPersonalProjectsApi,
   fetchUserPostsApi,
 } from "./userApis";
+import persistReducer from "redux-persist/es/persistReducer";
 interface UserState {
-  user: {
+  info: {
     id: number;
     username: string;
     email: string;
@@ -55,7 +56,7 @@ interface Project {
 }
 
 const initialState: UserState = {
-  user: null,
+  info: null,
   posts: [],
   tracks: [],
   albums: [],
@@ -71,9 +72,9 @@ export const fetchUserPosts = createAsyncThunk(
   "user/fetchUserPosts",
   async (_, { getState }) => {
     const state = getState() as RootState;
-    const { user } = state.user;
-    if (user) {
-      return await fetchUserPostsApi(user.id);
+    const { info } = state.user;
+    if (info) {
+      return await fetchUserPostsApi(info.id);
     }
     return null;
   }
@@ -83,9 +84,9 @@ export const fetchUserPersonalProjects = createAsyncThunk(
   "user/fetchUserPersonalProjects",
   async (_, { getState }) => {
     const state = getState() as RootState;
-    const { user } = state.user;
-    if (user) {
-      return await fetchUserPersonalProjectsApi(user.id);
+    const { info } = state.user;
+    if (info) {
+      return await fetchUserPersonalProjectsApi(info.id);
     }
     return null;
   }
@@ -95,9 +96,9 @@ export const fetchUserGroupProjects = createAsyncThunk(
   "user/fetchUserGroupProjects",
   async (_, { getState }) => {
     const state = getState() as RootState;
-    const { user } = state.user;
-    if (user) {
-      return await fetchUserGroupProjectsApi(user.id);
+    const { info } = state.user;
+    if (info) {
+      return await fetchUserGroupProjectsApi(info.id);
     }
     return null;
   }
@@ -126,7 +127,7 @@ const userSlice = createSlice({
         updated_at: string;
       }>
     ) => {
-      state.user = action.payload;
+      state.info = action.payload;
       state.isAuthenticated = true;
     },
     setUserRecommendations: (state, action: PayloadAction<Post[]>) => {

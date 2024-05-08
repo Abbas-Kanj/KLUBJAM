@@ -2,15 +2,17 @@ import trackImg from "../../../../assets/Explore/images/Rectangle 76-1.png";
 import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
 import artistImg from "../../../../assets/Explore/images/Ellipse 22.svg";
 import Cookies from "js-cookie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../../../../app/hooks";
 import { sendRequest } from "../../../../../core/remote/request";
-import { setUserPosts } from "../../../../../redux/userSlice";
+import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
+import { RootState } from "../../../../../app/store";
+// import { setUserPosts } from "../../../../../redux/user/userSlice";
 
 const All = () => {
   const authToken = Cookies.get("auth_token");
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.info);
   const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [imageData, setImageData] = useState<File | null>(null);
