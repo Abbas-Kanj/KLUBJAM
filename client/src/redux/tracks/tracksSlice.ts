@@ -12,6 +12,12 @@ interface Track {
   status: string;
   user_id: number;
   album_id: number;
+  user: User;
+}
+
+interface User {
+  id: number;
+  username: string;
 }
 
 interface TrackState {
@@ -26,8 +32,8 @@ export const fetchAllTracks = createAsyncThunk<Track[] | null>(
   "tracks/fetchAllTracks",
   async (_, { getState }) => {
     const state = getState() as RootState;
-    const { user } = state.user;
-    if (user) {
+    const { info } = state.user;
+    if (info) {
       const result = await fetchAllTracksApi();
       return result ?? null;
     }

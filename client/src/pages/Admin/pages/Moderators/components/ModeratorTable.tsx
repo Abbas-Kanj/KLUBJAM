@@ -82,14 +82,14 @@ const Moderatortable = () => {
                   </td>
                   <td className="p-3 text-sm text-black whitespace-nowrap flex justify-evenly">
                     <span
-                      className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-md cursor-pointer hover:bg-opacity-50"
+                      className="p-1.5 text-xs font-bold uppercase tracking-wider bg-tableUpdateBtn text-black rounded-md cursor-pointer hover:bg-opacity-50"
                       onClick={() => {
                         setopenUpdateModPopup(true);
                       }}
                     >
                       Update
                     </span>
-                    <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableDeleteBtn text-black rounded-md  cursor-pointer hover:bg-opacity-30">
+                    <span className="p-1.5 text-xs font-bold uppercase tracking-wider bg-tableDeleteBtn text-black rounded-md  cursor-pointer hover:bg-opacity-30">
                       Delete
                     </span>
                   </td>
