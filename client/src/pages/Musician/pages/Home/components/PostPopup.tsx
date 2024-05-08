@@ -10,7 +10,7 @@ interface PostProps {
 
 const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
   const authToken = Cookies.get("auth_token");
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.info);
   const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [caption, setCaption] = useState("");
@@ -65,7 +65,6 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
                 `/posts/${user?.id}`,
                 postData
               );
-              console.log("post created");
               setOpenPostPopup(false);
             } catch (error: any) {
               console.log(error.message);

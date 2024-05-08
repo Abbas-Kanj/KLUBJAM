@@ -7,19 +7,21 @@ import CommentsPopup from "./commentsPopup";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../../../core/remote/request";
 import {
+  fetchUserGroupProjects,
+  fetchUserPersonalProjects,
   fetchUserPosts,
-  fetchUserProjects,
 } from "../../../../../redux/user/userSlice";
 import { RootState } from "../../../../../app/store";
 import { fetchAllPosts } from "../../../../../redux/posts/postsSlice";
 import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
 import { fetchAllPlaylists } from "../../../../../redux/playlists/playlistsSlice";
+import Cookies from "universal-cookie";
 
 const Posts = () => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.post.posts);
 
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.info);
   const [error, setError] = useState("");
   const [openCommentsPopup, setOpenCommentsPopup] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -105,19 +107,23 @@ const Posts = () => {
     }
   };
 
-  const isAuthenticated = useAppSelector(
-    (state: RootState) => state.user.isAuthenticated
-  );
+  const cookies = new Cookies();
+  const auth_token = cookies.get("auth_token");
+
+  // const isAuthenticated = useAppSelector(
+  //   (state: RootState) => state.user.isAuthenticated
+  // );
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (auth_token) {
       dispatch(fetchUserPosts());
       dispatch(fetchAllPosts());
       dispatch(fetchAllTracks());
       dispatch(fetchAllPlaylists());
-      dispatch(fetchUserProjects());
+      dispatch(fetchUserPersonalProjects());
+      dispatch(fetchUserGroupProjects());
     }
-  }, [isAuthenticated, dispatch]);
+  }, [auth_token, dispatch]);
 
   return (
     <div className="ml-[350px] mt-[48px] mb-[120px]">
