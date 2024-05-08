@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { fetchUserPostsApi, fetchUserProjectsApi } from "./userApis";
+import {
+  fetchUserGroupProjectsApi,
+  fetchUserPersonalProjectsApi,
+  fetchUserPostsApi,
+} from "./userApis";
 interface UserState {
   user: {
     id: number;
@@ -24,7 +28,7 @@ interface UserState {
   albums: any[];
   playlists: any[];
   produced_tracks: any[];
-  projects: any[];
+  projects: { personal: []; group: [] };
   jam_boxes: any[];
   recommendations: any[];
   isAuthenticated: boolean;
@@ -57,7 +61,7 @@ const initialState: UserState = {
   albums: [],
   playlists: [],
   produced_tracks: [],
-  projects: [],
+  projects: { personal: [], group: [] },
   jam_boxes: [],
   recommendations: [],
   isAuthenticated: false,
@@ -75,13 +79,25 @@ export const fetchUserPosts = createAsyncThunk(
   }
 );
 
-export const fetchUserProjects = createAsyncThunk(
-  "user/fetchUserProjects",
+export const fetchUserPersonalProjects = createAsyncThunk(
+  "user/fetchUserPersonalProjects",
   async (_, { getState }) => {
     const state = getState() as RootState;
     const { user } = state.user;
     if (user) {
-      return await fetchUserProjectsApi(user.id);
+      return await fetchUserPersonalProjectsApi(user.id);
+    }
+    return null;
+  }
+);
+
+export const fetchUserGroupProjects = createAsyncThunk(
+  "user/fetchUserGroupProjects",
+  async (_, { getState }) => {
+    const state = getState() as RootState;
+    const { user } = state.user;
+    if (user) {
+      return await fetchUserGroupProjectsApi(user.id);
     }
     return null;
   }
@@ -121,8 +137,11 @@ const userSlice = createSlice({
     builder.addCase(fetchUserPosts.fulfilled, (state, action) => {
       state.posts = action.payload;
     });
-    builder.addCase(fetchUserProjects.fulfilled, (state, action) => {
-      state.projects = action.payload;
+    builder.addCase(fetchUserPersonalProjects.fulfilled, (state, action) => {
+      state.projects.personal = action.payload;
+    });
+    builder.addCase(fetchUserGroupProjects.fulfilled, (state, action) => {
+      state.projects.group = action.payload;
     });
   },
 });
