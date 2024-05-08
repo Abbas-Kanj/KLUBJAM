@@ -17,24 +17,34 @@ export class ProjectsService {
     });
   }
 
-  async createProject(
-    createProjectDto: CreateProjectDto,
-    creator_id: number,
-  ): Promise<Projects> {
+  async createProject(data: CreateProjectDto, creatorId: number) {
+    const projectData = {
+      project_name: data.project_name,
+      type: data.type,
+      description: data.description,
+      privacy: data.privacy,
+      creator: { connect: { id: creatorId } },
+    };
+
+    const collaborators =
+      data.type === 'Group'
+        ? data.collaborators?.map((id) => ({
+            slice_name: '',
+            slice_audio: '',
+            duration: '',
+            collaborators: { connect: { id: id } },
+          }))
+        : []; // Empty array for Personal projects
+
     const project = await this.prisma.projects.create({
       data: {
-        ...createProjectDto,
-        creator: {
-          connect: {
-            id: creator_id,
-          },
+        ...projectData,
+        collaborators: {
+          create: collaborators,
         },
       },
     });
+
     return project;
-  }
-  catch(error) {
-    console.error(error);
-    throw new Error('An error occurred creating the post');
   }
 }
