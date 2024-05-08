@@ -37,13 +37,17 @@ export class ProjectsService {
 
     const collaborators =
       data.type === 'Group'
-        ? data.collaborators?.map((id) => ({
+        ? data.collaborators?.map((username) => ({
             slice_name: '',
             slice_audio: '',
             duration: '',
-            collaborators: { connect: { id: id } },
+            collaborators: {
+              connect: {
+                username: username.toString(),
+              },
+            },
           }))
-        : []; // Empty array for Personal projects
+        : [];
 
     const project = await this.prisma.projects.create({
       data: {
