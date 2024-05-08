@@ -14,20 +14,33 @@ interface Playlist {
 }
 
 interface PlaylistState {
-  posts: Playlist[] | null;
+  playlists: Playlist[] | null;
 }
 
 const initialState: PlaylistState = {
-  posts: [],
+  playlists: [],
 };
 
+export const fetchAllPlaylists = createAsyncThunk<Playlist[] | null>(
+  "playlists/fetchAllPlaylists",
+  async (_, { getState }) => {
+    const state = getState() as RootState;
+    const { user } = state.user;
+    if (user) {
+      const result = await fetchAllPlaylistsApi();
+      return result ?? null;
+    }
+    return null;
+  }
+);
+
 const playlistSlice = createSlice({
-  name: "post",
+  name: "playlist",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchAllPosts.fulfilled, (state, action) => {
-      state.posts = action.payload;
+    builder.addCase(fetchAllPlaylists.fulfilled, (state, action) => {
+      state.playlists = action.payload;
     });
   },
 });

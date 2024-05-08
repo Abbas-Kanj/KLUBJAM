@@ -6,13 +6,16 @@ import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import CommentsPopup from "./commentsPopup";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../../../core/remote/request";
-import { setPosts } from "../../../../../redux/posts/postsSlice";
 import { fetchUserPosts } from "../../../../../redux/user/userSlice";
 import { RootState } from "../../../../../app/store";
+import { fetchAllPosts } from "../../../../../redux/posts/postsSlice";
+import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
+import { fetchAllPlaylists } from "../../../../../redux/playlists/playlistsSlice";
 
 const Posts = () => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.post.posts);
+
   const user = useAppSelector((state) => state.user.user);
   const [error, setError] = useState("");
   const [openCommentsPopup, setOpenCommentsPopup] = useState(false);
@@ -99,21 +102,6 @@ const Posts = () => {
     }
   };
 
-  const getPosts = async () => {
-    try {
-      const res = await sendRequest("GET", "/posts", "");
-      if ((res.status = 200)) {
-        dispatch(setPosts(res.data.result));
-      }
-    } catch (error: any) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    getPosts();
-  }, []);
-
   const isAuthenticated = useAppSelector(
     (state: RootState) => state.user.isAuthenticated
   );
@@ -121,6 +109,9 @@ const Posts = () => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(fetchUserPosts());
+      dispatch(fetchAllPosts());
+      dispatch(fetchAllTracks());
+      dispatch(fetchAllPlaylists());
     }
   }, [isAuthenticated, dispatch]);
 
@@ -132,7 +123,7 @@ const Posts = () => {
           setOpenCommentsPopup={setOpenCommentsPopup}
         ></CommentsPopup>
       )}
-      {posts.map((post, i) => (
+      {posts?.map((post, i) => (
         <div key={i} className="flex flex-col mb-[30px] ">
           <div className="flex items-center gap-[8px]">
             <img
