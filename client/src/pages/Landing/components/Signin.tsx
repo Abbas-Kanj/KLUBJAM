@@ -26,7 +26,7 @@ const SignIn: React.FC<SignInProps> = ({
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("error");
+  const [error, setError] = useState("");
 
   const validateForm = () => {
     if (email == "" || password == "") {
@@ -46,7 +46,7 @@ const SignIn: React.FC<SignInProps> = ({
       };
       try {
         const res = await sendRequest("POST", "auth/login", data);
-        if (res.status === 200 && res.data) {
+        if (res.status === 200) {
           const userData = res.data.result.user;
           dispatch(setUser(userData));
 
@@ -125,7 +125,7 @@ const SignIn: React.FC<SignInProps> = ({
                 type="password"
                 name=""
                 id="password"
-                placeholder="****************"
+                placeholder="**********"
                 className="w-[375px] h-[44px] pt-[14px] pb-[14px] pl-[18px]  placeholder:font-bold placeholder:text-[18px] placeholder:text-white bg-transparent border-solid border-[1px] rounded-[5px] focus:outline-none focus:shadow-outline focus:text-primary"
                 onChange={(e) => setPassword(e.target.value)}
               />

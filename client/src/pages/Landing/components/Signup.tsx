@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import sigunImg from "../../assets/Auth/Rectangle 36 (1).png";
-import { jwtDecode } from "jwt-decode";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { sendRequest } from "../../../core/remote/request";
-import { setUser } from "../../../redux/user/userSlice";
 
 interface SignUpProps {
   setOpenSignupPopup: (open: boolean) => void;
@@ -15,16 +11,15 @@ const Signup: React.FC<SignUpProps> = ({
   setOpenSignupPopup,
   setOpenSigninPopup,
 }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
+  const [username, SetUsername] = useState("");
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("error");
+  const [error, setError] = useState("");
 
   const validateForm = () => {
     if (
+      username == "" ||
       email == "" ||
       newPassword == "" ||
       confirmPassword == "" ||
@@ -35,6 +30,25 @@ const Signup: React.FC<SignUpProps> = ({
     } else {
       setError("");
       return true;
+    }
+  };
+
+  const handleSignup = async () => {
+    if (validateForm()) {
+      let data = {
+        username: username,
+        email: email,
+        password: newPassword,
+      };
+      try {
+        const res = await sendRequest("POST", "auth/register", data);
+        if (res.status === 200) {
+          console.log("success register");
+        }
+      } catch (error: any) {
+        console.log(error.message);
+        setError(error.message);
+      }
     }
   };
 
@@ -78,6 +92,7 @@ const Signup: React.FC<SignUpProps> = ({
                 id=""
                 placeholder="GrooveGuru"
                 className="w-[375px] h-[44px] pt-[14px] pb-[14px] pl-[18px]  placeholder:font-semibold placeholder:text-[16px] placeholder:text-white bg-transparent border-solid border-[1px] rounded-[5px] focus:outline-none focus:shadow-outline focus:text-primary"
+                onChange={(e) => SetUsername(e.target.value)}
               />
             </div>
             <div className="flex flex-col w-[375px] gap-[8px]">
@@ -90,6 +105,7 @@ const Signup: React.FC<SignUpProps> = ({
                 id=""
                 placeholder="GrooveGuru@example.com"
                 className="w-[375px] h-[44px] pt-[14px] pb-[14px] pl-[18px]  placeholder:font-semibold placeholder:text-[16px] placeholder:text-white bg-transparent border-solid border-[1px] rounded-[5px] focus:outline-none focus:shadow-outline focus:text-primary"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -124,7 +140,7 @@ const Signup: React.FC<SignUpProps> = ({
             <button
               className="w-[372px] h-[42px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop"
               onClick={(e) => {
-                // handleLogin();
+                handleSignup();
                 e.preventDefault();
               }}
             >
