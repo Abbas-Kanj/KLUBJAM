@@ -6,9 +6,9 @@ import Landing from "../pages/Landing";
 import Admin from "../pages/Admin";
 import Moderator from "../pages/Moderator";
 import { PersistGate } from "redux-persist/integration/react";
-// import MessagesInterface from "../Messages/MessagesInterface";
-// import TonejsPLayer from "../tone/test/tonejsPlayer";
-// import ProtectedRoutes from "../core/route/ProtectedRoutes";
+import ProtectedAdmin from "../core/route/ProtectedAdmin";
+import ProtectedModerator from "../core/route/ProtectedModerator";
+import ProtectedUser from "../core/route/ProtectedUser";
 
 function App() {
   return (
@@ -16,17 +16,16 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/TonejsPLayer" element={<TonejsPLayer />}></Route>
-          <Route
-            path="/MessagesInterface"
-            element={<MessagesInterface />}
-          ></Route> */}
-            {/* <Route element={<ProtectedRoutes />}> */}
             <Route path="/" element={<Landing />}></Route>
-            <Route path="/Musician/*" element={<Musician />} />
-            <Route path="/Admin/*" element={<Admin />} />
-            <Route path="/Moderator/*" element={<Moderator />} />
-            {/* </Route> */}
+            <Route element={<ProtectedUser />}>
+              <Route path="/Musician/*" element={<Musician />} />
+            </Route>
+            <Route element={<ProtectedAdmin />}>
+              <Route path="/Admin/*" element={<Admin />} />
+            </Route>
+            <Route element={<ProtectedModerator />}>
+              <Route path="/Moderator/*" element={<Moderator />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </PersistGate>

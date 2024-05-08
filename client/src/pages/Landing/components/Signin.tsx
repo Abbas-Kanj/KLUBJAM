@@ -54,19 +54,21 @@ const SignIn: React.FC<SignInProps> = ({
           const decodedToken: DecodedToken = jwtDecode(token);
           const cookies = new Cookies();
 
-          cookies.set("auth_token", token, {
-            expires: new Date(decodedToken.exp * 1000),
-          });
-
-          const userRole = decodedToken.role;
-
-          let redirectPath = "/Musician/Home";
-          if (userRole == 1) {
-            redirectPath = "/Admin/Analytics";
-          } else if (userRole == 2) {
-            redirectPath = "/Moderator/Tracks";
+          try {
+            cookies.remove("auth_token");
+            cookies.set("auth_token", token, {
+              expires: new Date(decodedToken.exp * 1000),
+            });
+            let redirectPath = "/Musician/Home";
+            if (decodedToken.role == 1) {
+              redirectPath = "/Admin/Analytics";
+            } else if (decodedToken.role == 2) {
+              redirectPath = "/Moderator/Tracks";
+            }
+            navigate(redirectPath);
+          } catch (error) {
+            console.error("Error setting or removing cookie:", error);
           }
-          navigate(redirectPath);
         }
       } catch (error: any) {
         console.log(error.message);
