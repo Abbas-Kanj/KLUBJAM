@@ -36,7 +36,7 @@ model Users {
   comment Comments[] @relation("Commenter")
   liker Likes[] @relation("Liker")
   projects Projects[]
-  collaborator Collaborators[]
+  collaborators Collaborators[]
   albums Albums[] @relation("MusicianAlbum")
   tracks Tracks[]
   followers Follows[] @relation("Followers")
@@ -143,11 +143,11 @@ model Projects{
   type String @db.VarChar(255)
   description String @db.VarChar(255)
   privacy String @db.VarChar(255)
-  track_name String @db.VarChar(255)
-  track_image String @db.VarChar(255)
-  audio_url String @db.VarChar(255)
-  duration String @db.VarChar(255)
-  genre String @db.VarChar(255)
+  track_name String? @db.VarChar(255)
+  track_image String? @db.VarChar(255)
+  audio_url String? @db.VarChar(255)
+  duration String? @db.VarChar(255)
+  genre String? @db.VarChar(255)
   creator_id Int
   creator Users @relation(fields: [creator_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
@@ -161,8 +161,7 @@ model Collaborators{
   slice_audio String @db.VarChar(255)
   duration String @db.VarChar(255)
   collaborator_id Int
-  creator Users @relation(fields: [collaborator_id], references: [id], onDelete: Cascade)
-
+  collaborators Users @relation(fields: [collaborator_id], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   projects Projects[]  @relation("ProjectsCollaborators")

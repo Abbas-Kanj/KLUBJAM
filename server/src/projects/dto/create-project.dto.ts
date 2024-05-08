@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty } from 'class-validator';
+import { ArrayMinSize, IsInt, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateProjectDto {
   @IsNotEmpty()
@@ -9,17 +9,21 @@ export class CreateProjectDto {
   description: string;
   @IsNotEmpty()
   privacy: string;
-  @IsNotEmpty()
+  @IsOptional()
   track_name: string;
-  @IsNotEmpty()
+  @IsOptional()
   track_image: string;
-  @IsNotEmpty()
+  @IsOptional()
   audio_url: string;
-  @IsNotEmpty()
+  @IsOptional()
   duration: string;
-  @IsNotEmpty()
+  @IsOptional()
   genre: string;
   @IsNotEmpty()
   @IsInt()
   creatorId: number;
+  @IsOptional()
+  @IsInt({ each: true })
+  @ArrayMinSize(1)
+  collaborators?: number[];
 }
