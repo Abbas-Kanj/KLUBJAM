@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import sigunImg from "../../assets/Auth/Rectangle 36 (1).png";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { sendRequest } from "../../../core/remote/request";
+import { setUser } from "../../../redux/user/userSlice";
 
 interface SignUpProps {
   setOpenSignupPopup: (open: boolean) => void;
@@ -10,6 +15,29 @@ const Signup: React.FC<SignUpProps> = ({
   setOpenSignupPopup,
   setOpenSigninPopup,
 }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("error");
+
+  const validateForm = () => {
+    if (
+      email == "" ||
+      newPassword == "" ||
+      confirmPassword == "" ||
+      newPassword !== confirmPassword
+    ) {
+      setError("Please fill empty fields");
+      return false;
+    } else {
+      setError("");
+      return true;
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <div className="w-[930px] h-[656px] flex">
@@ -75,6 +103,7 @@ const Signup: React.FC<SignUpProps> = ({
                 id=""
                 placeholder="**********"
                 className="w-[375px] h-[44px] pt-[14px] pb-[14px] pl-[18px]  placeholder:font-bold placeholder:text-[18px] placeholder:text-white bg-transparent border-solid border-[1px] rounded-[5px] focus:outline-none focus:shadow-outline focus:text-primary"
+                onChange={(e) => setNewPassword(e.target.value)}
               />
             </div>
             <div className="flex flex-col w-[375px] gap-[8px]">
@@ -87,11 +116,18 @@ const Signup: React.FC<SignUpProps> = ({
                 id=""
                 placeholder="**********"
                 className="w-[375px] h-[44px] pt-[14px] pb-[14px] pl-[18px]  placeholder:font-bold placeholder:text-[18px] placeholder:text-white bg-transparent border-solid border-[1px] rounded-[5px] focus:outline-none focus:shadow-outline focus:text-primary"
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
           </div>
           <div className="flex flex-col  gap-[10px] mt-[27px]">
-            <button className="w-[372px] h-[42px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop">
+            <button
+              className="w-[372px] h-[42px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop"
+              onClick={(e) => {
+                // handleLogin();
+                e.preventDefault();
+              }}
+            >
               Create Account
             </button>
             <div className="flex items-center justify-center gap-[12px] mb-[60px]">
@@ -108,6 +144,7 @@ const Signup: React.FC<SignUpProps> = ({
                 Login
               </p>
             </div>
+            {error && <small className="text-red">{error}</small>}
           </div>
         </form>
       </div>
