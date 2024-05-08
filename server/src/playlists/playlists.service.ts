@@ -7,12 +7,32 @@ import { Playlists } from '@prisma/client';
 export class PlaylistsService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async getAllPLaylists(): Promise<Playlists[]> {
+    const playlists = await this.prisma.playlists.findMany({
+      include: {
+        tracks: {
+          select: {
+            id: true,
+            track_name: true,
+            track_image: true,
+            duration: true,
+            audio_url: true,
+            explicit: true,
+          },
+        },
+      },
+    });
+    return playlists;
+  }
+
   async createPlaylist(
-    createPlaylistDto: CreatePlaylistDto,
     userId: number,
+    createPlaylistDto: CreatePlaylistDto,
     trackIds: number[],
   ): Promise<Playlists> {
     try {
+      console.log(trackIds);
+
       const playlist = await this.prisma.playlists.create({
         data: {
           ...createPlaylistDto,
@@ -22,7 +42,7 @@ export class PlaylistsService {
             },
           },
           tracks: {
-            connect: trackIds.map((id) => ({ id })),
+            connect: trackIds.map((id) => ({ id: id })),
           },
         },
       });
