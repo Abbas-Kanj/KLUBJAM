@@ -53,7 +53,7 @@ const Moderatortable = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 ">
             {users
-              ?.filter((user) => user.id == 2)
+              ?.filter((user) => user.role_id == 2)
               .map((user, i) => (
                 <tr key={i} className="bg-tableRow">
                   <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
