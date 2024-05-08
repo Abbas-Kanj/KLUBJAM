@@ -8,6 +8,7 @@ import {
   Post,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response } from 'express';
@@ -24,7 +25,7 @@ export class UsersController {
   ) {}
 
   @Get()
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   async getAllUsers(
     @Req() request: Request,
     @Res() response: Response,
@@ -45,6 +46,7 @@ export class UsersController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async getUserById(
     @Req() request: Request,
     @Res() response: Response,
@@ -67,6 +69,7 @@ export class UsersController {
   }
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   async createUser(
     @Body() createUserDto: CreateUserDto,
     @Res() response: Response,
@@ -94,6 +97,7 @@ export class UsersController {
   }
 
   @Post(':id')
+  @UseGuards(JwtAuthGuard)
   async updateUser(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -116,6 +120,7 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async deleteUserById(
     @Param('id') id: string,
     @Res() response: Response,

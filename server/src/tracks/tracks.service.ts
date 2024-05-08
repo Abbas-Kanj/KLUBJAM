@@ -8,7 +8,11 @@ export class TracksService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAllTracks(): Promise<Tracks[]> {
-    return await this.prisma.tracks.findMany();
+    return await this.prisma.tracks.findMany({
+      include: {
+        user: true,
+      },
+    });
   }
 
   async createTrack(
