@@ -1,30 +1,9 @@
-import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
-import note from "../../../../assets/Workspace/icons/note-02.svg";
 import star from "../../../../assets/Workspace/icons/star.svg";
 import circle from "../../../../assets/Workspace/icons//circle.svg";
 
 const GroupProjects = () => {
   return (
-    <div className="flex flex-col justify-center items-center mt-[26px]">
-      <div className="flex gap-[10px] w-[776px] h-[36px]">
-        <input
-          type="text"
-          placeholder="Find a project..."
-          className="w-[516px]  pl-[10px] pt-[10px] pb-[10px] text-[14px] text-greyText bg-background rounded border border-solid border-greyText"
-        />
-        <div className="flex items-center justify-center w-[74px] h-[36px] bg-background rounded cursor-pointer p-[6px] border border-solid border-primary">
-          <h2 className="font-bold text-[14px] text-greyText">Type</h2>
-          <img src={downArrow} alt="" />
-        </div>
-        <div className="flex items-center justify-center w-[74px] h-[36px] bg-background rounded cursor-pointer p-[6px] border border-solid border-primary">
-          <h2 className="font-bold text-[14px] text-greyText">Sort</h2>
-          <img src={downArrow} alt="" />
-        </div>
-        <div className="flex items-center justify-center w-[90px] h-[36px] bg-primary rounded cursor-pointer pt-[6px] pb-[6px] pl-[15px] pr-[15px] gap-[1px]">
-          <img src={note} alt="" />
-          <h2 className="font-bold text-[14px]">Post</h2>
-        </div>
-      </div>
+    <div className="flex flex-col justify-center items-center">
       <div className="border border-solid border-greyText w-[776px] mt-[15px]"></div>
       <div className="flex flex-col mt-[18px]">
         <div className="flex justify-between items-center">
