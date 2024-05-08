@@ -1,4 +1,4 @@
-import { IsString, Length } from 'class-validator';
+import { IsOptional, IsString, Length } from 'class-validator';
 
 export class RegisterUsersDto {
   @IsString()
@@ -12,4 +12,6 @@ export class RegisterUsersDto {
   email: string;
   @IsString()
   profile_picture: string;
+  @IsOptional()
+  role_id: number;
 }

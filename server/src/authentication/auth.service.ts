@@ -47,6 +47,9 @@ export class AuthService {
       createUser.profile_picture =
         'https://www.svgrepo.com/show/532363/user-alt-1.svg';
     }
+    if (createDto.role_id) {
+      createUser.role_id = createDto.role_id;
+    }
     const user = await this.usersService.createUser(createUser);
 
     return {
