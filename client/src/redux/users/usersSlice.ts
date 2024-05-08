@@ -15,8 +15,8 @@ interface User {
   balance: number;
   status: string;
   date_of_birth: Date | string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface UserState {

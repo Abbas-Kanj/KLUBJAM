@@ -1,10 +1,12 @@
 import { useState } from "react";
 import UpdateModPopup from "./UpdateModPopup";
 import AddModPopup from "./AddModPopup";
+import { useAppSelector } from "../../../../../app/hooks";
 
 const Moderatortable = () => {
   const [openUpdateModPopup, setopenUpdateModPopup] = useState(false);
   const [openAddModPopup, setopenAddModPopup] = useState(false);
+  const users = useAppSelector((state) => state.users.user);
 
   return (
     <>
@@ -50,42 +52,49 @@ const Moderatortable = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 ">
-            <tr className="bg-tableRow">
-              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                <a href="#" className="font-bold text-black hover:underline">
-                  1
-                </a>
-              </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
-                John Doe
-              </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
-                johndoe@gmail.com
-              </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
-                <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-md ">
-                  21/3/2024
-                </span>
-              </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
-                <span className="p-1.5 text-xs font-bold uppercase tracking-wider text-tableUpdateBtn  rounded-lg ">
-                  Active
-                </span>
-              </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap flex justify-evenly">
-                <span
-                  className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-md cursor-pointer hover:bg-opacity-50"
-                  onClick={() => {
-                    setopenUpdateModPopup(true);
-                  }}
-                >
-                  Update
-                </span>
-                <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableDeleteBtn text-black rounded-md  cursor-pointer hover:bg-opacity-30">
-                  Delete
-                </span>
-              </td>
-            </tr>
+            {users
+              ?.filter((user) => user.id == 2)
+              .map((user, i) => (
+                <tr key={i} className="bg-tableRow">
+                  <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <a
+                      href="#"
+                      className="font-bold text-black hover:underline"
+                    >
+                      {user.id}
+                    </a>
+                  </td>
+                  <td className="p-3 text-sm text-black whitespace-nowrap">
+                    {!user.fullname ? "No name" : user.fullname}
+                  </td>
+                  <td className="p-3 text-sm text-black whitespace-nowrap">
+                    {user.email}
+                  </td>
+                  <td className="p-3 text-sm text-black whitespace-nowrap">
+                    <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-md ">
+                      {new Date(user.createdAt).toLocaleDateString()}
+                    </span>
+                  </td>
+                  <td className="p-3 text-sm text-black whitespace-nowrap">
+                    <span className="p-1.5 text-xs font-bold uppercase tracking-wider text-tableUpdateBtn  rounded-lg ">
+                      {user.status}
+                    </span>
+                  </td>
+                  <td className="p-3 text-sm text-black whitespace-nowrap flex justify-evenly">
+                    <span
+                      className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableUpdateBtn text-black rounded-md cursor-pointer hover:bg-opacity-50"
+                      onClick={() => {
+                        setopenUpdateModPopup(true);
+                      }}
+                    >
+                      Update
+                    </span>
+                    <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableDeleteBtn text-black rounded-md  cursor-pointer hover:bg-opacity-30">
+                      Delete
+                    </span>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

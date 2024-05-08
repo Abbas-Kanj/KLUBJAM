@@ -8,7 +8,7 @@ import { setUserRecommendations } from "../../../../../redux/user/userSlice";
 const Recommendations = () => {
   const [openPostPopup, setOpenPostPopup] = useState(false);
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.info);
   const recommendations = useAppSelector((state) => state.user.recommendations);
 
   const createFollow = async (v: { id: any } | undefined) => {
