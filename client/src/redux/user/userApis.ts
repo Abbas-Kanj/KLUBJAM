@@ -8,8 +8,19 @@ export const fetchUserPostsApi = async (userId: number) => {
   return null;
 };
 
-export const fetchUserProjectsApi = async (userId: number) => {
-  const res = await sendRequest("GET", `/projects/${userId}`, "");
+export const fetchUserPersonalProjectsApi = async (userId: number) => {
+  const res = await sendRequest(
+    "GET",
+    `projects/personalProjects/${userId}`,
+    ""
+  );
+  if ((res.status = 200)) {
+    return res.data.result;
+  }
+};
+
+export const fetchUserGroupProjectsApi = async (userId: number) => {
+  const res = await sendRequest("GET", `projects/groupProjects/${userId}`, "");
   if ((res.status = 200)) {
     return res.data.result;
   }
