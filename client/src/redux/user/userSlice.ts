@@ -5,7 +5,6 @@ import {
   fetchUserPersonalProjectsApi,
   fetchUserPostsApi,
 } from "./userApis";
-import persistReducer from "redux-persist/es/persistReducer";
 interface UserState {
   info: {
     id: number;
