@@ -6,10 +6,17 @@ interface Post {
   id: number;
   comments: any;
   likes: any;
-  user: any;
   caption: string;
   hashtags: string;
   post_picture: string;
+  user: User;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface User {
+  id: number;
+  username: string;
 }
 
 interface PostState {

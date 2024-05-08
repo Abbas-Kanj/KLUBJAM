@@ -5,6 +5,7 @@ import Cookies from "universal-cookie";
 import { useAppDispatch } from "../../../../app/hooks";
 import { fetchAllUsers } from "../../../../redux/users/usersSlice";
 import { fetchAllTracks } from "../../../../redux/tracks/tracksSlice";
+import { fetchAllPosts } from "../../../../redux/posts/postsSlice";
 
 const Analytics = () => {
   const cookies = new Cookies();
@@ -15,6 +16,7 @@ const Analytics = () => {
     if (auth_token) {
       dispatch(fetchAllUsers());
       dispatch(fetchAllTracks());
+      dispatch(fetchAllPosts());
     }
   }, [auth_token, dispatch]);
   return (
