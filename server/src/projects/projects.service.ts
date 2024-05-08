@@ -17,6 +17,15 @@ export class ProjectsService {
     });
   }
 
+  async getGroupProjectsByUserId(creator_id: number): Promise<any> {
+    return this.prisma.projects.findMany({
+      where: {
+        creator_id: creator_id,
+        type: 'Group',
+      },
+    });
+  }
+
   async createProject(data: CreateProjectDto, creatorId: number) {
     const projectData = {
       project_name: data.project_name,

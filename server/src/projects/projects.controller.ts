@@ -20,7 +20,7 @@ import { CreateProjectDto } from './dto/create-project.dto';
 export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
-  @Get(':id')
+  @Get('personalProjects/:id')
   async getPersonalProjects(@Param('id') id: string): Promise<any> {
     try {
       const userId = parseInt(id, 10);
@@ -31,8 +31,30 @@ export class ProjectsController {
         await this.projectsService.getPersonalProjectsByUserId(userId);
       return {
         status: 'Ok!',
-        message: 'Successfully fetched user posts!',
+        message: 'Successfully fetched user personal projects!',
         result: userPersonalProjects,
+      };
+    } catch (error) {
+      return {
+        status: 'Error!',
+        message: error.message || 'Controller error',
+      };
+    }
+  }
+
+  @Get('groupProjects/:id')
+  async getGroupProjects(@Param('id') id: string): Promise<any> {
+    try {
+      const userId = parseInt(id, 10);
+      if (isNaN(userId)) {
+        throw new Error('Invalid user ID');
+      }
+      const userGroupProjects =
+        await this.projectsService.getGroupProjectsByUserId(userId);
+      return {
+        status: 'Ok!',
+        message: 'Successfully fetched user group projects!',
+        result: userGroupProjects,
       };
     } catch (error) {
       return {
@@ -54,9 +76,16 @@ export class ProjectsController {
       if (isNaN(userId)) {
         throw new Error('Invalid user ID');
       }
+      const data: any = {
+        ...createProjectDto,
+        creator: {
+          connect: { id: userId },
+        },
+      };
+      console.log(data);
 
       const createdProject = await this.projectsService.createProject(
-        createProjectDto,
+        data,
         userId,
       );
       return response.status(201).json({
