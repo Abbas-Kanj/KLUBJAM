@@ -15,6 +15,17 @@ export class TracksService {
     });
   }
 
+  async getAllTracksForUser(userId: number): Promise<Tracks[]> {
+    return await this.prisma.tracks.findMany({
+      where: {
+        user_id: userId,
+      },
+      include: {
+        user: true,
+      },
+    });
+  }
+
   async createTrack(
     createTrackDto: CreateTrackDto,
     userId: number,
