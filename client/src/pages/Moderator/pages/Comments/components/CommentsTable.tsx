@@ -1,4 +1,8 @@
+import { useAppSelector } from "../../../../../app/hooks";
+
 const CommentsTable = () => {
+  const comments = useAppSelector((state) => state.comments.comments);
+
   return (
     <div className="mt-[26px] w-[1200px] mx-auto h-auto rounded pt-[22px] pb-[22px] pl-[20px] pr-[20px] bg-tableBackground ">
       <table className="w-[1100px] mx-auto h-auto">
@@ -19,41 +23,40 @@ const CommentsTable = () => {
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
               Created At
             </th>
-            <th className=" p-3 text-sm font-semibold tracking-wide text-left">
+            <th className=" p-3 text-sm font-semibold tracking-wide text-center">
               Action
             </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 ">
-          <tr className="bg-tableRow">
-            <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-              <a href="#" className="font-bold text-black hover:underline">
-                1
-              </a>
-            </td>
-            <td className="p-3 text-sm font-bold text-black whitespace-nowrap">
-              3
-            </td>
-            <td className="p-3 text-sm text-black  whitespace-nowrap">
-              John Doe
-            </td>
-            <td className="p-3 text-sm  text-clip whitespace-normal max-w-[500px] text-black">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
-              adipisci quas aliquid pariatur earum laudantium! Laborum earum
-              ipsam eligendi molestiae cumque mollitia nostrum quae, sint
-              voluptatum a! Ad, sint. Error!
-            </td>
-            <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 rounded-lg ">
-                21/3/2024
-              </span>
-            </td>
-            <td className="p-3 text-sm text-black whitespace-nowrap">
-              <span className="p-1.5 text-xs font-medium uppercase tracking-wider bg-tableDeleteBtn text-black rounded-lg hover:bg-opacity-30 cursor-pointer">
-                Delete
-              </span>
-            </td>
-          </tr>
+          {comments?.map((comment, i) => (
+            <tr key={i} className="bg-tableRow">
+              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+                <a href="#" className="font-bold text-black hover:underline">
+                  {comment.id}
+                </a>
+              </td>
+              <td className="p-3 text-sm font-bold text-black whitespace-nowrap">
+                {comment.post_id}
+              </td>
+              <td className="p-3 text-sm text-black  whitespace-nowrap">
+                {comment.user.username}
+              </td>
+              <td className="p-3 text-sm  text-clip whitespace-normal max-w-[500px] text-black">
+                {comment.content}
+              </td>
+              <td className="p-3 text-sm text-black whitespace-nowrap">
+                <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 rounded-lg ">
+                  {new Date(comment.createdAt).toLocaleDateString()}
+                </span>
+              </td>
+              <td className="p-3 text-sm text-black whitespace-nowrap flex justify-evenly">
+                <span className="p-1.5 text-xs font-bold uppercase tracking-wider bg-tableDeleteBtn text-black rounded-md  cursor-pointer hover:bg-opacity-30">
+                  Delete
+                </span>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
