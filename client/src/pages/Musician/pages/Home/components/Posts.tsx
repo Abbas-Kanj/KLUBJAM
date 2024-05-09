@@ -120,8 +120,6 @@ const Posts = () => {
       dispatch(fetchAllPosts());
       dispatch(fetchAllTracks());
       dispatch(fetchAllPlaylists());
-      dispatch(fetchUserPersonalProjects());
-      dispatch(fetchUserGroupProjects());
     }
   }, [auth_token, dispatch]);
 

@@ -1,7 +1,25 @@
 import star from "../../../../assets/Workspace/icons/star.svg";
 import circle from "../../../../assets/Workspace/icons//circle.svg";
+import Cookies from "universal-cookie";
+import { useEffect } from "react";
+import {
+  fetchUserPersonalProjects,
+  fetchUserGroupProjects,
+} from "../../../../../redux/user/userSlice";
+import { useAppDispatch } from "../../../../../app/hooks";
 
 const PersonalProjects = () => {
+  const cookies = new Cookies();
+  const auth_token = cookies.get("auth_token");
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (auth_token) {
+      dispatch(fetchUserPersonalProjects());
+      dispatch(fetchUserGroupProjects());
+    }
+  }, [auth_token, dispatch]);
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="border border-solid border-greyText w-[776px] mt-[15px]"></div>
