@@ -22,7 +22,6 @@ const TracksTable = () => {
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
               Explicit
             </th>
-
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">
               Duration
             </th>
