@@ -110,10 +110,6 @@ const Posts = () => {
   const cookies = new Cookies();
   const auth_token = cookies.get("auth_token");
 
-  // const isAuthenticated = useAppSelector(
-  //   (state: RootState) => state.user.isAuthenticated
-  // );
-
   useEffect(() => {
     if (auth_token) {
       dispatch(fetchUserPosts());

@@ -28,7 +28,10 @@ interface UserState {
   albums: any[];
   playlists: any[];
   produced_tracks: any[];
-  projects: { personal: []; group: [] };
+  projects: {
+    personal: Project[];
+    group: Project[];
+  };
   jam_boxes: any[];
   recommendations: any[];
   isAuthenticated: boolean;
@@ -46,12 +49,18 @@ interface Post {
 
 interface Project {
   id: number;
-  comments: any;
-  likes: any;
-  user: any;
-  caption: string;
-  hashtags: string;
-  post_picture: string;
+  project_name: string;
+  type: string;
+  description: string;
+  privacy: string;
+  track_name: string;
+  track_image: string;
+  audio_url: string;
+  duration: string;
+  genre: string;
+  creatorId: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const initialState: UserState = {
@@ -61,7 +70,10 @@ const initialState: UserState = {
   albums: [],
   playlists: [],
   produced_tracks: [],
-  projects: { personal: [], group: [] },
+  projects: {
+    personal: [],
+    group: [],
+  },
   jam_boxes: [],
   recommendations: [],
   isAuthenticated: false,
