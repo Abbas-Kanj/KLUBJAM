@@ -8,6 +8,7 @@ import {
   Delete,
   Put,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { Response } from 'express';
 
@@ -19,6 +20,27 @@ import { CreateProjectDto } from './dto/create-project.dto';
 @Controller('projects')
 export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
+
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  async getAllProjects(
+    @Req() request: Request,
+    @Res() response: Response,
+  ): Promise<any> {
+    try {
+      const result = await this.projectsService.getAllProjects();
+      return response.status(200).json({
+        status: 'Ok!',
+        message: 'Successfully fetch data!',
+        result: result,
+      });
+    } catch (err) {
+      return response.status(500).json({
+        status: 'Ok!',
+        message: 'Internal Server Error!',
+      });
+    }
+  }
 
   @Get('personalProjects/:id')
   async getPersonalProjects(@Param('id') id: string): Promise<any> {
