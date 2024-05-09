@@ -19,6 +19,24 @@ import { Coin_Requests } from '@prisma/client';
 export class CoinRequestsController {
   constructor(private readonly coinRequestsService: CoinRequestsService) {}
 
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  async getAllCoinRequests(@Res() response: Response): Promise<any> {
+    try {
+      const result = await this.coinRequestsService.getAllCoinRequests();
+      return response.status(200).json({
+        status: 'Ok!',
+        message: 'Successfully fetch data!',
+        result: result,
+      });
+    } catch (err) {
+      return response.status(500).json({
+        status: 500,
+        message: 'Internal Server Error!',
+      });
+    }
+  }
+
   @Post(':id')
   @UseGuards(JwtAuthGuard)
   async createCoinRequest(

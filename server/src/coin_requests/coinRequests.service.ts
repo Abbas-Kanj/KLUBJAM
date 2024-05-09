@@ -7,6 +7,10 @@ import { Coin_Requests } from '@prisma/client';
 export class CoinRequestsService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async getAllCoinRequests(): Promise<Coin_Requests[]> {
+    return await this.prisma.coin_Requests.findMany({});
+  }
+
   async createCoinRequest(
     createCoinRequestDto: CreateCoinRequestDto,
     userId: number,
