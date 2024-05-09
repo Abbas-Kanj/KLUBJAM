@@ -4,13 +4,18 @@ import { fetchAllCoinRequestsApi } from "./coinRequestsApi";
 
 interface CoinRequest {
   id: number;
-  comments: any;
-  likes: any;
-  caption: string;
-  hashtags: string;
-  post_picture: string;
+  amount: number;
+  status: string;
+  user_id: number;
   createdAt: string;
   updatedAt: string;
+  user: User;
+}
+
+interface User {
+  id: number;
+  username: string;
+  email: string;
 }
 
 interface PostState {

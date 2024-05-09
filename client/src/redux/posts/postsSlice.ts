@@ -9,9 +9,9 @@ interface Post {
   caption: string;
   hashtags: string;
   post_picture: string;
-  user: User;
   createdAt: string;
   updatedAt: string;
+  user: User;
 }
 
 interface User {

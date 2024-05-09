@@ -8,7 +8,11 @@ export class CoinRequestsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAllCoinRequests(): Promise<Coin_Requests[]> {
-    return await this.prisma.coin_Requests.findMany({});
+    return await this.prisma.coin_Requests.findMany({
+      include: {
+        user: true,
+      },
+    });
   }
 
   async createCoinRequest(
