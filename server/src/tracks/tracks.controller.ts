@@ -37,6 +37,16 @@ export class TracksController {
     }
   }
 
+  @Get(':id')
+  @UseGuards(JwtAuthGuard)
+  async getAllTracksForUser(@Param('id') id: string): Promise<Tracks[]> {
+    const userId = parseInt(id, 10);
+    if (isNaN(userId)) {
+      throw new Error('Invalid user ID');
+    }
+    return await this.tracksService.getAllTracksForUser(userId);
+  }
+
   @Post(':id')
   @UseGuards(JwtAuthGuard)
   async createTrack(
