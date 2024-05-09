@@ -6,9 +6,9 @@ import Landing from "../pages/Landing";
 import Admin from "../pages/Admin";
 import Moderator from "../pages/Moderator";
 import { PersistGate } from "redux-persist/integration/react";
-import ProtectedAdmin from "../core/route/ProtectedAdmin";
-import ProtectedModerator from "../core/route/ProtectedModerator";
-import ProtectedUser from "../core/route/ProtectedUser";
+import ProtectedAdmin from "../core/routes/ProtectedAdmin";
+import ProtectedModerator from "../core/routes/ProtectedModerator";
+import ProtectedUser from "../core/routes/ProtectedUser";
 
 function App() {
   return (
