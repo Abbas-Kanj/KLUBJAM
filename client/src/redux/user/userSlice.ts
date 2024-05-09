@@ -24,7 +24,7 @@ interface UserState {
     updated_at: string;
   } | null;
 
-  posts: any[];
+  posts: Post[];
   tracks: Track[];
   albums: any[];
   playlists: any[];
