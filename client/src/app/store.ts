@@ -8,6 +8,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import usersSlice from "../redux/users/usersSlice";
 import projectsSlice from "../redux/projects/projectsSlice";
 import coinRequestsSlice from "../redux/coin_requests/coinRequestsSlice";
+import commentsSlice from "../redux/comments/commentsSlice";
 
 const persistConfig = {
   key: "root",
@@ -25,6 +26,7 @@ const persistedReducer = persistReducer(
     users: usersSlice,
     projects: projectsSlice,
     coinRequests: coinRequestsSlice,
+    comments: commentsSlice,
   })
 );
 

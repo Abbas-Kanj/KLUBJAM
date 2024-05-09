@@ -1,21 +1,9 @@
-import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
-import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
+import { useAppSelector } from "../../../../../app/hooks";
 import imgIcon from "../../../../Admin/assets/icons/Group 157.svg";
 import playerIcon from "../../../../Admin/assets/icons/Vector (1).svg";
-import { useEffect } from "react";
-import Cookies from "universal-cookie";
 
 const TracksTable = () => {
   const tracks = useAppSelector((state) => state.track.tracks);
-  const cookies = new Cookies();
-  const auth_token = cookies.get("auth_token");
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (auth_token) {
-      dispatch(fetchAllTracks());
-    }
-  }, [auth_token, dispatch]);
 
   return (
     <div className="mt-[26px] w-[1200px] mx-auto h-auto rounded pt-[22px] pb-[22px] pl-[20px] pr-[20px] bg-tableBackground ">

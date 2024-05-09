@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchAllPostsApi } from "./postsApis";
 import { RootState } from "../../app/store";
+import { fetchAllPostsApi } from "./postsApis";
 
 interface Post {
   id: number;
