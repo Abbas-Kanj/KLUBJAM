@@ -10,6 +10,7 @@ import { TracksModule } from './tracks/tracks.module';
 import { ChatGateway } from './chat/chat.gateway';
 import { ProjectsModule } from './projects/projects.module';
 import { PlaylistsModule } from './playlists/playlists.module';
+import { CoinRequestsModule } from './coin_requests/coinRequests.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { PlaylistsModule } from './playlists/playlists.module';
     TracksModule,
     ProjectsModule,
     PlaylistsModule,
+    CoinRequestsModule,
     AuthModule,
     FileModule,
   ],

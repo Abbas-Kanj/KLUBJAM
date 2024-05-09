@@ -20,6 +20,7 @@ export class TracksController {
   constructor(private readonly tracksService: TracksService) {}
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async getAllTracks(@Res() response: Response): Promise<any> {
     try {
       const result = await this.tracksService.getAllTracks();
@@ -37,7 +38,7 @@ export class TracksController {
   }
 
   @Post(':id')
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   async createTrack(
     @Body() createTrackDto: CreateTrackDto,
     @Res() response,
