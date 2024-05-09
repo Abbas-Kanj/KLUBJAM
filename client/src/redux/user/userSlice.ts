@@ -4,6 +4,7 @@ import {
   fetchUserGroupProjectsApi,
   fetchUserPersonalProjectsApi,
   fetchUserPostsApi,
+  fetchUserTracksApi,
 } from "./userApis";
 interface UserState {
   info: {
@@ -24,7 +25,7 @@ interface UserState {
   } | null;
 
   posts: any[];
-  tracks: any[];
+  tracks: Track[];
   albums: any[];
   playlists: any[];
   produced_tracks: any[];
@@ -61,6 +62,19 @@ interface Project {
   creatorId: number;
   createdAt: string;
   updatedAt: string;
+}
+
+interface Track {
+  id: number;
+  track_name: string;
+  duration: string;
+  audio_url: string;
+  track_image: string;
+  explicit: string;
+  status: string;
+  user_id: number;
+  album_id: number;
+  createdAt: string;
 }
 
 const initialState: UserState = {
@@ -115,6 +129,18 @@ export const fetchUserGroupProjects = createAsyncThunk(
   }
 );
 
+export const fetchUserTracks = createAsyncThunk(
+  "user/fetchUserTracks",
+  async (_, { getState }) => {
+    const state = getState() as RootState;
+    const { info } = state.user;
+    if (info) {
+      return await fetchUserTracksApi(info.id);
+    }
+    return null;
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -154,6 +180,9 @@ const userSlice = createSlice({
     });
     builder.addCase(fetchUserGroupProjects.fulfilled, (state, action) => {
       state.projects.group = action.payload;
+    });
+    builder.addCase(fetchUserTracks.fulfilled, (state, action) => {
+      state.tracks = action.payload;
     });
   },
 });
