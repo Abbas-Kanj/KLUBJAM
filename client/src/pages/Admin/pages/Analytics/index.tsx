@@ -6,6 +6,8 @@ import { useAppDispatch } from "../../../../app/hooks";
 import { fetchAllUsers } from "../../../../redux/users/usersSlice";
 import { fetchAllTracks } from "../../../../redux/tracks/tracksSlice";
 import { fetchAllPosts } from "../../../../redux/posts/postsSlice";
+import { fetchAllProjects } from "../../../../redux/projects/projectsSlice";
+import { fetchAllCoinRequests } from "../../../../redux/coin_requests/coinRequestsSlice";
 
 const Analytics = () => {
   const cookies = new Cookies();
@@ -17,6 +19,8 @@ const Analytics = () => {
       dispatch(fetchAllUsers());
       dispatch(fetchAllTracks());
       dispatch(fetchAllPosts());
+      dispatch(fetchAllProjects());
+      dispatch(fetchAllCoinRequests());
     }
   }, [auth_token, dispatch]);
   return (
