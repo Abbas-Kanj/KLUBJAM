@@ -25,3 +25,12 @@ export const fetchUserGroupProjectsApi = async (userId: number) => {
     return res.data.result;
   }
 };
+
+export const fetchUserTracksApi = async (userId: number) => {
+  const res = await sendRequest("GET", `tracks/${userId}`, "");
+  if ((res.status = 200)) {
+    return res.data;
+  } else {
+    console.log("error ");
+  }
+};
