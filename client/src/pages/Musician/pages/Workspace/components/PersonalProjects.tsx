@@ -2,10 +2,7 @@ import star from "../../../../assets/Workspace/icons/star.svg";
 import circle from "../../../../assets/Workspace/icons//circle.svg";
 import Cookies from "universal-cookie";
 import { useEffect } from "react";
-import {
-  fetchUserPersonalProjects,
-  fetchUserGroupProjects,
-} from "../../../../../redux/user/userSlice";
+import { fetchUserPersonalProjects } from "../../../../../redux/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 
 const PersonalProjects = () => {
@@ -19,7 +16,6 @@ const PersonalProjects = () => {
   useEffect(() => {
     if (auth_token) {
       dispatch(fetchUserPersonalProjects());
-      dispatch(fetchUserGroupProjects());
     }
   }, [auth_token, dispatch]);
 
@@ -47,7 +43,7 @@ const PersonalProjects = () => {
           <div className="flex items-center mt-[9px] mb-[9px]">
             <img src={circle} alt="" className="mr-[6px]" />
             <h2 className="mr-[28px] font-bold text-[12px] text-greyText">
-              {project.genre}
+              {!project.genre ? "No Genre" : project.genre}
             </h2>
             <h2 className="text-[13px] text-greyText">
               {`Updated ${new Date(project.updatedAt).getHours()} hours ago`}
