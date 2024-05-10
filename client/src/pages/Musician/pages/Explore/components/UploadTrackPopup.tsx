@@ -13,14 +13,13 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
   const [error, setError] = useState("");
   const [imagePath, setImagePath] = useState<string>("");
   const [audioPath, setAudioPath] = useState<string>("");
+  const [trackName, setTrackName] = useState("");
   const [image, setImage] = useState(
     "https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
   );
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0];
-    console.log(file);
     sendTrackImage(file);
-
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -30,7 +29,6 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
 
   const handleTrackUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audio = e.target.files![0];
-    console.log(audio);
     sendTrackAudio(audio);
   };
 
@@ -38,17 +36,14 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
     const formdata = new FormData();
     formdata.append("directoryPath", `uploads/tracks/track_images`);
     formdata.append("file", file!);
-    console.log(formdata);
 
     try {
       const res = await sendRequest("POST", `/files/upload`, formdata);
       if (res) {
         const imagePath = res.data.filePath;
-        console.log("image path:", imagePath);
         setImagePath(imagePath);
       }
     } catch (error: any) {
-      console.log(error.message);
       setError(error.message);
     }
   };
@@ -58,14 +53,10 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
       const trackdata = new FormData();
       trackdata.append("directoryPath", `uploads/tracks/track_audio`);
       trackdata.append("file", audio!);
-      console.log(trackdata);
-
       const res = await sendRequest("POST", `/files/upload`, trackdata);
       const audioPath = res.data.filePath;
-      console.log("audio path:", audioPath);
       setAudioPath(audioPath);
     } catch (error: any) {
-      console.log(error.message);
       setError(error.message);
     }
   };
@@ -73,74 +64,88 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
   const createTrack = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (authToken) {
-      console.log("postdata:", audioPath);
-      console.log("postdata:", imagePath);
       try {
         const postData = {
-          track_name: "test",
-          duration: "test",
+          track_name: trackName,
+          duration: "",
           audio_url: audioPath,
           track_image: imagePath,
-          explicit: "test",
-          status: "test",
+          explicit: "",
+          status: "",
         };
-        console.log(postData);
         const res = await sendRequest("POST", `/tracks/${user?.id}`, postData);
         if ((res.status = 201)) {
-          console.log("track created");
+          setOpenUploadTrackPopup(false);
         }
       } catch (error: any) {
-        console.log(error.message);
         setError(error.message);
       }
     }
   };
 
   return (
-    <div className="flex">
-      <button onClick={createTrack}>send!</button>
-      <div className="flex flex-col w-[460px] items-center gap-[12px] p-[16px] mt-[20px]">
-        <img src={image} />
-        <input
-          id="image-upload"
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={handleImageUpload}
-        />
-        <label
-          htmlFor="image-upload"
-          className="bg-primary w-[220px] text-[16px] font-bold rounded-lg text-center p-[6px] cursor-pointer"
-        >
-          Select image to upload
-        </label>
-      </div>
-      <div className="flex flex-col w-[460px] items-center gap-[12px] p-[16px] mt-[20px]">
-        <input
-          id="audio-upload"
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={handleTrackUpload}
-        />
-        <label
-          htmlFor="audio-upload"
-          className="bg-primary w-[220px] text-[16px] font-bold rounded-lg text-center p-[6px] cursor-pointer"
-        >
-          Select track to upload
-        </label>
-      </div>
-      <div className="flex flex-col justify-between pl-[30px] border-l border-solid border-[#565656]">
-        <div className="flex items-center gap-[12px] align-center gap mt-[30px]">
-          <img
-            // src={user?.profile_picture}
-            alt=""
-            className="max-w-[40px] max-h-[40px]"
-          />
-          {/* <h5 className="text-[14px] font-medium">{user?.username}</h5> */}
+    <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
+      <form className="flex flex-col w-[784px] h-[550px] rounded-xl bg-background p-[16px]">
+        <div className="flex items-center w-full justify-between pl-[20px] pr-[20px] pt-[10px] pb-[20px] border-b border-solid border-[#565656]">
+          <p
+            className="text-red-500 font-bold cursor-pointer"
+            onClick={() => setOpenUploadTrackPopup(false)}
+          >
+            X
+          </p>
+          <h3 className="font-semibold text-[18px]">Upload new track</h3>
+          <button
+            className="font-semibold text-[16px] text-primary"
+            type="submit"
+            onClick={createTrack}
+          >
+            Upload
+          </button>
         </div>
-        {/* {error && <small className="text-red">{error}</small>} */}
-      </div>
+        <div className="flex">
+          <div className="flex flex-col h-auto w-[460px] items-center gap-[60px] p-[16px] mt-[20px]">
+            <img src={image} />
+            <input
+              id="image-upload"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleImageUpload}
+            />
+            <label
+              htmlFor="image-upload"
+              className="bg-primary w-[220px] text-[16px] font-bold rounded-lg text-center p-[6px] cursor-pointer"
+            >
+              Select image to upload
+            </label>
+          </div>
+          <div className="flex flex-col items-center mt-7 w-2/4 gap-4">
+            <input
+              type="text"
+              placeholder="Enter track name..."
+              className="border border-solid border-[#565656] bg-transparent rounded-lg p-2 w-[160px]"
+              onChange={(e) => setTrackName(e.target.value)}
+            />
+            <div className="flex flex-col w-[460px] items-center gap-[12px] p-[16px] mt-[20px]">
+              <input
+                id="audio-upload"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleTrackUpload}
+              />
+              <label
+                htmlFor="audio-upload"
+                className="bg-primary w-[220px] text-[16px] font-bold rounded-lg text-center p-[6px] cursor-pointer"
+              >
+                Select track to upload
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {error && <small className="text-red">{error}</small>}
+      </form>
     </div>
   );
 };
