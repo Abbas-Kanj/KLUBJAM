@@ -25,7 +25,7 @@ const All = () => {
         <h2 className="font-bold text-[14px] mb-[26px]">New Tracks</h2>
         <div className="flex gap-[22px]">
           {tracks?.map((track, i) => (
-            <div key={i} className="h-[162px]">
+            <div key={i} className="h-[162px] relative">
               <img
                 src={track.track_image}
                 alt=""
@@ -36,6 +36,22 @@ const All = () => {
                 <h2 className="font-medium text-[12px] text-greyText">
                   {track.user.username}
                 </h2>
+              </div>
+              <div className="absolute top-0 left-0 right-0 bottom-5 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-12 text-white bg-primary rounded-full p-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 3l14 9-14 9V3z"
+                  />
+                </svg>
               </div>
             </div>
           ))}
