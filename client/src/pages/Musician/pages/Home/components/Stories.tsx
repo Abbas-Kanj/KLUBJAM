@@ -1,41 +1,20 @@
-import defaultLogo from "../../../../assets/Home/images/Ellipse 35.svg";
+import { useAppSelector } from "../../../../../app/hooks";
 
 const Stories = () => {
+  const users = useAppSelector((state) => state.users.user);
   return (
     <div className=" ">
       <div className="flex  mt-[26px] ml-[260px] gap-[24px]">
-        <div className="flex flex-col gap-[12px]">
-          <img src={defaultLogo} alt="" className="cursor-pointer" />
-          <h2 className="font-semibold text-[10px]">01chan_sw</h2>
-        </div>
-        <div className="flex flex-col gap-[12px]">
-          <img src={defaultLogo} alt="" className="cursor-pointer" />
-          <h2 className="font-semibold text-[10px]">01chan_sw</h2>
-        </div>
-        <div className="flex flex-col gap-[12px]">
-          <img src={defaultLogo} alt="" className="cursor-pointer" />
-          <h2 className="font-semibold text-[10px]">01chan_sw</h2>
-        </div>
-        <div className="flex flex-col gap-[12px]">
-          <img src={defaultLogo} alt="" className="cursor-pointer" />
-          <h2 className="font-semibold text-[10px]">01chan_sw</h2>
-        </div>
-        <div className="flex flex-col gap-[12px]">
-          <img src={defaultLogo} alt="" className="cursor-pointer" />
-          <h2 className="font-semibold text-[10px]">01chan_sw</h2>
-        </div>
-        <div className="flex flex-col gap-[12px]">
-          <img src={defaultLogo} alt="" className="cursor-pointer" />
-          <h2 className="font-semibold text-[10px]">01chan_sw</h2>
-        </div>
-        <div className="flex flex-col gap-[12px]">
-          <img src={defaultLogo} alt="" className="cursor-pointer" />
-          <h2 className="font-semibold text-[10px]">01chan_sw</h2>
-        </div>
-        <div className="flex flex-col gap-[12px]">
-          <img src={defaultLogo} alt="" className="cursor-pointer" />
-          <h2 className="font-semibold text-[10px]">01chan_sw</h2>
-        </div>
+        {users?.map((user, i) => (
+          <div key={i} className="flex items-center flex-col gap-[12px]">
+            <img
+              src={user.profile_picture}
+              alt=""
+              className="cursor-pointer w-[44px] h-[44px] rounded-full"
+            />
+            <h2 className="font-semibold text-[10px]">{user.username}</h2>
+          </div>
+        ))}
       </div>
     </div>
   );

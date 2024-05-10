@@ -30,23 +30,20 @@ const Recommendations = () => {
     }
   };
 
-  // const getRecommendations = async () => {
-  //   try {
-  //     const headers = {
-  //       "Content-Type": "multipart/form-data",
-  //     };
-  //     const res = await sendRequest("GET", `/follows/${user?.id}`, "", headers);
-  //     if ((res.status = 200)) {
-  //       dispatch(setUserRecommendations(res.data));
-  //     }
-  //   } catch (error: any) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const getRecommendations = async () => {
+    try {
+      const res = await sendRequest("GET", `/follows/${user?.id}`, "");
+      if ((res.status = 200)) {
+        dispatch(setUserRecommendations(res.data));
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
 
-  // useEffect(() => {
-  //   getRecommendations();
-  // }, []);
+  useEffect(() => {
+    getRecommendations();
+  }, []);
 
   return (
     <div className="absolute top-0 right-0 mt-[37px] mr-[108px]">
