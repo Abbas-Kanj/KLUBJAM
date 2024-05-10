@@ -8,6 +8,7 @@ interface PostProps {
 const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
   const [error, setError] = useState("");
   const [imagePath, setImagePath] = useState<string>("");
+  const [audioPath, setAudioPath] = useState<string>("");
   const [image, setImage] = useState(
     "https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
   );
@@ -21,6 +22,12 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
     reader.onload = () => {
       setImage(reader.result as string);
     };
+  };
+
+  const handleTrackUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const audio = e.target.files![0];
+    console.log(audio);
+    sendTrackAudio(audio);
   };
 
   const sendTrackImage = async (file: any) => {
@@ -41,6 +48,24 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
       setError(error.message);
     }
   };
+
+  const sendTrackAudio = async (audio: any) => {
+    try {
+      const trackdata = new FormData();
+      trackdata.append("directoryPath", `uploads/tracks/track_audio`);
+      trackdata.append("file", audio!);
+      console.log(trackdata);
+
+      const res = await sendRequest("POST", `/files/upload`, trackdata);
+      const audioPath = res.data.filePath;
+      console.log("audio path:", audioPath);
+      setAudioPath(audioPath);
+    } catch (error: any) {
+      console.log(error.message);
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="flex">
       {/* <button onClick={createTrack}>send!</button> */}
@@ -61,13 +86,12 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
         </label>
       </div>
       <div className="flex flex-col w-[460px] items-center gap-[12px] p-[16px] mt-[20px]">
-        {/* <img src={image} /> */}
         <input
           id="audio-upload"
           type="file"
           accept="image/*"
           className="hidden"
-          //   onChange={handleTrackUpload}
+          onChange={handleTrackUpload}
         />
         <label
           htmlFor="audio-upload"
