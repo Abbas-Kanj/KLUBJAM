@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { sendRequest } from "../../../../../core/remote/request";
 
 interface PostProps {
   setOpenUploadTrackPopup: (open: boolean) => void;
 }
 
 const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
+  const [error, setError] = useState("");
   const [imagePath, setImagePath] = useState<string>("");
   const [image, setImage] = useState(
     "https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
@@ -12,13 +14,32 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0];
     console.log(file);
-    // sendTrackImage(file);
+    sendTrackImage(file);
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      //   setImage(reader.result as string);
+      setImage(reader.result as string);
     };
+  };
+
+  const sendTrackImage = async (file: any) => {
+    const formdata = new FormData();
+    formdata.append("directoryPath", `uploads/tracks/track_images`);
+    formdata.append("file", file!);
+    console.log(formdata);
+
+    try {
+      const res = await sendRequest("POST", `/files/upload`, formdata);
+      if (res) {
+        const imagePath = res.data.filePath;
+        console.log("image path:", imagePath);
+        setImagePath(imagePath);
+      }
+    } catch (error: any) {
+      console.log(error.message);
+      setError(error.message);
+    }
   };
   return (
     <div className="flex">
