@@ -1,31 +1,43 @@
 import trackImg from "../../../../assets/Explore/images/Rectangle 76-1.png";
 import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
 import artistImg from "../../../../assets/Explore/images/Ellipse 22.svg";
+import Cookies from "universal-cookie";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
+import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
 
 const All = () => {
+  const dispatch = useAppDispatch();
+  const cookies = new Cookies();
+  const auth_token = cookies.get("auth_token");
+  const tracks = useAppSelector((state) => state.track.tracks);
+
+  useEffect(() => {
+    if (auth_token) {
+      dispatch(fetchAllTracks());
+    }
+  }, [auth_token, dispatch]);
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-col mt-[26px] ml-[33px]">
         <h2 className="font-bold text-[14px] mb-[26px]">New Tracks</h2>
         <div className="flex gap-[22px]">
-          <div className="h-[162px]">
-            <img src={trackImg} alt="" className="w-[130px] h-[130px]" />
-            <div className="flex flex-col justify-start mt-[6px]">
-              <h2 className="font-medium text-[12px]">WonderWall-remix</h2>
-              <h2 className="font-medium text-[12px] text-greyText">
-                Jason Tucker
-              </h2>
+          {tracks?.map((track, i) => (
+            <div key={i} className="h-[162px]">
+              <img
+                src={track.track_image}
+                alt=""
+                className="w-[130px] h-[130px]"
+              />
+              <div className="flex flex-col justify-start mt-[6px]">
+                <h2 className="font-medium text-[12px]">{track.track_name}</h2>
+                <h2 className="font-medium text-[12px] text-greyText">
+                  {track.user.username}
+                </h2>
+              </div>
             </div>
-          </div>
-          <div className="h-[162px]">
-            <img src={trackImg} alt="" className="w-[130px] h-[130px]" />
-            <div className="flex flex-col justify-start mt-[6px]">
-              <h2 className="font-medium text-[12px]">WonderWall-remix</h2>
-              <h2 className="font-medium text-[12px] text-greyText">
-                Jason Tucker
-              </h2>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="flex flex-col mt-[60px] ml-[33px] mb-[92px]">
