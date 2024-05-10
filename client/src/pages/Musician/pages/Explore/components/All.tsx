@@ -1,20 +1,22 @@
-import trackImg from "../../../../assets/Explore/images/Rectangle 76-1.png";
 import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
 import artistImg from "../../../../assets/Explore/images/Ellipse 22.svg";
 import Cookies from "universal-cookie";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
+import { fetchAllUsers } from "../../../../../redux/users/usersSlice";
 
 const All = () => {
   const dispatch = useAppDispatch();
   const cookies = new Cookies();
   const auth_token = cookies.get("auth_token");
   const tracks = useAppSelector((state) => state.track.tracks);
+  const users = useAppSelector((state) => state.users.user);
 
   useEffect(() => {
     if (auth_token) {
       dispatch(fetchAllTracks());
+      dispatch(fetchAllUsers());
     }
   }, [auth_token, dispatch]);
 
@@ -66,16 +68,17 @@ const All = () => {
       <div className="flex flex-col ml-[33px] mb-[50px]">
         <h2 className="font-bold text-[14px] mb-[26px]">New Artists</h2>
         <div className="flex gap-[28px]">
-          <div className="flex flex-col justify-center items-center">
-            <img src={artistImg} alt="" className="h-[70px] w-[70px]" />
-            <h2 className="font-medium text-[12px]">Big munna</h2>
-            <h3 className="text-[10px] text-greyText">10 followers</h3>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <img src={artistImg} alt="" className="h-[70px] w-[70px]" />
-            <h2 className="font-medium text-[12px]">Big munna</h2>
-            <h3 className="text-[10px] text-greyText">10 followers</h3>
-          </div>
+          {users?.map((user, i) => (
+            <div key={i} className="flex flex-col justify-center items-center">
+              <img
+                src={user.profile_picture}
+                alt=""
+                className="h-[70px] w-[70px]"
+              />
+              <h2 className="font-medium text-[12px]">{user.username}</h2>
+              <h3 className="text-[10px] text-greyText">10 followers</h3>
+            </div>
+          ))}
         </div>
       </div>
     </div>
