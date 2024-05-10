@@ -1,7 +1,9 @@
 import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
-import artistImg from "../../../../assets/Explore/images/Ellipse 22.svg";
+import { useAppSelector } from "../../../../../app/hooks";
 
 const Artists = () => {
+  const users = useAppSelector((state) => state.users.user);
+
   return (
     <div className="flex flex-col justify-center items-center mt-[26px]">
       <div className="flex gap-[10px] w-fit h-[36px]">
@@ -21,56 +23,17 @@ const Artists = () => {
       </div>
       <div className="border border-solid border-greyText w-[686px] mt-[15px]"></div>
       <div className="mt-[17px] mb-[30px]  w-[1133px] flex flex-wrap gap-[22px] items-center">
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <img src={artistImg} alt="" className="h-[130px] w-[130px]" />
-          <h2 className="font-medium text-[14px]">Big munna</h2>
-          <h3 className="text-[12px] text-greyText">10 followers</h3>
-        </div>
+        {users?.map((user, i) => (
+          <div key={i} className="flex flex-col justify-center items-center">
+            <img
+              src={user.profile_picture}
+              alt=""
+              className="h-[130px] w-[130px]"
+            />
+            <h2 className="font-medium text-[14px]">{user.username}</h2>
+            <h3 className="text-[12px] text-greyText">10 followers</h3>
+          </div>
+        ))}
       </div>
     </div>
   );

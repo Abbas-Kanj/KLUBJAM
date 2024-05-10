@@ -1,5 +1,4 @@
 import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
-import artistImg from "../../../../assets/Explore/images/Ellipse 22.svg";
 import Cookies from "universal-cookie";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
