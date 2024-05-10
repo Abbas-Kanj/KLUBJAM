@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
 import { sendRequest } from "../../../../../core/remote/request";
 import { useAppSelector } from "../../../../../app/hooks";
 
@@ -11,7 +10,6 @@ interface PostProps {
 const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
   const authToken = Cookies.get("auth_token");
   const user = useAppSelector((state) => state.user.info);
-  const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [caption, setCaption] = useState("");
   const [hashtags, setHashtags] = useState("");
@@ -65,7 +63,9 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
                 `/posts/${user?.id}`,
                 postData
               );
-              setOpenPostPopup(false);
+              if ((res.status = 201)) {
+                setOpenPostPopup(false);
+              }
             } catch (error: any) {
               console.log(error.message);
               setError(error.message);

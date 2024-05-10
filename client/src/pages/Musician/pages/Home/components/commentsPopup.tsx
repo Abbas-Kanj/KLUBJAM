@@ -11,7 +11,7 @@ interface PostProps {
 }
 
 const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.info);
   const [error, setError] = useState("");
   const [newcomment, setNewComment] = useState("");
 
