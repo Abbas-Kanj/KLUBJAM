@@ -11,6 +11,7 @@ import { ChatGateway } from './chat/chat.gateway';
 import { ProjectsModule } from './projects/projects.module';
 import { PlaylistsModule } from './playlists/playlists.module';
 import { CoinRequestsModule } from './coin_requests/coinRequests.module';
+import { AlbumsModule } from './albums/albums.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CoinRequestsModule } from './coin_requests/coinRequests.module';
     TracksModule,
     ProjectsModule,
     PlaylistsModule,
+    AlbumsModule,
     CoinRequestsModule,
     AuthModule,
     FileModule,
