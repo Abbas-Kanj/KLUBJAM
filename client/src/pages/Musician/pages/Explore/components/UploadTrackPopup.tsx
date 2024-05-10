@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { sendRequest } from "../../../../../core/remote/request";
+import { useAppSelector } from "../../../../../app/hooks";
+import Cookies from "js-cookie";
 
 interface PostProps {
   setOpenUploadTrackPopup: (open: boolean) => void;
 }
 
 const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
+  const authToken = Cookies.get("auth_token");
+  const user = useAppSelector((state) => state.user.info);
   const [error, setError] = useState("");
   const [imagePath, setImagePath] = useState<string>("");
   const [audioPath, setAudioPath] = useState<string>("");
@@ -66,9 +70,35 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
     }
   };
 
+  const createTrack = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (authToken) {
+      console.log("postdata:", audioPath);
+      console.log("postdata:", imagePath);
+      try {
+        const postData = {
+          track_name: "test",
+          duration: "test",
+          audio_url: audioPath,
+          track_image: imagePath,
+          explicit: "test",
+          status: "test",
+        };
+        console.log(postData);
+        const res = await sendRequest("POST", `/tracks/${user?.id}`, postData);
+        if ((res.status = 201)) {
+          console.log("track created");
+        }
+      } catch (error: any) {
+        console.log(error.message);
+        setError(error.message);
+      }
+    }
+  };
+
   return (
     <div className="flex">
-      {/* <button onClick={createTrack}>send!</button> */}
+      <button onClick={createTrack}>send!</button>
       <div className="flex flex-col w-[460px] items-center gap-[12px] p-[16px] mt-[20px]">
         <img src={image} />
         <input
