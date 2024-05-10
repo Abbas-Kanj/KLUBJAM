@@ -1,10 +1,19 @@
 import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
 import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
 import note from "../../../../assets/Workspace/icons/note-02.svg";
+import { useState } from "react";
+import UploadTrackPopup from "./UploadTrackPopup";
 
 const Tracks = () => {
+  const [openUploadTrackPopup, setOpenUploadTrackPopup] = useState(false);
+
   return (
     <div className="flex flex-col justify-center items-center mt-[26px]">
+      {openUploadTrackPopup && (
+        <UploadTrackPopup
+          setOpenUploadTrackPopup={setOpenUploadTrackPopup}
+        ></UploadTrackPopup>
+      )}
       <div className="flex gap-[10px] w-fit h-[36px]">
         <input
           type="text"
@@ -20,7 +29,13 @@ const Tracks = () => {
           <img src={downArrow} alt="" />
         </div>
         <div className="flex items-center justify-center w-[90px] h-[36px] bg-primary rounded cursor-pointer pt-[6px] pb-[6px] pl-[15px] pr-[15px] gap-[2px] hover:opacity-70">
-          <img src={note} alt="" />
+          <img
+            src={note}
+            alt=""
+            onClick={() => {
+              setOpenUploadTrackPopup(true);
+            }}
+          />
           <h2 className="font-bold text-[14px]">Upload</h2>
         </div>
       </div>
