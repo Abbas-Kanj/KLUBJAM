@@ -1,18 +1,22 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { generateToken, messaging } from "./firebase.ts";
 import { onMessage } from "firebase/messaging";
-
+import toast, { Toaster } from "react-hot-toast";
 const FirebaseNotifications = () => {
   useEffect(() => {
     generateToken();
     onMessage(messaging, (payload) => {
       console.log(payload);
+      toast(payload.notification?.body!);
     });
   }, []);
   return (
-    <div className="flex justify-center items-center">
-      <h1 className="text-black">hello notifications</h1>
-    </div>
+    <>
+      <Toaster></Toaster>
+      <div className="flex justify-center items-center">
+        <h1 className="text-black">hello notifications</h1>
+      </div>
+    </>
   );
 };
 
