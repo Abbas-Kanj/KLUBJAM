@@ -1,19 +1,36 @@
+import { useState } from "react";
+
 interface PostProps {
   setOpenUploadTrackPopup: (open: boolean) => void;
 }
 
 const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
+  const [imagePath, setImagePath] = useState<string>("");
+  const [image, setImage] = useState(
+    "https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+  );
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files![0];
+    console.log(file);
+    // sendTrackImage(file);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      //   setImage(reader.result as string);
+    };
+  };
   return (
     <div className="flex">
       {/* <button onClick={createTrack}>send!</button> */}
       <div className="flex flex-col w-[460px] items-center gap-[12px] p-[16px] mt-[20px]">
-        {/* <img src={image} /> */}
+        <img src={image} />
         <input
           id="image-upload"
           type="file"
           accept="image/*"
           className="hidden"
-          //   onChange={handleImageUpload}
+          onChange={handleImageUpload}
         />
         <label
           htmlFor="image-upload"
