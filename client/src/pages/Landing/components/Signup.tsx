@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import sigunImg from "../../assets/Auth/Rectangle 36 (1).png";
 import { sendRequest } from "../../../core/remote/request";
+import toast from "react-hot-toast";
 
 interface SignUpProps {
   setOpenSignupPopup: (open: boolean) => void;
@@ -43,10 +44,9 @@ const Signup: React.FC<SignUpProps> = ({
       try {
         const res = await sendRequest("POST", "auth/register", data);
         if (res.status === 200) {
-          console.log("success register");
+          toast.success("Account created successfully!");
         }
       } catch (error: any) {
-        console.log(error.message);
         setError(error.message);
       }
     }

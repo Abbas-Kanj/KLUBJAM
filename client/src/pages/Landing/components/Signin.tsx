@@ -6,6 +6,7 @@ import { setUser } from "../../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
+import toast from "react-hot-toast";
 
 interface DecodedToken {
   role: number;
@@ -47,6 +48,7 @@ const SignIn: React.FC<SignInProps> = ({
       try {
         const res = await sendRequest("POST", "auth/login", data);
         if (res.status === 200) {
+          toast("Welcome Jammer!");
           const userData = res.data.result.user;
           dispatch(setUser(userData));
 

@@ -9,14 +9,31 @@ import { PersistGate } from "redux-persist/integration/react";
 import ProtectedAdmin from "../core/routes/ProtectedAdmin";
 import ProtectedModerator from "../core/routes/ProtectedModerator";
 import ProtectedUser from "../core/routes/ProtectedUser";
+import MessagesInterface from "../Messages/MessagesInterface";
+import FirebaseNotifications from "../notifications/FirebaseNotifications";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <Toaster
+          toastOptions={{
+            style: {
+              padding: "16px",
+              color: "#ffffff",
+              background: "#0FACFD",
+            },
+          }}
+        ></Toaster>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Landing />}></Route>
+            <Route
+              path="/MessagesInterface"
+              element={<MessagesInterface />}
+            ></Route>
+            <Route path="/Landing" element={<Landing />}></Route>
+            <Route path="/" element={<FirebaseNotifications />}></Route>
             <Route element={<ProtectedUser />}>
               <Route path="/Musician/*" element={<Musician />} />
             </Route>
