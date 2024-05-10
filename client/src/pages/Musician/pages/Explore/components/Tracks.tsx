@@ -1,5 +1,6 @@
 import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
 import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
+import note from "../../../../assets/Workspace/icons/note-02.svg";
 
 const Tracks = () => {
   return (
@@ -18,8 +19,12 @@ const Tracks = () => {
           <h2 className="font-bold text-[14px] text-greyText">Sort</h2>
           <img src={downArrow} alt="" />
         </div>
+        <div className="flex items-center justify-center w-[90px] h-[36px] bg-primary rounded cursor-pointer pt-[6px] pb-[6px] pl-[15px] pr-[15px] gap-[2px] hover:opacity-70">
+          <img src={note} alt="" />
+          <h2 className="font-bold text-[14px]">Upload</h2>
+        </div>
       </div>
-      <div className="border border-solid border-greyText w-[686px] mt-[15px]"></div>
+      <div className="border border-solid border-greyText w-[786px] mt-[15px]"></div>
       <div className="mt-[17px] mb-[30px]  w-[1133px] flex flex-wrap gap-[22px] items-center">
         <div className="w-[209px] h-[241px] flex flex-col justify-start">
           <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
