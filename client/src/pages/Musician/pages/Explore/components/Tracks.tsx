@@ -1,11 +1,24 @@
 import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
 import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
 import note from "../../../../assets/Workspace/icons/note-02.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UploadTrackPopup from "./UploadTrackPopup";
+import Cookies from "universal-cookie";
+import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
+import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
 
 const Tracks = () => {
   const [openUploadTrackPopup, setOpenUploadTrackPopup] = useState(false);
+  const dispatch = useAppDispatch();
+  const cookies = new Cookies();
+  const auth_token = cookies.get("auth_token");
+  const tracks = useAppSelector((state) => state.track.tracks);
+
+  useEffect(() => {
+    if (auth_token) {
+      dispatch(fetchAllTracks());
+    }
+  }, [auth_token, dispatch]);
 
   return (
     <div className="flex flex-col justify-center items-center mt-[26px]">
@@ -41,46 +54,24 @@ const Tracks = () => {
       </div>
       <div className="border border-solid border-greyText w-[786px] mt-[15px]"></div>
       <div className="mt-[17px] mb-[30px]  w-[1133px] flex flex-wrap gap-[22px] items-center">
-        <div className="w-[209px] h-[241px] flex flex-col justify-start">
-          <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
-          <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-          <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-        </div>
-        <div className="w-[209px] h-[241px] flex flex-col justify-start">
-          <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
-          <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-          <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-        </div>
-        <div className="w-[209px] h-[241px] flex flex-col justify-start">
-          <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
-          <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-          <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-        </div>
-        <div className="w-[209px] h-[241px] flex flex-col justify-start">
-          <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
-          <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-          <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-        </div>
-        <div className="w-[209px] h-[241px] flex flex-col justify-start">
-          <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
-          <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-          <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-        </div>
-        <div className="w-[209px] h-[241px] flex flex-col justify-start">
-          <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
-          <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-          <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-        </div>
-        <div className="w-[209px] h-[241px] flex flex-col justify-start">
-          <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
-          <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-          <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-        </div>
-        <div className="w-[209px] h-[241px] flex flex-col justify-start">
-          <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
-          <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-          <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-        </div>
+        {tracks?.map((track, i) => (
+          <div
+            key={i}
+            className="w-[209px] h-[241px] flex flex-col justify-start"
+          >
+            <img
+              src={track.track_image}
+              alt=""
+              className="w-[209px] h-[209px]"
+            />
+            <h2 className="font-medium text-[12px] mt-[6px]">
+              {track.track_name}
+            </h2>
+            <h2 className="font-medium text-[12px] text-greyText">
+              {track.user.username}
+            </h2>
+          </div>
+        ))}
       </div>
     </div>
   );
