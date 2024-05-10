@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.16",
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
+    "firebase": "^10.11.1",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "nexusui": "^2.1.6",
