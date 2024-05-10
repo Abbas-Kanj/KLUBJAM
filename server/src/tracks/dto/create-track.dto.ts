@@ -12,5 +12,6 @@ export class CreateTrackDto {
   @IsNotEmpty()
   explicit: string;
   status: string;
+  @IsOptional()
   album_id: number;
 }

@@ -8,7 +8,11 @@ export class CommentsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAllComments(): Promise<Comments[]> {
-    return this.prisma.comments.findMany();
+    return this.prisma.comments.findMany({
+      include: {
+        user: true,
+      },
+    });
   }
   async createComment(
     createCommentDto: CreateCommentDto,
