@@ -11,7 +11,7 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
   setOpenCreateProjectPopup,
 }) => {
   const authToken = Cookies.get("auth_token");
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.info);
 
   const [error, setError] = useState("");
   const [projectName, setProjectName] = useState("");

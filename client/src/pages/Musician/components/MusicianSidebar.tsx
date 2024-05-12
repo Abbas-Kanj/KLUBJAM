@@ -35,7 +35,7 @@ const MusicianSidebar = () => {
   };
 
   return (
-    <div className="flex flex-col w-[220px] h-[671px] bg-background">
+    <div className="flex flex-col w-[220px] h-auto bg-background">
       <div className="flex mt-[38px] ml-[14px] gap-[19px]">
         <img src={Logo} alt="" />
         <h1 className="font-semibold text-[22px]">KLUBJAM</h1>

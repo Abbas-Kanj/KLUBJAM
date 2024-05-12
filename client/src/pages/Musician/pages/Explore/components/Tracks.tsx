@@ -60,7 +60,7 @@ const Tracks = () => {
             className="w-[209px] h-[241px] flex flex-col justify-start relative"
           >
             <img
-              src={track.track_image}
+              src={`http://127.0.0.1:3000${track.track_image}`}
               alt=""
               className="w-[209px] h-[209px]"
             />
