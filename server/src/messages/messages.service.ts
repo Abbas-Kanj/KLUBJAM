@@ -21,6 +21,6 @@ export class MessagesService {
   }
 
   findAll() {
-    return `This action returns all messages`;
+    return this.messages;
   }
 }
