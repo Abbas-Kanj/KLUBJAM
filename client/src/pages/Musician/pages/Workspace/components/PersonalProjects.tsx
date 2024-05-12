@@ -1,17 +1,26 @@
 import star from "../../../../assets/Workspace/icons/star.svg";
 import circle from "../../../../assets/Workspace/icons//circle.svg";
 import Cookies from "universal-cookie";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchUserPersonalProjects } from "../../../../../redux/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
+import PersonalProjectPopup from "./PersonalProjectPopup";
 
 const PersonalProjects = () => {
   const cookies = new Cookies();
+  const [openPersonalProjectPopup, setOpenPersonalProjectPopup] =
+    useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const auth_token = cookies.get("auth_token");
   const dispatch = useAppDispatch();
   const personalProjects = useAppSelector(
     (state) => state.user.projects.personal
   );
+
+  const openProjectPopup = (project: any) => {
+    setSelectedProject(project);
+    setOpenPersonalProjectPopup(true);
+  };
 
   useEffect(() => {
     if (auth_token) {
@@ -21,9 +30,19 @@ const PersonalProjects = () => {
 
   return (
     <div className="flex flex-col justify-center items-center mb-[50px]">
+      {openPersonalProjectPopup && (
+        <PersonalProjectPopup
+          project={selectedProject}
+          setOpenPersonalProjectPopup={setOpenPersonalProjectPopup}
+        ></PersonalProjectPopup>
+      )}
       <div className="border border-solid border-greyText w-[776px] mt-[15px]"></div>
       {personalProjects.map((project, i) => (
-        <div key={i} className="flex flex-col mt-[18px]">
+        <div
+          key={i}
+          className="flex flex-col mt-[18px]"
+          onClick={() => openProjectPopup(project)}
+        >
           <div className="flex justify-between items-center">
             <div className=" text-center items-center flex gap-[14px]">
               <h1 className="font-bold text-[20px] text-primary">
