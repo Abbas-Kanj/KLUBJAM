@@ -1,15 +1,23 @@
 import star from "../../../../assets/Workspace/icons/star.svg";
 import circle from "../../../../assets/Workspace/icons//circle.svg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { fetchUserGroupProjects } from "../../../../../redux/user/userSlice";
 import Cookies from "universal-cookie";
+import GroupProjectPopup from "./GroupProjectPopup";
 
 const GroupProjects = () => {
   const cookies = new Cookies();
+  const [openGroupProjectPopup, setOpenGroupProjectPopup] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const auth_token = cookies.get("auth_token");
   const dispatch = useAppDispatch();
   const groupProjects = useAppSelector((state) => state.user.projects.group);
+
+  const openProjectPopup = (project: any) => {
+    setSelectedProject(project);
+    setOpenGroupProjectPopup(true);
+  };
 
   useEffect(() => {
     if (auth_token) {
@@ -18,10 +26,19 @@ const GroupProjects = () => {
   }, [auth_token, dispatch]);
   return (
     <div className="flex flex-col justify-center items-center mb-[50px]">
+      {openGroupProjectPopup && (
+        <GroupProjectPopup
+          project={selectedProject}
+          setOpenGroupProjectPopup={setOpenGroupProjectPopup}
+        ></GroupProjectPopup>
+      )}
       <div className="border border-solid border-greyText w-[776px] mt-[15px]"></div>
       {groupProjects.map((project, i) => (
         <div key={i} className="flex flex-col mt-[18px]">
-          <div className="flex justify-between items-center">
+          <div
+            className="flex justify-between items-center"
+            onClick={() => openProjectPopup(project)}
+          >
             <div className=" text-center items-center flex gap-[14px]">
               <h1 className="font-bold text-[20px] text-primary">
                 {project.project_name}
