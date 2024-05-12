@@ -6,16 +6,26 @@ import { Message } from './entities/message.entity';
 export class MessagesService {
   messages: Message[] = [{ name: 'marius', text: 'hey' }];
   clientToUser = {};
+
   identify(name: string, clientId: string) {
     this.clientToUser[clientId] = name;
+    console.log(this.clientToUser);
+
     return Object.values(this.clientToUser);
   }
+
   getClientName(clientId: string) {
     return this.clientToUser[clientId];
   }
 
-  create(createMessageDto: CreateMessageDto) {
-    const message = { ...createMessageDto };
+  create(createMessageDto: CreateMessageDto, clientId: string) {
+    console.log('clientid:', this.clientToUser[clientId]);
+
+    const message = {
+      name: this.clientToUser[clientId],
+      text: createMessageDto.text,
+    };
+    console.log(message);
     this.messages.push(message);
     return message;
   }
