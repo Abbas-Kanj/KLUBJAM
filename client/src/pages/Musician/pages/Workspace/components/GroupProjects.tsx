@@ -34,11 +34,12 @@ const GroupProjects = () => {
       )}
       <div className="border border-solid border-greyText w-[776px] mt-[15px]"></div>
       {groupProjects.map((project, i) => (
-        <div key={i} className="flex flex-col mt-[18px]">
-          <div
-            className="flex justify-between items-center"
-            onClick={() => openProjectPopup(project)}
-          >
+        <div
+          key={i}
+          className="flex flex-col mt-[18px] cursor-pointer transition duration-300 ease-in-out hover:opacity-50"
+          onClick={() => openProjectPopup(project)}
+        >
+          <div className="flex justify-between items-center">
             <div className=" text-center items-center flex gap-[14px]">
               <h1 className="font-bold text-[20px] text-primary">
                 {project.project_name}

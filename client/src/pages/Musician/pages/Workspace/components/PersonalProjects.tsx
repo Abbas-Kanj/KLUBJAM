@@ -40,7 +40,7 @@ const PersonalProjects = () => {
       {personalProjects.map((project, i) => (
         <div
           key={i}
-          className="flex flex-col mt-[18px]"
+          className="flex flex-col mt-[18px] cursor-pointer transition duration-300 ease-in-out hover:opacity-50"
           onClick={() => openProjectPopup(project)}
         >
           <div className="flex justify-between items-center">
