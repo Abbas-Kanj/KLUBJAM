@@ -7,11 +7,11 @@ import { CommentsModule } from './comments/comments.module';
 import { LikesModule } from './likes/likes.module';
 import { FollowsModule } from './follows/follows.module';
 import { TracksModule } from './tracks/tracks.module';
-import { ChatGateway } from './chat/chat.gateway';
 import { ProjectsModule } from './projects/projects.module';
 import { PlaylistsModule } from './playlists/playlists.module';
 import { CoinRequestsModule } from './coin_requests/coinRequests.module';
 import { AlbumsModule } from './albums/albums.module';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -27,8 +27,9 @@ import { AlbumsModule } from './albums/albums.module';
     CoinRequestsModule,
     AuthModule,
     FileModule,
+    MessagesModule,
   ],
   controllers: [],
-  providers: [ChatGateway],
+  providers: [],
 })
 export class AppModule {}
