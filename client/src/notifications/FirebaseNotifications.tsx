@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { generateToken, messaging } from "./firebase.ts";
 import { onMessage } from "firebase/messaging";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 const FirebaseNotifications = () => {
   useEffect(() => {
     generateToken();
@@ -12,7 +12,6 @@ const FirebaseNotifications = () => {
   }, []);
   return (
     <>
-      <Toaster></Toaster>
       <div className="flex justify-center items-center">
         <h1 className="text-black">hello notifications</h1>
       </div>

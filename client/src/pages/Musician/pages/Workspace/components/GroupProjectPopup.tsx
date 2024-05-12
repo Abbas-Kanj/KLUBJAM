@@ -20,7 +20,7 @@ const GroupProjectPopup: React.FC<ProjectProps> = ({
           >
             X
           </p>
-          <p className="w-[146px] rounded-xl text-primary bg-background font-bold text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center cursor-pointer hover:opacity-50 mt-[10px] mr-[20px]">
+          <p className="w-[146px] rounded-xl text-primary bg-background font-bold text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center cursor-pointer hover:opacity-50 mt-[10px]">
             Produce
           </p>
         </div>

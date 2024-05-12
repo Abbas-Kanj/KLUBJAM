@@ -43,7 +43,7 @@ const Posts = () => {
         `/likes/${post!.id}/${user?.id}`,
         ""
       );
-      if ((res.status = 200)) {
+      if (res.status == 200) {
         console.log("like created");
       }
     } catch (error: any) {
@@ -58,7 +58,7 @@ const Posts = () => {
         `/likes/${post!.id}/${user?.id}`,
         ""
       );
-      if ((res.status = 200)) {
+      if (res.status == 200) {
         console.log("like created");
       }
     } catch (error: any) {

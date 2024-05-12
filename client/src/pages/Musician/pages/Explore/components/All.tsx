@@ -27,7 +27,7 @@ const All = () => {
           {tracks?.map((track, i) => (
             <div key={i} className="h-[162px] relative">
               <img
-                src={track.track_image}
+                src={`http://127.0.0.1:3000${track.track_image}`}
                 alt=""
                 className="w-[130px] h-[130px]"
               />
