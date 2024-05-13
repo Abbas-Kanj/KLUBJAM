@@ -56,7 +56,35 @@ const Production = () => {
         </div>
         <div className="flex mt-[9px] gap-[6px]">
           <div className="w-[187px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary"></div>
-          <div className="w-[156px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary"></div>
+          <div className="w-[156px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary p-[9px] flex flex-col gap-1">
+            <div className="relative h-[64px] bg-green-950 rounded-md">
+              <p className="absolute top-0 left-1">Bass</p>
+            </div>
+            <div className="relative h-[64px] bg-green-950 rounded-md">
+              <p className="absolute top-0 left-1">Bass</p>
+            </div>
+            <div className="relative h-[64px] bg-green-950 rounded-md">
+              <p className="absolute top-0 left-1">Bass</p>
+            </div>
+            <div className="relative h-[64px] bg-green-950 rounded-md">
+              <p className="absolute top-0 left-1">Bass</p>
+            </div>
+            <div className="relative h-[64px] bg-green-950 rounded-md">
+              <p className="absolute top-0 left-1">Bass</p>
+            </div>
+            <div className="relative h-[64px] bg-green-950 rounded-md">
+              <p className="absolute top-0 left-1">Bass</p>
+            </div>
+            <div className="relative h-[64px] bg-green-950 rounded-md">
+              <p className="absolute top-0 left-1">Bass</p>
+            </div>
+            <div className="relative h-[64px] bg-green-950 rounded-md">
+              <p className="absolute top-0 left-1">Bass</p>
+            </div>
+            <div className="relative h-[64px] bg-green-950 rounded-md">
+              <p className="absolute top-0 left-1">Bass</p>
+            </div>
+          </div>
           <div className="w-[854px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary p-[6px]">
             <div className="flex">
               <div className="relative border border-primary border-solid w-[84px] h-[40px]">
@@ -90,7 +118,11 @@ const Production = () => {
                 <p className="absolute top-0 left-1">10</p>
               </div>
             </div>
-            <div></div>
+            <div className="mt-[10px]">
+              <div className="border border-dashed border-primary flex items-center justify-center h-[66px]">
+                <h2>Drag a blob file</h2>
+              </div>
+            </div>
           </div>
           <div className="flex flex-col gap-2">
             <div className="w-[270px] h-[240px] border-[2px] border-solid rounded-[5px] border-primary"></div>
