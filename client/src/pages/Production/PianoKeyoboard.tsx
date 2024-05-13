@@ -27,46 +27,91 @@ const PianoKeyboard: React.FC<PianoProps> = ({ setOpenPianoKeyboard }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
+      <p
+        className=" font-bold text-[20px] cursor-pointer top-4 right-4 absolute"
+        onClick={() => setOpenPianoKeyboard(false)}
+      >
+        X
+      </p>
       <div className="flex flex-col w-[1000px] h-[650px] rounded-xl bg-background">
-        <div className="piano">
-          <div className="white-key" onClick={playC4}>
-            A
+        <div className="flex justify-center flex-col p-4">
+          <div
+            className="w-[180px] bg-neutral-300 text-black text-right p-1"
+            onClick={playC4}
+          >
+            C4
           </div>
-          <div className="black-key" onClick={playDb4}>
-            W
+          <div
+            className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
+            onClick={playDb4}
+          >
+            Db4
           </div>
-          <div className="white-key" onClick={playD4}>
-            S
+          <div
+            className="w-[180px] bg-neutral-300 text-black text-right p-1"
+            onClick={playD4}
+          >
+            D4
           </div>
-          <div className="black-key" onClick={playEb4}>
-            E
+          <div
+            className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
+            onClick={playEb4}
+          >
+            Eb4
           </div>
-          <div className="white-key" onClick={playE4}>
-            D
+          <div
+            className="w-[180px] bg-neutral-300 text-black text-right p-1"
+            onClick={playE4}
+          >
+            E4
           </div>
-          <div className="white-key" onClick={playF4}>
-            F
+          <div
+            className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
+            onClick={playF4}
+          >
+            F4
           </div>
-          <div className="black-key" onClick={playGb4}>
-            T
+          <div
+            className="w-[180px] bg-neutral-300 text-black text-right p-1"
+            onClick={playGb4}
+          >
+            Gb4
           </div>
-          <div className="white-key" onClick={playG4}>
-            G
+          <div
+            className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
+            onClick={playG4}
+          >
+            G4
           </div>
-          <div className="black-key" onClick={playAb4}>
-            Y
+          <div
+            className="w-[180px] bg-neutral-300 text-black text-right p-1"
+            onClick={playAb4}
+          >
+            Ab4
           </div>
-          <div className="white-key" onClick={playA4}>
-            H
+          <div
+            className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
+            onClick={playA4}
+          >
+            A4
           </div>
-          <div className="black-key" onClick={playBb4}>
-            U
+          <div
+            className="w-[180px] bg-neutral-300 text-black text-right p-1"
+            onClick={playBb4}
+          >
+            Bb4
           </div>
-          <div className="white-key" onClick={playB4}>
-            J
+          <div
+            className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
+            onClick={playB4}
+          >
+            B4
           </div>
-          <div className="white-key" onClick={playC5}>
-            K
+          <div
+            className="w-[180px] bg-neutral-300 text-black text-right p-1"
+            onClick={playC5}
+          >
+            C5
           </div>
         </div>
       </div>
