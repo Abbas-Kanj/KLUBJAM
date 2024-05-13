@@ -57,7 +57,41 @@ const Production = () => {
         <div className="flex mt-[9px] gap-[6px]">
           <div className="w-[187px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary"></div>
           <div className="w-[156px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary"></div>
-          <div className="w-[854px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary"></div>
+          <div className="w-[854px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary p-[6px]">
+            <div className="flex">
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">1</p>
+              </div>
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">2</p>
+              </div>
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">3</p>
+              </div>
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">4</p>
+              </div>
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">5</p>
+              </div>
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">6</p>
+              </div>
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">7</p>
+              </div>
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">8</p>
+              </div>
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">9</p>
+              </div>
+              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+                <p className="absolute top-0 left-1">10</p>
+              </div>
+            </div>
+            <div></div>
+          </div>
           <div className="flex flex-col gap-2">
             <div className="w-[270px] h-[240px] border-[2px] border-solid rounded-[5px] border-primary"></div>
             <div className="w-[270px] h-[370px] border-[2px] border-solid rounded-[5px] border-primary flex flex-col justify-between">
