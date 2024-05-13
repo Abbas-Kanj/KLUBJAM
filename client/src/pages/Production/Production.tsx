@@ -55,7 +55,12 @@ const Production = () => {
           </div>
         </div>
         <div className="flex mt-[9px] gap-[6px]">
-          <div className="w-[187px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary"></div>
+          <div className="w-[187px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary flex flex-col gap-1 pl-[14px] pt-[14px]">
+            <h2>Piano</h2>
+            <h2>Guitar</h2>
+            <h2>Beats</h2>
+            <h2>presets</h2>
+          </div>
           <div className="w-[156px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary p-[9px] flex flex-col gap-1">
             <div className="relative h-[64px] bg-green-950 rounded-md">
               <p className="absolute top-0 left-1">Bass</p>
