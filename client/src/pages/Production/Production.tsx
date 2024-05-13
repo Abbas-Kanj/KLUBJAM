@@ -10,10 +10,19 @@ import settings from "./assets/icons/settings (1).svg";
 import download from "./assets/icons/download-02.svg";
 import elipse from "./assets/icons/Ellipse 41.svg";
 import circle from "../assets/Workspace/icons/circle.svg";
+import { useState } from "react";
+import PianoKeyboard from "./PianoKeyoboard";
 
 const Production = () => {
+  const [openPianoKeyboard, setOpenPianoKeyboard] = useState(false);
+
   return (
     <div className="flex justify-center bg-background w-screen h-screen px-[12px] py-[20px]">
+      {openPianoKeyboard && (
+        <PianoKeyboard
+          setOpenPianoKeyboard={setOpenPianoKeyboard}
+        ></PianoKeyboard>
+      )}
       <div>
         <div className="flex gap-[10px]">
           <div className="w-[1210px] h-[75px] border-[2px] border-solid rounded-[5px] border-primary flex items-center justify-between px-[18px]">
@@ -57,7 +66,12 @@ const Production = () => {
         </div>
         <div className="flex mt-[9px] gap-[6px]">
           <div className="w-[187px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary flex flex-col gap-1 pl-[14px] pt-[14px]">
-            <h2>Piano</h2>
+            <h2
+              className="cursor-pointer"
+              onClick={() => setOpenPianoKeyboard(true)}
+            >
+              Piano
+            </h2>
             <h2>Guitar</h2>
             <h2>Beats</h2>
             <h2>presets</h2>
