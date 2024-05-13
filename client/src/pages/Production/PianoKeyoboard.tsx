@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   playC4,
   playDb4,
@@ -24,6 +25,50 @@ const PianoKeyboard: React.FC<PianoProps> = ({ setOpenPianoKeyboard }) => {
     playNote(event);
   });
 
+  const [draggableNote, setDraggableNote] = useState("");
+
+  const handleNoteDragStart = (note: string) => {
+    setDraggableNote(note);
+  };
+
+  const handleNoteDragEnd = async (note: string) => {
+    if (draggableNote !== note) {
+      try {
+        console.log("Moved note:", note);
+        // Logic to move the note
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("Change container");
+    }
+    setDraggableNote("");
+  };
+
+  const handleNoteDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const container = event.target as HTMLDivElement;
+
+    // Create a new div element for the note
+    const noteElement = document.createElement("div");
+    noteElement.textContent = draggableNote;
+    noteElement.id = draggableNote;
+    noteElement.draggable = true;
+    noteElement.addEventListener("dragstart", () =>
+      handleNoteDragStart(draggableNote)
+    );
+    noteElement.addEventListener("dragend", () =>
+      handleNoteDragEnd(draggableNote)
+    );
+
+    // Append the note element to the container
+    container.appendChild(noteElement);
+  };
+
+  const allowDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <p
@@ -37,6 +82,9 @@ const PianoKeyboard: React.FC<PianoProps> = ({ setOpenPianoKeyboard }) => {
           <div
             className="w-[180px] bg-neutral-300 text-black text-right p-1"
             onClick={playC4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("C4")}
+            onDragEnd={() => handleNoteDragEnd("C4")}
           >
             C4
           </div>
@@ -114,84 +162,15 @@ const PianoKeyboard: React.FC<PianoProps> = ({ setOpenPianoKeyboard }) => {
           </div>
         </div>
         <div>
-          <div className="border border-dashed border-primary flex items-center h-[326px] w-[770px] p-1">
-            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1">
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-            </div>
-            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1">
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-            </div>
-            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1">
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-            </div>
-            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1">
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-            </div>
-            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1">
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-            </div>
-            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1">
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-            </div>
-            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1">
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-              <div className="border border-dashed border-primary h-[30px] w-[90px]"></div>
-            </div>
+          <div
+            className="border border-dashed border-primary flex items-center h-[326px] w-[770px] p-1 gap-1"
+            onDrop={(e) => handleNoteDrop(e)}
+            onDragOver={(e) => allowDrop(e)}
+          >
+            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
+            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
+            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
+            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
           </div>
         </div>
       </div>
