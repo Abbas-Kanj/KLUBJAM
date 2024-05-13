@@ -49,7 +49,6 @@ const PianoKeyboard: React.FC<PianoProps> = ({ setOpenPianoKeyboard }) => {
     event.preventDefault();
     const container = event.target as HTMLDivElement;
 
-    // Create a new div element for the note
     const noteElement = document.createElement("div");
     noteElement.textContent = draggableNote;
     noteElement.id = draggableNote;
@@ -60,8 +59,6 @@ const PianoKeyboard: React.FC<PianoProps> = ({ setOpenPianoKeyboard }) => {
     noteElement.addEventListener("dragend", () =>
       handleNoteDragEnd(draggableNote)
     );
-
-    // Append the note element to the container
     container.appendChild(noteElement);
   };
 
@@ -91,72 +88,108 @@ const PianoKeyboard: React.FC<PianoProps> = ({ setOpenPianoKeyboard }) => {
           <div
             className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
             onClick={playDb4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("Db4")}
+            onDragEnd={() => handleNoteDragEnd("Db4")}
           >
             Db4
           </div>
           <div
             className="w-[180px] bg-neutral-300 text-black text-right p-1"
             onClick={playD4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("D4")}
+            onDragEnd={() => handleNoteDragEnd("D4")}
           >
             D4
           </div>
           <div
             className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
             onClick={playEb4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("Eb4")}
+            onDragEnd={() => handleNoteDragEnd("Eb4")}
           >
             Eb4
           </div>
           <div
             className="w-[180px] bg-neutral-300 text-black text-right p-1"
             onClick={playE4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("E4")}
+            onDragEnd={() => handleNoteDragEnd("E4")}
           >
             E4
           </div>
           <div
             className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
             onClick={playF4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("F4")}
+            onDragEnd={() => handleNoteDragEnd("F4")}
           >
             F4
           </div>
           <div
             className="w-[180px] bg-neutral-300 text-black text-right p-1"
             onClick={playGb4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("Gb4")}
+            onDragEnd={() => handleNoteDragEnd("Gb4")}
           >
             Gb4
           </div>
           <div
             className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
             onClick={playG4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("G4")}
+            onDragEnd={() => handleNoteDragEnd("G4")}
           >
             G4
           </div>
           <div
             className="w-[180px] bg-neutral-300 text-black text-right p-1"
             onClick={playAb4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("Ab4")}
+            onDragEnd={() => handleNoteDragEnd("Ab4")}
           >
             Ab4
           </div>
           <div
             className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
             onClick={playA4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("A4")}
+            onDragEnd={() => handleNoteDragEnd("A4")}
           >
             A4
           </div>
           <div
             className="w-[180px] bg-neutral-300 text-black text-right p-1"
             onClick={playBb4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("Bb4")}
+            onDragEnd={() => handleNoteDragEnd("Bb4")}
           >
             Bb4
           </div>
           <div
             className="text-white bg-black w-[120px] z-10 mr-[-10px] ml-[-1px] mt-[-10px] mb-[-5px] p-1"
             onClick={playB4}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("B4")}
+            onDragEnd={() => handleNoteDragEnd("B4")}
           >
             B4
           </div>
           <div
             className="w-[180px] bg-neutral-300 text-black text-right p-1"
             onClick={playC5}
+            draggable="true"
+            onDragStart={() => handleNoteDragStart("C5")}
+            onDragEnd={() => handleNoteDragEnd("C5")}
           >
             C5
           </div>
