@@ -196,10 +196,13 @@ const PianoKeyboard: React.FC<PianoProps> = ({ setOpenPianoKeyboard }) => {
         </div>
         <div>
           <div
-            className="border border-dashed border-primary flex items-center h-[326px] w-[770px] p-1 gap-1"
+            className="border border-dashed border-primary flex items-center h-[326px] w-[730px] p-1 gap-1"
             onDrop={(e) => handleNoteDrop(e)}
             onDragOver={(e) => allowDrop(e)}
           >
+            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
+            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
+            <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
             <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
             <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
             <div className="border border-dashed border-primary flex flex-col p-1 h-[320px] w-[100px] justify-start items-start gap-1"></div>
