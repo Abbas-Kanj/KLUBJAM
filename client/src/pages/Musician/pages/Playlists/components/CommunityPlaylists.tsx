@@ -3,13 +3,17 @@ import Cookies from "universal-cookie";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { useEffect } from "react";
 import { fetchAllPlaylists } from "../../../../../redux/playlists/playlistsSlice";
+import { setCurrPlaying } from "../../../../../redux/music/musicSlice";
 
 const CommunityPlaylists = () => {
   const dispatch = useAppDispatch();
   const cookies = new Cookies();
   const auth_token = cookies.get("auth_token");
   const playlists = useAppSelector((state) => state.playlist.playlists);
-  console.log(playlists);
+
+  const handlePlay = (playlist: any) => {
+    dispatch(setCurrPlaying(playlist));
+  };
 
   useEffect(() => {
     if (auth_token) {
@@ -39,7 +43,8 @@ const CommunityPlaylists = () => {
         {playlists?.map((playlist, i) => (
           <div
             key={i}
-            className="w-[209px] h-[241px] flex flex-col justify-start"
+            className="w-[209px] h-[241px] flex flex-col justify-start relative group"
+            onClick={() => handlePlay(playlist)}
           >
             <img
               src={`http://127.0.0.1:3000${playlist.playlist_image}`}
@@ -52,6 +57,22 @@ const CommunityPlaylists = () => {
             <h2 className="font-medium text-[12px] text-greyText">
               {playlist.userId}
             </h2>
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-12 w-12 text-white bg-primary rounded-full p-3 cursor-pointer"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 3l14 9-14 9V3z"
+                />
+              </svg>
+            </div>
           </div>
         ))}
       </div>
