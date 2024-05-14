@@ -17,7 +17,7 @@ import Name from "./Name";
 
 const AudioPlayer = () => {
   const music = useAppSelector((state) => state.music.playing);
-  const playlists = useAppSelector((state) => state.music.playlists);
+  const playlists = useAppSelector((state) => state.music.playlists?.tracks);
   const dispatch = useAppDispatch();
 
   const [{ id, track_image, track_name }, setCurrTrack] = useState<any>(
@@ -27,6 +27,19 @@ const AudioPlayer = () => {
       track_name: "",
     }
   );
+
+  const [
+    { trackId, playlistTrack_image, playlistTrack_name },
+    setPlaylistTrack,
+  ] = useState<any>(
+    playlists || {
+      trackId: 0,
+      playlistTrack_image: "",
+      playlistTrack_name: "",
+    }
+  );
+  console.log(playlists);
+
   const [isRepeatClicked, setRepeatClick] = useState(false);
   const [isPrevClicked, setPrevClicked] = useState(false);
   const [isNextClicked, setNextClicked] = useState(false);
@@ -43,6 +56,9 @@ const AudioPlayer = () => {
   useEffect(() => {
     if (music) {
       setCurrTrack(music);
+    }
+    if (playlists) {
+      setPlaylistTrack(playlists);
     }
   }, [music]);
 
@@ -85,12 +101,12 @@ const AudioPlayer = () => {
   });
 
   useEffect(() => {
-    if (isNextClicked) {
+    if (isNextClicked && playlists) {
       let currTrackId = (id + 1) % playlists.length;
       dispatch(setCurrentPlaying(playlists[currTrackId]));
       setNextClicked(false);
     }
-    if (isPrevClicked) {
+    if (isPrevClicked && playlists) {
       let currTrackId = (id - 1) % playlists.length;
       if (id - 1 < 0) {
         currTrackId = playlists.length - 1;
@@ -133,10 +149,6 @@ const AudioPlayer = () => {
     setVolume(newValue);
   };
 
-  const handleBannerToggle = () => {
-    setBannerToggle(!bannerToggle);
-  };
-
   function formatTime(secs: any) {
     const t = new Date(1970, 0, 1);
     t.setSeconds(secs);
@@ -168,15 +180,14 @@ const AudioPlayer = () => {
               src={`http://127.0.0.1:3000${music.track_image}`}
             />
           }
-          onClick={handleBannerToggle}
           className="flex justify-start flex-grow h-full"
         >
           <div className="text-left pl-5 flex flex-col">
             <Name name={music.track_name} className="font-bold" />
-            <Name
+            {/* <Name
               name={music.user.username}
               className="text-gray-500 font-light"
-            />
+            /> */}
           </div>
         </Button>
         <div className="flex flex-row justify-center h-full items-center basis-2/5">
@@ -194,9 +205,12 @@ const AudioPlayer = () => {
           />
           <audio
             ref={audioElement}
-            src={`http://127.0.0.1:3000${music.audio_url}`}
+            src={`http://127.0.0.1:3000${
+              music ? music.audio_url : playlists?.[0]?.audio_url || ""
+            }`}
             preload="metadata"
           />
+
           <ControlsToggleButton
             type="play-pause"
             defaultIcon={<PlayArrowIcon fontSize="large" />}
