@@ -8,6 +8,7 @@ interface SequencerProps {
 const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
   const notes = Array(64).fill("");
   const [bpm, setBpm] = useState(120);
+  let isPlaying = false;
 
   const synths = [
     new Tone.Synth().toDestination(),
@@ -37,6 +38,15 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
     })),
   ];
 
+  Tone.Transport.scheduleRepeat((time) => {
+    rows.forEach((row, index) => {
+      let synth = synths[index];
+      let note = row[beat];
+      if (note.active) synth.triggerAttackRelease(note.note, "16n", time);
+    });
+    beat = (beat + 1) % 16;
+  }, "16n");
+
   const handleBpmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBpm(parseInt(event.target.value));
   };
@@ -63,16 +73,16 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
           <button>Stop</button>
         </div>
         <div className="sequencer">
-          {notes.map((note, i) => (
-            <div
-              key={i}
-              className={`note ${i == 0 ? "active" : ""} ${
-                i % 4 ? "" : "first-beat-of-the-bar"
-              }`}
-            >
-              {note}
-            </div>
-          ))}
+          {rows.map((row, i) =>
+            row.map((note, j) => (
+              <button
+                key={j}
+                className={`note ${i === 0 ? "active" : ""} ${
+                  i % 4 ? "" : "first-beat-of-the-bar"
+                }`}
+              ></button>
+            ))
+          )}
         </div>
       </div>
     </div>
