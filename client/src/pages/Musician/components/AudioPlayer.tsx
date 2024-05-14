@@ -20,6 +20,22 @@ const AudioPlayer = () => {
 
   const audioElement = useRef<HTMLAudioElement | null>(null);
 
+  useEffect(() => {
+    if (isNextClicked) {
+      let currTrackId = (id + 1) % playlists.length;
+      dispatch(setCurrentPlaying(playlists[currTrackId]));
+      setNextClicked(false);
+    }
+    if (isPrevClicked) {
+      let currTrackId = (id - 1) % playlists.length;
+      if (id - 1 < 0) {
+        currTrackId = playlists.length - 1;
+      }
+      dispatch(setCurrentPlaying(playlists[currTrackId]));
+      setPrevClicked(false);
+    }
+  }, [dispatch, id, isNextClicked, isPrevClicked, playlists]);
+
   const handleSeekChange = (event: any, newValue: any) => {
     if (audioElement.current) {
       audioElement.current.currentTime = (newValue * duration) / 100;
