@@ -8,8 +8,21 @@ import Playlists from "./pages/Playlists";
 import Jambox from "./pages/JamBox";
 import Profile from "./pages/Profile";
 import Layout from "./components/MusicianLayout";
+import { useEffect } from "react";
+import { generateToken, messaging } from "../../notifications/firebase";
+import { onMessage } from "firebase/messaging";
+import toast from "react-hot-toast";
+import { useAppDispatch } from "../../app/hooks";
 
 const Musician = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    generateToken(dispatch);
+    onMessage(messaging, (payload) => {
+      toast(payload.notification?.body!);
+    });
+  }, []);
   return (
     <Routes>
       <Route path="Home" element={<Layout children={<Home />} />} />
