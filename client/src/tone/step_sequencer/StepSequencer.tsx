@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Tone from "tone";
 
 interface SequencerProps {
@@ -6,9 +6,9 @@ interface SequencerProps {
 }
 
 const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
-  const notes = Array(64).fill("");
   const [bpm, setBpm] = useState(120);
-  let isPlaying = false;
+  const [isPlaying, setIsPlaying] = useState(false);
+  let beat = 0;
 
   const synths = [
     new Tone.Synth().toDestination(),
@@ -51,6 +51,28 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
     setBpm(parseInt(event.target.value));
   };
 
+  const handleNoteClick = (rowIndex: any, noteIndex: any) => {
+    rows[rowIndex][noteIndex].active = !rows[rowIndex][noteIndex].active;
+  };
+
+  const handlePlayClick = () => {
+    if (!isPlaying) Tone.start();
+    Tone.Transport.bpm.value = bpm;
+    Tone.Transport.start();
+    setIsPlaying(true);
+  };
+
+  const handleStopClick = () => {
+    Tone.Transport.stop();
+    setIsPlaying(false);
+  };
+
+  useEffect(() => {
+    if (isPlaying) {
+      Tone.Transport.bpm.value = bpm;
+    }
+  }, [isPlaying, bpm]);
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <p
@@ -69,16 +91,20 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
             value={bpm}
             onChange={handleBpmChange}
           />
-          <button>Play</button>
-          <button>Stop</button>
+          {isPlaying ? (
+            <button onClick={handleStopClick}>Stop</button>
+          ) : (
+            <button onClick={handlePlayClick}>Play</button>
+          )}
         </div>
         <div className="sequencer">
           {rows.map((row, i) =>
             row.map((note, j) => (
               <button
                 key={j}
-                className={`note ${i === 0 ? "active" : ""} ${
-                  i % 4 ? "" : "first-beat-of-the-bar"
+                onClick={() => handleNoteClick(i, j)}
+                className={`note ${note.active ? "active" : ""} ${
+                  j % 4 === 0 ? "first-beat-of-the-bar" : ""
                 }`}
               ></button>
             ))
