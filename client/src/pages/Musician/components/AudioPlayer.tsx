@@ -35,6 +35,15 @@ const AudioPlayer = () => {
     setBannerToggle(!bannerToggle);
   };
 
+  function formatTime(secs: any) {
+    const t = new Date(1970, 0, 1);
+    t.setSeconds(secs);
+    let s = t.toTimeString().substr(0, 8);
+    if (secs > 86399)
+      s = Math.floor((+t - +new Date(1970, 0, 1)) / 3600000) + s.substr(2);
+    return s.substring(3);
+  }
+
   const handleToggle = (type: any, val: any) => {
     switch (type) {
       case "repeat":
