@@ -3,13 +3,10 @@ import { RootState } from "../../app/store";
 import { fetchAllPlaylistsApi } from "./playlistsApis";
 
 interface Playlist {
-  playlist: {
-    id: number;
-    title: string;
-    playlist_image: string;
-    userId: number;
-  };
-
+  id: number;
+  title: string;
+  playlist_image: string;
+  userId: number;
   tracks: any[];
 }
 
@@ -25,8 +22,8 @@ export const fetchAllPlaylists = createAsyncThunk<Playlist[] | null>(
   "playlists/fetchAllPlaylists",
   async (_, { getState }) => {
     const state = getState() as RootState;
-    const { user } = state.user;
-    if (user) {
+    const { info } = state.user;
+    if (info) {
       const result = await fetchAllPlaylistsApi();
       return result ?? null;
     }
