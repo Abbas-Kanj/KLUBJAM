@@ -1,11 +1,15 @@
 import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
-import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
 import note from "../../../../assets/Workspace/icons/note-02.svg";
 import { useEffect, useState } from "react";
 import UploadTrackPopup from "./UploadTrackPopup";
 import Cookies from "universal-cookie";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
+import {
+  increaseTimesPlayed,
+  setCurrentPlaying,
+} from "../../../../../redux/music/actions";
+import { setCurrPlaying } from "../../../../../redux/music/musicSlice";
 
 const Tracks = () => {
   const [openUploadTrackPopup, setOpenUploadTrackPopup] = useState(false);
@@ -13,6 +17,13 @@ const Tracks = () => {
   const cookies = new Cookies();
   const auth_token = cookies.get("auth_token");
   const tracks = useAppSelector((state) => state.track.tracks);
+
+  const handlePlay = (track: any) => {
+    console.log(track);
+    dispatch(setCurrPlaying(track));
+    dispatch(setCurrentPlaying(track));
+    dispatch(increaseTimesPlayed(track.id));
+  };
 
   useEffect(() => {
     if (auth_token) {
@@ -58,6 +69,7 @@ const Tracks = () => {
           <div
             key={i}
             className="w-[209px] h-[241px] flex flex-col justify-start relative"
+            onClick={() => handlePlay(track)}
           >
             <img
               src={`http://127.0.0.1:3000${track.track_image}`}
@@ -73,7 +85,7 @@ const Tracks = () => {
             <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-12 w-12 text-white bg-primary rounded-full p-3"
+                className="h-12 w-12 text-white bg-primary rounded-full p-3 cursor-pointer"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
