@@ -21,6 +21,19 @@ const AudioPlayer = () => {
   const audioElement = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    setSeekTime(currTime / (duration / 100));
+  }, [currTime, duration]);
+
+  useEffect(() => {
+    const currentAudio = audioElement.current;
+    if (currentAudio) {
+      currentAudio.onended = () => {
+        setNextClicked(true);
+      };
+    }
+  });
+
+  useEffect(() => {
     if (isNextClicked) {
       let currTrackId = (id + 1) % playlists.length;
       dispatch(setCurrentPlaying(playlists[currTrackId]));
