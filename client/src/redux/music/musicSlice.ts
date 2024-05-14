@@ -162,8 +162,19 @@ interface Playing {
   user: any;
 }
 
+interface Track {
+  id: number;
+  audio_url: string;
+  track_image: string;
+  track_name: string;
+}
+
+interface Playlists {
+  tracks: Track[];
+}
+
 export const initialState = {
-  playlists: musicDB,
+  playlists: null as Playlists | null,
   playing: null as Playing | null,
 };
 
