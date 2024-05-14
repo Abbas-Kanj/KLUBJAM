@@ -20,6 +20,13 @@ const AudioPlayer = () => {
   const playlists = useAppSelector((state) => state.music.playlists);
   const dispatch = useAppDispatch();
 
+  const [{ id, track_image, track_name }, setCurrTrack] = useState<any>(
+    music || {
+      id: 0,
+      track_image: "",
+      track_name: "",
+    }
+  );
   const [isRepeatClicked, setRepeatClick] = useState(false);
   const [isPrevClicked, setPrevClicked] = useState(false);
   const [isNextClicked, setNextClicked] = useState(false);
@@ -93,6 +100,28 @@ const AudioPlayer = () => {
     }
   }, [dispatch, id, isNextClicked, isPrevClicked, playlists]);
 
+  const handleToggle = (type: any, val: any) => {
+    switch (type) {
+      case "repeat":
+        setRepeatClick(val);
+        break;
+      case "prev":
+        setPrevClicked(val);
+        break;
+      case "play-pause":
+        setPlayPauseClicked(val);
+        break;
+      case "next":
+        setNextClicked(val);
+        break;
+      case "volume":
+        setVolumeClicked(val);
+        break;
+      default:
+        break;
+    }
+  };
+
   const handleSeekChange = (event: any, newValue: any) => {
     if (audioElement.current) {
       audioElement.current.currentTime = (newValue * duration) / 100;
@@ -117,27 +146,8 @@ const AudioPlayer = () => {
     return s.substring(3);
   }
 
-  const handleToggle = (type: any, val: any) => {
-    switch (type) {
-      case "repeat":
-        setRepeatClick(val);
-        break;
-      case "prev":
-        setPrevClicked(val);
-        break;
-      case "play-pause":
-        setPlayPauseClicked(val);
-        break;
-      case "next":
-        setNextClicked(val);
-        break;
-      case "volume":
-        setVolumeClicked(val);
-        break;
-      default:
-        break;
-    }
-  };
+  if (!music) return <p className="bg-black">Loading Music...</p>;
+
   return (
     <div className="border-t bg-black border-gray-300 relative h-[10vh] flex flex-row items-center">
       <>
