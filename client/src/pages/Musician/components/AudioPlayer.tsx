@@ -27,6 +27,14 @@ const AudioPlayer = () => {
     }
   };
 
+  const handleVolumeChange = (event: any, newValue: any) => {
+    setVolume(newValue);
+  };
+
+  const handleBannerToggle = () => {
+    setBannerToggle(!bannerToggle);
+  };
+
   const handleToggle = (type: any, val: any) => {
     switch (type) {
       case "repeat":
