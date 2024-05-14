@@ -200,6 +200,27 @@ const AudioPlayer = () => {
             onClicked={handleToggle}
           />
         </div>
+        <div className="flex flex-row justify-end items-center basis-[30%] h-full">
+          <div className="pr-2.5">
+            <p>
+              <span>{formatTime(currTime)}</span>/
+              <span>{formatTime(duration)}</span>
+            </p>
+          </div>
+          <div className="w-24 mx-5">
+            <Slider
+              style={{ color: "#0FACFD" }}
+              value={volume}
+              onChange={handleVolumeChange}
+            />
+          </div>
+          <ControlsToggleButton
+            type="volume"
+            defaultIcon={<VolumeUpIcon />}
+            changeIcon={<VolumeOffIcon />}
+            onClicked={handleToggle}
+          />
+        </div>
       </>
     </div>
   );
