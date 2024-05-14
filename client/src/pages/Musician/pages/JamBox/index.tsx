@@ -1,8 +1,8 @@
-import bgHeader from "../../../assets/Navbar/images/Rectangle 75.png";
+import bgHeader from "../../../assets/Navbar/images/Rectangle 75 (3).png";
 import defaultLogo from "../../../assets/Navbar/images/user-profile-circle.svg";
 import { useState } from "react";
 import Magenta from "./components/Magenta";
-import JamBoxAi from "./components/JamBox";
+import JamBoxAi from "./components/JamBoxAi";
 const Jambox = () => {
   const [isVisible1, setIsVisible1] = useState(true);
   const [isVisible2, setIsVisible2] = useState(false);
@@ -28,7 +28,7 @@ const Jambox = () => {
           className="absolute top-3 right-3 cursor-pointer"
         />
         <h1 className="relative mt-[67px] mb-[67px] ml-[35px] font-semibold text-[38px]">
-          Workspace
+          JamBox
         </h1>
 
         <div className="flex absolute bottom-[13px] left-9 gap-[41px]">
@@ -39,7 +39,7 @@ const Jambox = () => {
               setIsVisible2(false);
             }}
           >
-            JamBox
+            JamBoxAi
           </h2>
           <h2
             className="text-[13px] font-bold hover:text-primary cursor-pointer text-greyText"
