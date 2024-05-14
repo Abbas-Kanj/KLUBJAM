@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { sendRequest } from "../../../../../core/remote/request";
 import { useAppSelector } from "../../../../../app/hooks";
+import axios from "axios";
 
 interface UpdateMusicianProps {
   setOpenCreateProjectPopup: (open: boolean) => void;
@@ -12,6 +13,7 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
 }) => {
   const authToken = Cookies.get("auth_token");
   const user = useAppSelector((state) => state.user.info);
+  const fireBaseToken = useAppSelector((state) => state.user.fireBaseToken);
 
   const [error, setError] = useState("");
   const [projectName, setProjectName] = useState("");
@@ -54,6 +56,33 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
           const res = await sendRequest("POST", `/projects/${user?.id}`, data);
           if (res.status == 201) {
             setOpenCreateProjectPopup(false);
+
+            if (fireBaseToken) {
+              const authorizationKey =
+                "AAAA8A58VNo:APA91bEIS47JEm1C4WEpp0enmRYJRiFAcO_ASkghIroegSe2XZwXneQpsNvufFos6LXOCdeuNbNnGqi0QmG3HvY5CckmKxxSrE-SfNs6xVisn8fsWnGGYXwPwfdClSSkRuQXt_CKCHS2";
+
+              const sentData = {
+                to: fireBaseToken,
+                notification: {
+                  body: "Invitation sent!",
+                  title: "title",
+                  subtitle: "subtitle",
+                },
+              };
+              try {
+                const res = await axios.request({
+                  method: "POST",
+                  url: "https://fcm.googleapis.com/fcm/send",
+                  data: sentData,
+                  headers: {
+                    Authorization: `Bearer ${authorizationKey}`,
+                  },
+                });
+                console.log("success notification");
+              } catch {
+                console.log("error");
+              }
+            }
           }
         } catch (error: any) {
           console.log(error.message);
