@@ -1,5 +1,4 @@
 import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
-import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
 import Cookies from "universal-cookie";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { useEffect } from "react";
@@ -10,6 +9,7 @@ const CommunityPlaylists = () => {
   const cookies = new Cookies();
   const auth_token = cookies.get("auth_token");
   const playlists = useAppSelector((state) => state.playlist.playlists);
+  console.log(playlists);
 
   useEffect(() => {
     if (auth_token) {
@@ -36,11 +36,24 @@ const CommunityPlaylists = () => {
       </div>
       <div className="border border-solid border-greyText w-[686px] mt-[15px]"></div>
       <div className="mt-[17px] mb-[30px]  w-[1133px] flex flex-wrap gap-[22px] items-center">
-        <div className="w-[209px] h-[241px] flex flex-col justify-start">
-          <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
-          <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-          <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-        </div>
+        {playlists?.map((playlist, i) => (
+          <div
+            key={i}
+            className="w-[209px] h-[241px] flex flex-col justify-start"
+          >
+            <img
+              src={`http://127.0.0.1:3000${playlist.playlist_image}`}
+              alt=""
+              className="w-[209px] h-[209px]"
+            />
+            <h2 className="font-medium text-[12px] mt-[6px]">
+              {playlist.title}
+            </h2>
+            <h2 className="font-medium text-[12px] text-greyText">
+              {playlist.userId}
+            </h2>
+          </div>
+        ))}
       </div>
     </div>
   );
