@@ -20,6 +20,13 @@ const AudioPlayer = () => {
 
   const audioElement = useRef<HTMLAudioElement | null>(null);
 
+  const handleSeekChange = (event: any, newValue: any) => {
+    if (audioElement.current) {
+      audioElement.current.currentTime = (newValue * duration) / 100;
+      setSeekTime(newValue);
+    }
+  };
+
   const handleToggle = (type: any, val: any) => {
     switch (type) {
       case "repeat":
