@@ -12,9 +12,11 @@ import elipse from "./assets/icons/Ellipse 41.svg";
 import circle from "../assets/Workspace/icons/circle.svg";
 import { useState } from "react";
 import PianoKeyboard from "./PianoKeyoboard";
+import StepSequencer from "../../tone/step_sequencer/StepSequencer";
 
 const Production = () => {
   const [openPianoKeyboard, setOpenPianoKeyboard] = useState(false);
+  const [openStepSequencer, setOpenStepSequencer] = useState(false);
 
   return (
     <div className="flex justify-center bg-background w-screen h-screen px-[12px] py-[20px]">
@@ -22,6 +24,11 @@ const Production = () => {
         <PianoKeyboard
           setOpenPianoKeyboard={setOpenPianoKeyboard}
         ></PianoKeyboard>
+      )}
+      {openStepSequencer && (
+        <StepSequencer
+          setOpenStepSequencer={setOpenStepSequencer}
+        ></StepSequencer>
       )}
       <div>
         <div className="flex gap-[10px]">
@@ -72,9 +79,15 @@ const Production = () => {
             >
               Piano
             </h2>
+            <h2
+              className="cursor-pointer"
+              onClick={() => setOpenStepSequencer(true)}
+            >
+              Step Sequencer
+            </h2>
             <h2>Guitar</h2>
             <h2>Beats</h2>
-            <h2>presets</h2>
+            <h2>Presets</h2>
           </div>
           <div className="w-[156px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary p-[9px] flex flex-col gap-1">
             <div className="relative h-[64px] bg-green-950 rounded-md">
