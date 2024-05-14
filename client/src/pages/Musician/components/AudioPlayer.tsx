@@ -21,6 +21,37 @@ const AudioPlayer = () => {
   const audioElement = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    if (music) {
+      setCurrTrack(music);
+    }
+  }, [music]);
+
+  useEffect(() => {
+    const currentAudio = audioElement.current;
+    if (currentAudio) {
+      isPlaying
+        ? currentAudio
+            .play()
+            .then(() => {})
+            .catch((e: any) => {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            })
+        : currentAudio.pause();
+      currentAudio.loop = isRepeatClicked;
+      currentAudio.volume = volume / 100;
+      currentAudio.muted = isVolumeClicked;
+      currentAudio.onloadeddata = () => {
+        setDuration(currentAudio.duration);
+      };
+      const interval = setInterval(() => {
+        setCurrTime(currentAudio.currentTime);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [isPlaying, isRepeatClicked, volume, isVolumeClicked]);
+
+  useEffect(() => {
     setSeekTime(currTime / (duration / 100));
   }, [currTime, duration]);
 
