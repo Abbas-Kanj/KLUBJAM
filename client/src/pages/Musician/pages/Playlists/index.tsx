@@ -1,4 +1,4 @@
-import bgHeader from "../../../assets/Navbar/images/dark-blue-abstract-blur-background-vector.jpg";
+import bgHeader from "../../../assets/Navbar/images/Rectangle 75 (2).png";
 import defaultLogo from "../../../assets/Navbar/images/user-profile-circle.svg";
 import { useState } from "react";
 import CommunityPlaylists from "./components/CommunityPlaylists";

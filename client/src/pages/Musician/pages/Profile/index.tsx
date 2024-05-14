@@ -1,4 +1,4 @@
-import bgHeader from "../../../assets/Navbar/images/black-blur-background-b21117e1rgm111p3.jpg";
+import bgHeader from "../../../assets/Navbar/images/Rectangle 75 (4).png";
 import { useState } from "react";
 import Tracks from "./components/Tracks";
 import Albums from "./components/Albums";

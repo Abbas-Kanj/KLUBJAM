@@ -1,4 +1,4 @@
-import bgHeader from "../../../assets/Navbar/images/dark-blue-blur-background-vector.jpg";
+import bgHeader from "../../../assets/Navbar/images/Rectangle 75 (5).png";
 import defaultLogo from "../../../assets/Navbar/images/Ellipse 38.svg";
 
 const Account = () => {
