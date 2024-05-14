@@ -138,6 +138,22 @@ const AudioPlayer = () => {
         break;
     }
   };
+  return (
+    <div className="border-t bg-black border-gray-300 relative h-[10vh] flex flex-row items-center">
+      <>
+        <div className="absolute top-[-14px] z-[99999999] left-0 w-full overflow-hidden">
+          {!isNaN(seekTime) && (
+            <Slider
+              style={{ color: "#0FACFD" }}
+              className="w-full"
+              value={seekTime}
+              onChange={handleSeekChange}
+            />
+          )}
+        </div>
+      </>
+    </div>
+  );
 };
 
 export default AudioPlayer;
