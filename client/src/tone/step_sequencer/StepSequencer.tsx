@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as Tone from "tone";
 
 interface SequencerProps {
   setOpenStepSequencer: (open: boolean) => void;
@@ -7,6 +8,34 @@ interface SequencerProps {
 const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
   const notes = Array(64).fill("");
   const [bpm, setBpm] = useState(120);
+
+  const synths = [
+    new Tone.Synth().toDestination(),
+    new Tone.Synth().toDestination(),
+    new Tone.Synth().toDestination(),
+    new Tone.Synth().toDestination(),
+  ];
+
+  const scaleOfNotes = ["C4", "D4", "Eb4", "F4"];
+
+  let rows = [
+    Array.from({ length: 16 }, (_, i) => ({
+      note: scaleOfNotes[3],
+      active: false,
+    })),
+    Array.from({ length: 16 }, (_, i) => ({
+      note: scaleOfNotes[2],
+      active: false,
+    })),
+    Array.from({ length: 16 }, (_, i) => ({
+      note: scaleOfNotes[1],
+      active: false,
+    })),
+    Array.from({ length: 16 }, (_, i) => ({
+      note: scaleOfNotes[0],
+      active: false,
+    })),
+  ];
 
   const handleBpmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBpm(parseInt(event.target.value));
@@ -35,7 +64,12 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
         </div>
         <div className="sequencer">
           {notes.map((note, i) => (
-            <div key={i} className={`note ${i == 0 ? "active" : ""}`}>
+            <div
+              key={i}
+              className={`note ${i == 0 ? "active" : ""} ${
+                i % 4 ? "" : "first-beat-of-the-bar"
+              }`}
+            >
               {note}
             </div>
           ))}
