@@ -36,6 +36,7 @@ interface UserState {
   jam_boxes: any[];
   recommendations: any[];
   isAuthenticated: boolean;
+  fireBaseToken: string;
 }
 
 interface Post {
@@ -91,6 +92,7 @@ const initialState: UserState = {
   jam_boxes: [],
   recommendations: [],
   isAuthenticated: false,
+  fireBaseToken: "",
 };
 
 export const fetchUserPosts = createAsyncThunk(
@@ -170,6 +172,9 @@ const userSlice = createSlice({
     setUserRecommendations: (state, action: PayloadAction<Post[]>) => {
       state.recommendations = action.payload;
     },
+    setUserFireBaseToken: (state, action: PayloadAction<string>) => {
+      state.fireBaseToken = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUserPosts.fulfilled, (state, action) => {
@@ -187,5 +192,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, setUserRecommendations } = userSlice.actions;
+export const { setUser, setUserRecommendations, setUserFireBaseToken } =
+  userSlice.actions;
 export default userSlice.reducer;

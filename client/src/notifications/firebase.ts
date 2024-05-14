@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken } from "firebase/messaging";
+import { setUserFireBaseToken } from "../redux/user/userSlice";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCLj8Wp5cgRvYwtMT3d9t1SB3mRteBf57o",
@@ -14,14 +15,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const messaging = getMessaging(app);
 
-export const generateToken = async () => {
+export const generateToken = async (dispatch: any) => {
   const permission = await Notification.requestPermission();
-  console.log(permission);
   if (permission === "granted") {
-    const token = await getToken(messaging, {
+    const fireBasetoken = await getToken(messaging, {
       vapidKey:
         "BC_YQ7ZsRIXOkHUfBGpfNAQI2I1dflbRmRdeV0J-q4ar2urH_DRbO2TkyK1CwuMXQHyKm0bB5F-0CAWxjuVBtMs",
     });
-    console.log(token);
+    dispatch(setUserFireBaseToken(fireBasetoken));
   }
 };
