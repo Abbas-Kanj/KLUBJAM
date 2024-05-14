@@ -151,6 +151,24 @@ const AudioPlayer = () => {
             />
           )}
         </div>
+        <Button
+          startIcon={
+            <Avatar
+              variant="square"
+              src={`http://127.0.0.1:3000${music.track_image}`}
+            />
+          }
+          onClick={handleBannerToggle}
+          className="flex justify-start flex-grow h-full"
+        >
+          <div className="text-left pl-5 flex flex-col">
+            <Name name={music.track_name} className="font-bold" />
+            <Name
+              name={music.user.username}
+              className="text-gray-500 font-light"
+            />
+          </div>
+        </Button>
       </>
     </div>
   );
