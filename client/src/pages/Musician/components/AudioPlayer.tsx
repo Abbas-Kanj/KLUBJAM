@@ -169,6 +169,37 @@ const AudioPlayer = () => {
             />
           </div>
         </Button>
+        <div className="flex flex-row justify-center h-full items-center basis-2/5">
+          <ControlsToggleButton
+            type="repeat"
+            defaultIcon={<RepeatIcon fontSize="large" />}
+            changeIcon={<RepeatOneIcon fontSize="large" />}
+            onClicked={handleToggle}
+          />
+          <ControlsToggleButton
+            type="prev"
+            defaultIcon={<SkipPreviousIcon fontSize="large" />}
+            changeIcon={<SkipPreviousIcon fontSize="large" />}
+            onClicked={handleToggle}
+          />
+          <audio
+            ref={audioElement}
+            src={`http://127.0.0.1:3000${music.audio_url}`}
+            preload="metadata"
+          />
+          <ControlsToggleButton
+            type="play-pause"
+            defaultIcon={<PlayArrowIcon fontSize="large" />}
+            changeIcon={<PauseIcon fontSize="large" />}
+            onClicked={handleToggle}
+          />
+          <ControlsToggleButton
+            type="next"
+            defaultIcon={<SkipNextIcon fontSize="large" />}
+            changeIcon={<SkipNextIcon fontSize="large" />}
+            onClicked={handleToggle}
+          />
+        </div>
       </>
     </div>
   );
