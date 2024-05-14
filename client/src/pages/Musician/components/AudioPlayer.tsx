@@ -1,6 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-
+import RepeatIcon from "@material-ui/icons/Repeat";
+import RepeatOneIcon from "@material-ui/icons/RepeatOne";
+import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
+import SkipNextIcon from "@material-ui/icons/SkipNext";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import PauseIcon from "@material-ui/icons/Pause";
+import VolumeUpIcon from "@material-ui/icons/VolumeUp";
+import VolumeOffIcon from "@material-ui/icons/VolumeOff";
+import Slider from "@material-ui/core/Slider";
+import { Avatar } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import ControlsToggleButton from "./ControlsToggleButton";
+import { setCurrentPlaying } from "../../../redux/music/actions";
+import Name from "./Name";
 
 const AudioPlayer = () => {
   const music = useAppSelector((state) => state.music.playing);
