@@ -28,17 +28,16 @@ const AudioPlayer = () => {
     }
   );
 
-  const [
-    { trackId, playlistTrack_image, playlistTrack_name },
-    setPlaylistTrack,
-  ] = useState<any>(
-    playlists || {
-      trackId: 0,
-      playlistTrack_image: "",
-      playlistTrack_name: "",
-    }
-  );
-  console.log(playlists);
+  // const [
+  //   { trackId, playlistTrack_image, playlistTrack_name },
+  //   setPlaylistTrack,
+  // ] = useState<any>(
+  //   playlists || {
+  //     trackId: 0,
+  //     playlistTrack_image: "",
+  //     playlistTrack_name: "",
+  //   }
+  // );
 
   const [isRepeatClicked, setRepeatClick] = useState(false);
   const [isPrevClicked, setPrevClicked] = useState(false);
@@ -49,7 +48,6 @@ const AudioPlayer = () => {
   const [seekTime, setSeekTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currTime, setCurrTime] = useState(0);
-  const [bannerToggle, setBannerToggle] = useState(false);
 
   const audioElement = useRef<HTMLAudioElement | null>(null);
 
@@ -57,9 +55,9 @@ const AudioPlayer = () => {
     if (music) {
       setCurrTrack(music);
     }
-    if (playlists) {
-      setPlaylistTrack(playlists);
-    }
+    // if (playlists) {
+    //   setPlaylistTrack(playlists);
+    // }
   }, [music]);
 
   useEffect(() => {
@@ -161,9 +159,9 @@ const AudioPlayer = () => {
   if (!music) return <p className="bg-black">Loading Music...</p>;
 
   return (
-    <div className="border-t bg-black border-gray-300 relative h-[10vh] flex flex-row items-center">
+    <div className="border-t bg-black border-gray-300 relative h-[10vh] flex justify-between flex-row items-center">
       <>
-        <div className="absolute top-[-14px] z-[99999999] left-0 w-full overflow-hidden">
+        <div className="absolute top-[-14px] z-[99999999] left-0 w-full flex overflow-hidden">
           {!isNaN(seekTime) && (
             <Slider
               style={{ color: "#0FACFD" }}
@@ -180,14 +178,14 @@ const AudioPlayer = () => {
               src={`http://127.0.0.1:3000${music.track_image}`}
             />
           }
-          className="flex justify-start flex-grow h-full"
+          className="flex flex-grow h-full "
         >
           <div className="text-left pl-5 flex flex-col">
             <Name name={music.track_name} className="font-bold" />
-            {/* <Name
+            <Name
               name={music.user.username}
-              className="text-gray-500 font-light"
-            /> */}
+              className="text-gray-500 font-light pr-[190px]"
+            />
           </div>
         </Button>
         <div className="flex flex-row justify-center h-full items-center basis-2/5">
