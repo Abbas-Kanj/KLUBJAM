@@ -28,10 +28,10 @@ export class PlaylistsService {
   async createPlaylist(
     userId: number,
     createPlaylistDto: CreatePlaylistDto,
-    trackIds: number[],
+    tracks: number[],
   ): Promise<Playlists> {
     try {
-      console.log(trackIds);
+      console.log(tracks);
 
       const playlist = await this.prisma.playlists.create({
         data: {
@@ -42,7 +42,7 @@ export class PlaylistsService {
             },
           },
           tracks: {
-            connect: trackIds.map((id) => ({ id: id })),
+            connect: tracks.map((id) => ({ id: id })),
           },
         },
       });

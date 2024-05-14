@@ -8,5 +8,5 @@ export class CreatePlaylistDto {
   @IsNotEmpty()
   @IsInt()
   userId: number;
-  trackIds: number[];
+  tracks: number[];
 }

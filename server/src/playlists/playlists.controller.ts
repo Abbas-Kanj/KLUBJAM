@@ -43,7 +43,7 @@ export class PlaylistsController {
   async createPlaylist(
     @Param('id') id: string,
     @Body() createPlaylistDto: CreatePlaylistDto,
-    @Body('trackIds') trackIds: number[],
+    @Body('tracks') tracks: number[],
     @Res() response,
   ): Promise<Playlists | { status: number; message: string }> {
     try {
@@ -55,7 +55,7 @@ export class PlaylistsController {
       const createdPlaylist = await this.playlistsService.createPlaylist(
         userId,
         createPlaylistDto,
-        trackIds,
+        tracks,
       );
       return response.status(201).json({
         status: 'Ok!',
