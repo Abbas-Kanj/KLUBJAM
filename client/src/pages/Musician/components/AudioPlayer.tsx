@@ -19,6 +19,28 @@ const AudioPlayer = () => {
   const [bannerToggle, setBannerToggle] = useState(false);
 
   const audioElement = useRef<HTMLAudioElement | null>(null);
+
+  const handleToggle = (type: any, val: any) => {
+    switch (type) {
+      case "repeat":
+        setRepeatClick(val);
+        break;
+      case "prev":
+        setPrevClicked(val);
+        break;
+      case "play-pause":
+        setPlayPauseClicked(val);
+        break;
+      case "next":
+        setNextClicked(val);
+        break;
+      case "volume":
+        setVolumeClicked(val);
+        break;
+      default:
+        break;
+    }
+  };
 };
 
 export default AudioPlayer;
