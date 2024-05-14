@@ -1,7 +1,22 @@
 import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
 import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
+import Cookies from "universal-cookie";
+import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
+import { useEffect } from "react";
+import { fetchAllPlaylists } from "../../../../../redux/playlists/playlistsSlice";
 
 const CommunityPlaylists = () => {
+  const dispatch = useAppDispatch();
+  const cookies = new Cookies();
+  const auth_token = cookies.get("auth_token");
+  const playlists = useAppSelector((state) => state.playlist.playlists);
+
+  useEffect(() => {
+    if (auth_token) {
+      dispatch(fetchAllPlaylists());
+    }
+  }, [auth_token, dispatch]);
+
   return (
     <div className="flex flex-col justify-center items-center mt-[26px]">
       <div className="flex gap-[10px] w-fit h-[36px]">
