@@ -4,7 +4,7 @@ import { Message } from './entities/message.entity';
 
 @Injectable()
 export class MessagesService {
-  messages: Message[] = [{ name: 'marius', text: 'hey' }];
+  messages: Message[] = [];
   clientToUser = {};
 
   identify(name: string, clientId: string) {

@@ -77,13 +77,16 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <p
         className=" font-bold text-[20px] cursor-pointer top-4 right-4 absolute"
-        onClick={() => setOpenStepSequencer(false)}
+        onClick={() => {
+          setOpenStepSequencer(false);
+          Tone.Transport.stop();
+        }}
       >
         X
       </p>
-      <div className=" items-center w-[1000px] h-fit rounded-xl bg-background">
-        <div className="bpm-controls">
-          <label htmlFor="bpm">{bpm}BPM</label>
+      <div className=" items-center w-fit h-fit rounded-xl bg-background p-4">
+        <div className="bpm-controls flex gap-4">
+          <label htmlFor="bpm">{bpm} BPM</label>
           <input
             type="range"
             min="60"

@@ -11,7 +11,7 @@ import download from "./assets/icons/download-02.svg";
 import elipse from "./assets/icons/Ellipse 41.svg";
 import circle from "../assets/Workspace/icons/circle.svg";
 import { useState } from "react";
-import PianoKeyboard from "./PianoKeyoboard";
+import PianoKeyboard from "../../tone/instruments/piano/PianoKeyoboard";
 import StepSequencer from "../../tone/step_sequencer/StepSequencer";
 
 const Production = () => {

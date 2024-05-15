@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const MessagesV2 = () => {
+const Messages = () => {
   const socket = io("http://localhost:3000");
 
-  let timeout;
   const [messages, setMessages] = useState<any[]>([]);
   const [messageText, setMessageText] = useState<string>("");
   const [joined, setJoined] = useState<boolean>(false);
   const [name, setName] = useState("");
-  const [typingDisplay, setTypingDisplay] = useState<string>("");
 
   useEffect(() => {
     socket.emit("findAllMessages", {}, (res: any) => {
@@ -33,13 +31,6 @@ const MessagesV2 = () => {
     socket.emit("createMessage", { text: messageText }, () => {
       setMessageText("");
     });
-  };
-
-  const emitTyping = () => {
-    socket.emit("typing", { isTyping: true });
-    timeout = setTimeout(() => {
-      socket.emit("typing", { isTyping: false });
-    }, 2000);
   };
 
   return (
@@ -68,7 +59,7 @@ const MessagesV2 = () => {
         <div className="flex flex-col">
           <div className="flex flex-col w-screen bg-greyText">
             {messages.map((message, i) => (
-              <div key={i}>{`${message.name}  ${message.text}`}</div>
+              <div key={i}>{`${message.text}`}</div>
             ))}
           </div>
           <form className="flex" onSubmit={sendMessage}>
@@ -95,4 +86,4 @@ const MessagesV2 = () => {
   );
 };
 
-export default MessagesV2;
+export default Messages;

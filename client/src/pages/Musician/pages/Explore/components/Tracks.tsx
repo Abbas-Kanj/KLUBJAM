@@ -5,10 +5,6 @@ import UploadTrackPopup from "./UploadTrackPopup";
 import Cookies from "universal-cookie";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
-import {
-  increaseTimesPlayed,
-  setCurrentPlaying,
-} from "../../../../../redux/music/actions";
 import { setCurrPlaying } from "../../../../../redux/music/musicSlice";
 
 const Tracks = () => {
@@ -19,10 +15,7 @@ const Tracks = () => {
   const tracks = useAppSelector((state) => state.track.tracks);
 
   const handlePlay = (track: any) => {
-    console.log(track);
     dispatch(setCurrPlaying(track));
-    dispatch(setCurrentPlaying(track));
-    dispatch(increaseTimesPlayed(track.id));
   };
 
   useEffect(() => {

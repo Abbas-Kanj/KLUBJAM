@@ -14,7 +14,7 @@ import {
   playB4,
   playC5,
   playNote,
-} from "../../tone/instruments/piano/piano";
+} from "./piano";
 
 interface PianoProps {
   setOpenPianoKeyboard: (open: boolean) => void;
@@ -35,7 +35,6 @@ const PianoKeyboard: React.FC<PianoProps> = ({ setOpenPianoKeyboard }) => {
     if (draggableNote !== note) {
       try {
         console.log("Moved note:", note);
-        // Logic to move the note
       } catch (error) {
         console.log(error);
       }

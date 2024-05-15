@@ -9,6 +9,7 @@ import usersSlice from "../redux/users/usersSlice";
 import projectsSlice from "../redux/projects/projectsSlice";
 import coinRequestsSlice from "../redux/coin_requests/coinRequestsSlice";
 import commentsSlice from "../redux/comments/commentsSlice";
+import musicSlice from "../redux/music/musicSlice";
 
 const persistConfig = {
   key: "root",
@@ -27,6 +28,7 @@ const persistedReducer = persistReducer(
     projects: projectsSlice,
     coinRequests: coinRequestsSlice,
     comments: commentsSlice,
+    music: musicSlice,
   })
 );
 

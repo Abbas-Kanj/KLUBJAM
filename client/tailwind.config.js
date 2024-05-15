@@ -58,17 +58,17 @@ export default {
     function ({ addUtilities }) {
       addUtilities({
         ".sequencer": {
-          "@apply grid grid-cols-16 gap-5 w-full": {},
+          "@apply grid grid-cols-16 gap-2 w-full": {},
         },
         ".note": {
-          "@apply bg-gray-300 text-xs md:text-base w-12 h-12 md:w-16 md:h-16 border border-gray-300 rounded-lg flex justify-center items-center":
+          "@apply bg-gray-300 text-xs md:text-base w-14 h-14 md:w-14 md:h-14 border border-gray-300 rounded-lg flex justify-center items-center":
             {},
         },
         ".active": {
           "@apply bg-purple-600 border border-purple-600": {},
         },
         ".first-beat-of-the-bar": {
-          "@apply bg-blue-200 border border-blue-200": {},
+          "@apply bg-primary border border-primary": {},
         },
         ".bpm-controls": {
           "@apply flex justify-center items-center mb-4": {},

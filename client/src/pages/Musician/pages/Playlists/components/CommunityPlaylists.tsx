@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { useEffect } from "react";
 import { fetchAllPlaylists } from "../../../../../redux/playlists/playlistsSlice";
 import { setCurrPlaying } from "../../../../../redux/music/musicSlice";
+import { setPlaylist } from "../../../../../redux/music/actions";
 
 const CommunityPlaylists = () => {
   const dispatch = useAppDispatch();
@@ -13,6 +14,7 @@ const CommunityPlaylists = () => {
 
   const handlePlay = (playlist: any) => {
     dispatch(setCurrPlaying(playlist));
+    dispatch(setPlaylist(playlist));
   };
 
   useEffect(() => {

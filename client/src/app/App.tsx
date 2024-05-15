@@ -10,7 +10,8 @@ import ProtectedAdmin from "../core/routes/ProtectedAdmin";
 import ProtectedModerator from "../core/routes/ProtectedModerator";
 import ProtectedUser from "../core/routes/ProtectedUser";
 import { Toaster } from "react-hot-toast";
-import MessagesV2 from "../newMessages/MessagesV2";
+import Production from "../pages/Production/Production";
+import Messages from "../newMessages/Messages";
 
 function App() {
   return (
@@ -27,8 +28,9 @@ function App() {
         ></Toaster>
         <BrowserRouter>
           <Routes>
-            <Route path="/MessagesV2" element={<MessagesV2 />}></Route>
-            <Route path="/" element={<Landing />}></Route>
+            <Route path="/" element={<Production />}></Route>
+            <Route path="/messages" element={<Messages />}></Route>
+            <Route path="/Landing" element={<Landing />}></Route>
             <Route element={<ProtectedUser />}>
               <Route path="/Musician/*" element={<Musician />} />
             </Route>
