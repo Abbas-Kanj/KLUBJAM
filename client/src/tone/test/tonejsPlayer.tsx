@@ -1,19 +1,21 @@
 import * as Tone from "tone";
 
-const player = new Tone.Player(
-  "https://tonejs.github.io/audio/berklee/gong_1.mp3"
-).toDestination();
-player.autostart = true;
-
 const TonejsPLayer = () => {
+  const synth = new Tone.Synth();
+  const audioContext = Tone.Context;
+  const notes = "CDEFGAB".split("").map((n) => `${n}4`);
+  let note = 0;
+  synth.toDestination();
+  Tone.Transport.scheduleRepeat((time) => {
+    synth.triggerAttack(notes[note % notes.length]);
+    note++;
+  }, "4n");
+  // Tone.Transport.start();
+
   return (
-    <div className="flex justify-center items-center mt-10 bg-slate-500">
-      <div className="bg-zinc-950">
-        <script>
-          var dial = new Nexus.Dial('#dial') var number = new
-          Nexus.Number('#number') number.link(dial)
-        </script>
-        <button onClick={() => Tone.start()}>start</button>
+    <div className="flex justify-center items-center mt-10 bg-slate-500 w-screen h-screen">
+      <div className="bg-zinc-950 w-fit">
+        <audio src=""></audio>
       </div>
     </div>
   );
