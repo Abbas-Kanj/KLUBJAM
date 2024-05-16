@@ -51,10 +51,25 @@ const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
       <form className="flex flex-col w-[70%] h-[90%] rounded-xl bg-background ">
         <div className="flex">
           <div className="min-w-[50%]">
-            <img
-              src={`http://127.0.0.1:3000${post.post_picture}`}
-              className="w-full h-full max-h-[632px] max-w-[600px]"
-            />
+            {post.post_picture.endsWith(".mp4") ? (
+              <video
+                src={`http://127.0.0.1:3000${post.post_picture}`}
+                controls={true}
+                className="w-full h-full max-h-[632px] max-w-[600px]"
+              />
+            ) : post.post_picture.endsWith(".mp3") ? (
+              <audio
+                src={`http://127.0.0.1:3000${post.post_picture}`}
+                controls={true}
+                className="w-full h-full max-h-[632px] max-w-[600px]"
+              />
+            ) : (
+              <img
+                src={`http://127.0.0.1:3000${post.post_picture}`}
+                alt=""
+                className=" max-h-[632px] max-w-[500px] mx-auto my-auto"
+              />
+            )}
           </div>
           <div className="flex flex-col max-h-[632px] border-l border-solid border-[#565656]">
             <div className="flex flex-col ">
