@@ -1,5 +1,6 @@
 import star from "../../../../assets/Workspace/icons/star.svg";
 import circle from "../../../../assets/Workspace/icons//circle.svg";
+import { useNavigate } from "react-router-dom";
 
 interface ProjectProps {
   setOpenGroupProjectPopup: (open: boolean) => void;
@@ -10,6 +11,8 @@ const GroupProjectPopup: React.FC<ProjectProps> = ({
   setOpenGroupProjectPopup,
   project,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <div className="flex flex-col w-[1000px] h-[650px] rounded-xl bg-background">
@@ -20,7 +23,10 @@ const GroupProjectPopup: React.FC<ProjectProps> = ({
           >
             X
           </p>
-          <p className="w-[146px] rounded-xl text-primary bg-background font-bold text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center cursor-pointer hover:opacity-50 mt-[10px]">
+          <p
+            className="w-[146px] rounded-xl text-primary bg-background font-bold text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center cursor-pointer hover:opacity-50 mt-[10px]"
+            onClick={() => navigate("../../Production")}
+          >
             Produce
           </p>
         </div>
