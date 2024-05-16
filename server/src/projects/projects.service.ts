@@ -21,11 +21,23 @@ export class ProjectsService {
     });
   }
 
-  async getGroupProjectsByUserId(creator_id: number): Promise<any> {
+  async getGroupProjectsByUserId(userId: number): Promise<any> {
     return this.prisma.projects.findMany({
       where: {
-        creator_id: creator_id,
-        type: 'Group',
+        OR: [
+          {
+            creator_id: userId,
+            type: 'Group',
+          },
+          {
+            collaborators: {
+              some: {
+                collaborator_id: userId,
+              },
+            },
+            type: 'Group',
+          },
+        ],
       },
     });
   }
