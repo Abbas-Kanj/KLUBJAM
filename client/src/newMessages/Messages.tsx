@@ -34,55 +34,64 @@ const Messages = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-black">
+    <>
       {!joined ? (
-        <div className="flex flex-col w-screen">
-          <div>
-            <label>What's your name?</label>
-            <input
-              id="name"
-              type="text"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
+        <div className="flex flex-col">
+          <div className="flex flex-col h-full items-center">
+            <div className="gap-2 p-2">
+              <label>What's your name?</label>
+              <input
+                id="name"
+                type="text"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                className="border-[2px] border-solid rounded-[5px] border-primary bg-transparent w-[100px]"
+              />
+            </div>
+
             <button
               onClick={() => {
                 join(name);
               }}
+              className="bg-primary rounded-[5px] w-fit p-1 font-bold hover:opacity-70"
             >
               join room
             </button>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col">
-          <div className="flex flex-col w-screen bg-greyText">
+        <div className="flex flex-col justify-between">
+          <div className="flex flex-col min-h-[320px] p-2 overflow-x-hidden overflow-scroll overflow-y-hidden">
             {messages.map((message, i) => (
               <div key={i}>{`${message.text}`}</div>
             ))}
           </div>
-          <form className="flex" onSubmit={sendMessage}>
-            <label className="font-semibold text-[14px] text-greyText">
-              Message
-            </label>
-            <input
-              id="message"
-              type="text"
-              className="bg-inputBox flex-grow h-[37px] rounded focus:outline-none p-1"
-              value={messageText}
-              onChange={(e) => setMessageText(e.target.value)}
-            />
-            <button
-              className="bg-primary hover:opacity-75 text-[14px] px-[6px] font-bold rounded"
-              type="submit"
+          <div className="flex flex-col  ">
+            <div className="border border-solid border-primary"></div>
+            <form
+              onSubmit={sendMessage}
+              className=" px-[5px] py-[9px] flex justify-between gap-1"
             >
-              Send message
-            </button>
-          </form>
+              <input
+                type="text"
+                id="message"
+                placeholder="Type a message..."
+                className="border-[2px] border-solid rounded-[5px] border-primary w-[192px] h-[30px] bg-transparent p-1"
+                value={messageText}
+                onChange={(e) => setMessageText(e.target.value)}
+              />
+              <button
+                className="bg-primary rounded-[5px] flex-grow font-bold hover:opacity-70"
+                type="submit"
+              >
+                Send
+              </button>
+            </form>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

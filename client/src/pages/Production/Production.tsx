@@ -14,6 +14,7 @@ import { useState } from "react";
 import PianoKeyboard from "../../tone/instruments/piano/PianoKeyoboard";
 import StepSequencer from "../../tone/step_sequencer/StepSequencer";
 import Microphone from "../../tone/microphone/Microphone";
+import Messages from "../../newMessages/Messages";
 
 const Production = () => {
   const [openPianoKeyboard, setOpenPianoKeyboard] = useState(false);
@@ -194,20 +195,7 @@ const Production = () => {
               </p>
             </div>
             <div className="w-[270px] h-[370px] border-[2px] border-solid rounded-[5px] border-primary flex flex-col justify-between">
-              <div></div>
-              <div className="flex flex-col">
-                <div className="border border-solid border-primary"></div>
-                <div className="px-[5px] py-[9px] flex justify-between gap-1">
-                  <input
-                    type="text"
-                    placeholder="Type a message..."
-                    className="border-[2px] border-solid rounded-[5px] border-primary w-[192px] h-[30px] bg-transparent p-1"
-                  />
-                  <button className="bg-primary rounded-[5px] flex-grow font-bold hover:opacity-70">
-                    Send
-                  </button>
-                </div>
-              </div>
+              <Messages />
             </div>
           </div>
         </div>
