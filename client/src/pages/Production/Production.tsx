@@ -15,11 +15,39 @@ import PianoKeyboard from "../../tone/instruments/piano/PianoKeyoboard";
 import StepSequencer from "../../tone/step_sequencer/StepSequencer";
 import Microphone from "../../tone/microphone/Microphone";
 import Messages from "../../newMessages/Messages";
+import * as Tone from "tone";
 
 const Production = () => {
   const [openPianoKeyboard, setOpenPianoKeyboard] = useState(false);
   const [openStepSequencer, setOpenStepSequencer] = useState(false);
   const [openMicrophoneRecorder, SetOpenMicrophoneRecorder] = useState(false);
+
+  const TonejsPLayer = () => {
+    const recorder = new Tone.Recorder();
+    const synth = new Tone.Synth().connect(recorder);
+    synth.toDestination();
+
+    const notes = "CDEFGAB".split("").map((n) => `${n}4`);
+    let note = 0;
+    Tone.Transport.scheduleRepeat(async (time) => {
+      if (note === 0) {
+        recorder.start();
+      }
+      if (note > notes.length) {
+        synth.triggerRelease(time);
+        Tone.Transport.stop();
+        const recording = await recorder.stop();
+        const url = URL.createObjectURL(recording);
+        const anchor = document.createElement("a");
+        anchor.download = "recording.webm";
+        anchor.href = url;
+        anchor.click();
+      } else synth.triggerAttack(notes[note], time);
+      note++;
+    }, "4n");
+    Tone.Transport.start();
+    Tone.start();
+  };
 
   return (
     <div className="flex justify-center bg-background w-screen h-screen px-[12px] py-[20px]">
@@ -51,7 +79,14 @@ const Production = () => {
             </div>
             <div className="flex gap-[14px]">
               <img src={backward} alt="" className="" />
-              <img src={play} alt="" className="" />
+              <img
+                src={play}
+                alt=""
+                className=""
+                onClick={() => {
+                  TonejsPLayer();
+                }}
+              />
               <img src={elipse} alt="" className="" />
               <img src={repeat} alt="" className="" />
               <div className="border-[2px] border-solid rounded-md border-primary px-[18px] py-[6px]  font-bold">
@@ -100,6 +135,8 @@ const Production = () => {
             </h2>
             <h2>Guitar</h2>
             <h2>Beats</h2>
+            <h2>Effects</h2>
+            <h2>AI Generated Beats</h2>
             <h2>Presets</h2>
           </div>
           <div className="w-[156px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary p-[9px] flex flex-col gap-1">

@@ -35,6 +35,10 @@ const Microphone: React.FC<MicroProps> = ({ SetOpenMicrophoneRecorder }) => {
       }).toDestination();
       setPlayer(newPlayer);
       setIsRecording(false);
+
+      mic.current!.close();
+      mic.current = null;
+      setInitialized(false);
     } else {
       recorder.current!.start();
       setIsRecording(true);
@@ -54,7 +58,7 @@ const Microphone: React.FC<MicroProps> = ({ SetOpenMicrophoneRecorder }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <p
-        className=" font-bold text-[20px] cursor-pointer top-4 right-4 absolute"
+        className="font-bold text-[20px] cursor-pointer top-4 right-4 absolute"
         onClick={() => SetOpenMicrophoneRecorder(false)}
       >
         X
