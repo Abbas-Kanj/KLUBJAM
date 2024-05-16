@@ -1,7 +1,11 @@
 import React, { useState, useRef } from "react";
 import * as Tone from "tone";
 
-const Microphone: React.FC = () => {
+interface MicroProps {
+  SetOpenMicrophoneRecorder: (open: boolean) => void;
+}
+
+const Microphone: React.FC<MicroProps> = ({ SetOpenMicrophoneRecorder }) => {
   const [initialized, setInitialized] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -46,23 +50,31 @@ const Microphone: React.FC = () => {
   };
 
   return (
-    <div className="flex w-screen h-screen items-center justify-center bg-black">
-      <button
-        type="button"
-        id="start_btn"
-        onClick={handleRecClick}
-        disabled={!Tone.UserMedia.supported}
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
+      <p
+        className=" font-bold text-[20px] cursor-pointer top-4 right-4 absolute"
+        onClick={() => SetOpenMicrophoneRecorder(false)}
       >
-        {isRecording ? "Stop" : "Record"}
-      </button>
-      <button
-        type="button"
-        id="play_btn"
-        onClick={handlePlayClick}
-        disabled={!player}
-      >
-        {isPlaying ? "Stop" : "Play"}
-      </button>
+        X
+      </p>
+      <div className="flex items-center w-fit p-9 h-fit gap-5 rounded-xl bg-background">
+        <button
+          type="button"
+          id="start_btn"
+          onClick={handleRecClick}
+          disabled={!Tone.UserMedia.supported}
+        >
+          {isRecording ? "Stop" : "Record"}
+        </button>
+        <button
+          type="button"
+          id="play_btn"
+          onClick={handlePlayClick}
+          disabled={!player}
+        >
+          {isPlaying ? "Stop" : "Play"}
+        </button>
+      </div>
     </div>
   );
 };

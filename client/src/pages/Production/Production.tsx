@@ -13,10 +13,12 @@ import circle from "../assets/Workspace/icons/circle.svg";
 import { useState } from "react";
 import PianoKeyboard from "../../tone/instruments/piano/PianoKeyoboard";
 import StepSequencer from "../../tone/step_sequencer/StepSequencer";
+import Microphone from "../../tone/microphone/Microphone";
 
 const Production = () => {
   const [openPianoKeyboard, setOpenPianoKeyboard] = useState(false);
   const [openStepSequencer, setOpenStepSequencer] = useState(false);
+  const [openMicrophoneRecorder, SetOpenMicrophoneRecorder] = useState(false);
 
   return (
     <div className="flex justify-center bg-background w-screen h-screen px-[12px] py-[20px]">
@@ -29,6 +31,11 @@ const Production = () => {
         <StepSequencer
           setOpenStepSequencer={setOpenStepSequencer}
         ></StepSequencer>
+      )}
+      {openMicrophoneRecorder && (
+        <Microphone
+          SetOpenMicrophoneRecorder={SetOpenMicrophoneRecorder}
+        ></Microphone>
       )}
       <div>
         <div className="flex gap-[10px]">
@@ -51,7 +58,12 @@ const Production = () => {
               </div>
             </div>
             <div className="flex">
-              <img src={micro} alt="" className="" />
+              <img
+                src={micro}
+                alt=""
+                className="cursor-pointer hover:opacity-65"
+                onClick={() => SetOpenMicrophoneRecorder(true)}
+              />
               <img src={volume} alt="" className="" />
               <p>1.8dB</p>
             </div>
