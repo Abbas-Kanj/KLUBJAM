@@ -38,6 +38,8 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
     })),
   ];
 
+  let beatIndicators = Array.from({ length: 16 }, (_, i) => i);
+
   Tone.Transport.scheduleRepeat((time) => {
     rows.forEach((row, index) => {
       let synth = synths[index];
@@ -101,6 +103,13 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
           )}
         </div>
         <div className="sequencer">
+          {beatIndicators.map((beat, i) => (
+            <div
+              key={i}
+              className={`beat-indicator ${i === beat ? "live" : ""}`}
+            ></div>
+          ))}
+
           {rows.map((row, i) =>
             row.map((note, j) => (
               <button
