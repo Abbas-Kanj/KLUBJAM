@@ -10,6 +10,7 @@ const Microphone: React.FC<MicroProps> = ({ SetOpenMicrophoneRecorder }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [player, setPlayer] = useState<Tone.Player | null>(null);
+  const [recordedBlob, setRecordedBlob] = useState<Blob | null>(null);
 
   const mic = useRef<Tone.UserMedia | null>(null);
   const recorder = useRef<Tone.Recorder | null>(null);
@@ -27,6 +28,7 @@ const Microphone: React.FC<MicroProps> = ({ SetOpenMicrophoneRecorder }) => {
 
     if (isRecording) {
       const data = await recorder.current!.stop();
+      setRecordedBlob(data);
       const blobUrl = URL.createObjectURL(data);
       const newPlayer = new Tone.Player(blobUrl, () => {
         setIsPlaying(false);
@@ -66,6 +68,15 @@ const Microphone: React.FC<MicroProps> = ({ SetOpenMicrophoneRecorder }) => {
         >
           {isRecording ? "Stop" : "Record"}
         </button>
+        {recordedBlob && (
+          <a
+            href={URL.createObjectURL(recordedBlob)}
+            download="recorded_audio.wav"
+            className="btn-download"
+          >
+            Download
+          </a>
+        )}
         <button
           type="button"
           id="play_btn"

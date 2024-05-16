@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
+import { setCurrPlaying } from "../../../../../redux/music/musicSlice";
 
 const All = () => {
   const dispatch = useAppDispatch();
@@ -10,8 +11,11 @@ const All = () => {
   const auth_token = cookies.get("auth_token");
   const tracks = useAppSelector((state) => state.track.tracks);
   const allUsers = useAppSelector((state) => state.users.user);
-
   const users = allUsers?.filter((user) => user.role_id == 3);
+
+  const handlePlay = (track: any) => {
+    dispatch(setCurrPlaying(track));
+  };
 
   useEffect(() => {
     if (auth_token) {
@@ -25,7 +29,11 @@ const All = () => {
         <h2 className="font-bold text-[14px] mb-[26px]">New Tracks</h2>
         <div className="flex gap-[22px]">
           {tracks?.map((track, i) => (
-            <div key={i} className="h-[162px] relative">
+            <div
+              key={i}
+              className="h-[162px] relative"
+              onClick={() => handlePlay(track)}
+            >
               <img
                 src={`http://127.0.0.1:3000${track.track_image}`}
                 alt=""
