@@ -27,7 +27,7 @@ const AudioPlayer = () => {
       track_name: "",
     }
   );
-
+  // TODO Playlist
   // const [
   //   { trackId, playlistTrack_image, playlistTrack_name },
   //   setPlaylistTrack,
@@ -156,7 +156,77 @@ const AudioPlayer = () => {
     return s.substring(3);
   }
 
-  if (!music) return <p className="bg-black">Loading Music...</p>;
+  if (!music)
+    return (
+      <div className="border-t bg-black border-gray-300 relative h-[10vh] flex justify-between flex-row items-center">
+        <>
+          <div className="absolute top-[-14px] z-[99999999] left-0 w-full flex overflow-hidden">
+            {!isNaN(seekTime) && (
+              <Slider
+                style={{ color: "#0FACFD" }}
+                className="w-full"
+                value={seekTime}
+                onChange={handleSeekChange}
+              />
+            )}
+          </div>
+          <Button
+            startIcon={<Avatar variant="square" />}
+            className="flex flex-grow h-full "
+          >
+            <div className="text-left pl-5 flex flex-col pr-[190px]"></div>
+          </Button>
+          <div className="flex flex-row justify-center h-full items-center basis-2/5">
+            <ControlsToggleButton
+              type="repeat"
+              defaultIcon={<RepeatIcon fontSize="large" />}
+              changeIcon={<RepeatOneIcon fontSize="large" />}
+              onClicked={handleToggle}
+            />
+            <ControlsToggleButton
+              type="prev"
+              defaultIcon={<SkipPreviousIcon fontSize="large" />}
+              changeIcon={<SkipPreviousIcon fontSize="large" />}
+              onClicked={handleToggle}
+            />
+            <audio />
+            <ControlsToggleButton
+              type="play-pause"
+              defaultIcon={<PlayArrowIcon fontSize="large" />}
+              changeIcon={<PauseIcon fontSize="large" />}
+              onClicked={handleToggle}
+            />
+            <ControlsToggleButton
+              type="next"
+              defaultIcon={<SkipNextIcon fontSize="large" />}
+              changeIcon={<SkipNextIcon fontSize="large" />}
+              onClicked={handleToggle}
+            />
+          </div>
+          <div className="flex flex-row justify-end items-center basis-[30%] h-full">
+            <div className="pr-2.5">
+              <p>
+                <span>{formatTime(currTime)}</span>/
+                <span>{formatTime(duration)}</span>
+              </p>
+            </div>
+            <div className="w-24 mx-5">
+              <Slider
+                style={{ color: "#0FACFD" }}
+                value={volume}
+                onChange={handleVolumeChange}
+              />
+            </div>
+            <ControlsToggleButton
+              type="volume"
+              defaultIcon={<VolumeUpIcon />}
+              changeIcon={<VolumeOffIcon />}
+              onClicked={handleToggle}
+            />
+          </div>
+        </>
+      </div>
+    );
 
   return (
     <div className="border-t bg-black border-gray-300 relative h-[10vh] flex justify-between flex-row items-center">
