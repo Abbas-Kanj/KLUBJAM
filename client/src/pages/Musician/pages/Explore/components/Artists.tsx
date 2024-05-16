@@ -2,7 +2,9 @@ import downArrow from "../../../../assets/Workspace/icons/chevron-down.svg";
 import { useAppSelector } from "../../../../../app/hooks";
 
 const Artists = () => {
-  const users = useAppSelector((state) => state.users.user);
+  const allUsers = useAppSelector((state) => state.users.user);
+
+  const users = allUsers?.filter((user) => user.role_id == 3);
 
   return (
     <div className="flex flex-col justify-center items-center mt-[26px]">

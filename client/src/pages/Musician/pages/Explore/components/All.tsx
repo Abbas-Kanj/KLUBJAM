@@ -3,19 +3,19 @@ import Cookies from "universal-cookie";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import { fetchAllTracks } from "../../../../../redux/tracks/tracksSlice";
-import { fetchAllUsers } from "../../../../../redux/users/usersSlice";
 
 const All = () => {
   const dispatch = useAppDispatch();
   const cookies = new Cookies();
   const auth_token = cookies.get("auth_token");
   const tracks = useAppSelector((state) => state.track.tracks);
-  const users = useAppSelector((state) => state.users.user);
+  const allUsers = useAppSelector((state) => state.users.user);
+
+  const users = allUsers?.filter((user) => user.role_id == 3);
 
   useEffect(() => {
     if (auth_token) {
       dispatch(fetchAllTracks());
-      dispatch(fetchAllUsers());
     }
   }, [auth_token, dispatch]);
 

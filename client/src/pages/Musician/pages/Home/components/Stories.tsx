@@ -1,10 +1,13 @@
 import { useAppSelector } from "../../../../../app/hooks";
 
 const Stories = () => {
-  const users = useAppSelector((state) => state.users.user);
+  const allUsers = useAppSelector((state) => state.users.user);
+
+  const users = allUsers?.filter((user) => user.role_id == 3);
+
   return (
     <div className=" ">
-      <div className="flex  mt-[26px] ml-[260px] gap-[24px]">
+      <div className="flex mt-[26px] ml-[260px] gap-[24px]">
         {users?.map((user, i) => (
           <div key={i} className="flex items-center flex-col gap-[12px]">
             <img
