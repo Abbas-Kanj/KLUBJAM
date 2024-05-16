@@ -10,6 +10,41 @@ const Microphone: React.FC = () => {
   const mic = useRef<Tone.UserMedia | null>(null);
   const recorder = useRef<Tone.Recorder | null>(null);
 
+  const handleRecClick = async () => {
+    await Tone.context.resume();
+
+    if (!initialized) {
+      mic.current = new Tone.UserMedia();
+      recorder.current = new Tone.Recorder();
+      mic.current.connect(recorder.current);
+      await mic.current.open();
+      setInitialized(true);
+    }
+
+    if (isRecording) {
+      const data = await recorder.current!.stop();
+      const blobUrl = URL.createObjectURL(data);
+      const newPlayer = new Tone.Player(blobUrl, () => {
+        setIsPlaying(false);
+      }).toDestination();
+      setPlayer(newPlayer);
+      setIsRecording(false);
+    } else {
+      recorder.current!.start();
+      setIsRecording(true);
+    }
+  };
+
+  const handlePlayClick = () => {
+    if (isPlaying) {
+      player!.stop();
+      setIsPlaying(false);
+    } else {
+      player!.start();
+      setIsPlaying(true);
+    }
+  };
+
   return (
     <div className="flex w-screen h-screen items-center justify-center bg-black">
       <button
