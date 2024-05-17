@@ -68,7 +68,7 @@ const Landing = () => {
               <a href="">Workspace</a>
               <a href="">Community</a>
               <a href="">Playlists</a>
-              <a href="">JukeBox</a>
+              <a href="">Jambox</a>
             </div>
             <div className="flex text-sm text-center justify-center items-center">
               <button
@@ -97,7 +97,12 @@ const Landing = () => {
               Where Music Comes Alive, Creativity Knows no Bounds <br />
               and Every Note Tells a Story!
             </h2>
-            <button className=" text-xl font-bold bg-primary w-fit pb-[10px] pr-[78px] pt-[10px] pl-[78px] mt-[46px] mb-[15px] rounded-[10px] shadow-drop">
+            <button
+              className=" text-xl font-bold bg-primary w-fit pb-[10px] pr-[78px] pt-[10px] pl-[78px] mt-[46px] mb-[15px] rounded-[10px] shadow-drop"
+              onClick={() => {
+                setOpenSigninPopup(true);
+              }}
+            >
               Join now!
             </button>
           </div>
@@ -160,7 +165,7 @@ const Landing = () => {
           </div>
           <div className="absolute top-[50%] left-[25%]">
             <h2 className="text-[25px] font-bold">
-              Engage with like the minded
+              Engage with the like minded
             </h2>
             <img src={sec2Img3} alt="" className="mt-[27px]" />
           </div>
@@ -177,7 +182,7 @@ const Landing = () => {
           <img src={line} className="mb-[19px] mt-[9px] m shadow-drop" alt="" />
           <p className="text-[20px]  font-semibold">
             Explore a music feed where you can browse playlists,
-            <br /> discover new genres and
+            <br /> discover new genre and
             <br /> find personalized music recommendations
           </p>
         </div>
@@ -220,12 +225,12 @@ const Landing = () => {
           alt=""
           className="absolute object-cover w-screen h-auto bottom-[7%] left-0 z-10"
         />
-        <div className="flex justify-around w-screen mt-[140px] relative z-20">
+        <div className="flex justify-around w-screen mt-[140px] relative z-20 h-auto">
           <div>
             <h2 className="text-[25px] font-bold">
               Insert your favourite <br /> lyrics
             </h2>
-            <img src={sec4Img7} alt="" className="mt-[15px]" />
+            <img src={sec4Img7} alt="" className="mt-[15px] shadow-black" />
           </div>
           <div>
             <h2 className="text-[25px] font-bold">
