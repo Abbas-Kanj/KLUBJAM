@@ -8,6 +8,7 @@ export default {
       },
       boxShadow: {
         drop: "0 0 10px 2px #0FACFD",
+        black: "0 0 16px 14px #6B1EC8",
       },
       colors: {
         transparent: "transparent",

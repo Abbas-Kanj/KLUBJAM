@@ -15,17 +15,16 @@
   width: 10px;
 }
 
-/* /* Track */
 ::-webkit-scrollbar-track {
   background: #6b1ec8;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #0f1117;
+  box-shadow: 0 0 20px 20px #0facfd;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #6b1ec8;
+  box-shadow: 0 0 20px 20px #0facfd;
 }
