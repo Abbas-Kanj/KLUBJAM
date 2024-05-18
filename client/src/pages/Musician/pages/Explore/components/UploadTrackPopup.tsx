@@ -2,6 +2,7 @@ import { useState } from "react";
 import { sendRequest } from "../../../../../core/remote/request";
 import { useAppSelector } from "../../../../../app/hooks";
 import Cookies from "js-cookie";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
 interface PostProps {
   setOpenUploadTrackPopup: (open: boolean) => void;
@@ -102,9 +103,18 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
             Upload
           </button>
         </div>
-        <div className="flex">
+        <div className="flex flex-col items-center">
           <div className="flex flex-col h-auto w-[460px] items-center gap-[60px] p-[16px] mt-[20px]">
-            <img src={image} />
+            <label htmlFor="image-upload" className="cursor-pointer flex">
+              <img src={image} className="max-h-[200px] w-fit" />
+              <ModeEditIcon
+                style={{
+                  backgroundColor: "#0FACFD",
+                  borderRadius: "100%",
+                  padding: "2px",
+                }}
+              />
+            </label>
             <input
               id="image-upload"
               type="file"
@@ -112,21 +122,16 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
               className="hidden"
               onChange={handleImageUpload}
             />
-            <label
-              htmlFor="image-upload"
-              className="bg-primary w-[220px] text-[16px] font-bold rounded-lg text-center p-[6px] cursor-pointer"
-            >
-              Select image to upload
-            </label>
           </div>
-          <div className="flex flex-col items-center mt-7 w-2/4 gap-4">
+
+          <div className="flex flex-col-reverse mt-10 items-center gap-4">
             <input
               type="text"
               placeholder="Enter track name..."
-              className="border border-solid border-[#565656] bg-transparent rounded-lg p-2 w-[160px]"
+              className="border border-solid border-[#565656] bg-transparent rounded-lg p-2 w-[250px]"
               onChange={(e) => setTrackName(e.target.value)}
             />
-            <div className="flex flex-col w-[460px] items-center gap-[12px] p-[16px] mt-[20px]">
+            <div className="flex w-full items-center gap-[12px] p-[16px] ">
               <input
                 id="audio-upload"
                 type="file"
@@ -136,7 +141,7 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
               />
               <label
                 htmlFor="audio-upload"
-                className="bg-primary w-[220px] text-[16px] font-bold rounded-lg text-center p-[6px] cursor-pointer"
+                className="bg-primary w-[300px] text-[16px] font-bold rounded-lg text-center p-[6px] cursor-pointer"
               >
                 Select track to upload
               </label>
