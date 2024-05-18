@@ -93,8 +93,9 @@ const Posts = () => {
           `/comments/${post!.id}`,
           postData
         );
-        setNewComment("");
-        console.log("comment created");
+        if (res.status == 201) {
+          setNewComment("");
+        }
       } catch (error: any) {
         console.log(error.message);
       }
@@ -120,73 +121,81 @@ const Posts = () => {
           setOpenCommentsPopup={setOpenCommentsPopup}
         ></CommentsPopup>
       )}
-      {posts?.map((post, i) => (
-        <div key={i} className="flex flex-col mb-[30px] ">
-          <div className="flex items-center gap-[8px]">
-            <img
-              src={post.user.profile_picture}
-              alt=""
-              className="max-w-[40px]  max-h-[40px]"
-            />
-            <h2 className="font-medium text-[12px]">{post.user.username}</h2>
-          </div>
-          <div
-            className="pt-[40px] pb-[40px] pr-[60px] pl-[60px] border-[1px] border-solid border-greyText
-         max-w-[436px] mt-[12px] mb-[12px] flex items-center justify-center"
-          >
-            {post.post_picture.endsWith(".mp4") ? (
-              <video
-                src={`http://127.0.0.1:3000${post.post_picture}`}
-                controls={true}
-                className="max-w-[315px] max-h-[440px]"
+      {posts
+        ?.slice()
+        .reverse()
+        .map((post, i) => (
+          <div key={i} className="flex flex-col mb-[30px] ">
+            <div className="flex items-center gap-[8px]">
+              <img
+                src={post.user.profile_picture}
+                alt=""
+                className="max-w-[40px]  max-h-[40px] rounded-full"
               />
-            ) : (
-              <img src={`http://127.0.0.1:3000${post.post_picture}`} alt="" />
-            )}
-          </div>
-          <div className="flex gap-[18px]">
-            <img
-              src={likedPosts[post.id] ? redLike : like}
-              alt=""
-              className="cursor-pointer"
-              onClick={() => toggleLike(post)}
-            />
-            <img src={comment} alt="" className="cursor-pointer" />
-            <img src={share} alt="" className="cursor-pointer" />
-          </div>
-          <div className="mt-[20px] mb-[20px]">
-            <h2 className="font-medium text-[14px]">{`${post.likes._count} likes`}</h2>
-            <div className="flex gap-[8px]">
-              <h2 className="font-medium text-[14px]">{post.user.username}</h2>
-              <h2 className="text-[14px]">{post.caption}</h2>
+              <h2 className="font-medium text-[12px]">{post.user.username}</h2>
             </div>
-          </div>
-          <div>
-            <h2
-              className="font-medium text-[14px] text-greyText cursor-pointer hover:text-white"
-              onClick={() => openCommentPopup(post)}
-            >
-              {`View all ${post.comments._count} comments`}
-            </h2>
-            <div className="flex w-[430px] justify-between items-center">
-              <input
-                type="text"
-                className="font-medium text-[14px]  w-[370px] text-white bg-transparent  border-transparent focus:border-transparent cursor-pointer hover:placeholder:text-white  border-0 focus:outline-none placeholder-white placeholder-opacity-50 mb-[10px] mt-[10px]"
-                placeholder="Add a comment..."
-                onChange={(e) => setNewComment(e.target.value)}
-              />
-              <button
-                className=" pl-[10px] text-primary cursor-pointer hover:opacity-50 font-bold"
-                onClick={() => createComment(post)}
-              >
-                Post
-              </button>
+            <div className="pt-[40px] pb-[40px] pr-[60px] pl-[60px] border-[1px] border-solid border-greyText max-w-[436px] mt-[12px] mb-[12px] flex items-center justify-center">
+              {post.post_picture.endsWith(".mp4") ? (
+                <video
+                  src={`http://127.0.0.1:3000${post.post_picture}`}
+                  controls={true}
+                  className="max-w-[315px] max-h-[440px]"
+                />
+              ) : post.post_picture.endsWith(".mp3") ? (
+                <audio
+                  src={`http://127.0.0.1:3000${post.post_picture}`}
+                  controls={true}
+                />
+              ) : (
+                <img src={`http://127.0.0.1:3000${post.post_picture}`} alt="" />
+              )}
             </div>
 
-            <div className="border-b  border-solid border-greyText w-[436px] mt-2"></div>
+            <div className="flex gap-[18px]">
+              <img
+                src={likedPosts[post.id] ? redLike : like}
+                alt=""
+                className="cursor-pointer"
+                onClick={() => toggleLike(post)}
+              />
+              <img src={comment} alt="" className="cursor-pointer" />
+              <img src={share} alt="" className="cursor-pointer" />
+            </div>
+            <div className="mt-[20px] mb-[20px]">
+              <h2 className="font-medium text-[14px]">{`${post.likes._count} likes`}</h2>
+              <div className="flex gap-[8px]">
+                <h2 className="font-medium text-[14px]">
+                  {post.user.username}
+                </h2>
+                <h2 className="text-[14px]">{post.caption}</h2>
+              </div>
+            </div>
+            <div>
+              <h2
+                className="font-medium text-[14px] text-greyText cursor-pointer hover:text-white"
+                onClick={() => openCommentPopup(post)}
+              >
+                {`View all ${post.comments._count} comments`}
+              </h2>
+              <div className="flex w-[430px] justify-between items-center">
+                <input
+                  type="text"
+                  className="font-medium text-[14px]  w-[370px] text-white bg-transparent  border-transparent focus:border-transparent cursor-pointer hover:placeholder:text-white  border-0 focus:outline-none placeholder-white placeholder-opacity-50 mb-[10px] mt-[10px]"
+                  placeholder="Add a comment..."
+                  onChange={(e) => setNewComment(e.target.value)}
+                />
+                <button
+                  className=" pl-[10px] text-primary cursor-pointer hover:opacity-50 font-bold"
+                  onClick={() => createComment(post)}
+                >
+                  Post
+                </button>
+              </div>
+
+              <div className="border-b  border-solid border-greyText w-[436px] mt-2"></div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

@@ -25,17 +25,20 @@ const Artists = () => {
       </div>
       <div className="border border-solid border-greyText w-[686px] mt-[15px]"></div>
       <div className="mt-[17px] mb-[30px]  w-[1133px] flex flex-wrap gap-[22px] items-center">
-        {users?.map((user, i) => (
-          <div key={i} className="flex flex-col justify-center items-center">
-            <img
-              src={user.profile_picture}
-              alt=""
-              className="h-[130px] w-[130px]"
-            />
-            <h2 className="font-medium text-[14px]">{user.username}</h2>
-            <h3 className="text-[12px] text-greyText">10 followers</h3>
-          </div>
-        ))}
+        {users
+          ?.slice()
+          .reverse()
+          .map((user, i) => (
+            <div key={i} className="flex flex-col justify-center items-center">
+              <img
+                src={user.profile_picture}
+                alt=""
+                className="h-[130px] w-[130px] rounded-s-full"
+              />
+              <h2 className="font-medium text-[14px]">{user.username}</h2>
+              <h3 className="text-[12px] text-greyText">10 followers</h3>
+            </div>
+          ))}
       </div>
     </div>
   );
