@@ -80,7 +80,7 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 bottom-10 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 right-0 bottom-3 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <form className="flex flex-col w-[784px] h-[550px] rounded-xl bg-background p-[16px]">
         <div className="flex items-center w-full justify-between pl-[20px] pr-[20px] pt-[10px] pb-[20px] border-b border-solid border-[#565656]">
           <p
@@ -100,7 +100,7 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
         </div>
         <div className="flex">
           <div className="flex flex-col w-[460px] items-center gap-[12px] p-[16px] mt-[20px]">
-            <img src={image} />
+            <img src={image} className="w-fit max-h-[350px]" />
             <input
               id="image-upload"
               type="file"
@@ -120,7 +120,7 @@ const PostPopup: React.FC<PostProps> = ({ setOpenPostPopup }) => {
               <img
                 src={user?.profile_picture}
                 alt=""
-                className="max-w-[40px] max-h-[40px]"
+                className="max-w-[40px] max-h-[40px] rounded-full"
               />
               <h5 className="text-[14px] font-medium">{user?.username}</h5>
             </div>

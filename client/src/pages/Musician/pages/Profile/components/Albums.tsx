@@ -8,36 +8,6 @@ const Albums = () => {
         <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
         <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
       </div>
-      <div className="w-[210px] h-[242px] flex flex-col justify-start">
-        <img src={albumImg} alt="" className="w-[210px] h-[210px]" />
-        <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-        <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-      </div>
-      <div className="w-[210px] h-[242px] flex flex-col justify-start">
-        <img src={albumImg} alt="" className="w-[210px] h-[210px]" />
-        <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-        <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-      </div>
-      <div className="w-[210px] h-[242px] flex flex-col justify-start">
-        <img src={albumImg} alt="" className="w-[210px] h-[210px]" />
-        <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-        <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-      </div>
-      <div className="w-[210px] h-[242px] flex flex-col justify-start">
-        <img src={albumImg} alt="" className="w-[210px] h-[210px]" />
-        <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-        <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-      </div>
-      <div className="w-[210px] h-[242px] flex flex-col justify-start">
-        <img src={albumImg} alt="" className="w-[210px] h-[210px]" />
-        <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-        <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-      </div>
-      <div className="w-[210px] h-[242px] flex flex-col justify-start">
-        <img src={albumImg} alt="" className="w-[210px] h-[210px]" />
-        <h2 className="font-medium text-[12px] mt-[6px]">Birds</h2>
-        <h2 className="font-medium text-[12px] text-greyText">Emmanuel</h2>
-      </div>
     </div>
   );
 };

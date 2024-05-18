@@ -33,7 +33,7 @@ const Artists = () => {
               <img
                 src={user.profile_picture}
                 alt=""
-                className="h-[130px] w-[130px] rounded-s-full"
+                className="h-[130px] w-[130px] rounded-full"
               />
               <h2 className="font-medium text-[14px]">{user.username}</h2>
               <h3 className="text-[12px] text-greyText">10 followers</h3>

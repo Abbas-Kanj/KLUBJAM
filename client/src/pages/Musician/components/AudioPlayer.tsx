@@ -170,10 +170,7 @@ const AudioPlayer = () => {
               />
             )}
           </div>
-          <Button
-            startIcon={<Avatar variant="square" />}
-            className="flex flex-grow h-full "
-          >
+          <Button className="flex flex-grow h-full ">
             <div className="text-left pl-5 flex flex-col pr-[190px]"></div>
           </Button>
           <div className="flex flex-row justify-center h-full items-center basis-2/5">
@@ -206,8 +203,8 @@ const AudioPlayer = () => {
           <div className="flex flex-row justify-end items-center basis-[30%] h-full">
             <div className="pr-2.5">
               <p>
-                <span>{formatTime(currTime)}</span>/
-                <span>{formatTime(duration)}</span>
+                <span>{formatTime(currTime)}</span> /
+                <span> {formatTime(duration)}</span>
               </p>
             </div>
             <div className="w-24 mx-5">
@@ -295,8 +292,8 @@ const AudioPlayer = () => {
         <div className="flex flex-row justify-end items-center basis-[30%] h-full">
           <div className="pr-2.5">
             <p>
-              <span>{formatTime(currTime)}</span>/
-              <span>{formatTime(duration)}</span>
+              <span>{formatTime(currTime)}</span> /
+              <span> {formatTime(duration)}</span>
             </p>
           </div>
           <div className="w-24 mx-5">

@@ -165,7 +165,7 @@ const MusicianSidebar = () => {
       </div>
       <div>
         <div
-          className="flex gap-[16px] ml-[24px] items-center cursor-pointer hover:opacity-50"
+          className="flex gap-[16px] mt-3 ml-[24px] items-center cursor-pointer hover:opacity-50"
           onClick={handleLogout}
         >
           <img src={logout} alt="" />

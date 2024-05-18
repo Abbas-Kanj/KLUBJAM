@@ -1,7 +1,6 @@
 import bgHeader from "../../../assets/Navbar/images/Rectangle 75 (3).png";
 import defaultLogo from "../../../assets/Navbar/images/user-profile-circle.svg";
 import { useState } from "react";
-import Magenta from "./components/Magenta";
 import JamBoxAi from "./components/JamBoxAi";
 const Jambox = () => {
   const [isVisible1, setIsVisible1] = useState(true);
@@ -54,7 +53,6 @@ const Jambox = () => {
       </div>
       <div className="flex flex-col relative items-center">
         {isVisible1 && <JamBoxAi />}
-        {isVisible2 && <Magenta />}
       </div>
     </div>
   );

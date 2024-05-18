@@ -16,7 +16,7 @@ const Moderatortable = () => {
           setopenAddModPopup(true);
         }}
       >
-        Add MOD
+        Add Moderator
       </button>
       <div className="mt-[26px] w-[1200px] mx-auto h-auto rounded pt-[22px] pb-[22px] pl-[20px] pr-[20px] bg-tableBackground ">
         {openUpdateModPopup && (

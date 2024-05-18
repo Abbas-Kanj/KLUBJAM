@@ -13,6 +13,7 @@ interface Playing {
   createdAt: any;
   updatedAt: any;
   user: any;
+  tracks: any;
 }
 
 interface Track {

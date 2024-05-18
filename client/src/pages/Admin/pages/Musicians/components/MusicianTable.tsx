@@ -16,7 +16,7 @@ const MusicianTable = () => {
           setopenAddMusicianPopup(true);
         }}
       >
-        Add MOD
+        Add Musician
       </button>
       <div className="mt-[26px] w-[1200px] mx-auto h-auto rounded pt-[22px] pb-[22px] pl-[20px] pr-[20px] bg-tableBackground ">
         {openUpdateMusicianPopup && (

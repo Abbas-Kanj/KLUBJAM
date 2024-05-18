@@ -34,7 +34,7 @@ const Profile = () => {
           <img
             src={user.info?.profile_picture}
             alt=""
-            className="w-[140px] h-[140px] mt-[80px] "
+            className="w-[140px] h-[140px] mt-[80px] rounded-full"
           />
           <div className=" flex flex-col ml-[23px] mt-[110px]">
             <h1 className="font-semibold text-[44px]">{user.info?.username}</h1>
