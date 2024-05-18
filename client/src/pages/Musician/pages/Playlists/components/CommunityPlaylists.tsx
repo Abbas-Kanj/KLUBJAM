@@ -42,41 +42,44 @@ const CommunityPlaylists = () => {
       </div>
       <div className="border border-solid border-greyText w-[686px] mt-[15px]"></div>
       <div className="mt-[17px] mb-[30px]  w-[1133px] flex flex-wrap gap-[22px] items-center">
-        {playlists?.map((playlist, i) => (
-          <div
-            key={i}
-            className="w-[209px] h-[241px] flex flex-col justify-start relative group"
-            onClick={() => handlePlay(playlist)}
-          >
-            <img
-              src={`http://127.0.0.1:3000${playlist.playlist_image}`}
-              alt=""
-              className="w-[209px] h-[209px]"
-            />
-            <h2 className="font-medium text-[12px] mt-[6px]">
-              {playlist.title}
-            </h2>
-            <h2 className="font-medium text-[12px] text-greyText">
-              {playlist.userId}
-            </h2>
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-12 w-12 text-white bg-primary rounded-full p-3 cursor-pointer"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 3l14 9-14 9V3z"
-                />
-              </svg>
+        {playlists
+          ?.slice()
+          .reverse()
+          .map((playlist, i) => (
+            <div
+              key={i}
+              className="w-[209px] h-[241px] flex flex-col justify-start relative group"
+              onClick={() => handlePlay(playlist)}
+            >
+              <img
+                src={`${playlist.playlist_image}`}
+                alt=""
+                className="w-[209px] h-[209px]"
+              />
+              <h2 className="font-medium text-[12px] mt-[6px]">
+                {playlist.title}
+              </h2>
+              <h2 className="font-medium text-[12px] text-greyText">
+                {playlist.userId}
+              </h2>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-12 text-white bg-primary rounded-full p-3 cursor-pointer"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 3l14 9-14 9V3z"
+                  />
+                </svg>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
