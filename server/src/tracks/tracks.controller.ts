@@ -5,12 +5,10 @@ import {
   Res,
   Param,
   Get,
-  Delete,
-  Put,
   UseGuards,
 } from '@nestjs/common';
 import { Response, response } from 'express';
-import { JwtAuthGuard } from 'src/authentication/auth.guard';
+import { JwtAuthGuard } from '../authentication/auth.guard';
 import { TracksService } from './tracks.service';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { Tracks } from '@prisma/client';
