@@ -1,4 +1,8 @@
 import albumImg from "../../../../assets/Explore/images/Rectangle 77-1.png";
+import albumImg1 from "../../../../assets/Explore/images/Rectangle 77-2.png";
+import albumImg2 from "../../../../assets/Explore/images/Rectangle 77-3.png";
+import albumImg3 from "../../../../assets/Explore/images/Rectangle 77-4.png";
+import albumImg4 from "../../../../assets/Explore/images/Rectangle 76.png";
 import Cookies from "universal-cookie";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
@@ -83,11 +87,38 @@ const All = () => {
             </div>
           </div>
           <div className="h-[241px]">
-            <img src={albumImg} alt="" className="w-[209px] h-[209px]" />
+            <img src={albumImg2} alt="" className="w-[209px] h-[209px]" />
             <div className="flex flex-col justify-start mt-[6px]">
-              <h2 className="font-medium text-[12px]">WonderWall-remix</h2>
+              <h2 className="font-medium text-[12px]">Sunshine Melody</h2>
               <h2 className="font-medium text-[12px] text-greyText">
-                Jason Tucker
+                Sarah Johnson
+              </h2>
+            </div>
+          </div>
+          <div className="h-[241px]">
+            <img src={albumImg3} alt="" className="w-[209px] h-[209px]" />
+            <div className="flex flex-col justify-start mt-[6px]">
+              <h2 className="font-medium text-[12px]">Evening Glow</h2>
+              <h2 className="font-medium text-[12px] text-greyText">
+                Mike Brown
+              </h2>
+            </div>
+          </div>
+          <div className="h-[241px]">
+            <img src={albumImg4} alt="" className="w-[209px] h-[209px]" />
+            <div className="flex flex-col justify-start mt-[6px]">
+              <h2 className="font-medium text-[12px]">Ocean Breeze</h2>
+              <h2 className="font-medium text-[12px] text-greyText">
+                Emily Davis
+              </h2>
+            </div>
+          </div>
+          <div className="h-[241px]">
+            <img src={albumImg1} alt="" className="w-[209px] h-[209px]" />
+            <div className="flex flex-col justify-start mt-[6px]">
+              <h2 className="font-medium text-[12px]">Mountain Echo</h2>
+              <h2 className="font-medium text-[12px] text-greyText">
+                Laura White
               </h2>
             </div>
           </div>
@@ -96,23 +127,17 @@ const All = () => {
       <div className="flex flex-col ml-[33px] mb-[50px]">
         <h2 className="font-bold text-[14px] mb-[26px]">New Artists</h2>
         <div className="flex gap-[28px]">
-          {users
-            ?.slice()
-            .reverse()
-            .map((user, i) => (
-              <div
-                key={i}
-                className="flex flex-col justify-center items-center"
-              >
-                <img
-                  src={user.profile_picture}
-                  alt=""
-                  className="h-[70px] w-[70px] rounded-full"
-                />
-                <h2 className="font-medium text-[12px]">{user.username}</h2>
-                <h3 className="text-[10px] text-greyText">10 followers</h3>
-              </div>
-            ))}
+          {users?.map((user, i) => (
+            <div key={i} className="flex flex-col justify-center items-center">
+              <img
+                src={user.profile_picture}
+                alt=""
+                className="h-[70px] w-[70px] rounded-full"
+              />
+              <h2 className="font-medium text-[12px]">{user.username}</h2>
+              <h3 className="text-[10px] text-greyText">10 followers</h3>
+            </div>
+          ))}
         </div>
       </div>
     </div>
