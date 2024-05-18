@@ -25,6 +25,8 @@ import reviewerImg from "../assets/LandingPage/images/Ellipse 4.svg";
 import { useState } from "react";
 import SignIn from "./components/Signin";
 import Signup from "./components/Signup";
+import Carousel from "./components/Carousel";
+
 //////////////////////////////////////////////////////////////////////////
 
 const Landing = () => {
@@ -248,17 +250,7 @@ const Landing = () => {
         </div>
       </section>
       <section className="flex flex-col w-full h-screen  overflow-hidden z-20">
-        <div className="flex flex-col text-center items-center mx-auto w-[1132px] h-[400px] mt-[282px] bg-backgroundPurple bg-opacity-20 pt-[40px] pb-[40px] pr-[70px] pl-[70px] relative z-20">
-          <img src={reviewerImg} alt="" className="w-[96px] h-[96px]" />
-          <p className="text-[26px] font-bold mt-[21px] mb-[21px]">
-            “I'm thrilled by the prospect of collaborating with other talented
-            individuals on music projects. The platform provides easy-to-use
-            tools for uploading tracks, <br /> collaborating in real-time, and
-            managing projects effectively.”
-          </p>
-          <small className="text-[21px] font-light">Andrew</small>
-          <small className="text-[21px] font-light">Music producer</small>
-        </div>
+        <Carousel />
       </section>
     </div>
   );
