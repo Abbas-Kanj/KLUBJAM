@@ -14,11 +14,15 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from '@prisma/client';
 import { Response } from 'express';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { JwtAuthGuard } from 'src/authentication/auth.guard';
+import { JwtAuthGuard } from '../authentication/auth.guard';
+import { PrismaService } from '../prisma.service';
 
 @Controller('posts')
 export class PostsController {
-  constructor(private readonly postsService: PostsService) {}
+  constructor(
+    private readonly postsService: PostsService,
+    private readonly prisma: PrismaService,
+  ) {}
   @Get()
   async getAllPosts(@Res() response: Response): Promise<any> {
     try {
