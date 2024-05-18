@@ -12,10 +12,10 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response } from 'express';
-import { JwtAuthGuard } from 'src/authentication/auth.guard';
+import { JwtAuthGuard } from '../authentication/auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../prisma.service';
 
 @Controller('users')
 export class UsersController {

@@ -12,6 +12,7 @@ import { PlaylistsModule } from './playlists/playlists.module';
 import { CoinRequestsModule } from './coin_requests/coinRequests.module';
 import { AlbumsModule } from './albums/albums.module';
 import { MessagesModule } from './messages/messages.module';
+// import { BlobGateway } from './blobs/blob.gateway';
 
 @Module({
   imports: [

@@ -1,8 +1,8 @@
-import { PrismaService } from 'src/prisma.service';
 import { Users } from './users.model';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class UsersService {
