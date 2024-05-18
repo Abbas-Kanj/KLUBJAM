@@ -19,19 +19,14 @@
 #### Admin
 
 - As an admin, I want to view analytics of the entire website, including user activity and engagement metrics, so that I can make informed decisions to improve the platform.
-- As an admin, I want to be able to create, edit, update, suspend, ban, or delete musician and moderator accounts, so that I can maintain a safe and respectful community.
-- As an admin, I want to have the ability to update or delete tracks uploaded by musicians, so that I can ensure the quality and appropriateness of the content on the platform.
-- As an admin, I want to be able to update or delete posts made by users, so that I can moderate the content and maintain a positive user experience.
-- As an admin, I want to be able to approve or decline coin requests from users, so that I can manage the platform's virtual currency system.
-- As an admin, I want to receive reports from moderators regarding any issues or violations on the platform, so that I can take appropriate action to address them.
-
-<br>
+- As an admin, I want to be able to manage user accounts, including creating, editing, updating, suspending, banning, or deleting musician and moderator accounts, to maintain a safe and respectful community.
+- As an admin, I want to have the ability to moderate content by updating or deleting tracks uploaded by musicians and posts made by users, to ensure the quality and appropriateness of the platform's content.
+  <br>
 
 #### Moderator
 
 - As a moderator, I want to be able to approve or reject produced tracks by musicians, so that I can ensure that only high-quality music is showcased on the platform.
-- As a moderator, I want to be able to edit or delete comments made by musicians on a certain post, so that I can maintain a respectful and constructive environment.
-- As a moderator, I want to be able to chat with musicians if any bugs or technical issues appear on the website, so that I can help resolve them promptly.
+- As a moderator, I want to be able to edit or delete comments made by musicians on a certain post, to maintain a respectful and constructive environment.
 - As a moderator, I want to be able to report any issues or violations to the admin, so that they can take appropriate action to address them and maintain the integrity of the platform.
 
 <br><br>
@@ -39,7 +34,7 @@
 <!-- Tech stack -->
 <img src="./readme/title3.svg"/>
 
-### Coffee Express is built using the following technologies:
+### KLUBJAM is built using the following technologies:
 
 - This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
@@ -52,15 +47,15 @@
 <!-- UI UX -->
 <img src="./readme/title4.svg"/>
 
-> We designed Coffee Express using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed KLUBJAM using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
-- Project Figma design [figma](https://www.figma.com/file/LsuOx5Wnh5YTGSEtrgvz4l/Purrfect-Pals?type=design&node-id=257%3A79&mode=design&t=adzbABt5hbb91ucZ-1)
+- Project Figma design [figma](https://www.figma.com/design/AdFpHZHqfDga3fu1TE4QB2/KLUBJAM?node-id=0-1&t=MsWQ7YJPFsrEGOuV-0)
 
 ### Mockups
 
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Home screen                                  | Community Screen                        | Explore Screen                             |
+| -------------------------------------------- | --------------------------------------- | ------------------------------------------ |
+| ![Landing](./readme/demo/Landing%20Page.png) | ![fsdaf](./readme/demo/Home%20Page.png) | ![fsdaf](./readme/demo/Explore%20Page.png) |
 
 <br><br>
 
@@ -76,15 +71,23 @@
 <!-- Implementation -->
 <img src="./readme/title6.svg"/>
 
-### User Screens (Mobile)
+### Musician Screens (Web)
 
-| Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
+| Login popup                               | Register popup                          | Landing screen                          | Loading screen                          |
 | ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 | Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
 ### Admin Screens (Web)
+
+| Login screen                            | Register screen                       | Landing screen                        |
+| --------------------------------------- | ------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Home screen                             | Menu Screen                           | Order Screen                          |
+| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+
+### Moderator Screens (Web)
 
 | Login screen                            | Register screen                       | Landing screen                        |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
@@ -124,7 +127,7 @@
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up KLUBJAM locally, follow these steps:
 
 ### Prerequisites
 
@@ -151,4 +154,4 @@ _Below is an example of how you can instruct your audience on installing and set
    const API_KEY = "ENTER YOUR API";
    ```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+Now, you should be able to run KLUBJAM locally and explore its features.
