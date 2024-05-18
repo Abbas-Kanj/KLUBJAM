@@ -36,13 +36,13 @@
 
 ### KLUBJAM is built using the following technologies:
 
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
-- To send local push notifications, the app uses the [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
-  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
-
-<br><br>
+- This project uses the [React development framework](https://react.dev/). React is a popular JavaScript library for building user interfaces. React allows for the creation of reusable UI components, ensuring a dynamic and responsive user experience.
+- The project leverages [Redux](https://redux.js.org/). Redux is used for state management, providing a predictable state container. This ensures efficient data flow throughout the application.
+- The project uses [NestJS](https://nestjs.com/). NestJS is a progressive Node.js framework for building scalable and maintainable server-side applications. NestJS leverages TypeScript, enhancing code quality and maintainability with strong typing and modern JavaScript features.
+- The project leverages [Tone.js](https://tonejs.github.io/). Tone.js is a powerful JavaScript framework for creating and manipulating audio in the web browser, enabling dynamic and interactive sound experiences.
+- The project uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+- The project leverages [Magenta.js](https://magenta.tensorflow.org/js-announce). Magenta.js is a JavaScript library for working with music and art creation using machine learning models, enabling advanced capabilities for creative applications.
+  <br><br>
 
 <!-- UI UX -->
 <img src="./readme/title4.svg"/>
@@ -64,7 +64,7 @@
 
 ### Architecting Data Excellence: Innovative Database Design Strategies:
 
-- Insert ER Diagram here
+<img src="./readme/demo/KLUBJAM-DB.png"/>
 
 <br><br>
 
