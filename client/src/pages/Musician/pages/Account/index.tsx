@@ -1,4 +1,4 @@
-import bgHeader from "../../../assets/Navbar/images/Rectangle 75 (5).png";
+import bgHeader from "../../../assets/Navbar/images/Rectangle 169.png";
 import defaultLogo from "../../../assets/Navbar/images/Ellipse 38.svg";
 
 const Account = () => {

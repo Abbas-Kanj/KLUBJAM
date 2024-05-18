@@ -1,4 +1,4 @@
-import bgHeader from "../../../assets/Navbar/images/Rectangle 75 (4).png";
+import bgHeader from "../../../assets/Navbar/images/Rectangle 168.png";
 import { useState } from "react";
 import Tracks from "./components/Tracks";
 import Albums from "./components/Albums";
