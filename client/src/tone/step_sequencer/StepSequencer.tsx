@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as Tone from "tone";
 
 interface SequencerProps {
@@ -8,7 +8,16 @@ interface SequencerProps {
 const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
   const [bpm, setBpm] = useState(120);
   const [isPlaying, setIsPlaying] = useState(false);
-  let beat = 0;
+  const [beat, setBeat] = useState(0);
+  const [rows, setRows] = useState([
+    Array.from({ length: 16 }, () => ({ note: "F4", active: false })),
+    Array.from({ length: 16 }, () => ({ note: "Eb4", active: false })),
+    Array.from({ length: 16 }, () => ({ note: "D4", active: false })),
+    Array.from({ length: 16 }, () => ({ note: "C4", active: false })),
+  ]);
+
+  const rowsRef = useRef(rows);
+  rowsRef.current = rows;
 
   const synths = [
     new Tone.Synth().toDestination(),
@@ -17,44 +26,34 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
     new Tone.Synth().toDestination(),
   ];
 
-  const scaleOfNotes = ["C4", "D4", "Eb4", "F4"];
+  useEffect(() => {
+    Tone.Transport.scheduleRepeat((time) => {
+      rowsRef.current.forEach((row, index) => {
+        const synth = synths[index];
+        const note = row[beat];
+        if (note.active) synth.triggerAttackRelease(note.note, "16n", time);
+      });
+      setBeat((prevBeat) => (prevBeat + 1) % 16);
+    }, "16n");
 
-  let rows = [
-    Array.from({ length: 16 }, (_, i) => ({
-      note: scaleOfNotes[3],
-      active: false,
-    })),
-    Array.from({ length: 16 }, (_, i) => ({
-      note: scaleOfNotes[2],
-      active: false,
-    })),
-    Array.from({ length: 16 }, (_, i) => ({
-      note: scaleOfNotes[1],
-      active: false,
-    })),
-    Array.from({ length: 16 }, (_, i) => ({
-      note: scaleOfNotes[0],
-      active: false,
-    })),
-  ];
-
-  let beatIndicators = Array.from({ length: 16 }, (_, i) => i);
-
-  Tone.Transport.scheduleRepeat((time) => {
-    rows.forEach((row, index) => {
-      let synth = synths[index];
-      let note = row[beat];
-      if (note.active) synth.triggerAttackRelease(note.note, "16n", time);
-    });
-    beat = (beat + 1) % 16;
-  }, "16n");
+    return () => {
+      Tone.Transport.cancel();
+    };
+  }, [beat]);
 
   const handleBpmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBpm(parseInt(event.target.value));
   };
 
-  const handleNoteClick = (rowIndex: any, noteIndex: any) => {
-    rows[rowIndex][noteIndex].active = !rows[rowIndex][noteIndex].active;
+  const handleNoteClick = (rowIndex: number, noteIndex: number) => {
+    const newRows = rows.map((row, i) =>
+      row.map((note, j) =>
+        i === rowIndex && j === noteIndex
+          ? { ...note, active: !note.active }
+          : note
+      )
+    );
+    setRows(newRows);
   };
 
   const handlePlayClick = () => {
@@ -78,7 +77,7 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <p
-        className=" font-bold text-[20px] cursor-pointer top-4 right-4 absolute"
+        className="font-bold text-[20px] cursor-pointer top-4 right-4 absolute"
         onClick={() => {
           setOpenStepSequencer(false);
           Tone.Transport.stop();
@@ -86,7 +85,7 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
       >
         X
       </p>
-      <div className=" items-center w-fit h-fit rounded-xl bg-background p-4">
+      <div className="items-center w-fit h-fit rounded-xl bg-background p-4">
         <div className="bpm-controls flex gap-4">
           <label htmlFor="bpm">{bpm} BPM</label>
           <input
@@ -103,13 +102,12 @@ const StepSequencer: React.FC<SequencerProps> = ({ setOpenStepSequencer }) => {
           )}
         </div>
         <div className="sequencer">
-          {beatIndicators.map((beat, i) => (
+          {Array.from({ length: 16 }).map((_, i) => (
             <div
               key={i}
               className={`beat-indicator ${i === beat ? "live" : ""}`}
             ></div>
           ))}
-
           {rows.map((row, i) =>
             row.map((note, j) => (
               <button
