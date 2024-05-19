@@ -71,11 +71,11 @@
 
 ### Musician Screens (Web)
 
-| Login popup                               | Register popup                          | Landing screen                          | Loading screen                          |
-| ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](./readme/demo/landing.gif)     | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| Landing screen                          | Register Popup                        | Login Popup                           |
+| --------------------------------------- | ------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/landing.gif)   | ![fsdaf](./readme/demo/register.gif)  | ![fsdaf](./readme/demo/login.gif)     |
+| Home screen                             | Explore Screen                        | Workspace Screen                      |
+| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 ### Admin Screens (Web)
 
