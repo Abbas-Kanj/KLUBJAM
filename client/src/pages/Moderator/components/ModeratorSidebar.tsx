@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Logo from "../../assets/Sidebar/icons/logo.svg";
 import logout from "../../assets/Sidebar/icons/logout.svg";
-
 import Tracks from "../assets/icons/grey/Group.svg";
 import TracksCyan from "../assets/icons/cyan/Group.svg";
 import Comments from "../assets/icons/grey/Vector.svg";
@@ -12,6 +11,7 @@ import Report from "../assets/icons/grey/Vector (2).svg";
 import ReportCyan from "../assets/icons/cyan/Vector (2).svg";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import ReportPopup from "./ReportPopup";
 
 const ModeratorSidebar = () => {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const ModeratorSidebar = () => {
   const [isCommentsHovered, setisCommentsHovered] = useState(false);
   const [isMessagesHovered, setisMessagesHovered] = useState(false);
   const [isReportHovered, setisReportHovered] = useState(false);
+  const [openReportPopup, setopenReportPopup] = useState(false);
 
   const handleLogout = () => {
     const cookies = new Cookies();
@@ -28,6 +29,9 @@ const ModeratorSidebar = () => {
 
   return (
     <div className="flex flex-col w-[257px] h-screen bg-background">
+      {openReportPopup && (
+        <ReportPopup setopenReportPopup={setopenReportPopup}></ReportPopup>
+      )}
       <div className="flex mt-[38px] ml-[14px] gap-[19px]">
         <img src={Logo} alt="" />
         <h1 className="font-semibold text-[22px]">KLUBJAM</h1>
@@ -90,7 +94,9 @@ const ModeratorSidebar = () => {
               className="flex gap-[16px] items-center group-hover:bg-opacity-50 transition duration-300"
               onMouseEnter={() => setisReportHovered(true)}
               onMouseLeave={() => setisReportHovered(false)}
-              onClick={() => navigate("../Report")}
+              onClick={() => {
+                setopenReportPopup(true);
+              }}
             >
               <img
                 src={isReportHovered ? ReportCyan : Report}
