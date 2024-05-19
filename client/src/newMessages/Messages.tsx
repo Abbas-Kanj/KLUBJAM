@@ -40,29 +40,27 @@ const Messages = () => {
   return (
     <>
       {!joined ? (
-        <div className="flex flex-col">
-          <div className="flex flex-col h-full items-center mt-[280px]">
-            <div className="flex gap-2 p-2">
-              <label>Enter your name?</label>
-              <input
-                id="name"
-                type="text"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                className="border-[2px] border-solid rounded-[5px] border-primary bg-transparent w-[100px]"
-              />
-            </div>
-
-            <button
-              onClick={() => {
-                join(name);
+        <div className="flex flex-col h-full items-center justify-between">
+          <div className="flex flex-col items-center gap-2">
+            <label className="text-greyText">Enter your name</label>
+            <input
+              id="name"
+              type="text"
+              onChange={(e) => {
+                setName(e.target.value);
               }}
-              className="bg-primary rounded-[5px] w-fit p-1 font-bold hover:opacity-70"
-            >
-              join room
-            </button>
+              className="border-[2px] border-solid rounded-[5px] border-greyText bg-transparent w-[230px] focus:p-1"
+            />
           </div>
+
+          <button
+            onClick={() => {
+              join(name);
+            }}
+            className="bg-primary border-solid rounded-[5px] w-[120px] mb-4 p-1 font-bold hover:opacity-70"
+          >
+            join room
+          </button>
         </div>
       ) : (
         <div className="flex flex-col justify-between">
