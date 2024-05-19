@@ -23,7 +23,6 @@ const AddMusicianPopup: React.FC<AddModProps> = ({
         </div>
         <div className="flex flex-col pb-[36px] pl-[108px] pr-[108px] ">
           <div className="flex flex-col">
-            <h2 className="text-greyText font-semibold text-[16px]">Avatar</h2>
             <img
               src={defaultLogo}
               alt=""

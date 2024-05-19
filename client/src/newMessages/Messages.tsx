@@ -28,18 +28,22 @@ const Messages = () => {
 
   const sendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    socket.emit("createMessage", { text: messageText }, () => {
-      setMessageText("");
-    });
+    socket.emit(
+      "createMessage",
+      { text: `[${name}]:   ${messageText}` },
+      () => {
+        setMessageText("");
+      }
+    );
   };
 
   return (
     <>
       {!joined ? (
         <div className="flex flex-col">
-          <div className="flex flex-col h-full items-center">
-            <div className="gap-2 p-2">
-              <label>What's your name?</label>
+          <div className="flex flex-col h-full items-center mt-[280px]">
+            <div className="flex gap-2 p-2">
+              <label>Enter your name?</label>
               <input
                 id="name"
                 type="text"
