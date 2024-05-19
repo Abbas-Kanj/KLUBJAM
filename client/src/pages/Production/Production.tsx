@@ -16,11 +16,13 @@ import StepSequencer from "../../tone/step_sequencer/StepSequencer";
 import Microphone from "../../tone/microphone/Microphone";
 import Messages from "../../newMessages/Messages";
 import * as Tone from "tone";
+import { useNavigate } from "react-router-dom";
 
 const Production = () => {
   const [openPianoKeyboard, setOpenPianoKeyboard] = useState(false);
   const [openStepSequencer, setOpenStepSequencer] = useState(false);
   const [openMicrophoneRecorder, SetOpenMicrophoneRecorder] = useState(false);
+  const navigate = useNavigate();
 
   const TonejsPLayer = () => {
     const recorder = new Tone.Recorder();
@@ -68,32 +70,37 @@ const Production = () => {
       )}
       <div>
         <div className="flex gap-[10px]">
-          <div className="w-[1210px] h-[75px] border-[2px] border-solid rounded-[5px] border-primary flex items-center justify-between px-[18px]">
-            <div>
+          <div className="w-[1210px] h-[75px]  flex items-center justify-between px-[18px]">
+            <div
+              className="border-[2px] border-solid rounded-full border-primary py-1 px-3 hover:opacity-60 cursor-pointer"
+              onClick={() => navigate("../Home")}
+            >
               <img src={back} alt="" className="" />
             </div>
-            <div>
-              <div className="border-[2px] border-solid rounded-md border-primary  px-[18px] py-[6px] font-bold">
+            <div className="flex gap-[14px] mr-10">
+              <div className="border-[2px] rounded-full bg-backgroundDark   px-[18px] py-[6px] font-bold">
                 <p>120 BPM</p>
               </div>
-            </div>
-            <div className="flex gap-[14px]">
-              <img src={backward} alt="" className="" />
-              <img
-                src={play}
-                alt=""
-                className=""
-                onClick={() => {
-                  TonejsPLayer();
-                }}
-              />
-              <img src={elipse} alt="" className="" />
-              <img src={repeat} alt="" className="" />
-              <div className="border-[2px] border-solid rounded-md border-primary px-[18px] py-[6px]  font-bold">
+              <div className="border-[2px] rounded-full bg-backgroundDark  flex flex-row gap-3 px-10">
+                <img src={backward} alt="" className="" />
+                <img
+                  src={play}
+                  alt=""
+                  className="cursor-pointer hover:opacity-50"
+                  onClick={() => {
+                    TonejsPLayer();
+                  }}
+                />
+                <img src={elipse} alt="" className="" />
+                <img src={repeat} alt="" className="" />
+              </div>
+
+              <div className="border-[2px] rounded-full bg-backgroundDark  px-[18px] py-[6px] font-bold">
                 <p>00:00.0</p>
               </div>
             </div>
-            <div className="flex">
+
+            <div className="flex gap-2 rounded-full bg-backgroundDark  px-[18px] py-[6px]">
               <img
                 src={micro}
                 alt=""
@@ -101,34 +108,36 @@ const Production = () => {
                 onClick={() => SetOpenMicrophoneRecorder(true)}
               />
               <img src={volume} alt="" className="" />
+              <input type="range" />
               <p>1.8dB</p>
             </div>
-            <div className="flex gap-[8px]">
+            {/* <div className="flex gap-[10px]">
               <img src={settings} alt="" className="" />
               <img src={download} alt="" className="" />
-            </div>
+            </div> */}
+            <div></div>
           </div>
-          <div className="flex justify-between items-start gap-[9px]">
-            <div className="flex items-center justify-center w-[120px] h-[46px] bg-transparent cursor-pointer pt-[6px] pb-[6px] pl-[15px] pr-[15px] gap-[5px] hover:opacity-70 rounded-md border-[2px] border-solid border-primary">
+          <div className="flex justify-between items-start gap-[9px] mt-3">
+            <div className="flex items-center justify-center w-[120px] h-[46px] bg-transparent cursor-pointer pt-[6px] pb-[6px] pl-[15px] pr-[15px] gap-[5px] hover:opacity-70 rounded-full border-[2px] border-solid border-primary">
               <img src={save} alt="" className="w-[28px] h-[28px]" />
               <h2 className="font-bold text-[14px] text-primary">Save</h2>
             </div>
-            <div className="flex items-center justify-center w-[120px] h-[46px] bg-primary cursor-pointer pt-[6px] pb-[6px] pl-[15px] pr-[15px] gap-[5px] hover:opacity-70 rounded-md">
+            <div className="flex items-center justify-center w-[120px] h-[46px] bg-primary cursor-pointer pt-[6px] pb-[6px] pl-[15px] pr-[15px] gap-[5px] hover:opacity-70 rounded-full">
               <img src={globe} alt="" className="w-[28px] h-[28px]" />
               <h2 className="font-bold text-[14px]">Publish</h2>
             </div>
           </div>
         </div>
         <div className="flex mt-[9px] gap-[6px]">
-          <div className="w-[187px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary flex flex-col gap-1 pl-[14px] pt-[14px]">
+          <div className="w-[187px] h-[620px] flex flex-col gap-1 pl-[14px] pt-[14px]">
             <h2
-              className="cursor-pointer"
+              className="cursor-pointer hover:opacity-55"
               onClick={() => setOpenPianoKeyboard(true)}
             >
               Piano
             </h2>
             <h2
-              className="cursor-pointer"
+              className="cursor-pointer hover:opacity-55"
               onClick={() => setOpenStepSequencer(true)}
             >
               Step Sequencer
@@ -139,7 +148,7 @@ const Production = () => {
             <h2>AI Generated Beats</h2>
             <h2>Presets</h2>
           </div>
-          <div className="w-[156px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary p-[9px] flex flex-col gap-1">
+          <div className="w-[156px] h-[620px] p-[9px] flex flex-col gap-1 bg-backgroundDark">
             <div className="relative h-[64px] bg-green-950 rounded-md">
               <p className="absolute top-0 left-1">Bass</p>
             </div>
@@ -168,48 +177,48 @@ const Production = () => {
               <p className="absolute top-0 left-1">Bass</p>
             </div>
           </div>
-          <div className="w-[854px] h-[620px] border-[2px] border-solid rounded-[5px] border-primary p-[6px]">
+          <div className="w-[854px] h-[620px]  p-[6px]">
             <div className="flex">
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">1</p>
               </div>
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">2</p>
               </div>
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">3</p>
               </div>
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">4</p>
               </div>
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">5</p>
               </div>
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">6</p>
               </div>
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">7</p>
               </div>
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">8</p>
               </div>
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">9</p>
               </div>
-              <div className="relative border border-primary border-solid w-[84px] h-[40px]">
+              <div className="relative bg-opacity-25 border-r border-solid border-primary bg-primary w-[84px] h-[40px]">
                 <p className="absolute top-0 left-1">10</p>
               </div>
             </div>
             <div className="mt-[10px]">
-              <div className="border border-dashed border-primary flex items-center justify-center h-[66px]">
-                <h2>Drag a blob file</h2>
+              <div className="border border-dashed border-greyText rounded-full flex items-center justify-center h-[66px]">
+                <h2 className="text-greyText">Drag a blob file</h2>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <div className="w-[270px] h-[240px] border-[2px] border-solid rounded-[5px] border-primary p-[14px]">
-              <div className=" text-center items-center justify-between flex gap-[14px]">
+            <div className="w-[270px] h-[240px]  bg-backgroundDark rounded-[5px] border-primary p-[14px]">
+              <div className=" text-center items-center justify-between  flex gap-[14px]">
                 <h1 className="font-bold text-[20px] text-primary">
                   Vibra Verse
                 </h1>
@@ -231,7 +240,7 @@ const Production = () => {
                 dynamic drums, creating a lively and energetic vibe
               </p>
             </div>
-            <div className="w-[270px] h-[370px] border-[2px] border-solid rounded-[5px] border-primary flex flex-col justify-between">
+            <div className="w-[270px] h-[370px] flex flex-col bg-backgroundDark  justify-between">
               <Messages />
             </div>
           </div>
