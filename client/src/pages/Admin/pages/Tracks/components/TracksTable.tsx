@@ -40,27 +40,27 @@ const TracksTable = () => {
           {tracks?.map((track, i) => (
             <tr key={i} className="bg-tableRow">
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                <a href="#" className="font-bold text-black hover:underline">
+                <a href="#" className="font-bold text-white hover:underline">
                   {track.id}
                 </a>
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
+              <td className="p-3 text-sm text-white whitespace-nowrap">
                 {track.user.username}
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
+              <td className="p-3 text-sm text-white whitespace-nowrap">
                 {track.track_name}
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">True</td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
+              <td className="p-3 text-sm text-white whitespace-nowrap">True</td>
+              <td className="p-3 text-sm text-white whitespace-nowrap">
                 {track.duration}
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap cursor-pointer">
+              <td className="p-3 text-sm text-white whitespace-nowrap cursor-pointer">
                 <img src={imgIcon} alt="" />
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap cursor-pointer">
+              <td className="p-3 text-sm text-white whitespace-nowrap cursor-pointer">
                 <img src={playerIcon} alt="" />
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap flex justify-evenly">
+              <td className="p-3 text-sm text-white whitespace-nowrap flex justify-evenly">
                 <span className="p-1.5 text-xs  uppercase tracking-wider bg-tableUpdateBtn font-bold text-black rounded-md cursor-pointer hover:bg-opacity-50">
                   Update
                 </span>

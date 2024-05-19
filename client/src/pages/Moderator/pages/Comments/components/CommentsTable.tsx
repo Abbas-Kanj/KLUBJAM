@@ -32,25 +32,25 @@ const CommentsTable = () => {
           {comments?.map((comment, i) => (
             <tr key={i} className="bg-tableRow">
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                <a href="#" className="font-bold text-black hover:underline">
+                <a href="#" className="font-bold text-white hover:underline">
                   {comment.id}
                 </a>
               </td>
-              <td className="p-3 text-sm font-bold text-black whitespace-nowrap">
+              <td className="p-3 text-sm font-bold text-white whitespace-nowrap">
                 {comment.post_id}
               </td>
-              <td className="p-3 text-sm text-black  whitespace-nowrap">
+              <td className="p-3 text-sm text-white  whitespace-nowrap">
                 {comment.user.username}
               </td>
-              <td className="p-3 text-sm  text-clip whitespace-normal max-w-[500px] text-black">
+              <td className="p-3 text-sm  text-clip whitespace-normal max-w-[500px] text-white">
                 {comment.content}
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
+              <td className="p-3 text-sm text-white whitespace-nowrap">
                 <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 rounded-lg ">
                   {new Date(comment.createdAt).toLocaleDateString()}
                 </span>
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap flex justify-evenly">
+              <td className="p-3 text-sm text-white whitespace-nowrap flex justify-evenly">
                 <span className="p-1.5 text-xs font-bold uppercase tracking-wider bg-tableDeleteBtn text-black rounded-md  cursor-pointer hover:bg-opacity-30">
                   Delete
                 </span>
