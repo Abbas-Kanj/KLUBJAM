@@ -1,10 +1,10 @@
 import bgHeader from "../../../assets/Navbar/images/Rectangle 165.png";
-import defaultLogo from "../../../assets/Navbar/images/user-profile-circle.svg";
 import { useState } from "react";
 import All from "./components/All";
 import Tracks from "./components/Tracks";
 import Albums from "./components/Albums";
 import Artists from "./components/Artists";
+import { useAppSelector } from "../../../../app/hooks";
 
 const Explore = () => {
   const [isVisible1, setIsVisible1] = useState(true);
@@ -23,6 +23,8 @@ const Explore = () => {
       setIsVisible4(!isVisible4);
     }
   };
+  const user = useAppSelector((state) => state.user);
+
   return (
     <div className="flex flex-col w-[1316px] bg-backgroundDark overflow-x-hidden overflow-scroll">
       <div className="h-[180px] flex relative">
@@ -32,9 +34,9 @@ const Explore = () => {
           className="w-full h-full object-center absolute inset-0"
         />
         <img
-          src={defaultLogo}
+          src={user.info?.profile_picture}
           alt=""
-          className="absolute top-3 right-3 cursor-pointer"
+          className="absolute top-3 right-3 cursor-pointer w-[32px] rounded-full"
         />
         <h1 className="relative mt-[67px] mb-[67px] ml-[35px] font-semibold text-[38px]">
           Explore

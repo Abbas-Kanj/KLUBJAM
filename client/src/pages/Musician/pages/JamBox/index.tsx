@@ -1,10 +1,11 @@
 import bgHeader from "../../../assets/Navbar/images/Rectangle 167.png";
-import defaultLogo from "../../../assets/Navbar/images/user-profile-circle.svg";
 import { useState } from "react";
 import JamBoxAi from "./components/JamBoxAi";
+import { useAppSelector } from "../../../../app/hooks";
 const Jambox = () => {
   const [isVisible1, setIsVisible1] = useState(true);
   const [isVisible2, setIsVisible2] = useState(false);
+  const user = useAppSelector((state) => state.user);
 
   const handleClick = (componentNumber: number) => {
     if (componentNumber === 1) {
@@ -22,9 +23,9 @@ const Jambox = () => {
           className="w-full h-full object-center absolute inset-0"
         />
         <img
-          src={defaultLogo}
+          src={user.info?.profile_picture}
           alt=""
-          className="absolute top-3 right-3 cursor-pointer"
+          className="absolute top-3 right-3 cursor-pointer w-[32px] rounded-full"
         />
         <h1 className="relative mt-[67px] mb-[67px] ml-[35px] font-semibold text-[38px]">
           JamBox
