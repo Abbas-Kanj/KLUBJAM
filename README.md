@@ -71,11 +71,19 @@
 
 ### Musician Screens (Web)
 
-| Landing screen                          | Register Popup                        | Login Popup                           |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/landing.gif)   | ![fsdaf](./readme/demo/register.gif)  | ![fsdaf](./readme/demo/login.gif)     |
-| Home screen                             | Explore Screen                        | Workspace Screen                      |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Landing screen                          | Register Popup                        |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/landing.gif)   | ![fsdaf](./readme/demo/register.gif)  |
+| Home screen                             | Explore Screen                        |
+| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+
+<br><br>
+
+| Login Popup                           |
+| ------------------------------------- |
+| ![fsdaf](./readme/demo/login.gif)     |
+| Workspace Screen                      |
+| ![fsdaf](./readme/demo/1440x1024.png) |
 
 ### Admin Screens (Web)
 
