@@ -29,7 +29,7 @@ const MusicianTable = () => {
             setopenAddMusicianPopup={setopenAddMusicianPopup}
           ></AddMusicianPopup>
         )}
-        <table className="w-[1100px] mx-auto h-auto">
+        <table className="w-[1140px] mx-auto h-auto">
           <thead className="bg-inputBox border-b-2 border-gray-200">
             <tr>
               <th className=" p-3 text-sm font-semibold tracking-wide text-left">

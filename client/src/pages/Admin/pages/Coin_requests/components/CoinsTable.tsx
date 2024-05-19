@@ -7,7 +7,7 @@ const CoinsTable = () => {
 
   return (
     <div className="mt-[26px] w-[1200px] mx-auto h-auto rounded pt-[22px] pb-[22px] pl-[20px] pr-[20px] bg-tableBackground ">
-      <table className="w-[1100px] mx-auto h-auto">
+      <table className="w-[1140px] mx-auto h-auto">
         <thead className="bg-inputBox border-b-2 border-gray-200">
           <tr>
             <th className=" p-3 text-sm font-semibold tracking-wide text-left">

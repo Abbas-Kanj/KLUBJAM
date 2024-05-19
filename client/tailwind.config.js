@@ -35,7 +35,7 @@ export default {
           DEFAULT: "#3c3c3c",
         },
         tableRow: {
-          DEFAULT: "#959296",
+          DEFAULT: "#3c3c3c",
         },
         tableUpdateBtn: {
           DEFAULT: "#00FF66",
@@ -50,7 +50,7 @@ export default {
           600: "#600889",
         },
         green: {
-          500: "#05f18f",
+          500: "#13E800",
         },
       },
     },
