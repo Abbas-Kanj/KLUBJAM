@@ -106,7 +106,7 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
         <div className="flex flex-col items-center">
           <div className="flex flex-col h-auto w-[460px] items-center gap-[60px] p-[16px] mt-[20px]">
             <label htmlFor="image-upload" className="cursor-pointer flex">
-              <img src={image} className="max-h-[200px] w-fit" />
+              <img src={image} className="max-h-[220px] w-fit" />
               <ModeEditIcon
                 style={{
                   backgroundColor: "#0FACFD",
@@ -124,13 +124,7 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
             />
           </div>
 
-          <div className="flex flex-col-reverse mt-10 items-center gap-4">
-            <input
-              type="text"
-              placeholder="Enter track name..."
-              className="border border-solid border-[#565656] bg-transparent rounded-lg p-2 w-[250px]"
-              onChange={(e) => setTrackName(e.target.value)}
-            />
+          <div className="flex flex-col-reverse mt-[60px] items-center">
             <div className="flex w-full items-center gap-[12px] p-[16px] ">
               <input
                 id="audio-upload"
@@ -146,6 +140,12 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
                 Select track to upload
               </label>
             </div>
+            <input
+              type="text"
+              placeholder="Enter track name..."
+              className="border border-solid border-[#565656] bg-transparent rounded-lg p-2 w-[300px]"
+              onChange={(e) => setTrackName(e.target.value)}
+            />
           </div>
         </div>
 

@@ -34,25 +34,25 @@ const CoinsTable = () => {
           {coinRequests?.map((coinRequest, i) => (
             <tr key={i} className="bg-tableRow">
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                <a href="#" className="font-bold text-black hover:underline">
+                <a href="#" className="font-bold text-white hover:underline">
                   {coinRequest.id}
                 </a>
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
+              <td className="p-3 text-sm text-white whitespace-nowrap">
                 {coinRequest.user.username}
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
+              <td className="p-3 text-sm text-white whitespace-nowrap">
                 {coinRequest.user.email}
               </td>
-              <td className="p-3 text-sm font-semibold text-black whitespace-nowrap">
+              <td className="p-3 text-sm font-semibold text-white whitespace-nowrap">
                 {coinRequest.amount}
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap">
+              <td className="p-3 text-sm text-white whitespace-nowrap">
                 <span className="p-1.5 text-xs font-medium uppercase tracking-wider text-tableUpdateBtn bg-gray-500 hover:bg-opacity-30 rounded-md ">
                   {new Date(coinRequest.createdAt).toLocaleDateString()}
                 </span>
               </td>
-              <td className="p-3 text-sm text-black whitespace-nowrap flex justify-evenly">
+              <td className="p-3 text-sm text-white whitespace-nowrap flex justify-evenly">
                 <span className="p-1.5 text-xs  uppercase tracking-wider bg-tableUpdateBtn font-bold text-black rounded-md cursor-pointer hover:bg-opacity-50">
                   Accept
                 </span>

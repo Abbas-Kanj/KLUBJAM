@@ -46,7 +46,7 @@ const Recommendations = () => {
   }, []);
 
   return (
-    <div className="fixed top-[220px] right-0  mr-[108px] border-left border-solid border-greyText">
+    <div className="absolute top-[10px] right-0  mr-[108px]">
       {openPostPopup && (
         <PostPopup setOpenPostPopup={setOpenPostPopup}></PostPopup>
       )}

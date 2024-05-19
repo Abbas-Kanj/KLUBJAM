@@ -21,7 +21,7 @@ const ReportPopup: React.FC<AddModProps> = ({ setopenReportPopup }) => {
                 htmlFor=""
                 className="font-semibold text-[14px] text-greyText"
               >
-                Report Title:
+                Report Title
               </label>
               <input
                 type="text"
