@@ -68,32 +68,36 @@ const Recommendations = () => {
       </div>
       <h2 className="mt-[31px] mb-[16px]">Suggested for you</h2>
       <div>
-        {recommendations.map((v, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-between w-[288px] mb-[14px]"
-          >
-            <img
-              src={v.profile_picture}
-              alt=""
-              className="max-w-[30px] max-h-[30px] rounded-full"
-            />
-            <div className="flex flex-col justify-between mr-[150px] ">
-              <h2 className="font-medium text-[14px]">{v.username}</h2>
-              <h2 className="font-medium text-[12px] text-greyText">
-                {v.fullname ? null : v.username}
-              </h2>
-            </div>
-            <button
-              className="font-medium text-[14px] text-primary hover:opacity-50"
-              onClick={() => {
-                createFollow(v);
-              }}
+        {recommendations && recommendations.length > 0 ? (
+          recommendations.map((v, i) => (
+            <div
+              key={i}
+              className="flex items-center justify-between w-[288px] mb-[14px]"
             >
-              Follow
-            </button>
-          </div>
-        ))}
+              <img
+                src={v.profile_picture}
+                alt=""
+                className="max-w-[30px] max-h-[30px] rounded-full"
+              />
+              <div className="flex flex-col justify-between mr-[150px] ">
+                <h2 className="font-medium text-[14px]">{v.username}</h2>
+                <h2 className="font-medium text-[12px] text-greyText">
+                  {v.fullname ? null : v.username}
+                </h2>
+              </div>
+              <button
+                className="font-medium text-[14px] text-primary hover:opacity-50"
+                onClick={() => {
+                  createFollow(v);
+                }}
+              >
+                Follow
+              </button>
+            </div>
+          ))
+        ) : (
+          <h2 className="text-greyText">No suggested users</h2>
+        )}
       </div>
     </div>
   );
