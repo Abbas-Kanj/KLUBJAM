@@ -40,8 +40,6 @@
 - The project leverages [Redux](https://redux.js.org/). Redux is used for state management, providing a predictable state container. This ensures efficient data flow throughout the application.
 - The project uses [NestJS](https://nestjs.com/). NestJS is a progressive Node.js framework for building scalable and maintainable server-side applications. NestJS leverages TypeScript, enhancing code quality and maintainability with strong typing and modern JavaScript features.
 - The project leverages [Tone.js](https://tonejs.github.io/). Tone.js is a powerful JavaScript framework for creating and manipulating audio in the web browser, enabling dynamic and interactive sound experiences.
-- The project uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
-- The project leverages [Magenta.js](https://magenta.tensorflow.org/js-announce). Magenta.js is a JavaScript library for working with music and art creation using machine learning models, enabling advanced capabilities for creative applications.
   <br><br>
 
 <!-- UI UX -->
@@ -75,7 +73,7 @@
 
 | Login popup                               | Register popup                          | Landing screen                          | Loading screen                          |
 | ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](./readme/demo/landing.gif)     | ![fsdaf](https://placehold.co/900x1600) |
 | Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
