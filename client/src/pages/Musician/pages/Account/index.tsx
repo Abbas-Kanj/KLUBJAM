@@ -24,7 +24,7 @@ const Account = () => {
           </div>
         </div>
       </div>
-      <div className="flex relative mt-[26px] mx-auto gap-[80px] mb-[50px]">
+      <div className="flex relative mx-auto gap-[80px]">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col gap-[10px]">
             <label
@@ -56,7 +56,7 @@ const Account = () => {
           <textarea
             name=""
             id=""
-            className=" bg-inputBox rounded-lg w-[462px] h-[200px] p-2 focus:outline-none"
+            className=" bg-inputBox rounded-lg w-[462px] h-[150px] p-2 focus:outline-none"
           ></textarea>
         </div>
 
@@ -109,7 +109,7 @@ const Account = () => {
               className="bg-inputBox w-[462px] h-[50px] rounded focus:outline-none p-1"
             />
           </div>
-          <button className="w-[146px] rounded-xl text-primary border border-solid border-primary bg-background font-medium text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center ml-[320px]">
+          <button className="w-[146px] rounded-xl text-primary border border-solid border-primary bg-background font-medium text-[14px] pt-[8px] pb-[8px] pr-[25px] pl-[25px] text-center ml-[320px] mt-4 mb-4">
             Save Changes
           </button>
         </div>

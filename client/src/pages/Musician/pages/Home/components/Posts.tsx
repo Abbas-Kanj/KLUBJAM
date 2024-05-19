@@ -134,7 +134,7 @@ const Posts = () => {
               />
               <h2 className="font-medium text-[12px]">{post.user.username}</h2>
             </div>
-            <div className="pt-[40px] pb-[40px] pr-[60px] pl-[60px] border-[1px] border-solid border-greyText max-w-[436px] mt-[12px] mb-[12px] flex items-center justify-center">
+            <div className="pt-[40px] pb-[40px] pr-[60px] pl-[60px] border-[1px] border-solid border-greyText border-opacity-30 max-w-[436px] mt-[12px] mb-[12px] flex items-center justify-center">
               {post.post_picture.endsWith(".mp4") ? (
                 <video
                   src={`http://127.0.0.1:3000${post.post_picture}`}

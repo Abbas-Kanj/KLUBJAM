@@ -40,8 +40,7 @@ const CommunityPlaylists = () => {
           <img src={downArrow} alt="" />
         </div>
       </div>
-      <div className="border border-solid border-greyText w-[686px] mt-[15px]"></div>
-      <div className="mt-[17px] mb-[30px]  w-[1133px] flex flex-wrap gap-[22px] items-center">
+      <div className="mt-[24px] mb-[30px]  w-[1133px] flex flex-wrap gap-[22px] items-center">
         {playlists
           ?.slice()
           .reverse()
