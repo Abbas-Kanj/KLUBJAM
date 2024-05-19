@@ -51,9 +51,9 @@
 
 ### Mockups
 
-| Home screen                                  | Community Screen                        | Explore Screen                             |
-| -------------------------------------------- | --------------------------------------- | ------------------------------------------ |
-| ![Landing](./readme/demo/Landing%20Page.png) | ![fsdaf](./readme/demo/Home%20Page.png) | ![fsdaf](./readme/demo/Explore%20Page.png) |
+| Home screen                                  | Explore Screen                             |
+| -------------------------------------------- | ------------------------------------------ |
+| ![Landing](./readme/demo/Landing%20Page.png) | ![fsdaf](./readme/demo/Explore%20Page.png) |
 
 <br><br>
 
@@ -76,6 +76,10 @@
 | ![Landing](./readme/demo/landing.gif)   | ![fsdaf](./readme/demo/register.gif)  |
 | Home screen                             | Explore Screen                        |
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+
+| Login Screen                          | Home Screen                            |
+| ------------------------------------- | -------------------------------------- |
+| <img src="./readme/sigin-admin.png"/> | <img src="./readme/admin-dash.png"  /> |
 
 <br><br>
 
