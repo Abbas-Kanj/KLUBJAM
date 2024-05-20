@@ -95,19 +95,7 @@
 
 ### Videos
 
-<table>
-  <tr>
-    <td align="center">
-      
-<video src="./readme/demo/userflow 1.mp4" controls={true}>
-
-</td>
-    <td align="center">
-      
-<video src="./readme/demo/userflow 2.mp4" controls={true}>
-
-</td>
-</table>
+| ![userFlow1](./readme/demo/userflow 1.mp4) | ![userFlow2](./readme/demo/userflow 2.mp4) |
 
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
