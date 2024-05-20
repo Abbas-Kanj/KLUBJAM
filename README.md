@@ -95,7 +95,19 @@
 
 ### Videos
 
-| ![userFlow1](./readme/demo/userflow 1.mp4) | ![userFlow2](./readme/demo/userflow 2.mp4) |
+<table>
+  <tr>
+<td align="center">
+
+https://github.com/Abbas-Kanj/KLUBJAM/assets/45877262/814e3251-858a-4e4f-8e89-d3b51c580d2e
+
+</td>
+    <td align="center">
+      
+https://github.com/Abbas-Kanj/KLUBJAM/assets/45877262/2ddcf852-56bb-4bfd-9e81-1712be4f7c6d
+
+</td>
+</table>
 
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
