@@ -137,27 +137,81 @@ https://github.com/Abbas-Kanj/KLUBJAM/assets/45877262/2ddcf852-56bb-4bfd-9e81-17
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Before setting up KLUBJAM, ensure you have the following prerequisites installed on your system:
 
+- Node.js and NPM: Ensure you have Node.js and NPM installed. You can download and install them from [nodejs.org](https://nodejs.org/en).
+  -NestJS CLI: Install NestJS CLI globally using NPM with the following command:
 - npm
   ```sh
-  npm install npm@latest -g
+  npm install -g @nestjs/cli
+  ```
+- PostgreSQL: Ensure you have PostgreSQL installed. You can download and install it from [postgresql.org](https://www.postgresql.org/).
+- Prisma CLI: Install Prisma CLI globally using NPM with the following command:
+- npm
+  ```sh
+  npm install -g prisma
   ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Abbas-Kanj/KLUBJAM.git
+   ```
+2. Navigate to the project repository:
+   ```sh
+   cd KLUBJAM
+   ```
 
-1. Get a free API Key at [example](https://example.com)
-2. Clone the repo
-   git clone [github](https://github.com/your_username_/Project-Name.git)
-3. Install NPM packages
+#### Frontend Setup
+
+1. Navigate to the client directory:
+   ```sh
+   cd client
+   ```
+2. Install NPM packages:
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
-   ```
+3. To run the frontend in development mode:
 
-Now, you should be able to run KLUBJAM locally and explore its features.
+```sh
+ npm run dev
+```
+
+#### Backend Setup
+
+1. Navigate to the server directory:
+   ```sh
+   cd server
+   ```
+2. Install NPM packages:
+   ```sh
+   npm install
+   ```
+3. Copy the example environment variables file `.env.example` and rename it as `.env`, either manually or through this command:
+   ```sh
+   cp .env.example .env
+   ```
+4. Fill out the information in `.env` with your configuration details, including the database connection settings. You should also provide the following to ensure full functionality:
+
+- `DATABASE_URL`: Your PostgreSQL connection string.
+- `JWT_SECRET`: Your JWT secret key.
+  Now, you should be able to run KLUBJAM locally and explore its features.
+
+5. Set up Prisma:
+
+```sh
+  prisma migrate dev
+  prisma generate
+```
+
+6. Run the NestJS server:
+
+```sh
+ npm run start:dev
+```
+
+Now, the frontend, backend of KLUBJAM are set up. You can run them locally and explore their features.
+
+Feel free to explore and enjoy using KLUBJAM!
