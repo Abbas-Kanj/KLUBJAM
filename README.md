@@ -99,12 +99,13 @@
   <tr>
     <td align="center">
       
-https://github.com/Abbas-Kanj/KLUBJAM/blob/main/readme/demo/userflow%201.mp4
+<video src="./readme/demo/userflow 1.mp4" controls={true}>
 
 </td>
     <td align="center">
       
-https://github.com/Abbas-Kanj/KLUBJAM/blob/main/readme/demo/userflow%202.mp4
+<video src="./readme/demo/userflow 2.mp4" controls={true}>
+
 </td>
 </table>
 
