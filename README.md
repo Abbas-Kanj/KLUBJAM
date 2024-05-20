@@ -71,48 +71,25 @@
 
 ### Musician Screens (Web)
 
-| Landing screen                          | Register Popup                        |
-| --------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/landing.gif)   | ![fsdaf](./readme/demo/register.gif)  |
-| Home screen                             | Explore Screen                        |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-
-| Login Screen                          | Home Screen                            |
-| ------------------------------------- | -------------------------------------- |
-| <img src="./readme/sigin-admin.png"/> | <img src="./readme/admin-dash.png"  /> |
-
-<br><br>
-
-| Login Popup                           |
-| ------------------------------------- |
-| ![fsdaf](./readme/demo/login.gif)     |
-| Workspace Screen                      |
-| ![fsdaf](./readme/demo/1440x1024.png) |
+| Landing screen                            | Register Popup                                        |
+| ----------------------------------------- | ----------------------------------------------------- |
+| ![Landing](./readme/demo/landing.gif)     | ![fsdaf](./readme/demo/register.gif)                  |
+| Home screen                               | Explore Screen                                        |
+| ![Landing](./readme/demo/login.gif)       | ![Explore](./readme/demo/explore-ezgif.com-speed.gif) |
+| Workspace screen                          | Profile Screen                                        |
+| ![Workspace](./readme/demo/workspace.gif) | ![Profile](./readme/demo/profile.gif)                 |
 
 ### Admin Screens (Web)
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/landing.gif)   | ![fsdaf](./readme/demo/landing.gif)   | ![fsdaf](./readme/demo/landing.gif)   |
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Admin screen                        |
+| ----------------------------------- |
+| ![Landing](./readme/demo/admin.gif) |
 
 ### Moderator Screens (Web)
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-
-<br><br>
-
-<!-- Prompt Engineering -->
-<img src="./readme/title7.svg"/>
-
-### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
-
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+| Moderator screen                  |
+| --------------------------------- |
+| ![Landing](./readme/demo/mod.gif) |
 
 <br><br>
 
