@@ -93,6 +93,21 @@
 
 <br><br>
 
+### Videos
+
+<table>
+  <tr>
+    <td align="center">
+      
+https://github.com/Abbas-Kanj/KLUBJAM/blob/main/readme/demo/userflow%201.mp4
+
+</td>
+    <td align="center">
+      
+https://github.com/Abbas-Kanj/KLUBJAM/blob/main/readme/demo/userflow%202.mp4
+</td>
+</table>
+
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
 
@@ -108,6 +123,8 @@
 ### Precision in Development: Harnessing the Power of Unit Testing:
 
 - This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
+
+<img src="./readme/demo/unitTest.png"/>
 
 <br><br>
 
