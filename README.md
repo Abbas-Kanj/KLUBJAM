@@ -36,10 +36,11 @@
 
 ### KLUBJAM is built using the following technologies:
 
-- This project uses the [React development framework](https://react.dev/). React is a popular JavaScript library for building user interfaces. React allows for the creation of reusable UI components, ensuring a dynamic and responsive user experience.
-- The project leverages [Redux](https://redux.js.org/). Redux is used for state management, providing a predictable state container. This ensures efficient data flow throughout the application.
-- The project uses [NestJS](https://nestjs.com/). NestJS is a progressive Node.js framework for building scalable and maintainable server-side applications. NestJS leverages TypeScript, enhancing code quality and maintainability with strong typing and modern JavaScript features.
-- The project leverages [Tone.js](https://tonejs.github.io/). Tone.js is a powerful JavaScript framework for creating and manipulating audio in the web browser, enabling dynamic and interactive sound experiences.
+- This project uses the [React development framework](https://react.dev/), a popular JavaScript library for building user interfaces. React allows for the creation of reusable UI components, ensuring a dynamic and responsive user experience.
+- The project leverages [Redux](https://redux.js.org/), a state management, providing a predictable state container. This ensures efficient data flow throughout the application.
+- The project uses [NestJS](https://nestjs.com/), a progressive Node.js framework for building scalable and maintainable server-side applications. NestJS leverages TypeScript, enhancing code quality and maintainability with strong typing and modern JavaScript features.
+- The project leverages [Tone.js](https://tonejs.github.io/), a powerful JavaScript framework for creating and manipulating audio in the web browser, enabling dynamic and interactive sound experiences.
+- The project leverages [TailwindCSS](https://tailwindcss.com/), a utility-first CSS framework that allows for rapid UI development with a consistent design. Additionally, a custom mini library was created for reusable components like buttons and inputs, designed from scratch to match the project's unique aesthetic.
   <br><br>
 
 <!-- UI UX -->
