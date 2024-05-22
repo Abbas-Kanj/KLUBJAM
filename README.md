@@ -113,9 +113,104 @@ https://github.com/Abbas-Kanj/KLUBJAM/assets/45877262/2ddcf852-56bb-4bfd-9e81-17
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
 
-### Efficient AI Deployment: Unleashing the Potential with AWS Integration:
+### Efficient Deployment: Unleashing the Potential with AWS Integration:
 
-- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
+- This project leverages AWS deployment strategies to seamlessly integrate and deploy the backend services. With a focus on scalability, reliability, and performance, we ensure that the backend for KLUBJAM delivers robust and responsive solutions for diverse use cases. By deploying the backend on AWS, KLUBJAM benefits from the comprehensive suite of services and tools that AWS offers, providing a solid foundation for future growth and enhancements.
+
+![Postman Demo](./readme/demo/postman.png)
+_A demo of a Postman request to the KLUBJAM backend running on an AWS EC2 instance._
+
+Below were the steps taken to deploy KLUBJAM's backend to AWS, after [connecting to the AWS EC2 instance through PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html).
+
+- **Step 1**: Update Packages
+  ```sh
+  sudo apt update
+  sudo apt upgrade -y
+  ```
+- **Step 2**: Install Git, Node.js, and npm
+  ````sh
+  sudo apt install git -y
+  sudo apt install nodejs -y
+  sudo apt install npm -y  ```
+  ````
+- **Step 3**: Clone the Repository
+  ```sh
+  git clone https://github.com/Abbas-Kanj/KLUBJAM.git
+  ```
+- **Step 4**: Install Dependencies
+
+  ```sh
+  npm install
+  ```
+
+- **Step 5**: Install PostgreSQL
+  ```sh
+  sudo apt install postgresql postgresql-contrib
+  sudo systemctl start postgresql
+  sudo systemctl enable postgresql
+  ```
+- **Step 6**: Set Up PostgreSQL
+  ```sh
+  sudo -i -u postgres
+  psql
+  CREATE DATABASE klubjam;
+  CREATE USER yourusername WITH ENCRYPTED PASSWORD 'yourpassword';
+  GRANT ALL PRIVILEGES ON DATABASE klubjam TO yourusername;
+  \q
+  exit
+  ```
+- **Step 7**: Create a .env file in the root directory and add the following:
+
+```env
+DATABASE_URL="postgresql://yourusername:yourpassword@localhost:5432/klubjam"
+
+```
+
+- **Step 8**: Migrate the Database
+
+```sh
+npx prisma migrate deploy
+
+```
+
+- **Step 9**: Set Up Caddy for Reverse Proxy
+- install Caddy
+
+```sh
+sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo apt-key add -
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update
+sudo apt install caddy
+```
+
+- Configure Caddy:
+
+```sh
+sudo nano /etc/caddy/Caddyfile
+```
+
+- Add the following configuration:
+
+```caddy
+your-domain.com {
+  reverse_proxy localhost:3000
+}
+```
+
+- Reload Caddy:
+
+```sh
+sudo systemctl reload caddy
+```
+
+- **Step 10**: Start the NestJS Application
+
+```sh
+npm run start:prod
+```
+
+Now your KLUBJAM backend should be up and running on your AWS EC2 instance with NestJS, Prisma, PostgreSQL, and Caddy for reverse proxy.
 
 <br><br>
 
