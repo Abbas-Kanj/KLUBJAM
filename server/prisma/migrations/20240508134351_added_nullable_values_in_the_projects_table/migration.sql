@@ -1,6 +1,0 @@
--- AlterTable
-ALTER TABLE "Projects" ALTER COLUMN "track_name" DROP NOT NULL,
-ALTER COLUMN "track_image" DROP NOT NULL,
-ALTER COLUMN "audio_url" DROP NOT NULL,
-ALTER COLUMN "duration" DROP NOT NULL,
-ALTER COLUMN "genre" DROP NOT NULL;

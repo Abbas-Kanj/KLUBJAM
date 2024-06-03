@@ -88,7 +88,7 @@ CREATE TABLE "Tracks" (
     "explicit" VARCHAR(255) NOT NULL,
     "status" VARCHAR(255) NOT NULL,
     "user_id" INTEGER NOT NULL,
-    "album_id" INTEGER NOT NULL,
+    "album_id" INTEGER,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -127,11 +127,11 @@ CREATE TABLE "Projects" (
     "type" VARCHAR(255) NOT NULL,
     "description" VARCHAR(255) NOT NULL,
     "privacy" VARCHAR(255) NOT NULL,
-    "track_name" VARCHAR(255) NOT NULL,
-    "track_image" VARCHAR(255) NOT NULL,
-    "audio_url" VARCHAR(255) NOT NULL,
-    "duration" VARCHAR(255) NOT NULL,
-    "genre" VARCHAR(255) NOT NULL,
+    "track_name" VARCHAR(255),
+    "track_image" VARCHAR(255),
+    "audio_url" VARCHAR(255),
+    "duration" VARCHAR(255),
+    "genre" VARCHAR(255),
     "creator_id" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -146,7 +146,6 @@ CREATE TABLE "Collaborators" (
     "slice_audio" VARCHAR(255) NOT NULL,
     "duration" VARCHAR(255) NOT NULL,
     "collaborator_id" INTEGER NOT NULL,
-    "project_id" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -154,7 +153,13 @@ CREATE TABLE "Collaborators" (
 );
 
 -- CreateTable
-CREATE TABLE "_PlaylistsToTracks" (
+CREATE TABLE "_PlaylistTracks" (
+    "A" INTEGER NOT NULL,
+    "B" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "_ProjectsCollaborators" (
     "A" INTEGER NOT NULL,
     "B" INTEGER NOT NULL
 );
@@ -166,10 +171,16 @@ CREATE UNIQUE INDEX "Users_username_key" ON "Users"("username");
 CREATE UNIQUE INDEX "Users_email_key" ON "Users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_PlaylistsToTracks_AB_unique" ON "_PlaylistsToTracks"("A", "B");
+CREATE UNIQUE INDEX "_PlaylistTracks_AB_unique" ON "_PlaylistTracks"("A", "B");
 
 -- CreateIndex
-CREATE INDEX "_PlaylistsToTracks_B_index" ON "_PlaylistsToTracks"("B");
+CREATE INDEX "_PlaylistTracks_B_index" ON "_PlaylistTracks"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_ProjectsCollaborators_AB_unique" ON "_ProjectsCollaborators"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_ProjectsCollaborators_B_index" ON "_ProjectsCollaborators"("B");
 
 -- AddForeignKey
 ALTER TABLE "Posts" ADD CONSTRAINT "Posts_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -208,13 +219,16 @@ ALTER TABLE "Playlists" ADD CONSTRAINT "Playlists_user_id_fkey" FOREIGN KEY ("us
 ALTER TABLE "Projects" ADD CONSTRAINT "Projects_creator_id_fkey" FOREIGN KEY ("creator_id") REFERENCES "Users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Collaborators" ADD CONSTRAINT "Collaborators_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "Projects"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "Collaborators" ADD CONSTRAINT "Collaborators_collaborator_id_fkey" FOREIGN KEY ("collaborator_id") REFERENCES "Users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_PlaylistsToTracks" ADD CONSTRAINT "_PlaylistsToTracks_A_fkey" FOREIGN KEY ("A") REFERENCES "Playlists"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_PlaylistTracks" ADD CONSTRAINT "_PlaylistTracks_A_fkey" FOREIGN KEY ("A") REFERENCES "Playlists"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_PlaylistsToTracks" ADD CONSTRAINT "_PlaylistsToTracks_B_fkey" FOREIGN KEY ("B") REFERENCES "Tracks"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_PlaylistTracks" ADD CONSTRAINT "_PlaylistTracks_B_fkey" FOREIGN KEY ("B") REFERENCES "Tracks"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ProjectsCollaborators" ADD CONSTRAINT "_ProjectsCollaborators_A_fkey" FOREIGN KEY ("A") REFERENCES "Collaborators"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ProjectsCollaborators" ADD CONSTRAINT "_ProjectsCollaborators_B_fkey" FOREIGN KEY ("B") REFERENCES "Projects"("id") ON DELETE CASCADE ON UPDATE CASCADE;
