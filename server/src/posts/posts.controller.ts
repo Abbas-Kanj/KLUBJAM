@@ -6,16 +6,15 @@ import {
   Param,
   Get,
   Delete,
-  Put,
   UseGuards,
   HttpException,
   HttpStatus,
+  Patch,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { Prisma } from '@prisma/client';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtAuthGuard } from '../authentication/auth.guard';
-import { Posts as PostModel } from '@prisma/client';
 
 interface ApiResponse {
   status: string;
@@ -81,41 +80,24 @@ export class PostsController {
     };
   }
 
-  @Put(':id')
+  @Patch(':id')
   async updatePost(
     @Param('id') id: string,
-    @Body() updatePostDto: UpdatePostDto,
-    @Res() response,
-  ): Promise<any> {
-    try {
-      const postId = parseInt(id, 10);
-      if (isNaN(postId)) {
-        throw new Error('Invalid post ID');
-      }
+    @Body() postData: Prisma.PostsUpdateInput,
+  ): Promise<ApiResponse> {
+    const postId = parseInt(id, 10);
 
-      const updatedPost = await this.postsService.updatePost(
-        postId,
-        updatePostDto,
-      );
+    const result = await this.postsService.updatePost(postId, postData);
 
-      if (!updatedPost) {
-        return response.status(404).json({
-          status: 'Error!',
-          message: 'Post not found',
-        });
-      }
-
-      return response.status(200).json({
-        status: 'Ok!',
-        message: 'Post updated successfully!',
-        result: updatedPost,
-      });
-    } catch (error) {
-      return response.status(500).json({
-        status: 'Error!',
-        message: error.message || 'Controller error',
-      });
+    if (!result) {
+      throw new HttpException('Failed to update post', HttpStatus.BAD_REQUEST);
     }
+
+    return {
+      status: 'Ok!',
+      message: 'Post updated successfully',
+      result: result,
+    };
   }
 
   @Delete(':id')
