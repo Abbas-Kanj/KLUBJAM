@@ -8,58 +8,29 @@ import {
   Delete,
   Put,
   UseGuards,
+  UseFilters,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from '@prisma/client';
-import { Response } from 'express';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtAuthGuard } from '../authentication/auth.guard';
-import { PrismaService } from '../prisma.service';
+import { AllExceptionsFilter } from 'src/http-exception.filter';
+import { Posts as PostModel } from '@prisma/client';
 
 @Controller('posts')
+@UseFilters(AllExceptionsFilter)
 export class PostsController {
-  constructor(
-    private readonly postsService: PostsService,
-    private readonly prisma: PrismaService,
-  ) {}
+  constructor(private readonly postsService: PostsService) {}
+
   @Get()
-  async getAllPosts(@Res() response: Response): Promise<any> {
-    try {
-      const result = await this.postsService.getAllPosts();
-      return response.status(200).json({
-        status: 'Ok!',
-        message: 'Successfully fetch data!',
-        result: result,
-      });
-    } catch (err) {
-      return response.status(500).json({
-        status: 500,
-        message: 'Internal Server Error!',
-      });
-    }
+  async getAllPosts(): Promise<any> {
+    return this.postsService.getAllPosts();
   }
 
   @Get(':id')
-  async getUserPosts(@Param('id') id: string): Promise<any> {
-    try {
-      const userId = parseInt(id, 10);
-      if (isNaN(userId)) {
-        throw new Error('Invalid user ID');
-      }
-
-      const userPosts = await this.postsService.getPostsByUserId(userId);
-      return {
-        status: 'Ok!',
-        message: 'Successfully fetched user posts!',
-        result: userPosts,
-      };
-    } catch (error) {
-      return {
-        status: 'Error!',
-        message: error.message || 'Controller error',
-      };
-    }
+  async getPostsByUserId(@Param('id') id: string): Promise<PostModel> {
+    return this.postsService.getPostsByUserId({ id: Number(id) });
   }
 
   @Post(':id')
