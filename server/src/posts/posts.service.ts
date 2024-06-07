@@ -1,6 +1,6 @@
 import { PrismaService } from '../prisma.service';
 import { CreatePostDto } from './dto/create-post.dto';
-import { Posts } from '@prisma/client';
+import { Posts, Prisma } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 import { UpdatePostDto } from './dto/update-post.dto';
 
@@ -41,11 +41,11 @@ export class PostsService {
     }));
   }
 
-  async getPostsByUserId(userId: number): Promise<any> {
-    return this.prisma.posts.findMany({
-      where: {
-        user_id: userId,
-      },
+  async getPostsByUserId(
+    postsWhereUniqueInput: Prisma.PostsWhereUniqueInput,
+  ): Promise<Posts> {
+    return this.prisma.posts.findUnique({
+      where: postsWhereUniqueInput,
     });
   }
 
