@@ -33,8 +33,22 @@ export class PostsController {
   }
 
   @Get(':id')
-  async getPostsByUserId(@Param('id') id: string): Promise<PostModel> {
-    return this.postsService.getPostsByUserId({ id: Number(id) });
+  async getPostsByUserId(@Param('id') id: string): Promise<ApiResponse> {
+    const userId = Number(id);
+    const result = await this.postsService.getPostsByUserId(userId);
+
+    if (result.length === 0) {
+      throw new HttpException(
+        'No posts found for the user',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return {
+      status: 'Ok!',
+      message: 'Posts retrieved successfully',
+      result: result,
+    };
   }
 
   @Post(':id')

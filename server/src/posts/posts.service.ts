@@ -41,11 +41,11 @@ export class PostsService {
     }));
   }
 
-  async getPostsByUserId(
-    postsWhereUniqueInput: Prisma.PostsWhereUniqueInput,
-  ): Promise<Posts> {
-    return this.prisma.posts.findUnique({
-      where: postsWhereUniqueInput,
+  async getPostsByUserId(userId: number): Promise<Posts[]> {
+    return this.prisma.posts.findMany({
+      where: {
+        user_id: userId,
+      },
     });
   }
 
