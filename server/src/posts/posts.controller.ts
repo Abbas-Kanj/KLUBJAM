@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Post,
-  Res,
   Param,
   Get,
   Delete,
@@ -13,7 +12,6 @@ import {
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { Prisma } from '@prisma/client';
-import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtAuthGuard } from '../authentication/auth.guard';
 
 interface ApiResponse {
