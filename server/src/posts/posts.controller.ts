@@ -28,8 +28,18 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  async getAllPosts(): Promise<any> {
-    return this.postsService.getAllPosts();
+  async getAllPosts(): Promise<ApiResponse> {
+    const result = await this.postsService.getAllPosts();
+
+    if (result.length === 0) {
+      throw new HttpException('No posts found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      status: 'Ok!',
+      message: 'Posts retrieved successfully',
+      result: result,
+    };
   }
 
   @Get(':id')
@@ -46,7 +56,7 @@ export class PostsController {
 
     return {
       status: 'Ok!',
-      message: 'Posts retrieved successfully',
+      message: 'User posts retrieved successfully',
       result: result,
     };
   }
