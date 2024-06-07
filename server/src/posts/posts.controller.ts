@@ -101,23 +101,14 @@ export class PostsController {
   }
 
   @Delete(':id')
-  async deletePost(@Param('id') id: string, @Res() response): Promise<any> {
-    try {
-      const postId = parseInt(id, 10);
-      if (isNaN(postId)) {
-        throw new Error('Invalid post ID');
-      }
+  async deletePost(@Param('id') id: string): Promise<ApiResponse> {
+    const postId = parseInt(id, 10);
+    const result = await this.postsService.deletePost(postId);
 
-      await this.postsService.deletePost(postId);
-      return response.status(200).json({
-        status: 'Ok!',
-        message: 'Post deleted successfully!',
-      });
-    } catch (error) {
-      return response.status(500).json({
-        status: 'Error!',
-        message: error.message || 'Controller error',
-      });
-    }
+    return {
+      status: 'Ok!',
+      message: 'Post deleted successfully',
+      result: result,
+    };
   }
 }
