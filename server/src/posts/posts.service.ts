@@ -50,25 +50,19 @@ export class PostsService {
   }
 
   async createPost(
-    createPostDto: CreatePostDto,
+    postData: Prisma.PostsCreateInput,
     userId: number,
   ): Promise<Posts> {
-    try {
-      const post = await this.prisma.posts.create({
-        data: {
-          ...createPostDto,
-          user: {
-            connect: {
-              id: userId,
-            },
+    return this.prisma.posts.create({
+      data: {
+        ...postData,
+        user: {
+          connect: {
+            id: userId,
           },
         },
-      });
-      return post;
-    } catch (error) {
-      console.error(error);
-      throw new Error('An error occurred creating the post');
-    }
+      },
+    });
   }
 
   async updatePost(postId: number, updatePostDto: UpdatePostDto): Promise<any> {
