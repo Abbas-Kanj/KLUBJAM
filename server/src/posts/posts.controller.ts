@@ -8,18 +8,22 @@ import {
   Delete,
   Put,
   UseGuards,
-  UseFilters,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
-import { CreatePostDto } from './dto/create-post.dto';
-import { Posts } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { JwtAuthGuard } from '../authentication/auth.guard';
-import { AllExceptionsFilter } from 'src/http-exception.filter';
 import { Posts as PostModel } from '@prisma/client';
 
+interface ApiResponse {
+  status: string;
+  message: string;
+  result?: any;
+}
+
 @Controller('posts')
-@UseFilters(AllExceptionsFilter)
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
@@ -36,31 +40,21 @@ export class PostsController {
   @Post(':id')
   @UseGuards(JwtAuthGuard)
   async createPost(
-    @Body() createPostDto: CreatePostDto,
-    @Res() response,
+    @Body() postData: Prisma.PostsCreateInput,
     @Param('id') id: string,
-  ): Promise<Posts | { status: number; message: string }> {
-    try {
-      const userId = parseInt(id, 10);
-      if (isNaN(userId)) {
-        throw new Error('Invalid user ID');
-      }
+  ): Promise<ApiResponse> {
+    const userId = parseInt(id, 10);
+    const result = await this.postsService.createPost(postData, userId);
 
-      const createdPost = await this.postsService.createPost(
-        createPostDto,
-        userId,
-      );
-      return response.status(201).json({
-        status: 'Ok!',
-        message: 'Post created successfully!',
-        result: createdPost,
-      });
-    } catch (error) {
-      return response.status(500).json({
-        status: 'Error!',
-        message: error.message || 'Controller error',
-      });
+    if (!result) {
+      throw new HttpException('Failed to create post', HttpStatus.BAD_REQUEST);
     }
+
+    return {
+      status: 'Ok!',
+      message: 'Post created successfully',
+      result: result,
+    };
   }
 
   @Put(':id')
