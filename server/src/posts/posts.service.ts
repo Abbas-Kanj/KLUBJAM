@@ -65,23 +65,16 @@ export class PostsService {
     });
   }
 
-  async updatePost(postId: number, updatePostDto: UpdatePostDto): Promise<any> {
-    const existingPost = await this.prisma.posts.findUnique({
-      where: {
-        id: postId,
-      },
-    });
-
-    if (!existingPost) {
-      return null;
-    }
-
+  async updatePost(
+    postId: number,
+    postData: Prisma.PostsUpdateInput,
+  ): Promise<Posts> {
     return this.prisma.posts.update({
       where: {
         id: postId,
       },
       data: {
-        ...updatePostDto,
+        ...postData,
       },
     });
   }
