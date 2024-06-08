@@ -76,4 +76,51 @@ describe('PostsController', () => {
       );
     });
   });
+
+  describe('createPost', () => {
+    it('should create a new post', async () => {
+      const postData: Prisma.PostsCreateInput = {
+        caption: 'Test Post',
+        post_picture: '',
+        hashtags: '',
+        user: {
+          create: undefined,
+          connectOrCreate: {
+            where: undefined,
+            create: undefined,
+          },
+          connect: undefined,
+        },
+      };
+      const result = { id: 1, ...postData };
+      mockPostsService.createPost.mockResolvedValue(result);
+
+      expect(await controller.createPost(postData, '1')).toEqual({
+        status: 'Ok!',
+        message: 'Post created successfully',
+        result: result,
+      });
+    });
+
+    it('should throw an exception if failed to create post', async () => {
+      const postData: Prisma.PostsCreateInput = {
+        caption: 'Test Post',
+        post_picture: '',
+        hashtags: '',
+        user: {
+          create: undefined,
+          connectOrCreate: {
+            where: undefined,
+            create: undefined,
+          },
+          connect: undefined,
+        },
+      };
+      mockPostsService.createPost.mockResolvedValue(null);
+
+      await expect(controller.createPost(postData, '1')).rejects.toThrow(
+        new HttpException('Failed to create post', HttpStatus.BAD_REQUEST),
+      );
+    });
+  });
 });
