@@ -25,6 +25,7 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async getAllPosts(): Promise<ApiResponse> {
     const result = await this.postsService.getAllPosts();
 
@@ -40,6 +41,7 @@ export class PostsController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async getPostsByUserId(@Param('id') id: string): Promise<ApiResponse> {
     const userId = Number(id);
     const result = await this.postsService.getPostsByUserId(userId);
@@ -79,6 +81,7 @@ export class PostsController {
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   async updatePost(
     @Param('id') id: string,
     @Body() postData: Prisma.PostsUpdateInput,
@@ -99,6 +102,7 @@ export class PostsController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async deletePost(@Param('id') id: string): Promise<ApiResponse> {
     const postId = parseInt(id, 10);
     const result = await this.postsService.deletePost(postId);
