@@ -123,4 +123,27 @@ describe('PostsController', () => {
       );
     });
   });
+
+  describe('updatePost', () => {
+    it('should update a post', async () => {
+      const postData: Prisma.PostsUpdateInput = { caption: 'Updated Post' };
+      const result = { id: 1, ...postData };
+      mockPostsService.updatePost.mockResolvedValue(result);
+
+      expect(await controller.updatePost('1', postData)).toEqual({
+        status: 'Ok!',
+        message: 'Post updated successfully',
+        result: result,
+      });
+    });
+
+    it('should throw an exception if failed to update post', async () => {
+      const postData: Prisma.PostsUpdateInput = { caption: 'Updated Post' };
+      mockPostsService.updatePost.mockResolvedValue(null);
+
+      await expect(controller.updatePost('1', postData)).rejects.toThrow(
+        new HttpException('Failed to update post', HttpStatus.BAD_REQUEST),
+      );
+    });
+  });
 });
