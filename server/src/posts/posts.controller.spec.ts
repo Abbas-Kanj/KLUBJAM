@@ -146,4 +146,17 @@ describe('PostsController', () => {
       );
     });
   });
+
+  describe('deletePost', () => {
+    it('should delete a post', async () => {
+      const result = { id: 1, caption: 'Deleted Post' };
+      mockPostsService.deletePost.mockResolvedValue(result);
+
+      expect(await controller.deletePost('1')).toEqual({
+        status: 'Ok!',
+        message: 'Post deleted successfully',
+        result: result,
+      });
+    });
+  });
 });
