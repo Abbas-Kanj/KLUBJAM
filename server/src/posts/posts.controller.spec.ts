@@ -34,4 +34,25 @@ describe('PostsController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  describe('getAllPosts', () => {
+    it('should return all posts', async () => {
+      const result = [{ id: 1, caption: 'Test Post' }];
+      mockPostsService.getAllPosts.mockResolvedValue(result);
+
+      expect(await controller.getAllPosts()).toEqual({
+        status: 'Ok!',
+        message: 'Posts retrieved successfully',
+        result: result,
+      });
+    });
+
+    it('should throw an exception if no posts are found', async () => {
+      mockPostsService.getAllPosts.mockResolvedValue([]);
+
+      await expect(controller.getAllPosts()).rejects.toThrow(
+        new HttpException('No posts found', HttpStatus.NOT_FOUND),
+      );
+    });
+  });
 });
