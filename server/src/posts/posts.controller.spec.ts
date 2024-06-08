@@ -55,4 +55,25 @@ describe('PostsController', () => {
       );
     });
   });
+
+  describe('getPostsByUserId', () => {
+    it('should return posts by user ID', async () => {
+      const result = [{ id: 1, caption: 'Test Post', userId: 1 }];
+      mockPostsService.getPostsByUserId.mockResolvedValue(result);
+
+      expect(await controller.getPostsByUserId('1')).toEqual({
+        status: 'Ok!',
+        message: 'User posts retrieved successfully',
+        result: result,
+      });
+    });
+
+    it('should throw an exception if no posts are found for the user', async () => {
+      mockPostsService.getPostsByUserId.mockResolvedValue([]);
+
+      await expect(controller.getPostsByUserId('1')).rejects.toThrow(
+        new HttpException('No posts found for the user', HttpStatus.NOT_FOUND),
+      );
+    });
+  });
 });
