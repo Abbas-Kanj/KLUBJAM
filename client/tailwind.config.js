@@ -56,6 +56,7 @@ export default {
     },
   },
   plugins: [
+    require("daisyui"),
     function ({ addUtilities }) {
       addUtilities({
         ".sequencer": {
