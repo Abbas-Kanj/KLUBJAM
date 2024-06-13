@@ -11,6 +11,7 @@ import ProtectedModerator from "../core/routes/ProtectedModerator";
 import ProtectedUser from "../core/routes/ProtectedUser";
 import { Toaster } from "react-hot-toast";
 import Production from "../pages/Production/Production";
+import UiTesting from "../test";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Routes>
             <Route path="/Production" element={<Production />}></Route>
             <Route path="/" element={<Landing />}></Route>
+            <Route path="/UiTest" element={<UiTesting />}></Route>
             <Route element={<ProtectedUser />}>
               <Route path="/Musician/*" element={<Musician />} />
             </Route>
