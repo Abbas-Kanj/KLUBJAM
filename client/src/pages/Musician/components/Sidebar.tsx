@@ -28,6 +28,12 @@ const Sidebar: React.FC<LayoutProps> = ({ children }) => {
     { name: "Settings", icon: MdOutlineSettings, href: "../Account" },
   ];
 
+  const handleLogout = () => {
+    const cookies = new Cookies();
+    cookies.remove("auth_token");
+    navigate("/");
+  };
+
   return (
     <div className="drawer lg:drawer-open gap-1">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -80,6 +86,12 @@ const Sidebar: React.FC<LayoutProps> = ({ children }) => {
                 </NavLink>
               ))}
             </div>
+          </div>
+          <div>
+            <a className="flex gap-4" onClick={handleLogout}>
+              <MdOutlineLogout className="size-6 fill-[#FF0000]" />
+              <p className="font-bold text-[16px] text-[#FF0000]">Logout</p>
+            </a>
           </div>
         </ul>
       </div>
