@@ -17,7 +17,7 @@ export default {
           DEFAULT: "#0FACFD",
         },
         background: {
-          DEFAULT: "#0F1117",
+          DEFAULT: "#121212",
         },
         backgroundPurple: {
           DEFAULT: "#6B1EC8",
@@ -57,6 +57,7 @@ export default {
   },
   plugins: [
     require("daisyui"),
+    require("tailwindcss-animated"),
     function ({ addUtilities }) {
       addUtilities({
         ".sequencer": {
