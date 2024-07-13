@@ -11,6 +11,8 @@ const SignupForm = () => {
 
   const [usernameError, setUserameError] = useState("");
   const [isValidUsername, setIsValidUsername] = useState(true);
+  const [emailError, setEmailError] = useState("");
+  const [isValidEmail, setIsValidEmail] = useState(true);
 
   const handleSignup = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -40,7 +42,7 @@ const SignupForm = () => {
     }
   };
 
-  const validateUsername = async () => {
+  const validateUsername = () => {
     const pattern = /^[a-zA-Z0-9_]+$/;
     if (username === "") {
       setUserameError("Username cannot be empty");
@@ -57,6 +59,23 @@ const SignupForm = () => {
     } else {
       setUserameError("");
       setIsValidUsername(true);
+      return;
+    }
+  };
+
+  const validateEmail = () => {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === "") {
+      setEmailError("Email cannot be empty");
+      setIsValidEmail(false);
+      return;
+    } else if (!pattern.test(email)) {
+      setEmailError("Invalid email address");
+      setIsValidEmail(false);
+      return;
+    } else {
+      setEmailError("");
+      setIsValidEmail(true);
       return;
     }
   };
@@ -117,12 +136,25 @@ const SignupForm = () => {
           placeholder="ex. GrooveGuru"
           value={email}
           className={`input input-bordered w-full max-w-xs bg-transparent 
-          border-2 border-solid  ${email ? "border-primary" : "border-gray-500"}
+          border-2 border-solid 
+            ${email ? "border-primary" : "border-gray-500"}
+          ${!isValidEmail ? "border-pink-600 text-pink-600" : ""}
           placeholder:text-gray-500
             active:text-primary text-primary font-semibold
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            validateEmail();
+          }}
+          onBlur={() => validateEmail()}
         />
+        {emailError === "" ? (
+          <></>
+        ) : (
+          <p className="text-sm text-pink-600 font-semibold animate-jump-in mt-2">
+            {emailError}
+          </p>
+        )}
       </label>
 
       <label className="form-control w-full max-w-sm">
