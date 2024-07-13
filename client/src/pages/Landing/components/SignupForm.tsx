@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { sendRequest } from "../../../core/remote/request";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignupForm = () => {
   const [username, SetUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isPasswordHidden, setIsPasswordHidden] = useState(false);
+
+  const [usernameError, setUserameError] = useState("");
+  const [isValidUsername, setIsValidUsername] = useState(true);
 
   const handleSignup = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -28,17 +32,32 @@ const SignupForm = () => {
   };
 
   const validateForm = () => {
-    if (
-      username == "" ||
-      email == "" ||
-      password == "" ||
-      confirmPassword == "" ||
-      password !== confirmPassword
-    ) {
+    if (username == "" || email == "" || password == "") {
       toast.error("Please fill empty fields");
       return false;
     } else {
       return true;
+    }
+  };
+
+  const validateUsername = async () => {
+    const pattern = /^[a-zA-Z0-9_]+$/;
+    if (username === "") {
+      setUserameError("Username cannot be empty");
+      setIsValidUsername(false);
+      return;
+    } else if (!pattern.test(username)) {
+      setUserameError("Username must not contain special characters");
+      setIsValidUsername(false);
+      return;
+    } else if (username.length > 20 || username.length < 5) {
+      setUserameError("Username must be between 5 and 20 characters");
+      setIsValidUsername(false);
+      return;
+    } else {
+      setUserameError("");
+      setIsValidUsername(true);
+      return;
     }
   };
 
@@ -47,9 +66,9 @@ const SignupForm = () => {
       id="form"
       noValidate
       onSubmit={handleSignup}
-      className="flex flex-col gap-[4px]"
+      className="flex flex-col gap-[4px] "
     >
-      <label className="form-control w-full max-w-xs">
+      <label className="form-control w-full max-w-sm">
         <div className="label">
           <span className="label-text text-white font-semibold text-sm">
             Username
@@ -63,17 +82,28 @@ const SignupForm = () => {
           placeholder="ex. GrooveGuru"
           value={username}
           className={`input input-bordered w-full max-w-xs bg-transparent 
-          border-2 border-solid  ${
-            username ? "border-primary" : "border-gray-500"
-          }
+          border-2 border-solid  
+          ${username ? "border-primary" : "border-gray-500"}
+          ${!isValidUsername ? "border-pink-600 text-pink-600" : ""}
           placeholder:text-gray-500
             active:text-primary text-primary font-semibold
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
-          onChange={(e) => SetUsername(e.target.value)}
+          onChange={(e) => {
+            SetUsername(e.target.value);
+            validateUsername();
+          }}
+          onBlur={() => validateUsername()}
         />
+        {usernameError === "" ? (
+          <></>
+        ) : (
+          <p className="text-sm text-pink-600 font-semibold animate-jump-in mt-2">
+            {usernameError}
+          </p>
+        )}
       </label>
 
-      <label className="form-control w-full max-w-xs">
+      <label className="form-control w-full max-w-sm">
         <div className="label">
           <span className="label-text text-white font-semibold text-sm">
             Email address
@@ -95,55 +125,44 @@ const SignupForm = () => {
         />
       </label>
 
-      <label className="form-control w-full max-w-xs">
+      <label className="form-control w-full max-w-sm">
         <div className="label">
           <span className="label-text text-white font-semibold text-sm">
             Password
           </span>
         </div>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          placeholder="••••••••••"
-          value={password}
-          className={`input input-bordered w-full max-w-xs bg-transparent 
+        <label className="flex items-center gap-2">
+          <input
+            type={isPasswordHidden ? "text" : "password"}
+            name="password"
+            id="password"
+            required
+            placeholder="••••••••••"
+            value={password}
+            className={`input input-bordered w-full max-w-xs bg-transparent 
           border-2 border-solid  ${
             password ? "border-primary" : "border-gray-500"
           }
           placeholder:text-gray-500
             active:text-primary text-primary font-semibold
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {isPasswordHidden ? (
+            <FaEye
+              onClick={() => setIsPasswordHidden((prevState) => !prevState)}
+              className="h-4 w-4 cursor-pointer"
+            />
+          ) : (
+            <FaEyeSlash
+              onClick={() => setIsPasswordHidden((prevState) => !prevState)}
+              className="h-4 w-4 cursor-pointer"
+            />
+          )}
+        </label>
       </label>
 
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text text-white font-semibold text-sm">
-            Confirm password
-          </span>
-        </div>
-        <input
-          type="password"
-          name="confirmPassword"
-          id="confirmPassword"
-          required
-          placeholder="••••••••••"
-          value={confirmPassword}
-          className={`input input-bordered w-full max-w-xs bg-transparent 
-          border-2 border-solid  ${
-            confirmPassword ? "border-primary" : "border-gray-500"
-          }
-          placeholder:text-gray-500
-            active:text-primary text-primary font-semibold
-            focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-      </label>
-
-      <div className="flex flex-col  gap-[10px] mt-[27px]">
+      <div className="flex flex-col gap-[10px] mt-[27px]">
         <button
           className="w-[372px] h-[42px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop"
           type="submit"
