@@ -13,6 +13,8 @@ const SignupForm = () => {
   const [isValidUsername, setIsValidUsername] = useState(true);
   const [emailError, setEmailError] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(true);
+  const [passwordError, setPasswordError] = useState("");
+  const [isValidPassword, setIsValidPassword] = useState(true);
 
   const handleSignup = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -42,7 +44,7 @@ const SignupForm = () => {
     }
   };
 
-  const validateUsername = () => {
+  const validateUsername = (username: string) => {
     const pattern = /^[a-zA-Z0-9_]+$/;
     if (username === "") {
       setUserameError("Username cannot be empty");
@@ -63,7 +65,7 @@ const SignupForm = () => {
     }
   };
 
-  const validateEmail = () => {
+  const validateEmail = (email: string) => {
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email === "") {
       setEmailError("Email cannot be empty");
@@ -76,6 +78,43 @@ const SignupForm = () => {
     } else {
       setEmailError("");
       setIsValidEmail(true);
+      return;
+    }
+  };
+
+  const validatePassword = (password: string) => {
+    const lowerCase = /(?=.*[a-z])/;
+    const upperCase = /(?=.*[A-Z])/;
+    const oneDigit = /(?=.*\d)/;
+    const oneSpecialCharacter = /(?=.*[@$!%*?&])/;
+    const atleastEightCharactersLong = /[A-Za-z\d@$!%*?&]{8,}/;
+    if (password === "") {
+      setPasswordError("Password cannot be empty");
+      setIsValidPassword(false);
+      return;
+    } else if (!lowerCase.test(password)) {
+      setPasswordError("Password must contain atleast one lower character");
+      setIsValidPassword(false);
+      return;
+    } else if (!upperCase.test(password)) {
+      setPasswordError("Password must contain atleast one upper character");
+      setIsValidPassword(false);
+      return;
+    } else if (!oneDigit.test(password)) {
+      setPasswordError("Password must contain atleast a number");
+      setIsValidPassword(false);
+      return;
+    } else if (!oneSpecialCharacter.test(password)) {
+      setPasswordError("Password must contain atleast a special character");
+      setIsValidPassword(false);
+      return;
+    } else if (!atleastEightCharactersLong.test(password)) {
+      setPasswordError("Password must be atleast eight characters long");
+      setIsValidPassword(false);
+      return;
+    } else {
+      setPasswordError("");
+      setIsValidPassword(true);
       return;
     }
   };
@@ -109,9 +148,8 @@ const SignupForm = () => {
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
           onChange={(e) => {
             SetUsername(e.target.value);
-            validateUsername();
+            validateUsername(e.target.value);
           }}
-          onBlur={() => validateUsername()}
         />
         {usernameError === "" ? (
           <></>
@@ -144,9 +182,8 @@ const SignupForm = () => {
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
           onChange={(e) => {
             setEmail(e.target.value);
-            validateEmail();
+            validateEmail(e.target.value);
           }}
-          onBlur={() => validateEmail()}
         />
         {emailError === "" ? (
           <></>
@@ -172,13 +209,16 @@ const SignupForm = () => {
             placeholder="••••••••••"
             value={password}
             className={`input input-bordered w-full max-w-xs bg-transparent 
-          border-2 border-solid  ${
-            password ? "border-primary" : "border-gray-500"
-          }
+          border-2 border-solid  
+          ${password ? "border-primary" : "border-gray-500"}
+          ${!isValidPassword ? "border-pink-600 text-pink-600" : ""}
           placeholder:text-gray-500
             active:text-primary text-primary font-semibold
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              validatePassword(e.target.value);
+            }}
           />
           {isPasswordHidden ? (
             <FaEye
@@ -192,6 +232,13 @@ const SignupForm = () => {
             />
           )}
         </label>
+        {passwordError === "" ? (
+          <></>
+        ) : (
+          <p className="text-sm text-pink-600 font-semibold animate-jump-in mt-2">
+            {passwordError}
+          </p>
+        )}
       </label>
 
       <div className="flex flex-col gap-[10px] mt-[27px]">
