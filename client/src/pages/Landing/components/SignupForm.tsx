@@ -18,29 +18,18 @@ const SignupForm = () => {
 
   const handleSignup = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (validateForm()) {
-      let data = {
-        username: username,
-        email: email,
-        password: password,
-      };
-      try {
-        const res = await sendRequest("POST", "auth/register", data);
-        if (res.status === 200) {
-          toast.success("Account created successfully!");
-        }
-      } catch (error: any) {
-        toast.error(error.message);
+    let data = {
+      username: username,
+      email: email,
+      password: password,
+    };
+    try {
+      const res = await sendRequest("POST", "auth/register", data);
+      if (res.status === 200) {
+        toast.success("Account created successfully!");
       }
-    }
-  };
-
-  const validateForm = () => {
-    if (username == "" || email == "" || password == "") {
-      toast.error("Please fill empty fields");
-      return false;
-    } else {
-      return true;
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 
@@ -139,7 +128,7 @@ const SignupForm = () => {
           required
           placeholder="ex. GrooveGuru"
           value={username}
-          className={`input input-bordered w-full max-w-xs bg-transparent 
+          className={`input input-bordered w-full bg-transparent 
           border-2 border-solid  
           ${username ? "border-primary" : "border-gray-500"}
           ${!isValidUsername ? "border-pink-600 text-pink-600" : ""}
@@ -173,7 +162,7 @@ const SignupForm = () => {
           required
           placeholder="ex. GrooveGuru"
           value={email}
-          className={`input input-bordered w-full max-w-xs bg-transparent 
+          className={`input input-bordered w-full bg-transparent 
           border-2 border-solid 
             ${email ? "border-primary" : "border-gray-500"}
           ${!isValidEmail ? "border-pink-600 text-pink-600" : ""}
@@ -200,7 +189,7 @@ const SignupForm = () => {
             Password
           </span>
         </div>
-        <label className="flex items-center gap-2">
+        <label className="flex items-center gap-2 relative">
           <input
             type={isPasswordHidden ? "text" : "password"}
             name="password"
@@ -208,7 +197,7 @@ const SignupForm = () => {
             required
             placeholder="••••••••••"
             value={password}
-            className={`input input-bordered w-full max-w-xs bg-transparent 
+            className={`input input-bordered w-full bg-transparent 
           border-2 border-solid  
           ${password ? "border-primary" : "border-gray-500"}
           ${!isValidPassword ? "border-pink-600 text-pink-600" : ""}
@@ -223,12 +212,12 @@ const SignupForm = () => {
           {isPasswordHidden ? (
             <FaEye
               onClick={() => setIsPasswordHidden((prevState) => !prevState)}
-              className="h-4 w-4 cursor-pointer"
+              className="h-4 w-4 cursor-pointer absolute right-3"
             />
           ) : (
             <FaEyeSlash
               onClick={() => setIsPasswordHidden((prevState) => !prevState)}
-              className="h-4 w-4 cursor-pointer"
+              className="h-4 w-4 cursor-pointer absolute right-3"
             />
           )}
         </label>
