@@ -81,12 +81,12 @@ const SigninForm = () => {
       id="form"
       noValidate
       onSubmit={handleLogin}
-      className="flex flex-col mt-[125px] mb-[72px] gap-[8px] "
+      className="flex flex-col gap-[8px]"
     >
       <label className="form-control w-full max-w-sm">
         <div className="label">
           <span className="label-text text-white font-semibold text-sm">
-            Email address
+            Enter you email address
           </span>
         </div>
         <input
@@ -119,7 +119,7 @@ const SigninForm = () => {
       <label className="form-control w-full max-w-sm">
         <div className="label">
           <span className="label-text text-white font-semibold text-sm">
-            Password
+            Enter your password
           </span>
         </div>
         <label className="flex items-center gap-2 relative">
@@ -151,7 +151,9 @@ const SigninForm = () => {
         )}
       </label>
       <button
-        className="w-[372px] h-[42px] mt-[27px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop"
+        className="w-[372px] h-[42px] mt-[27px] overflow-hidden rounded-[10px]
+         bg-primary font-medium shadow-drop tracking-wide
+         transition-transform transform hover:scale-105 hover:bg-cyan-500 active:scale-95"
         type="submit"
       >
         Login

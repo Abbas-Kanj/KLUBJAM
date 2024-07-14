@@ -113,7 +113,7 @@ const SignupForm = () => {
       id="form"
       noValidate
       onSubmit={handleSignup}
-      className="flex flex-col gap-[4px] "
+      className="flex flex-col gap-[4px]"
     >
       <label className="form-control w-full max-w-sm">
         <div className="label">
@@ -230,7 +230,9 @@ const SignupForm = () => {
         )}
       </label>
       <button
-        className="w-[372px] h-[42px] mt-[27px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop"
+        className="w-[372px] h-[42px] mt-[27px] overflow-hidden rounded-[10px]
+         bg-primary font-medium shadow-drop tracking-wide
+         transition-transform transform hover:scale-105 hover:bg-cyan-500 active:scale-95"
         type="submit"
       >
         Create Account

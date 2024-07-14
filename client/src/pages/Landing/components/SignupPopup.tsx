@@ -16,8 +16,10 @@ const SignupPopup: React.FC<SignupPopupProps> = ({
       <div className="w-[930px] h-[656px] flex">
         <div className="w-[450px] relative flex flex-col">
           <div className="relative z-10 mt-[110px] ml-[30px] gap-[20px] flex flex-col">
-            <h2 className="text-[20px]">Still dont have an account?</h2>
-            <h1 className="font-bold text-[24px] text-left">
+            <h2 className="text-[20px] animate-fade-right">
+              Still dont have an account?
+            </h2>
+            <h1 className="font-bold text-[24px] text-left animate-fade-right">
               Dive into KLUBJAM's world now
               <br /> and start creating!
             </h1>
@@ -29,7 +31,7 @@ const SignupPopup: React.FC<SignupPopupProps> = ({
             className="absolute top-0 left-0 z-0"
           />
         </div>
-        <div className="flex flex-col justify-around items-center h-full w-[480px] bg-backgroundPurple bg-opacity-80 rounded-r-[20px] relative">
+        <div className="flex flex-col justify-around items-center h-full w-[480px] bg-backgroundPurple bg-opacity-80 rounded-r-[20px] pt-20 relative">
           <p
             className="absolute top-5 right-7 font-bold text-black cursor-pointer hover:text-white"
             onClick={() => {
@@ -38,7 +40,7 @@ const SignupPopup: React.FC<SignupPopupProps> = ({
           >
             X
           </p>
-          <div className="flex flex-col justify-start items-start w-full pl-[50px]  mt-[34px] mb-[18px]">
+          <div className="flex flex-col justify-start items-start w-full pl-[50px]">
             <h1 className="font-bold text-[24px]">Create new account</h1>
             <h2 className="text-[16px] text-greyText">
               Please fill your credentials below
@@ -50,7 +52,8 @@ const SignupPopup: React.FC<SignupPopupProps> = ({
               Already have an account?
             </p>
             <p
-              className="w-auto h-auto text-base text-primary font-medium hover:underline decoration-primary cursor-pointer"
+              className="w-auto h-auto text-base text-primary font-medium hover:underline
+               decoration-primary cursor-pointer"
               onClick={() => {
                 setOpenSignupPopup(false);
                 setOpenSigninPopup(true);
