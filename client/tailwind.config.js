@@ -3,9 +3,6 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      gridTemplateColumns: {
-        16: "repeat(16, minmax(0, 1fr))",
-      },
       boxShadow: {
         drop: "0 0 10px 2px #0FACFD",
         black: "0 0 16px 14px #6B1EC8",
@@ -17,7 +14,7 @@ export default {
           DEFAULT: "#0FACFD",
         },
         background: {
-          DEFAULT: "#121212",
+          DEFAULT: "#0F1117",
         },
         backgroundPurple: {
           DEFAULT: "#6B1EC8",
@@ -55,38 +52,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require("daisyui"),
-    require("tailwindcss-animated"),
-    function ({ addUtilities }) {
-      addUtilities({
-        ".sequencer": {
-          "@apply grid grid-cols-16 gap-2 w-full": {},
-        },
-        ".note": {
-          "@apply bg-gray-300 text-xs md:text-base w-14 h-14 md:w-14 md:h-14 border border-gray-300 rounded-lg flex justify-center items-center":
-            {},
-        },
-        ".active": {
-          "@apply bg-purple-600 border border-purple-600": {},
-        },
-        ".first-beat-of-the-bar": {
-          "@apply bg-primary border border-primary": {},
-        },
-        ".bpm-controls": {
-          "@apply flex justify-center items-center mb-4": {},
-        },
-        ".bpm-controls label": {
-          "@apply text-white": {},
-        },
-        ".beat-indicator": {
-          "@apply w-4 h-4 rounded-full bg-gray-500 flex justify-center items-center text-white text-xl mx-auto":
-            {},
-        },
-        ".live": {
-          "@apply bg-green-500": {},
-        },
-      });
-    },
-  ],
+  plugins: [require("daisyui"), require("tailwindcss-animated")],
 };
