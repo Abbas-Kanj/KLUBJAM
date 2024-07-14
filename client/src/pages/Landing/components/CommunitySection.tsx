@@ -1,8 +1,8 @@
-import sec2Img1 from "../../../../public/images/Rectangle 11.png";
-import sec2Img2 from "../../../../public/images/Rectangle 12.png";
-import sec2Img3 from "../../../../public/images/Rectangle 13.png";
-import magicPattern1 from "../../../../public/images/MagicPattern.design (2).png";
-import line from "../../../../public/wide-video.mp4";
+import sec2Img1 from "/images/Rectangle 11.png";
+import sec2Img2 from "/images/Rectangle 12.png";
+import sec2Img3 from "/images/Rectangle 13.png";
+import magicPattern1 from "/images/MagicPattern.design (2).png";
+import line from "/images/Line.png";
 
 const CommunitySection = () => {
   return (

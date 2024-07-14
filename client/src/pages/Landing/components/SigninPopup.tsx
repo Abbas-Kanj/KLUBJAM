@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import siginImg from "../../assets/Auth/Rectangle 36.png";
 import SigninForm from "./SigninForm";
 
@@ -12,7 +12,7 @@ const SigninPopup: React.FC<SigninPopupProps> = ({
   setOpenSignupPopup,
 }) => {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
+    <section className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       <div className="w-[930px] h-[656px] flex">
         <div className="w-[450px] relative flex flex-col">
           <div className="relative z-10 mt-[110px] ml-[30px] gap-[20px] flex flex-col ">
@@ -21,7 +21,6 @@ const SigninPopup: React.FC<SigninPopupProps> = ({
               Jammers in the KLUB are <br /> excited for your comeback!
             </h1>
           </div>
-
           <img
             src={siginImg}
             alt="siginImg"
@@ -30,7 +29,7 @@ const SigninPopup: React.FC<SigninPopupProps> = ({
         </div>
         <div className="flex flex-col justify-around items-center h-full w-[480px] bg-backgroundPurple bg-opacity-80 rounded-r-[20px] pt-[74px] relative">
           <p
-            className="absolute top-5 right-7 font-bold text-black cursor-pointer"
+            className="absolute top-5 right-7 font-bold text-black cursor-pointer bg-primary rounded-full px-2 py-1 hover:bg-opacity-50"
             onClick={() => {
               setOpenSigninPopup(false);
             }}
@@ -45,7 +44,7 @@ const SigninPopup: React.FC<SigninPopupProps> = ({
           </div>
           <SigninForm />
           <div className="flex flex-col p-[10px] mb-[68px] gap-[10px]">
-            <div className="flex items-center justify-center gap-[12px] mb-[60px]">
+            <div className="flex items-center justify-center gap-[12px] mb-[30px]">
               <p className="text-base font-medium text-white">
                 Don't have an account?
               </p>
@@ -62,7 +61,7 @@ const SigninPopup: React.FC<SigninPopupProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

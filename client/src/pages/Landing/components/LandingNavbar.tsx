@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/LandingPage/images/image 4.svg";
+import logo from "/logo.svg";
 
 interface LandingNavbarProps {
   setOpenSigninPopup: (open: boolean) => void;

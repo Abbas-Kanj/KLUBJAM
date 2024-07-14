@@ -1,7 +1,7 @@
-import line from "../../../../public/images/Line.png";
-import sec1Img1 from "../../../../public/images/Rectangle 7.png";
-import sec1Img2 from "../../../../public/images/Rectangle 8.png";
-import sec1Img3 from "../../../../public/images/Rectangle 9.png";
+import line from "/images/Line.png";
+import sec1Img1 from "/images/Rectangle 7.png";
+import sec1Img2 from "/images/Rectangle 8.png";
+import sec1Img3 from "/images/Rectangle 9.png";
 
 const WorkspaceSection = () => {
   return (

@@ -1,12 +1,12 @@
-import line from "../../../../public/images/Line.png";
-import magicPattern2 from "../../../../public/images/MagicPattern.design (1).png";
-import sec4Img1 from "../../../../public/images/Rectangle 29.png";
-import sec4Img2 from "../../../../public/images/Rectangle 30.png";
-import sec4Img3 from "../../../../public/images/Rectangle 31.png";
-import sec4Img4 from "../../../../public/images/Rectangle 32.png";
-import sec4Img5 from "../../../../public/images/Rectangle 33.png";
-import sec4Img6 from "../../../../public/images/Rectangle 34.png";
-import sec4Img7 from "../../../../public/images/Rectangle 35.png";
+import line from "/images/Line.png";
+import magicPattern2 from "/images/MagicPattern.design (1).png";
+import sec4Img1 from "/images/Rectangle 29.png";
+import sec4Img2 from "/images/Rectangle 30.png";
+import sec4Img3 from "/images/Rectangle 31.png";
+import sec4Img4 from "/images/Rectangle 32.png";
+import sec4Img5 from "/images/Rectangle 33.png";
+import sec4Img6 from "/images/Rectangle 34.png";
+import sec4Img7 from "/images/Rectangle 35.png";
 const AiSection = () => {
   return (
     <section className="flex flex-col w-full  overflow-hidden z-10">

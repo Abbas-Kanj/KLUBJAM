@@ -1,9 +1,9 @@
-import sec3Img1 from "../../../../public/images/Rectangle 25.png";
-import sec3Img2 from "../../../../public/images/Rectangle 26.png";
-import sec3Img3 from "../../../../public/images/Rectangle 27.png";
-import sec3Img4 from "../../../../public/images/Rectangle 28.png";
-import magicPattern3 from "../../../../public/images/MagicPattern.design (3).png";
-import line from "../../../../public/images/Line.png";
+import sec3Img1 from "/images/Rectangle 25.png";
+import sec3Img2 from "/images/Rectangle 26.png";
+import sec3Img3 from "/images/Rectangle 27.png";
+import sec3Img4 from "/images/Rectangle 28.png";
+import magicPattern3 from "/images/MagicPattern.design (3).png";
+import line from "/images/Line.png";
 
 const DiscoverMusicSection = () => {
   return (

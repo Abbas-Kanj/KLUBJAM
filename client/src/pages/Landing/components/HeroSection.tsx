@@ -1,6 +1,6 @@
 import LandingNavbar from "./LandingNavbar";
-import video from "../../../../public/wide-video.mp4";
-import magicPattern3 from "../../../../public/images/MagicPattern.design (3).png";
+import video from "/wide-video.mp4";
+import magicPattern3 from "/images/MagicPattern.design (3).png";
 
 interface HeroSectionNavbarProps {
   setOpenSigninPopup: (open: boolean) => void;

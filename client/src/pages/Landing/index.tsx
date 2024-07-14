@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SignIn from "./components/Signin";
+import SignIn from "./components/SigninPopup";
 import Signup from "./components/SignupPopup";
 import Carousel from "./components/Carousel";
 import WorkspaceSection from "./components/WorkspaceSection";
