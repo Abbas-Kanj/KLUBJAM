@@ -160,7 +160,7 @@ const SignupForm = () => {
           name="email"
           id="email"
           required
-          placeholder="ex. GrooveGuru"
+          placeholder="ex. GrooveGuru@example.com"
           value={email}
           className={`input input-bordered w-full bg-transparent 
           border-2 border-solid 
@@ -229,15 +229,12 @@ const SignupForm = () => {
           </p>
         )}
       </label>
-
-      <div className="flex flex-col gap-[10px] mt-[27px]">
-        <button
-          className="w-[372px] h-[42px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop"
-          type="submit"
-        >
-          Create Account
-        </button>
-      </div>
+      <button
+        className="w-[372px] h-[42px] mt-[27px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop"
+        type="submit"
+      >
+        Create Account
+      </button>
     </form>
   );
 };

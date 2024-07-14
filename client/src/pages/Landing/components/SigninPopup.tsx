@@ -29,7 +29,7 @@ const SigninPopup: React.FC<SigninPopupProps> = ({
         </div>
         <div className="flex flex-col justify-around items-center h-full w-[480px] bg-backgroundPurple bg-opacity-80 rounded-r-[20px] pt-[74px] relative">
           <p
-            className="absolute top-5 right-7 font-bold text-black cursor-pointer bg-primary rounded-full px-2 py-1 hover:bg-opacity-50"
+            className="absolute top-5 right-7 font-bold text-black cursor-pointer hover:text-white"
             onClick={() => {
               setOpenSigninPopup(false);
             }}

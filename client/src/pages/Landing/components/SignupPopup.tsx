@@ -31,7 +31,7 @@ const SignupPopup: React.FC<SignupPopupProps> = ({
         </div>
         <div className="flex flex-col justify-around items-center h-full w-[480px] bg-backgroundPurple bg-opacity-80 rounded-r-[20px] relative">
           <p
-            className="absolute top-5 right-7 font-bold text-black cursor-pointer"
+            className="absolute top-5 right-7 font-bold text-black cursor-pointer hover:text-white"
             onClick={() => {
               setOpenSignupPopup(false);
             }}
@@ -45,7 +45,7 @@ const SignupPopup: React.FC<SignupPopupProps> = ({
             </h2>
           </div>
           <SignupForm />
-          <div className="flex items-center justify-center gap-[12px] mb-[60px]">
+          <div className="flex items-center justify-center gap-[12px] mb-[30px]">
             <p className="text-base font-medium text-white">
               Already have an account?
             </p>

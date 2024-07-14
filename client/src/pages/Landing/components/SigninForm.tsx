@@ -19,6 +19,11 @@ const SigninForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [emailError, setEmailError] = useState("");
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [passwordError, setPasswordError] = useState("");
+  const [isValidPassword, setIsValidPassword] = useState(true);
+
   const validateForm = () => {
     if (email == "" || password == "") {
       toast.error("Please fill empty fields");
@@ -76,48 +81,77 @@ const SigninForm = () => {
       id="form"
       noValidate
       onSubmit={handleLogin}
-      className="flex flex-col mt-[125px] mb-[72px] gap-[16px] "
+      className="flex flex-col mt-[125px] mb-[72px] gap-[8px] "
     >
-      <div className="flex flex-col w-[375px] h-[68px] gap-[6px]">
-        <label htmlFor="email" className="text-[14px] font-small">
-          Enter your username
-        </label>
+      <label className="form-control w-full max-w-sm">
+        <div className="label">
+          <span className="label-text text-white font-semibold text-sm">
+            Email address
+          </span>
+        </div>
         <input
-          type="text"
+          type="email"
           name="email"
           id="email"
           required
+          placeholder="ex. GrooveGuru@example.com"
           value={email}
-          autoComplete="email"
-          placeholder="GrooveGuru@example.com"
-          className="w-[375px] h-[44px] pt-[14px] pb-[14px] 
-                pl-[18px] placeholder:font-semibold placeholder:text-[16px] 
-                placeholder:gray-500 bg-transparent border-solid border-[2px] 
-                rounded-[5px] border-gray-500 focus:outline-none focus:shadow-outline 
-                focus:text-primary active:text-primary"
-          onChange={(e) => setEmail(e.target.value)}
+          className={`input input-bordered w-full bg-transparent 
+          border-2 border-solid 
+            ${email ? "border-primary" : "border-gray-500"}
+          ${!isValidEmail ? "border-pink-600 text-pink-600" : ""}
+          placeholder:text-gray-500
+            active:text-primary text-primary font-semibold
+            focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
         />
-      </div>
-      <div className="flex flex-col w-[375px] h-[68px] gap-[6px]">
-        <label htmlFor="password" className="text-[14px] font-medium">
-          Enter your password
+        {emailError === "" ? (
+          <></>
+        ) : (
+          <p className="text-sm text-pink-600 font-semibold animate-jump-in mt-2">
+            {emailError}
+          </p>
+        )}
+      </label>
+
+      <label className="form-control w-full max-w-sm">
+        <div className="label">
+          <span className="label-text text-white font-semibold text-sm">
+            Password
+          </span>
+        </div>
+        <label className="flex items-center gap-2 relative">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            placeholder="••••••••••"
+            value={password}
+            className={`input input-bordered w-full bg-transparent 
+          border-2 border-solid  
+          ${password ? "border-primary" : "border-gray-500"}
+          ${!isValidPassword ? "border-pink-600 text-pink-600" : ""}
+          placeholder:text-gray-500
+            active:text-primary text-primary font-semibold
+            focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
         </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="**********"
-          required
-          value={password}
-          className="w-[375px] h-[44px] pt-[14px] pb-[14px] pl-[18px] 
-                placeholder:font-bold placeholder:text-[18px] placeholder:text-white
-                 bg-transparent ring-1 rounded-[5px]
-                  focus:outline-none focus:shadow-outline focus:text-primary"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
+        {passwordError === "" ? (
+          <></>
+        ) : (
+          <p className="text-sm text-pink-600 font-semibold animate-jump-in mt-2">
+            {passwordError}
+          </p>
+        )}
+      </label>
       <button
-        className="w-[372px] h-[42px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop"
+        className="w-[372px] h-[42px] mt-[27px] overflow-hidden rounded-[10px] bg-primary font-medium shadow-drop"
         type="submit"
       >
         Login
