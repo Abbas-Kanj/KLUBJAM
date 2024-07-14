@@ -7,6 +7,7 @@ import CommunitySection from "./components/CommunitySection";
 import DiscoverMusicSection from "./components/DiscoverMusicSection";
 import AiSection from "./components/AiSection";
 import HeroSection from "./components/HeroSection";
+import ScrollButton from "./components/ScrollButton";
 
 const LandingPage = () => {
   const [openSigninPopup, setOpenSigninPopup] = useState(false);
@@ -26,6 +27,7 @@ const LandingPage = () => {
           setOpenSigninPopup={setOpenSigninPopup}
         ></Signup>
       )}
+      <ScrollButton />
       <HeroSection
         setOpenSigninPopup={setOpenSigninPopup}
         setOpenSignupPopup={setOpenSignupPopup}
