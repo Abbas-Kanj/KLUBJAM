@@ -19,7 +19,7 @@ const ScrollButton = () => {
   return (
     <button
       className={`fixed bottom-5 right-5 bg-primary cursor-pointer p-3 border-solid
-         border-primary border-2 rounded-full z-50 opacity-50 
+         border-primary border-2 rounded-full z-50 opacity-50 hover:shadow-drop
          hover:opacity-90 transition-all duration-150 ease-out md:ease-in ${buttonDisplay}`}
       onClick={() => {
         window.scroll({

@@ -34,7 +34,8 @@ const LandingNavbar: React.FC<LandingNavbarProps> = ({
       </div>
       <div className="flex text-sm text-center justify-center items-center">
         <button
-          className=" bg-primary w-[94px] h-[38px] overflow-hidden rounded-[10px] font-medium"
+          className=" bg-primary w-[94px] h-[38px] overflow-hidden rounded-[10px] font-medium 
+          hover:shadow-drop opacity-90 hover:opacity-100 transition-all duration-150 ease-out md:ease-in"
           onClick={() => {
             setOpenSigninPopup(true);
           }}
@@ -42,7 +43,9 @@ const LandingNavbar: React.FC<LandingNavbarProps> = ({
           SIGN IN
         </button>
         <button
-          className="w-[154px] h-[38px] ml-[18px] overflow-hidden rounded-[10px] text-primary font-medium border-solid border-2"
+          className="w-[154px] h-[38px] ml-[18px] overflow-hidden rounded-[10px]
+           text-primary font-medium border-solid border-2 hover:shadow-drop
+            opacity-90 hover:opacity-100 transition-all duration-150 ease-out md:ease-in"
           onClick={() => {
             setOpenSignupPopup(true);
           }}

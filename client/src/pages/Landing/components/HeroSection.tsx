@@ -36,7 +36,8 @@ const HeroSection: React.FC<HeroSectionNavbarProps> = ({
             and Every Note Tells a Story!
           </h2>
           <button
-            className=" text-xl font-bold bg-primary w-fit pb-[10px] pr-[78px] pt-[10px] pl-[78px] mt-[46px] mb-[15px] rounded-[10px] shadow-drop"
+            className=" text-xl font-bold bg-primary w-fit pb-[10px] pr-[78px] pt-[10px] pl-[78px] mt-[46px] mb-[15px]
+             rounded-[10px] shadow-drop opacity-90 hover:opacity-100 transition-all duration-150 ease-out md:ease-in"
             onClick={() => {
               setOpenSigninPopup(true);
             }}
