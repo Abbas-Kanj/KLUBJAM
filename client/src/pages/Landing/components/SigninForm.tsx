@@ -153,7 +153,7 @@ const SigninForm = () => {
       <button
         className="w-[372px] h-[42px] mt-[27px] overflow-hidden rounded-[10px]
          bg-primary font-medium shadow-drop tracking-wide
-         transition-transform transform hover:scale-105 hover:bg-cyan-500 active:scale-95"
+         hover:shadow-drop opacity-90 hover:opacity-100 transition-all duration-150 ease-out md:ease-in"
         type="submit"
       >
         Login

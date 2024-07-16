@@ -130,8 +130,8 @@ const SignupForm = () => {
           value={username}
           className={`input input-bordered w-full bg-transparent 
           border-2 border-solid  
-          ${username ? "border-primary" : "border-gray-500"}
-          ${!isValidUsername ? "border-pink-600 text-pink-600" : ""}
+          ${username ? "border-primary" : "border-gray-500"} 
+          ${!isValidUsername ? "border-red-600 text-red-600" : " "} 
           placeholder:text-gray-500
             active:text-primary text-primary font-semibold
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
@@ -143,7 +143,7 @@ const SignupForm = () => {
         {usernameError === "" ? (
           <></>
         ) : (
-          <p className="text-sm text-pink-600 font-semibold animate-jump-in mt-2">
+          <p className="text-sm text-red-600 font-semibold animate-jump-in mt-2">
             {usernameError}
           </p>
         )}
@@ -165,7 +165,7 @@ const SignupForm = () => {
           className={`input input-bordered w-full bg-transparent 
           border-2 border-solid 
             ${email ? "border-primary" : "border-gray-500"}
-          ${!isValidEmail ? "border-pink-600 text-pink-600" : ""}
+          ${!isValidEmail ? "border-red-600 text-red-600" : ""}
           placeholder:text-gray-500
             active:text-primary text-primary font-semibold
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
@@ -177,7 +177,7 @@ const SignupForm = () => {
         {emailError === "" ? (
           <></>
         ) : (
-          <p className="text-sm text-pink-600 font-semibold animate-jump-in mt-2">
+          <p className="text-sm text-red-600 font-semibold animate-jump-in mt-2">
             {emailError}
           </p>
         )}
@@ -200,7 +200,7 @@ const SignupForm = () => {
             className={`input input-bordered w-full bg-transparent 
           border-2 border-solid  
           ${password ? "border-primary" : "border-gray-500"}
-          ${!isValidPassword ? "border-pink-600 text-pink-600" : ""}
+          ${!isValidPassword ? "border-red-600 text-red-600" : ""}
           placeholder:text-gray-500
             active:text-primary text-primary font-semibold
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
@@ -224,7 +224,7 @@ const SignupForm = () => {
         {passwordError === "" ? (
           <></>
         ) : (
-          <p className="text-sm text-pink-600 font-semibold animate-jump-in mt-2">
+          <p className="text-sm text-red-600 font-semibold animate-jump-in mt-2">
             {passwordError}
           </p>
         )}
@@ -232,7 +232,7 @@ const SignupForm = () => {
       <button
         className="w-[372px] h-[42px] mt-[27px] overflow-hidden rounded-[10px]
          bg-primary font-medium shadow-drop tracking-wide
-         transition-transform transform hover:scale-105 hover:bg-cyan-500 active:scale-95"
+         hover:shadow-drop opacity-80 hover:opacity-100 transition-all duration-100 ease-out md:ease-in"
         type="submit"
       >
         Create Account
