@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import siginImg from "../../assets/Auth/Rectangle 36.png";
 import SigninForm from "./SigninForm";
 
@@ -11,9 +11,11 @@ const SigninPopup: React.FC<SigninPopupProps> = ({
   setOpenSigninPopup,
   setOpenSignupPopup,
 }) => {
+  const [popupAnimation, setPopupAnimation] = useState("animate-fade-up");
+
   return (
     <section className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
-      <div className="w-[930px] h-[656px] flex">
+      <div className={`w-[930px] h-[656px] flex  ${popupAnimation}`}>
         <div className="w-[450px] relative flex flex-col">
           <div className="relative z-10 mt-[110px] ml-[30px] gap-[20px] flex flex-col ">
             <h2 className="text-[20px] animate-fade-right">Welcome back!</h2>
@@ -31,7 +33,10 @@ const SigninPopup: React.FC<SigninPopupProps> = ({
           <p
             className="absolute top-5 right-7 font-bold text-black cursor-pointer hover:text-white"
             onClick={() => {
-              setOpenSigninPopup(false);
+              setPopupAnimation(
+                "animate-fade-down animate-once animate-duration-[400ms] animate-ease-linear animate-reverse animate-fill-forwards"
+              );
+              setTimeout(() => setOpenSigninPopup(false), 400);
             }}
           >
             X

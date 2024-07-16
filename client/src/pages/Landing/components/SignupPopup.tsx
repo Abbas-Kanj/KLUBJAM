@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import signupImage from "../../assets/Auth/Rectangle 36 (1).png";
 import SignupForm from "./SignupForm";
 
@@ -11,15 +11,15 @@ const SignupPopup: React.FC<SignupPopupProps> = ({
   setOpenSignupPopup,
   setOpenSigninPopup,
 }) => {
+  const [popupAnimation, setPopupAnimation] = useState("animate-fade-up");
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
-      <div className="w-[930px] h-[656px] flex">
+      <div className={`w-[930px] h-[656px] flex  ${popupAnimation}`}>
         <div className="w-[450px] relative flex flex-col">
-          <div className="relative z-10 mt-[110px] ml-[30px] gap-[20px] flex flex-col">
-            <h2 className="text-[20px] animate-fade-right">
-              Still dont have an account?
-            </h2>
-            <h1 className="font-bold text-[24px] text-left animate-fade-right">
+          <div className="relative z-10 mt-[110px] ml-[30px] gap-[20px] flex flex-col animate-fade-right">
+            <h2 className="text-[20px] ">Still dont have an account?</h2>
+            <h1 className="font-bold text-[24px] text-left ">
               Dive into KLUBJAM's world now
               <br /> and start creating!
             </h1>
@@ -35,7 +35,10 @@ const SignupPopup: React.FC<SignupPopupProps> = ({
           <p
             className="absolute top-5 right-7 font-bold text-black cursor-pointer hover:text-white"
             onClick={() => {
-              setOpenSignupPopup(false);
+              setPopupAnimation(
+                "animate-fade-down animate-once animate-duration-[400ms] animate-ease-linear animate-reverse animate-fill-forwards"
+              );
+              setTimeout(() => setOpenSignupPopup(false), 400);
             }}
           >
             X
