@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import signupImage from "../../assets/Auth/Rectangle 36 (1).png";
 import SignupForm from "./SignupForm";
 
