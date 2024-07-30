@@ -25,10 +25,19 @@ const SigninForm = () => {
   const [isValidPassword, setIsValidPassword] = useState(true);
 
   const validateForm = () => {
-    if (email == "" || password == "") {
-      toast.error("Please fill empty fields");
+    if (email === "") {
+      setEmailError("Email Cannot be empty");
+      setIsValidEmail(false);
+      return false;
+    } else if (password === "") {
+      setPasswordError("Password Cannot be empty");
+      setIsValidPassword(false);
       return false;
     } else {
+      setEmailError("");
+      setPasswordError("");
+      setIsValidEmail(true);
+      setIsValidPassword(true);
       return true;
     }
   };
@@ -105,6 +114,7 @@ const SigninForm = () => {
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
           onChange={(e) => {
             setEmail(e.target.value);
+            setEmailError("");
           }}
         />
         {emailError === "" ? (
@@ -139,6 +149,7 @@ const SigninForm = () => {
             focus:outline-none focus:shadow-outline focus:text-white focus:border-white`}
             onChange={(e) => {
               setPassword(e.target.value);
+              setPasswordError("");
             }}
           />
         </label>
