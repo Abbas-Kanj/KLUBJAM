@@ -12,15 +12,15 @@ interface PostProps {
 
 const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
   const user = useAppSelector((state) => state.user.info);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [newcomment, setNewComment] = useState("");
 
   const validateComment = () => {
     if (newcomment === "") {
-      setError("Please insert a comment");
+      // setError("Please insert a comment");
       return false;
     } else {
-      setError("");
+      // setError("");
       return true;
     }
   };
@@ -34,6 +34,9 @@ const CommentsPopup: React.FC<PostProps> = ({ setOpenCommentsPopup, post }) => {
           userId: user?.id,
         };
         const res = await sendRequest("POST", `/comments/${post.id}`, postData);
+        if (res.status === 200) {
+          console.log("success");
+        }
       } catch (error: any) {
         console.log(error.message);
       }

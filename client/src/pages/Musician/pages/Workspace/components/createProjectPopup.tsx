@@ -78,7 +78,9 @@ const CreateProjectPopup: React.FC<UpdateMusicianProps> = ({
                     Authorization: `Bearer ${authorizationKey}`,
                   },
                 });
-                console.log("success notification");
+                if (res.status === 201) {
+                  console.log("success");
+                }
               } catch {
                 console.log("error");
               }

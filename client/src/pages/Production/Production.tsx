@@ -6,8 +6,6 @@ import play from "./assets/icons/play-03.svg";
 import repeat from "./assets/icons/refresh-01.svg";
 import micro from "./assets/icons/microphone-01.svg";
 import volume from "./assets/icons/volume-05.svg";
-import settings from "./assets/icons/settings (1).svg";
-import download from "./assets/icons/download-02.svg";
 import elipse from "./assets/icons/Ellipse 41.svg";
 import circle from "../assets/Workspace/icons/circle.svg";
 import { useState } from "react";

@@ -1,6 +1,4 @@
 import Posts from "./Posts";
-import Recommendations from "./Recommendations";
-import Stories from "./Stories";
 
 const Body = () => {
   return (

@@ -16,11 +16,11 @@ const Posts = () => {
   const posts = useAppSelector((state) => state.post.posts);
 
   const user = useAppSelector((state) => state.user.info);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [openCommentsPopup, setOpenCommentsPopup] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [newcomment, setNewComment] = useState("");
-  const [isLiked, setIsLiked] = useState(false);
+  // const [isLiked, setIsLiked] = useState(false);
 
   const [likedPosts, setLikedPosts] = useState<{ [key: string]: boolean }>({});
 
@@ -73,10 +73,10 @@ const Posts = () => {
 
   const validateComment = () => {
     if (newcomment === "") {
-      setError("Please insert a comment");
+      // setError("Please insert a comment");
       return false;
     } else {
-      setError("");
+      // setError("");
       return true;
     }
   };

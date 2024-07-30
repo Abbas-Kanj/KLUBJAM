@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-
 import Account from "./pages/Account";
 import Home from "./pages/Home";
 import Workspace from "./pages/Workspace";
