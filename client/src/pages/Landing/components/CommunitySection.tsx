@@ -2,22 +2,21 @@ import sec2Img1 from "/images/Rectangle 11.png";
 import sec2Img2 from "/images/Rectangle 12.png";
 import sec2Img3 from "/images/Rectangle 13.png";
 import magicPattern1 from "/images/MagicPattern.design (2).png";
-import line from "/images/Line.png";
 
 const CommunitySection = () => {
   return (
-    <section className="flex flex-col w-full z-10">
+    <section className="flex flex-col w-screen z-10">
       <img
         src={magicPattern1}
         alt=""
-        className="absolute object-cover w-screen h-auto bottom-[55%] left-0 z-10"
+        className="absolute object-cover h-auto bottom-[55%] left-0 z-10"
       />
-      <div className=" mt-[202px] ml-[828px] flex flex-col text-center relative z-20 w-fit">
-        <h1 id="community" className="font-black text-[45px] ">
+      <div className="mt-52 flex flex-col self-end text-center items-center justify-center pr-10 relative z-10 w-fit">
+        <h1 id="community" className="font-black text-5xl px-6">
           Join the KLUB
         </h1>
-        <img src={line} className="mb-[19px] mt-[9px] m shadow-drop" alt="" />
-        <p className="text-[20px]  font-semibold">
+        <div className="mb-5 mt-4 rounded-full h-1 shadow-drop w-full bg-primary"></div>
+        <p className="text-2xl font-semibold">
           Connect now and join a community where you
           <br /> can interact with others, share your music,
           <br /> and engage with like-minded individuals.
