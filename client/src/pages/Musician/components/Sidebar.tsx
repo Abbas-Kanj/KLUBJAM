@@ -28,16 +28,16 @@ const Sidebar: React.FC<LayoutProps> = ({ children }) => {
     { name: "Settings", icon: MdOutlineSettings, href: "../Account" },
   ];
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     const cookies = new Cookies();
-    cookies.remove("auth_token");
+    await cookies.remove("auth_token");
     navigate("/");
   };
 
   return (
     <div className="drawer lg:drawer-open gap-1">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
+      <div className="drawer-content lg:min-h-[686px]">
         {children}
         <label
           htmlFor="my-drawer-2"
@@ -52,7 +52,7 @@ const Sidebar: React.FC<LayoutProps> = ({ children }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu flex flex-col justify-between p-4 w-52 min-h-[660px] rounded-xl bg-gradient-to-br from-pink-950 via-background to-background ">
+        <ul className="menu flex flex-col justify-between p-4 w-52 lg:min-h-[686px] rounded-xl bg-background ">
           <div>
             <div className="flex items-center mb-16 mt-9 gap-[19px]">
               <img src={Logo} alt="" />
@@ -67,8 +67,8 @@ const Sidebar: React.FC<LayoutProps> = ({ children }) => {
                     return (
                       "flex gap-3 items-center font-semibold p-1 " +
                       (!isActive
-                        ? "text-greyText hover:bg-primary hover:bg-opacity-40 hover:rounded-lg -ml-4 pl-4"
-                        : "text-primary hover:bg-primary hover:bg-opacity-40 hover:rounded-lg border-l-4 border-primary border-solid rounded-l-sm -ml-4 pl-4")
+                        ? "text-greyText  hover:bg-primary hover:bg-opacity-40 hover:rounded-lg -ml-4 pl-4"
+                        : "text-primary hover:bg-primary hover:bg-opacity-40 hover:rounded-md border-l-4 border-primary border-solid rounded-l-sm -ml-4 pl-4")
                     );
                   }}
                 >

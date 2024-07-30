@@ -1,4 +1,3 @@
-import bgHeader from "../../../assets/Navbar/images/Rectangle 164.png";
 import { useState } from "react";
 import PersonalProjects from "./components/PersonalProjects";
 import GroupProjects from "./components/GroupProjects";
@@ -17,19 +16,20 @@ const Workspace = () => {
     }
   };
   return (
-    <div className="flex flex-col w-[1316px] bg-backgroundDark overflow-x-hidden overflow-scroll">
-      <div className="h-[180px] flex relative">
-        <img
-          src={bgHeader}
-          alt=""
-          className="w-full h-full object-center absolute inset-0"
-        />
+    <div className="flex flex-col w-full h-full gap-2 overflow-hidden mt-1">
+      <div
+        className="h-[140px] flex relative bg-base-200 text-base-content rounded-xl"
+        style={{
+          background:
+            "linear-gradient(260deg, rgba(109,0,45,1) 20%, rgba(57,11,32,1) 33%, rgba(18,18,18,1) 60%)",
+        }}
+      >
         <img
           src={user.info?.profile_picture}
           alt=""
           className="absolute top-3 right-3 cursor-pointer w-[32px] rounded-full"
         />
-        <h1 className="relative mt-[67px] mb-[67px] ml-[35px] font-semibold text-[38px]">
+        <h1 className="relative mt-11 mb-11 ml-9 font-semibold text-3xl">
           Workspace
         </h1>
 
@@ -54,7 +54,13 @@ const Workspace = () => {
           </h2>
         </div>
       </div>
-      <div className="flex flex-col relative items-center">
+      <div
+        className="flex flex-col items-center h-[512px] min-w-full bg-base-200 text-base-content overflow-y-scroll rounded-xl"
+        style={{
+          background:
+            "linear-gradient(220deg, rgba(109,0,45,1) 6%, rgba(57,11,32,1) 20%, rgba(18,18,18,1) 30%)",
+        }}
+      >
         <SearchBar />
         {isVisible1 && <PersonalProjects />}
         {isVisible2 && <GroupProjects />}

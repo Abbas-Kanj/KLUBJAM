@@ -5,7 +5,7 @@ import { useAppDispatch } from "../../../../app/hooks";
 import { fetchAllUsers } from "../../../../redux/users/usersSlice";
 import Cookies from "universal-cookie";
 
-const Home = () => {
+const HomePage = () => {
   const dispatch = useAppDispatch();
   const cookies = new Cookies();
   const auth_token = cookies.get("auth_token");
@@ -17,11 +17,11 @@ const Home = () => {
   }, [auth_token, dispatch]);
 
   return (
-    <div className="flex flex-col w-[1316px] bg-backgroundDark overflow-x-hidden overflow-scroll">
+    <div className="flex flex-col gap-2 overflow-hidden mt-1">
       <Header />
       <Body />
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

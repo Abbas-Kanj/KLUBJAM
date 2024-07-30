@@ -11,7 +11,7 @@ const LandingNavbar: React.FC<LandingNavbarProps> = ({
   setOpenSignupPopup,
 }) => {
   return (
-    <nav className="flex mt-[33px] ml-auto mr-auto rounded-2xl items-center justify-around h-20 w-[1400px] bg-backgroundPurple bg-opacity-65">
+    <nav className="flex mt-[33px] mx-10 rounded-2xl items-center justify-around h-20 bg-backgroundPurple bg-opacity-65">
       <div className="flex">
         <img src={logo} alt="" />
         <h2 className="ml-[32px] text-2xl font-semibold">KLUBJAM</h2>

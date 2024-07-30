@@ -1,5 +1,5 @@
 import React from "react";
-import PlayerBar from "./PlayerBar";
+import PlayerBar from "./AudioPlayer";
 import Sidebar from "./Sidebar";
 
 interface LayoutProps {
@@ -8,7 +8,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col w-screen h-screen overflow-hidden bg-black p-2 gap-1">
+    <div className="flex flex-col w-screen h-screen bg-black p-2 gap-4">
       <Sidebar children={children} />
       <PlayerBar />
     </div>

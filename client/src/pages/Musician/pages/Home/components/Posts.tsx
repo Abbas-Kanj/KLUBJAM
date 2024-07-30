@@ -114,7 +114,7 @@ const Posts = () => {
   }, [auth_token, dispatch]);
 
   return (
-    <div className="ml-[350px] mt-[48px] mb-[120px]">
+    <div className="ml-80 mt-11 mb-10">
       {openCommentsPopup && (
         <CommentsPopup
           post={selectedPost}

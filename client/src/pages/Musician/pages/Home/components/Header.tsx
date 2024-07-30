@@ -1,24 +1,20 @@
 import { useAppSelector } from "../../../../../app/hooks";
-import bgHeader from "../../../../assets/Navbar/images/Rectangle 163 (1).png";
+import "../../../../../common/styles/index.css";
 
 const Header = () => {
   const user = useAppSelector((state) => state.user);
 
   return (
-    <div className="h-[180px] flex relative">
-      <img
-        src={bgHeader}
-        alt=""
-        className="w-full h-full object-center absolute inset-0"
-      />
+    <div
+      className="lg:max-h-[120px] flex relative rounded-xl
+     bg-gradient-to-tl from-pink-950 via-background to-background"
+    >
       <img
         src={user.info?.profile_picture}
         alt=""
         className="absolute top-3 right-3 cursor-pointer w-[32px] rounded-full"
       />
-      <h1 className="relative mt-[67px] mb-[67px] ml-[35px] font-semibold text-[38px]">
-        Home
-      </h1>
+      <h1 className="relative mt-10 mb-11 ml-9 font-semibold text-3xl">Home</h1>
     </div>
   );
 };

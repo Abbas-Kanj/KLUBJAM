@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "../../assets/Sidebar/icons/logo.svg";
+// import Logo from "../../assets/Sidebar/icons/logo.svg";
 import logout from "../../assets/Sidebar/icons/logout.svg";
 import Tracks from "../assets/icons/grey/Group.svg";
 import TracksCyan from "../assets/icons/cyan/Group.svg";
@@ -33,7 +33,7 @@ const ModeratorSidebar = () => {
         <ReportPopup setopenReportPopup={setopenReportPopup}></ReportPopup>
       )}
       <div className="flex mt-[38px] ml-[14px] gap-[19px]">
-        <img src={Logo} alt="" />
+        {/* <img src={Logo} alt="" /> */}
         <h1 className="font-semibold text-[22px]">KLUBJAM</h1>
       </div>
       <div>

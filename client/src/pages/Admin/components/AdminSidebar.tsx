@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "../../assets/Sidebar/icons/logo.svg";
+// import Logo from "../../assets/Sidebar/icons/logo.svg";
 import logout from "../../assets/Sidebar/icons/logout.svg";
 import AnalyticsLogo from "../assets/icons/grey/Vector.svg";
 import AnalyticsLogoCyan from "../assets/icons/cyan/Vector.svg";
@@ -37,7 +37,7 @@ const AdminSidebar = () => {
   return (
     <div className="flex flex-col w-[257px] h-screen bg-background ">
       <div className="flex mt-[38px] ml-[14px] gap-[19px]">
-        <img src={Logo} alt="" />
+        {/* <img src={Logo} alt="" /> */}
         <h1 className="font-semibold text-[22px]">KLUBJAM</h1>
       </div>
       <div>

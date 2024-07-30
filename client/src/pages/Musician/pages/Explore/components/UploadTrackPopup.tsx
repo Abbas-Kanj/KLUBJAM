@@ -2,7 +2,7 @@ import { useState } from "react";
 import { sendRequest } from "../../../../../core/remote/request";
 import { useAppSelector } from "../../../../../app/hooks";
 import Cookies from "js-cookie";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
+// import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
 interface PostProps {
   setOpenUploadTrackPopup: (open: boolean) => void;
@@ -107,13 +107,13 @@ const UploadTrackPopup: React.FC<PostProps> = ({ setOpenUploadTrackPopup }) => {
           <div className="flex flex-col h-auto w-[460px] items-center gap-[60px] p-[16px] mt-[20px]">
             <label htmlFor="image-upload" className="cursor-pointer flex">
               <img src={image} className="max-h-[220px] w-fit" />
-              <ModeEditIcon
+              {/* <ModeEditIcon
                 style={{
                   backgroundColor: "#0FACFD",
                   borderRadius: "100%",
                   padding: "2px",
                 }}
-              />
+              /> */}
             </label>
             <input
               id="image-upload"

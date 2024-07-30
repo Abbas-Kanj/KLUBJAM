@@ -9,6 +9,7 @@
   border: 0;
   scroll-behavior: smooth;
   color: white;
+  scrollbar-color: inherit;
 }
 
 ::-webkit-scrollbar {
@@ -21,10 +22,10 @@
 
 ::-webkit-scrollbar-thumb {
   background: #0facfd;
-  box-shadow: 0 0 20px 20px #0facfd;
+  box-shadow: 0 0 10px 0px #0facfd;
 }
 
-::-webkit-scrollbar-thumb:hover {
+/* ::-webkit-scrollbar-thumb:hover {
   background: #6b1ec8;
   box-shadow: 0 0 20px 20px #0facfd;
-}
+} */
